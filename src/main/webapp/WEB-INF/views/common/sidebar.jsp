@@ -5,7 +5,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../Admin/dashboard.html">
+        <a class="nav-link collapsed" href="${pageContext.request.contextPath}/dashboard">
           <i class="bi bi-grid"></i><span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->

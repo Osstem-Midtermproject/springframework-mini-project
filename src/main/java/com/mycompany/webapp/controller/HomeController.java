@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j2;
 
+//Dispatcher에 home 전달
 @Controller
 @Log4j2
-public class DashboardController {
-	@RequestMapping("/dashboard")
+public class HomeController {
+	@RequestMapping("/")
 	public String dashboard() {
 		log.info("실행");
 		
-		///WEB-INF/views/dashboard/dashboard.jsp
-		return "dashboard/dashboard";
+		///WEB-INF/views/home.jsp
+		return "home";
 	}
 	
 	
