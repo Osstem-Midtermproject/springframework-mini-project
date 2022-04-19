@@ -30,6 +30,8 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login() {
 		log.info("실행");
+		log.info("dd");
+		
 		return "/user/login";
 	}
 	
