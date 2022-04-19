@@ -738,3 +738,23 @@ h1, h2, h3, h4, h5, h6 {
   width: 2rem;
   border-radius: 50%;
 }
+img.ui-datepicker-trigger {
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        cursor: pointer;
+        padding-bottom: 0.2rem;
+        width: 1rem;
+      }
+      div.ui-dialog-titlebar {
+        background-color: rgb(238, 115, 14);
+      }
+      div.fc-event-title-container {
+        background-color: rgb(238, 115, 14);
+      }
+      .ui-timepicker {
+        position: inherit;
+        z-index: 10001;
+        font-size: 12px;
+        width: 6px;
+        text-align: start;
+      }

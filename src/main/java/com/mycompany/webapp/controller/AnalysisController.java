@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
+@RequestMapping("/analysis")
 public class AnalysisController {
 	@RequestMapping("/analysis")
 	public String analysis() {
@@ -20,5 +21,12 @@ public class AnalysisController {
 		
 		///WEB-INF/views/analysis/analysis.jsp
 		return "analysis/analysis";
+	}
+	@RequestMapping("/hospital")
+	public String hospital() {
+		log.info("실행");
+		
+		///WEB-INF/views/analysis/analysis.jsp
+		return "analysis/hospital";
 	}
 }

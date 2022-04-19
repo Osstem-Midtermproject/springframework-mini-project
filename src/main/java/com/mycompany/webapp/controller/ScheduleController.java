@@ -10,8 +10,13 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/schedule")
 public class ScheduleController {
 	@RequestMapping("/calendar")
-	public String schedule() {
+	public String calendar() {
 		log.info("실행");
 		return "schedule/calendar";
+	}
+	@RequestMapping("/detailForm")
+	public String detailForm() {
+		log.info("실행");
+		return "schedule/detailForm";
 	}
 }
