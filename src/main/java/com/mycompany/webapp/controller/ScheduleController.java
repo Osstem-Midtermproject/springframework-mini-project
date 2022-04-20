@@ -14,9 +14,29 @@ public class ScheduleController {
 		log.info("실행");
 		return "schedule/calendar";
 	}
+	
 	@RequestMapping("/detailForm")
 	public String detailForm() {
 		log.info("실행");
 		return "schedule/detailForm";
 	}
+	
+	@RequestMapping("/list")
+	public String list() {
+		log.info("실행");
+		return "schedule/list";
+	}
+	
+	@RequestMapping("/team")
+	public String team() {
+		log.info("실행");
+		return "schedule/team";
+	}
+	
+	@RequestMapping("/team/detail")
+	public String teamDetail() {
+		log.info("실행");
+		return "schedule/team_detail";
+	}
+
 }

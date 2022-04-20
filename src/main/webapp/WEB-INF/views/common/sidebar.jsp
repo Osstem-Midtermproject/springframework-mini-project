@@ -16,12 +16,12 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="${pageContext.request.contextPath}/analysis">
+            <a href="${pageContext.request.contextPath}/analysis/analysis">
               <i class="bi bi bi-cash-coin"></i><span>Sales</span>
             </a>
           </li>
           <li>
-            <a href="../Admin/analysis_design.html">
+            <a href="${pageContext.request.contextPath}/analysis/design">
               <i class="bi bi-brush-fill"></i><span>Design</span>
             </a>
           </li>
@@ -34,13 +34,18 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/schedule/calendar">
               <i class="bi bi-calendar-week-fill"></i><span>Calendar</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/schedule/list">
               <i class="bi bi-card-list"></i><span>List</span>
+            </a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/schedule/team">
+              <i class="bi bi-card-list"></i><span>Team</span>
             </a>
           </li>
         </ul>
@@ -52,25 +57,30 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <i class="bi bi-hourglass-bottom"></i><span>History</span>
+            <a href="${pageContext.request.contextPath}/hospital/processing">
+              <i class="bi bi-hourglass-bottom"></i><span>Processing</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-pencil-square"></i><span>Processing</span>
+            <a href="${pageContext.request.contextPath}/hospital/history">
+              <i class="bi bi-pencil-square"></i><span>History</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/hospital/location">
               <i class="bi bi-geo-alt"></i><span>Location</span>
+            </a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/hospital/contractHistory">
+              <i class="bi bi-geo-alt"></i><span>Contract History</span>
             </a>
           </li>
         </ul>
       </li><!-- End Dentist Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" href="${pageContext.request.contextPath}/management">
           <i class="bi bi-pencil-fill"></i><span>Management</span>
         </a>
       </li><!-- End Management Nav -->

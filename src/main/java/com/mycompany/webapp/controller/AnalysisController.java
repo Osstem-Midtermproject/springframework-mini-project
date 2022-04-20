@@ -26,7 +26,15 @@ public class AnalysisController {
 	public String hospital() {
 		log.info("실행");
 		
-		///WEB-INF/views/analysis/analysis.jsp
+		///WEB-INF/views/analysis/hospital.jsp
 		return "analysis/hospital";
+	}
+	
+	@RequestMapping("/design")
+	public String design() {
+		log.info("실행");
+		
+		///WEB-INF/views/analysis/design.jsp
+		return "analysis/design";
 	}
 }

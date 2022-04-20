@@ -92,7 +92,7 @@
         //시작일.
         $("#fromDate").datepicker({
           showOn: "both", // 달력을 표시할 타이밍 (both: focus or button)
-          buttonImage: "/boot/images/calendar-check.svg", // 버튼 이미지
+          buttonImage: "${pageContext.request.contextPath}/resources/images/calendar-check.svg", // 버튼 이미지
           buttonImageOnly: true, // 버튼 이미지만 표시할지 여부
           dateFormat: "yy-mm-dd", // 날짜의 형식
           changeMonth: true, // 월을 이동하기 위한 선택상자 표시여부
@@ -106,7 +106,7 @@
         //종료일
         $("#toDate").datepicker({
           showOn: "both",
-          buttonImage: "/boot/images/calendar-check.svg",
+          buttonImage: "${pageContext.request.contextPath}/resources/images/calendar-check.svg",
           buttonImageOnly: true,
           dateFormat: "yy-mm-dd",
           changeMonth: true,

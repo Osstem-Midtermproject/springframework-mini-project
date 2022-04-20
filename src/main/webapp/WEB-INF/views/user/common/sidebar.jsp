@@ -13,19 +13,19 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="../html/userInformation.html">
+            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="${pageContext.request.contextPath}/user/userInformation">
             <i class="bi bi-person-check-fill"></i><span>회원정보</span>
             </a>
         </li><!-- End Dentist Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="../html/progressDetail.html">
+            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="${pageContext.request.contextPath}/user/progressDetail">
             <i class="bi bi-list-task"></i><span>진행내역</span>
             </a>
         </li><!-- End Dentist Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="../html/contractsView.html">
+            <a class="nav-link collapsed"  data-bs-toggle="collapse" href="${pageContext.request.contextPath}/user/contractsView">
             <i class="bi bi-file-earmark-text-fill"></i><span>계약현황</span>
             </a>
         </li><!-- End Dentist Nav -->
