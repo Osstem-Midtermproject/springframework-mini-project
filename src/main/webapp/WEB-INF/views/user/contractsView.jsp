@@ -33,7 +33,7 @@
                                 <td>010-4444-1234</td>
                                 <td>2022-02-17</td>
                                 <td>계약완료</td>
-                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;">계약서 보기</a> </td>
+                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;" href="contractForm">계약서 보기</a> </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -42,7 +42,7 @@
                                 <td>010-2222-1234</td>
                                 <td>2021-04-23</td>
                                 <td>계약완료</td>
-                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;">계약서 보기</a> </td>
+                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;" href="contractFormPdf">계약서 보기</a> </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -51,7 +51,7 @@
                                 <td>010-3333-1234</td>
                                 <td>2018-09-30</td>
                                 <td>계약파기</td>
-                                <td><a class="btn btn-sm btn-secondary disabled" style="font-size: x-small;">계약서 보기</a> </td>
+                                <td><a class="btn btn-sm btn-secondary disabled" style="font-size: x-small;" href="contractForm">계약서 보기</a> </td>
                             </tr>
                         </tbody>
                     </table>

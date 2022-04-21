@@ -122,7 +122,7 @@
                         <tbody>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">1</td>
-                                <td >주영치과</td>
+                                <td><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.09.24 - 2022.09.26</td>
                                 <td>벽지 AS</td>
                                 <td>무상</td>
@@ -131,7 +131,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">2</td>
-                                <td >주영치과</td>
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.09.23</td>
                                 <td>벽지 AS 상담</td>
                                 <td>무상</td>
@@ -140,7 +140,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">3</td>
-                                <td >주영치과</td>
+                                <td><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.09.21</td>
                                 <td>벽지 AS 신청</td>
                                 <td>무상</td>
@@ -149,7 +149,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">4</td>
-                                <td >주영치과</td>
+                                <td><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.07.09</td>
                                 <td>시공 완료 후 확인</td>
                                 <td>420,000,000</td>
@@ -158,7 +158,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">5</td>
-                                <td >주영치과</td>
+                                <td><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.06.29 - 2022.07.07</td>
                                 <td>인테리어 시공</td>
                                 <td>???</td>
@@ -167,7 +167,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">6</td>
-                                <td >주영치과</td>
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.06.16 - 2022.06.28</td>
                                 <td>벽지 시공</td>
                                 <td>???</td>
@@ -176,7 +176,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">8</td>
-                                <td >주영치과</td>
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.05.25 - 2022.06.15</td>
                                 <td>전기 시공</td>
                                 <td>???</td>
@@ -184,8 +184,8 @@
                                 <td>시공완료</td>
                             </tr>
                             <tr class="border-bottom border-200">
-                                <td class="fw-bold">7</td>
-                                <td >주영치과</td>
+                                <td class="fw-bold">7</td> 
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.05.19</td>
                                 <td>인테리어 계약</td>
                                 <td>계약금 : 40,000,000</td>
@@ -194,7 +194,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">9</td>
-                                <td >주영치과</td>
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a> </td>
                                 <td >2022.05.17</td>
                                 <td>인테리어 추가 상담</td>
                                 <td>무상</td>
@@ -203,7 +203,7 @@
                             </tr>
                             <tr class="border-bottom border-200">
                                 <td class="fw-bold">10</td>
-                                <td >주영치과</td>
+                                <td ><a href="${pageContext.request.contextPath}/hospital/processing/detail">주영치과</a></td>
                                 <td >2022.05.16</td>
                                 <td>인테리어 상담</td>
                                 <td>무상</td>
