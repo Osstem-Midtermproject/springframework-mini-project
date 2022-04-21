@@ -25,6 +25,10 @@ body {
   color: #444444;
 }
 
+input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
+input[type="checkbox"]:checked { background: #bcbcbc; } 
+
+
 a {
   color: rgba(242, 101, 34);
   text-decoration: none;
@@ -762,3 +766,4 @@ img.ui-datepicker-trigger {
         width: 6px;
         text-align: start;
       }
+      
