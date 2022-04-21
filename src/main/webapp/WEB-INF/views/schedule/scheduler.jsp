@@ -20,19 +20,54 @@
         </form>
       </div>
     </div>
+    
     <main id="main" class="main">
       <div class="d-flex flex-column">
         <div class="card">
           <div class="card-body">
+            <div class="d-flex flex-row">
+              
+              <div style="margin-left: auto">
+                <div id="sidecontainer" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                  <label id="select1" class="btn" for="btncheck1">전기</label>
+      
+                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+                  <label id="select2" class="btn" for="btncheck2">벽지</label>
+      
+                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+                  <label id="select3" class="btn" for="btncheck3">인테리어</label>
+                </div>
+              </div>
+            </div>
             <div class="mt-4" id="calendar-container">
               <div id="calendar"></div>
             </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">팀 목록</h5>
+              <div class="team-wrapper d-flex justify-content-between">
+                <div id="elec" class="col-lg-4">
+                 
+                </div>
+
+                <div id="wall" class="col-lg-4">
+                 
+                </div>
+
+                <div id="interior" class="col-lg-4">
+                
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </main>
-   <script>
-      var id = 0;
+    <script>
+      var id = 1;
       var diaLogOpt = {
         title: "일정관리",
         modal: true, //모달대화상자
@@ -40,22 +75,6 @@
         width: "500",
         height: "500",
       };
-      $(function () {
-        $("#time1").timepicker({
-          timeFormat: "HH:mm",
-          interval: 30,
-          dynamic: false,
-          dropdown: true,
-          scrollbar: true,
-        });
-        $("#time2").timepicker({
-          timeFormat: "HH:mm",
-          interval: 30,
-          dynamic: false,
-          dropdown: true,
-          scrollbar: true,
-        });
-      });
 
       (function () {
         $(function () {
@@ -63,24 +82,26 @@
           var calendarEl = $("#calendar")[0];
           // full-calendar 생성하기
           var calendar = new FullCalendar.Calendar(calendarEl, {
-        	schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
-            height: "700px", // calendar 높이 설정
+            schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
+            initialView: "resourceTimeline",
+            height: 300,
+            aspectRatio: 1.5,
             expandRows: true, // 화면에 맞게 높이 재설정
-            slotMinTime: "08:00", // Day 캘린더에서 시작 시간
-            slotMaxTime: "20:00", // Day 캘린더에서 종료 시간
+            slotMinTime: "09:00", // Day 캘린더에서 시작 시간
+            slotMaxTime: "22:00", // Day 캘린더에서 종료 시간
+            eventMinHeight:80,
             // 해더에 표시할 툴바
             headerToolbar: {
-              left: "prev,next today",
+              left: "prev,next",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+              right: "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
             },
-            initialView: "dayGridMonth", // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-            initialDate: "2022-04-11", // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+
             navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
             editable: true, // 수정 가능?
             selectable: true, // 달력 일자 드래그 설정가능
-            nowIndicator: true, // 현재 시간 마크
-            dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
+           
+
             locale: "ko", // 한국어 설정
             eventDidMount: function (info) {
               let title = info.event.title;
@@ -121,7 +142,7 @@
             eventChange: function (info) {},
             eventRemove: function (obj) {},
             eventClick: function (info) {
-              console.log(info.event.extendedProps.startTime);
+              console.log(info.event);
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
                 var btnOpt = {
@@ -165,55 +186,30 @@
               $("#dialog").dialog(dOpt);
               calendar.unselect();
             },
-            select: function (arg) {
+            select: function (selectioninfo) {
               // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-              let check = Number(moment(arg.end).format("DD")) - Number(moment(arg.start).format("DD"));
-              if (check === 1) {
-                $("#timebox").css("display", "block");
-                var btnOpt = {
-                  저장: function () {
-                    id++;
-                    calendar.addEvent({
-                      id: id,
-                      title: $("#datetitle").val(),
-                      start: moment(arg.start).format("YYYY-MM-DD") + "T" + $("#time1").val(),
-                      extendedProps: {
-                        startTime: $("#time1").val(),
-                        endtTime: $("#time2").val(),
-                        content: $("#datecontent").val(),
-                      },
-                    });
-                    $(this).dialog("close");
-                  },
-                  취소: function () {
-                    $(this).dialog("close");
-                  },
-                };
-              } else {
-                $("#timebox").css("display", "none");
-                var btnOpt = {
-                  저장: function () {
-                    id++;
-                    console.log($("#time1").val());
-                    calendar.addEvent({
-                      id: id,
-                      title: $("#datetitle").val(),
-                      start: moment(arg.start).format("YYYY-MM-DD"),
-                      end: moment(arg.end).format("YYYY-MM-DD"),
-                      allDay: arg.allDay,
-                      extendedProps: {
-                        content: $("#datecontent").val(),
-                      },
-                    });
-                    $(this).dialog("close");
-                  },
-                  취소: function () {
-                    $(this).dialog("close");
-                  },
-                };
-              }
-              $("#time1").val("");
-              $("#time2").val("");
+
+              var btnOpt = {
+                저장: function () {
+                  elec2(selectioninfo.resource.id);
+                  calendar.addEvent({
+                    resourceId: selectioninfo.resource.id,
+                    id: selectioninfo.resource.id,
+                    title: $("#datetitle").val(),
+                    start: selectioninfo.start,
+                    end: selectioninfo.end,
+                    extendedProps: {
+                      content: $("#datecontent").val(),
+                    },
+                  });
+                  
+                  $(this).dialog("close");
+                },
+                취소: function () {
+                  $(this).dialog("close");
+                },
+              };
+
               $("#datetitle").val("");
               $("#datecontent").val("");
               var dOpt = diaLogOpt;
@@ -222,40 +218,26 @@
               calendar.unselect();
             },
             // 이벤트
+            resources: [
+              {
+                id: "A",
+                title: "A팀",
+              },
+              {
+                id: "B",
+                title: "B팀",
+              },
+              {
+                id: "C",
+                title: "C팀",
+              },
+            ],
             events: [
               {
-                title: "All Day Event",
-                start: "2022-04-16",
-              },
-              {
-                title: "Long Event",
-                start: "2022-04-07",
-                end: "2022-04-11",
-              },
-              {
-                groupId: 999,
-                title: "Repeating Event",
-                start: "2022-04-20T16:00:00",
-              },
-              {
-                groupId: 999,
-                title: "Repeating Event",
-                start: "2022-04-20T16:00:00",
-              },
-              {
-                title: "Conference",
-                start: "2022-04-13",
-                end: "2022-04-16",
-              },
-              {
-                title: "Conferenceaaaa",
-                start: "Thu Apr 28 2022 00:00:00 GMT+0900 (한국 표준시)",
-                end: "Thu Apr 28 2022 00:00:00 GMT+0900 (한국 표준시)",
-              },
-              {
-                title: "Meeting",
-                start: "2022-04-1010:30:00",
-                end: "2022-04-10T12:30:00",
+                resourceId: "a",
+                id: "a",
+                start: "2022-04-21T10:00",
+                end: "2022-04-21T16:00",
               },
             ],
           });
@@ -263,5 +245,16 @@
           calendar.render();
         });
       })();
+    /*   function elec2(arg){  
+        $.ajax({
+           url:"${pageContext.request.contextPath}/schedule/elec.jsp"
+           }).done((data)=>{
+          
+           $("#elec").append(data);
+           
+        });
+      } */
+      
     </script>
+  
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -39,6 +39,12 @@
             </a>
           </li>
           <li>
+            <li>
+            <a href="${pageContext.request.contextPath}/schedule/scheduler">
+              <i class="bi bi-calendar-week-fill"></i><span>Scheduler</span>
+            </a>
+          </li>
+          <li>
             <a href="${pageContext.request.contextPath}/schedule/list">
               <i class="bi bi-card-list"></i><span>List</span>
             </a>

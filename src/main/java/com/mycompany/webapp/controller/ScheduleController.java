@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j2;
@@ -37,6 +38,16 @@ public class ScheduleController {
 	public String teamDetail() {
 		log.info("실행");
 		return "schedule/team_detail";
+	}
+	@RequestMapping("/scheduler")
+	public String scheduler() {
+		log.info("실행");
+		return "schedule/scheduler";
+	}
+	@GetMapping("/method1")
+	public String method1() {
+		log.info("실행");
+		return "schedule/scheduler";
 	}
 
 }
