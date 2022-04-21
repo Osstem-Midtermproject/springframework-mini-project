@@ -232,7 +232,7 @@ button:focus {
 								<td>독도 병원</td>
 								<td>울릉도 동남쪽 200리</td>
 								<td>02-1234-2345</td>
-								<td><button type="button" class="btn btn-outline-primary">보기</button></td>
+								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/hospital/contractHistory'">내역</button></td>
 								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">약도보기</button></td>
 							</tr>
 							<tr>
@@ -240,7 +240,7 @@ button:focus {
 								<td>울릉도 병원</td>
 								<td>울릉도 동남쪽 100리</td>
 								<td>02-1234-2345</td>
-								<td><button type="button" class="btn btn-outline-primary">보기</button></td>
+								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/hospital/contractHistory'">내역</button></td>
 								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">약도보기</button></td>
 							</tr>
 							<tr>
@@ -248,7 +248,7 @@ button:focus {
 								<td>이쪽 병원</td>
 								<td>울릉도 동남쪽 400리</td>
 								<td>02-1234-2345</td>
-								<td><button type="button" class="btn btn-outline-primary">보기</button></td>
+								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/hospital/contractHistory'">내역</button></td>
 								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">약도보기</button></td>
 							</tr>
 							<tr>
@@ -256,7 +256,7 @@ button:focus {
 								<td>저쪽 병원</td>
 								<td>저쪽은 어떠리</td>
 								<td>02-1234-2345</td>
-								<td><button type="button" class="btn btn-outline-primary">보기</button></td>
+								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/hospital/contractHistory'">내역</button></td>
 								<td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">약도보기</button></td>
 							</tr>
 						</tbody>
