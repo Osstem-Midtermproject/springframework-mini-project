@@ -34,6 +34,7 @@
                         </ul>
                       </div>
 
+					<%-- <a href="${pageContext.request.contextPath}/analysis/analysis"> --%>
                       <div class="card-body" >
                         <h5 class="card-title">Sales <span>| Today</span></h5>
                         <div class="d-flex align-items-center">
@@ -46,7 +47,7 @@
                           </div>
                         </div>
                       </div>
-
+					<!-- </a> -->
                     </div>
                   </div><!-- End Sales Card -->
                   <!-- 계약건수 -->

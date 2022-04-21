@@ -680,10 +680,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Search-Bar */
+.search-bar {
+	margin-right: 30px;
+}
+
 .search-bar .search-form input {
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 .search-bar .search-form input:focus {

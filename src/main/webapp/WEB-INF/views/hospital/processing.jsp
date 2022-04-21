@@ -120,11 +120,18 @@
               <div class="card-body">
                 <h5 class="card-title">진행 상황</h5>
                 
-                <div class="d-flex">
+                <div class="d-flex justify-content-between">
                   <div class="col-sm-2 d-flex align-items-center">
                     <input type="date" class="form-control">
                     <span style="margin: 0.2rem;">~</span>
                     <input type="date" class="form-control">
+                  </div>
+
+                  <div class="search-bar">
+                    <form class="search-form d-flex align-items-center justify-content-center" method="POST" action="#">
+                      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                    </form>
                   </div>
                 </div>
 
@@ -219,35 +226,8 @@
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
-
-
-                <nav>
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&lsaquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&rsaquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav><!-- End Pagination -->
+                
+                <%@ include file="/WEB-INF/views/element/pagination.jsp"%>
 
                 <div class="search-bar">
                   <form class="search-form d-flex align-items-center justify-content-center" method="POST" action="#">
