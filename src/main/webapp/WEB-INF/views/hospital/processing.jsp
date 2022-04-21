@@ -53,7 +53,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">1</th>
                       <td>연세치과</td>
                       <td>2022-04-03</td>
@@ -62,7 +62,7 @@
                       <td>AS</td>
                       <td>불확정</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">2</th>
                       <td>고운맘치과</td>
                       <td>2022-04-10</td>
@@ -71,7 +71,7 @@
                       <td>AS</td>
                       <td>불확정</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">3</th>
                       <td>연세유라인치과</td>
                       <td>2022-04-13</td>
@@ -120,12 +120,9 @@
               <div class="card-body">
                 <h5 class="card-title">진행 상황</h5>
                 
-                <div class="d-flex">
-                  <div class="col-sm-2 d-flex align-items-center">
-                    <input type="date" class="form-control">
-                    <span style="margin: 0.2rem;">~</span>
-                    <input type="date" class="form-control">
-                  </div>
+                <div class="d-flex justify-content-between">                  
+                  <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+                  <%@ include file="/WEB-INF/views/common/searchbar.jsp"%>
                 </div>
 
                 <!-- Table with stripped rows -->
@@ -152,7 +149,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">1</th>
                       <td>퍼펙트치과의원</td>
                       <td >2022-04-03</td>
@@ -161,7 +158,7 @@
                       <td>010-1111-1111</td>
                       <td>시공중</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">2</th>
                       <td>서울혜치과의원</td>
                       <td>미정</td>
@@ -170,7 +167,7 @@
                       <td>010-2222-2222</td>
                       <td>상담중</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">3</th>
                       <td>강남레옹치과의원</td>
                       <td>미정</td>
@@ -179,7 +176,7 @@
                       <td>010-3333-3333</td>
                       <td>계약중</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">4</th>
                       <td>엔치과의원</td>
                       <td>미정</td>
@@ -188,7 +185,7 @@
                       <td>010-4444-4444</td>
                       <td>계약중</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">5</th>
                       <td>화이트드림치의원</td>
                       <td>2022-04-13</td>
@@ -197,7 +194,7 @@
                       <td>010-5555-5555</td>
                       <td>시공중</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">6</th>
                       <td>킹콩치과의원</td>
                       <td>미정</td>
@@ -206,7 +203,7 @@
                       <td>010-6666-6666</td>
                       <td>상담예정</td>
                     </tr>
-                    <tr>
+                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
                       <th scope="row">7</th>
                       <td>강남케이탑치과의원</td>
                       <td>미정</td>
@@ -219,35 +216,8 @@
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
-
-
-                <nav>
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&lsaquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&rsaquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">
-                        <span>&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav><!-- End Pagination -->
+                
+                <%@ include file="/WEB-INF/views/common/pagination.jsp"%>
 
                 <div class="search-bar">
                   <form class="search-form d-flex align-items-center justify-content-center" method="POST" action="#">

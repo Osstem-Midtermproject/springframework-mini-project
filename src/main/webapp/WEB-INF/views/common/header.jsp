@@ -7,7 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Osstem Interior Admin</title>
- 	<%@ include file="/WEB-INF/views/common/src.jsp"%>
+	<%@ include file="/WEB-INF/views/common/src.jsp"%>
 </head>
 
 <body>

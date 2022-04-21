@@ -22,7 +22,7 @@
           </li>
           <li>
             <a href="${pageContext.request.contextPath}/analysis/design">
-              <i class="bi bi-brush-fill"></i><span>Design</span>
+              <i class="bi bi-palette"></i><span>Design</span>
             </a>
           </li>
         </ul>
@@ -30,12 +30,12 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-clock-fill"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-calendar-check"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="${pageContext.request.contextPath}/schedule/calendar">
-              <i class="bi bi-calendar-week-fill"></i><span>Calendar</span>
+              <i class="bi bi-calendar-week"></i><span>Calendar</span>
             </a>
           </li>
           <li>
@@ -51,7 +51,7 @@
           </li>
           <li>
             <a href="${pageContext.request.contextPath}/schedule/team">
-              <i class="bi bi-card-list"></i><span>Team</span>
+              <i class="bi bi-collection"></i><span>Team</span>
             </a>
           </li>
         </ul>
@@ -59,17 +59,17 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-hospital-fill"></i><span>Hospital</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-plus-circle"></i><span>Hospital</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="${pageContext.request.contextPath}/hospital/processing">
-              <i class="bi bi-hourglass-bottom"></i><span>Processing</span>
+              <i class="bi bi-clock-history"></i><span>Processing</span>
             </a>
           </li>
           <li>
             <a href="${pageContext.request.contextPath}/hospital/history">
-              <i class="bi bi-pencil-square"></i><span>History</span>
+              <i class="bi bi-skip-backward"></i><span>History</span>
             </a>
           </li>
           <li>
@@ -79,7 +79,7 @@
           </li>
           <li>
             <a href="${pageContext.request.contextPath}/hospital/contractHistory">
-              <i class="bi bi-geo-alt"></i><span>Contract History</span>
+              <i class="bi bi-envelope-paper"></i><span>Contract</span>
             </a>
           </li>
         </ul>
@@ -87,7 +87,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="${pageContext.request.contextPath}/management">
-          <i class="bi bi-pencil-fill"></i><span>Management</span>
+          <i class="bi bi-person-rolodex"></i><span>Management</span>
         </a>
       </li><!-- End Management Nav -->
     </ul>
