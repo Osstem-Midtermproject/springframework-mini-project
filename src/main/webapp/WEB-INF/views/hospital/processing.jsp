@@ -120,19 +120,9 @@
               <div class="card-body">
                 <h5 class="card-title">진행 상황</h5>
                 
-                <div class="d-flex justify-content-between">
-                  <div class="col-sm-2 d-flex align-items-center">
-                    <input type="date" class="form-control">
-                    <span style="margin: 0.2rem;">~</span>
-                    <input type="date" class="form-control">
-                  </div>
-
-                  <div class="search-bar">
-                    <form class="search-form d-flex align-items-center justify-content-center" method="POST" action="#">
-                      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    </form>
-                  </div>
+                <div class="d-flex justify-content-between">                  
+                  <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+                  <%@ include file="/WEB-INF/views/common/searchbar.jsp"%>
                 </div>
 
                 <!-- Table with stripped rows -->
@@ -227,7 +217,7 @@
                 </table>
                 <!-- End Table with stripped rows -->
                 
-                <%@ include file="/WEB-INF/views/element/pagination.jsp"%>
+                <%@ include file="/WEB-INF/views/common/pagination.jsp"%>
 
                 <div class="search-bar">
                   <form class="search-form d-flex align-items-center justify-content-center" method="POST" action="#">
