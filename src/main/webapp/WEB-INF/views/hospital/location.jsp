@@ -270,6 +270,143 @@ button:focus {
 							<ul id="pagingul">
 							</ul>
 						</nav>
+						
+						 <nav style="align-items: center;"> 
+              <ul id="pagingul">
+              </ul>
+            </nav>
+
+            <script>
+              let totalData=66;      //총 데이터 수
+              let dataPerPage=10;   //한 페이지에 나타낼 수
+              let pageCount=5;     //페이징에 나타낼 페이지 수
+              let globalCurrentPage=1;    //현재 페이지       
+               
+              $(document).ready(function () {
+                console.log("ready");
+                /*
+                $.ajax({
+                  method: "GET",
+                  url: "http://url/data?" + data,
+                  dataType: "json",
+                  success : function(d){
+                    totalData=d.data.length;
+                  }
+                });
+                */
+
+                //글 목록 표시 호출 (테이블 생성)
+                //displayData(1, dataPerPage);
+
+                //페이징 표시 호출
+                paging(totalData, dataPerPage, pageCount, 1);
+              });
+
+              function paging(totalData, dataPerPage, pageCount, currentPage){
+                console.log("페이징");
+                totalPage = Math.ceil(totalData/dataPerPage); //총 페이지 수
+                console.log(totalPage);
+
+                if(totalPage<pageCount){
+                  pageCount=totalPage;
+                }
+
+                let pageGroup = Math.ceil(currentPage/pageCount);  //페이지 그룹
+                let last = pageGroup*pageCount;  //화면에 보여질 마지막 페이지 번호
+                
+                if(last>totalPage) {
+                  last=totalPage;
+                }
+                
+                let first = last - (pageCount -1);  //화면에 보여질 첫번째 페이지 번호
+                let next = last + 1;
+                let prev = first - 1;
+                
+                let pageHtml = "";
+                
+                if(prev > 0){
+                  pageHtml += '<li><a href="#" id="prev">이전</a></li>';
+                }else{
+                  pageHtml += '<li><a href="#" id="prev" class="disabled">이전</a></li>';
+                }
+                
+                //페이징 번호 표시
+                for(var i = first; i<=last; i++){
+                  if(currentPage ==i ){
+                    pageHtml += "<li class='on'><a href='#' id='" + i +"'>" + i + "</a></li>";
+                  }else{
+                    pageHtml += "<li><a href='#' id='" + i +"'>" + i + "</a></li>";
+                  }
+                }
+
+                if(last<totalPage) {
+                  pageHtml += "<li><a href='#' id='next'>다음</a></li>";
+                }else{
+                  pageHtml += "<li><a href='#' id='next' class='disabled'>다음</a></li>";
+                }
+
+                //$("#pagingul").html(pageHtml);
+                document.getElementById("pagingul").innerHTML = pageHtml;
+
+                //페이징 번호 클릭 이벤트
+                $("#pagingul li a").click(function () {
+                  console.log("a");
+                  let $id = $(this).attr("id");
+                  selectedPage = $(this).text();
+
+                  if($id == "next") selectedPage = next;
+                  if($id == "prev") selectedPage = prev;
+
+                  //전역변수에 선택한 페이지 번호를 담는다
+                  globalCurrentPage = selectedPage;
+
+                  //페이징 표시 재호출
+                  paging(totalData, dataPerPage, pageCount, selectedPage);
+
+                  //글 목록 표시 재호출
+                  //displayData(selectedPage, dataPerPage);
+                });
+              }
+
+            </script>
+
+            <style>
+              #pagingul {
+                  text-align: center;
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+                  border-radius: 2px;
+              }
+
+              #pagingul li {
+                  display: inline-flex;
+                  text-align: center;
+              }
+
+              #pagingul li a {
+                  display: block;
+                  font-size: 14px;
+                  padding: 9px 12px;
+                  border: solid 1px #ccc;
+                  border-radius: 2px;
+                  box-sizing: border-box;
+              }
+
+              #pagingul li a.disabled {
+                pointer-events: none;
+                cursor: default;
+              }
+              #pagingul li.on {
+                  background: #f26522;
+                  border: solid 1px #f26522;
+
+              }
+
+              #pagingul li.on a {
+                  color: #fff;
+              }
+            </style>
 
 					</div>
 </main>
