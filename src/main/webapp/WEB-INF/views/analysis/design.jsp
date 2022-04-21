@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
 
 <main id="main" class="main">
-
+  <div class="analysis_design">
     <div class="pagetitle">
       <h1>Design</h1>
 
@@ -52,11 +52,31 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">테마별 Best - white and pink</h5>
-
-                <div style="height: 352.7px;">
-                  <img src="${pageContext.request.contextPath}/resources/images/analysis_design_themaBest.jpg" style="height: 100%;width: 100%;">
+              
+              <!-- Slides with controls -->
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_themaBest.jpg"" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_budgetBest.jpg" class="d-block w-100" alt="...">
+                  </div>
                 </div>
 
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div><!-- End Slides with controls -->
+              
             </div>
           </div>
         </div>
@@ -95,9 +115,29 @@
             <div class="card-body">
               <h5 class="card-title">면적별 Best - 실용적인 진료</h5>
 
-                <div style="height: 352.7px;">
-                  <img src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg" style="height: 100%;width: 100%;">
+              <!-- Slides with controls -->
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_themaBest.jpg"" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item active">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_budgetBest.jpg" class="d-block w-100" alt="...">
+                  </div>
                 </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div><!-- End Slides with controls -->
             </div>
           </div>
         </div>
@@ -136,15 +176,36 @@
             <div class="card-body">
               <h5 class="card-title">예산별 Best - 효율적 배치</h5>
 
-                <div style="height: 352.7px;">
-                  <img src="${pageContext.request.contextPath}/resources/images/analysis_design_budgetBest.jpg" style="height: 100%;width: 100%;">
+               <!-- Slides with controls -->
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_themaBest.jpg"" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item active">
+                    <img src="${pageContext.request.contextPath}/resources/images/analysis_design_budgetBest.jpg" class="d-block w-100" alt="...">
+                  </div>
                 </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div><!-- End Slides with controls -->
 
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main><!-- End #main -->
+  </div> 
+</main><!-- End #main -->
   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

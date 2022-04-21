@@ -746,6 +746,19 @@ h1, h2, h3, h4, h5, h6 {
   width: 2rem;
   border-radius: 50%;
 }
+/*--------------------------------------------------------------
+# Analysis Design
+--------------------------------------------------------------*/
+/* Carousel Slide */
+#carouselExampleControls {
+  height: 352.7px;
+}
+
+#carouselExampleControls .carousel-inner, #carouselExampleControls .carousel-item, #carouselExampleControls img {
+	height: 100%;
+	width: 100%;
+}
+
 img.ui-datepicker-trigger {
         margin-left: 0.5rem;
         vertical-align: middle;
