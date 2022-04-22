@@ -42,7 +42,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword" placeholder="비밀번호는 6자~20자">
             </form>
 
-            <button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
+            <button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;" onclick="location.href='${pageContext.request.contextPath}/dashboard'">로그인</button>
 
             <div class="find justify-content-center align-items-center" style="text-align: center";>
                 <a href="#">아이디찾기</a>
