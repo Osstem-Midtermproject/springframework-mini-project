@@ -16,9 +16,10 @@
 	
 		<div class="d-flex align-items-center justify-content-between">
 	      <i class="bi bi-list toggle-sidebar-btn"></i>
-	      <a href="${pageContext.request.contextPath}" class="logo d-flex align-items-center p-2">
+	      <a href="${pageContext.request.contextPath}/user/" class="logo d-flex align-items-center p-2">
 	        <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png">
 	      </a>
+	      
 	    </div><!-- End Logo -->
 	
 	    <nav class="header-nav ms-auto">
