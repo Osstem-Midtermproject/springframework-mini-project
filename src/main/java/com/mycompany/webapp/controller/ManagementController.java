@@ -14,4 +14,15 @@ public class ManagementController {
 		///WEB-INF/views/management/management.jsp
 		return "management/management";
 	}
+	
+	@RequestMapping("/management/modifymanagement")
+	public String modify_management() {
+		log.info("실행");
+		///WEB-INF/views/management/management.jsp
+		return "management/modify_management";
+	}
+	
+
+	
+	
 }
