@@ -85,7 +85,7 @@ button:focus {
               <td>010-1234-1234</td>
               <td>전병천</td>
               <td>2016-05-25</td>
-              <td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">수정</button>
+              <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
             </tr>
             <tr>
@@ -96,7 +96,7 @@ button:focus {
               <td>010-1234-1234</td>
               <td>김강윤</td>
               <td>2011-04-21</td>
-               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">수정</button>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
             </tr>
             <tr>
@@ -107,7 +107,7 @@ button:focus {
               <td>010-1234-1234</td>
               <td>김혜현</td>
               <td>2006-05-25</td>
-               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">수정</button>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@ button:focus {
               <td>010-1234-1234</td>
               <td>이주영</td>
               <td>2132-05-25</td>
-               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">수정</button>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
             </tr>
           </tbody>
