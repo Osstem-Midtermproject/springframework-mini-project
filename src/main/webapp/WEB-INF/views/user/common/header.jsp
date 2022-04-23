@@ -21,7 +21,20 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    
+  	<script>
+  	(function() {
+
+  	  /**
+  	   * Sidebar toggle
+  	   */
+  	  if (select('.toggle-sidebar-btn')) {
+  	    on('click', '.toggle-sidebar-btn', function(e) {
+  	      select('body').classList.toggle('toggle-sidebar')
+  	    })
+  	  }
+  	})();
+  	
+  	</script>
     <style>
         input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
         input[type="checkbox"]:checked { background: #bcbcbc; } 
