@@ -191,7 +191,7 @@
 
               var btnOpt = {
                 저장: function () {
-                  elec2(selectioninfo.resource.id);
+                  elec2("전기");
                   calendar.addEvent({
                     resourceId: selectioninfo.resource.id,
                     id: selectioninfo.resource.id,
@@ -245,15 +245,18 @@
           calendar.render();
         });
       })();
-    /*   function elec2(arg){  
+     function elec2(category){  
         $.ajax({
-           url:"${pageContext.request.contextPath}/schedule/elec.jsp"
-           }).done((data)=>{
+          url:"elec",
+         data:{category:category}
           
-           $("#elec").append(data);
-           
+        }).done((data)=>{
+        	
+          	$("#elec").append(data);
+
+       
         });
-      } */
+      } 
       
     </script>
   

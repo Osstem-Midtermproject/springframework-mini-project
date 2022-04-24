@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -44,10 +45,11 @@ public class ScheduleController {
 		log.info("실행");
 		return "schedule/scheduler";
 	}
-	@GetMapping("/method1")
-	public String method1() {
-		log.info("실행");
-		return "schedule/scheduler";
+	@GetMapping("/elec")
+	public void elec(String category,Model model) {
+		log.info(category);
+		model.addAttribute("category",category);
+		
 	}
 
 }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
-  <div id="dialog" title="일정 관리" style="display: none">
+ <div id="dialog" title="일정 관리" style="display: none">
       <div id="form-div">
         <form>
           <div class="form-group mt-2 mb-4">
@@ -24,6 +24,18 @@
       <div class="d-flex flex-column">
         <div class="card">
           <div class="card-body">
+            <div style="margin-left: auto">
+              <div id="sidecontainer" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                <label id="select1" class="btn" for="btncheck1" onclick="save()">전기</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+                <label id="select2" class="btn" for="btncheck2" onclick="save()">벽지</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+                <label id="select3" class="btn" for="btncheck3" onclick="save()">인테리어</label>
+              </div>
+            </div>
             <div class="mt-4" id="calendar-container">
               <div id="calendar"></div>
             </div>
@@ -31,8 +43,9 @@
         </div>
       </div>
     </main>
-   <script>
+     <script>
       var id = 0;
+      var calendar;
       var diaLogOpt = {
         title: "일정관리",
         modal: true, //모달대화상자
@@ -40,6 +53,7 @@
         width: "500",
         height: "500",
       };
+
       $(function () {
         $("#time1").timepicker({
           timeFormat: "HH:mm",
@@ -62,8 +76,7 @@
           // calendar element 취득
           var calendarEl = $("#calendar")[0];
           // full-calendar 생성하기
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-        	schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
+          calendar = new FullCalendar.Calendar(calendarEl, {
             height: "700px", // calendar 높이 설정
             expandRows: true, // 화면에 맞게 높이 재설정
             slotMinTime: "08:00", // Day 캘린더에서 시작 시간
@@ -74,6 +87,7 @@
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
             },
+
             initialView: "dayGridMonth", // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
             initialDate: "2022-04-11", // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
             navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
@@ -116,12 +130,16 @@
                   },
                 },
               });
+              if (info.event.groupId === "벽지") {
+                console.log(1);
+                $(info.el).css("background-color", "#FFB6C1");
+              }
             },
             eventAdd: function (info) {},
             eventChange: function (info) {},
             eventRemove: function (obj) {},
             eventClick: function (info) {
-              console.log(info.event.extendedProps.startTime);
+              console.log(info.event);
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
                 var btnOpt = {
@@ -224,44 +242,125 @@
             // 이벤트
             events: [
               {
+                groupId: "전기",
                 title: "All Day Event",
                 start: "2022-04-16",
+                extendedProps: {
+                  category: "전기",
+                },
               },
               {
+                groupId: "전기",
                 title: "Long Event",
                 start: "2022-04-07",
                 end: "2022-04-11",
+                extendedProps: {
+                  category: "전기",
+                },
               },
               {
-                groupId: 999,
+                groupId: "전기",
+
                 title: "Repeating Event",
                 start: "2022-04-20T16:00:00",
+                extendedProps: {
+                  category: "전기",
+                },
               },
               {
-                groupId: 999,
+                groupId: "벽지",
+
                 title: "Repeating Event",
                 start: "2022-04-20T16:00:00",
+                extendedProps: {
+                  category: "벽지",
+                },
               },
               {
+                groupId: "벽지",
                 title: "Conference",
                 start: "2022-04-13",
                 end: "2022-04-16",
+                extendedProps: {
+                  category: "벽지",
+                },
               },
               {
+                groupId: "벽지",
                 title: "Conferenceaaaa",
-                start: "Thu Apr 28 2022 00:00:00 GMT+0900 (한국 표준시)",
-                end: "Thu Apr 28 2022 00:00:00 GMT+0900 (한국 표준시)",
+                start: "2022-04-14",
+                end: "2022-04-17",
+                extendedProps: {
+                  category: "벽지",
+                },
               },
               {
+                groupid: "벽지",
                 title: "Meeting",
                 start: "2022-04-1010:30:00",
-                end: "2022-04-10T12:30:00",
               },
             ],
           });
+
           // 캘린더 랜더링
           calendar.render();
         });
       })();
+      function save() {
+        $(function () {
+          let calEvents = calendar.getEvents();
+          if ($("#btncheck1")[0].checked === false) {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "전기") {
+                console.log(1);
+                e.setProp("display", "none");
+              }
+            }
+          } else {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "전기") {
+                console.log(1);
+                e.setProp("display", "block");
+              }
+            }
+          }
+          if ($("#btncheck2")[0].checked === false) {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "벽지") {
+                console.log(1);
+                e.setProp("display", "none");
+              }
+            }
+          } else {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "벽지") {
+                console.log(1);
+                e.setProp("display", "block");
+              }
+            }
+          }
+          if ($("#btncheck3")[0].checked === false) {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "인테리어") {
+                console.log(1);
+                e.setProp("display", "none");
+              }
+            }
+          } else {
+            for (e of calEvents) {
+              console.log(e);
+              if (e.groupId === "인테리어") {
+                console.log(1);
+                e.setProp("display", "block");
+              }
+            }
+          }
+        });
+      }
     </script>
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -779,4 +779,26 @@ img.ui-datepicker-trigger {
         width: 6px;
         text-align: start;
       }
+ #select1 {
+        border-color: #dacdcd;
+        background-color: #9ec9f1;
+      }
+
+      #select2 {
+        border-color: #dacdcd;
+        background-color: #eca1e9;
+      }
+      #select3 {
+        border-color: #dacdcd;
+        background-color: #e4ec73;
+      }
+      input[id="btncheck1"]:checked + label {
+        color: white;
+      }
+      input[id="btncheck2"]:checked + label {
+        color: white;
+      }
+      input[id="btncheck3"]:checked + label {
+        color: white;
+      }
       

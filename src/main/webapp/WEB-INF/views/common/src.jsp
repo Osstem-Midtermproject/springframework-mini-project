@@ -28,8 +28,6 @@
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 <!-- fullcalendar CDN,timepeeker,jquery ui, moment, qtip2  -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.0/main.min.js"></script>

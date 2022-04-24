@@ -25,6 +25,11 @@
               <i class="bi bi-palette"></i><span>Design</span>
             </a>
           </li>
+           <li>
+            <a href="${pageContext.request.contextPath}/analysis/hospital">
+              <i class="bi bi bi-cash-coin"></i><span>Hospital</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Analysis Nav -->
 
