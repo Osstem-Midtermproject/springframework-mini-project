@@ -1,4 +1,4 @@
-package dto;
+package com.mycompany.webapp.dto;
 
 import java.sql.Blob;
 import java.sql.Clob;
