@@ -81,6 +81,7 @@
             expandRows: true, // 화면에 맞게 높이 재설정
             slotMinTime: "08:00", // Day 캘린더에서 시작 시간
             slotMaxTime: "20:00", // Day 캘린더에서 종료 시간
+            schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
             // 해더에 표시할 툴바
             headerToolbar: {
               left: "prev,next today",
@@ -191,6 +192,7 @@
                 var btnOpt = {
                   저장: function () {
                     id++;
+                    elec($("#datetitle").val(),$("#datecontent").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -209,10 +211,10 @@
                 };
               } else {
                 $("#timebox").css("display", "none");
-                var btnOpt = {
+                var btnOpt = {            
                   저장: function () {
                     id++;
-                    console.log($("#time1").val());
+                    elec($("#datetitle").val(),$("#datecontent").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -362,5 +364,16 @@
           }
         });
       }
+      function elec(title,content){  
+          $.ajax({
+            url:"calendar",
+           data:{title:title,
+        		content:content   
+           }          
+          }).done((data)=>{
+          	console.log("done");
+         
+          });
+       }
     </script>
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -11,9 +11,10 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/schedule")
 public class ScheduleController {
-	@RequestMapping("/calendar")
-	public String calendar() {
-		log.info("실행");
+	@GetMapping("/calendar")
+	public String calendar(String title,String content) {
+		log.info(title);
+		log.info(content);
 		return "schedule/calendar";
 	}
 	
@@ -42,7 +43,7 @@ public class ScheduleController {
 	}
 	@RequestMapping("/scheduler")
 	public String scheduler() {
-		log.info("실행");
+	
 		return "schedule/scheduler";
 	}
 	@GetMapping("/elec")
