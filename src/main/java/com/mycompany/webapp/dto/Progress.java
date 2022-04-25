@@ -8,10 +8,10 @@ import lombok.Data;
 
 @Data
 public class Progress {
-	private Date pDate;
-	private String pDln;
-	private String pAddress;
-	private String pCategory;
-	private Blob pImage;
-	private Clob pContent;
+	private Date pDate;			//날짜
+	private String pDln;		//의사면허번호
+	private String pAddress;	//주소
+	private String pCategory;	//진행카테고리
+	private Blob pImage;		//이미지
+	private Clob pContent;		//내용
 }
