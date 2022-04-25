@@ -3,7 +3,9 @@
 <mapper namespace="mybatis.mapper.requestDetails">
 	<!-- /hospital/processing 에서 보여줄 list 출력을 위한 select-->
 	<!-- 진행 상황 list, rdState(확정) 값이 1일 경우-->
-	
+	<!-- <select id="selectByPage" parameterType="pager" resultType="requestDetails">
+		
+	</select> -->
 	
 	<!-- 신청 내역 list, rdState(불확정) 값이 0일 경우 -->
 </mapper>

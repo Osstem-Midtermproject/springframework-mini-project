@@ -9,6 +9,8 @@
 <configuration>
 
 	<typeAliases>
+		<!-- pager -->
+		<typeAlias type="com.mycompany.webapp.dto.Pager" alias="pager" />
 	
 		<!-- 요청내역 -->
 		<typeAlias type="com.mycompany.webapp.dto.RequestDetails" alias="requestDetails"/>		
