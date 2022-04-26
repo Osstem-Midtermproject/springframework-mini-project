@@ -16,6 +16,8 @@
 		<typeAlias type="com.mycompany.webapp.dto.RequestDetails" alias="requestDetails"/>		
 		<!-- 진행상황 -->
 		<typeAlias type="com.mycompany.webapp.dto.Progress" alias="progress"/>		
+		<!-- 병원 -->
+		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>		
 		
 	</typeAliases>
 	
