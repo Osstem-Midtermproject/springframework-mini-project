@@ -1,4 +1,11 @@
 <%@ page contentType ="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +40,8 @@
   	    })
   	  }
   	})();
-  	
   	</script>
+  	
     <style>
         input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
         input[type="checkbox"]:checked { background: #bcbcbc; } 
@@ -79,7 +86,12 @@
                             </div>
                         </li>
                         <li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="#">상담요청</a></li>
-                        <li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+                        <c:if test="${sessionUserId == null}">
+	                        <li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/login">로그인</a></li>                    
+                        </c:if>	
+ 						<c:if test="${sessionUserId != null}">
+	                        <li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>                     							
+ 						</c:if>
                     </ul>
                 </div>
                 <a href="${pageContext.request.contextPath}/user/userInformation" class="row pl-5 pt-4"><i class="bi bi-person-circle"></i></a>

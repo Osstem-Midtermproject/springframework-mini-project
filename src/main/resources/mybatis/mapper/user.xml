@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.UserDao">
 
+	<!-- 로그인 : userid로 user와 hospital 정보 얻어 오기 -->
 	<resultMap id="selectUserAndHospital" type="user">
 		<result column="userid" property="userid" />
 		<result column="upassword" property="upassword" />
@@ -20,9 +21,7 @@
 			<result column="hod" property="hod" />
 			<result column="hemaill" property="hemail" />
 		</association>
-		
 	</resultMap>
-	
 	<select id="selectByUserId" parameterType="string" resultMap="selectUserAndHospital">
 		select * from users INNER JOIN hospital on udln = hdln and uaddress = haddress where userid = #{userid}
 	</select>

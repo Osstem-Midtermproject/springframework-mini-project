@@ -53,23 +53,14 @@ public class UserController {
 		return "/user/progressDetail";
 	}
 
+	//로그인창 뜨게
 	@RequestMapping("/login")
 	public String login() {
 		log.info("실행");
 		return "/user/login";
 	}
 
-	@GetMapping("/contractForm")
-	public String contractForm() {
-		return "/element/contractForm";
-	}
-
-	@GetMapping("/contractFormPdf")
-	public String contractFormPdf() {
-		log.info("실행");
-		return "/element/contractFormPdf";
-	}
-	
+	//로그인 버튼 눌렀을 때
 	@PostMapping("/login")
 	public String login(Users user, HttpSession session, Model model) {
 		
@@ -95,5 +86,23 @@ public class UserController {
 			return "/user/login";
 		}
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("sessionUserId");
+		return "redirect:/user/userHome";
+	}
+	
+	@GetMapping("/contractForm")
+	public String contractForm() {
+		return "/element/contractForm";
+	}
+
+	@GetMapping("/contractFormPdf")
+	public String contractFormPdf() {
+		log.info("실행");
+		return "/element/contractFormPdf";
+	}
+	
 
 }
