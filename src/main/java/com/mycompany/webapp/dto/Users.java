@@ -7,11 +7,12 @@ import lombok.Data;
 @Data
 public class Users {
 	private String userId;
-	private String uPassword;
-	private String uPhoneNumber;
-	private Date uMembershipDate;
-	private String uName;
-	private String uRole;
-	private String uDln;
-	private String uAddress;
+	private String upassword;
+	private String uphoneNumber;
+	private Date umembershipDate;
+	private String uname;
+	private String urole;
+	private String udln;
+	private String uaddress;
+	private Hospital hospital;
 }
