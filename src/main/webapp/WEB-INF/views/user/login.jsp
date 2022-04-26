@@ -37,13 +37,12 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
        <div>
            <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" style="height: 100%; width: 100%;"></a></div>
-            <form style="margin-bottom: 50px;">
-                    <input type="id" class="form-control" id="exampleInputid1" placeholder="아이디">
-                    <input type="password" class="form-control" id="exampleInputPassword" placeholder="비밀번호는 6자~20자">
+            <form style="margin-bottom: 50px;" method="post" action="login">
+                    <input type="id" class="form-control" name="userid" placeholder="아이디">
+                    <input type="password" class="form-control" name="upassword" placeholder="비밀번호는 6자~20자">
+            		<button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
             </form>
-
-            <button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;" onclick="location.href='${pageContext.request.contextPath}/dashboard'">로그인</button>
-
+            
             <div class="find justify-content-center align-items-center" style="text-align: center";>
                 <a href="#">아이디찾기</a>
                 <span style="color: gray;">|</span>

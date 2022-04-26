@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.UserDao">
+
+	<resultMap id="selectUserAndHospital" type="user">
+		<result column="userid" property="userid" />
+		<result column="upassword" property="upassword" />
+		<result column="uphonenumber" property="uphonenumber" />
+		<result column="umembershipdate" property="umembershipdate" />
+		<result column="uname" property="uname" />
+		<result column="urole" property="urole" />
+		<result column="udln" property="udln" />
+		<result column="uaddress" property="uaddress" />	
+		<association property="hospital" javaType="hospital">
+			<result column="hdln" property="hdln" />
+			<result column="haddress" property="haddress" />
+			<result column="hname" property="hname" />
+			<result column="hdirector" property="hdirector" />
+			<result column="hpn" property="hpn" />
+			<result column="hod" property="hod" />
+			<result column="hemaill" property="hemail" />
+		</association>
+		
+	</resultMap>
+	
+	<select id="selectByUserId" parameterType="string" resultMap="selectUserAndHospital">
+		select * from users INNER JOIN hospital on udln = hdln and uaddress = haddress where userid = #{userid}
+	</select>
+
+</mapper>
