@@ -3,11 +3,11 @@
 <mapper namespace="com.mycompany.webapp.dao.ProgressDao">
 	
 	<select id="selectByPager" parameterType="pager"  resultMap="selectProgressWithHospitalResultMap">
-		select rnum, hname, pdate, pcontent, hpn, pcategory
+		select rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail
 		    from (
-		        select ROWNUM as rnum, hname, pdate, pcontent, hpn, pcategory
+		        select ROWNUM as rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail
 		        from (
-		            SELECT hname, pdate, pcontent, hpn, pcategory
+		            SELECT hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail 
 		            FROM hospital, progress
 		            where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
 		        )
@@ -28,23 +28,26 @@
 		<result column="pdate" property="pdate" />
 		<result column="pcontent" property="pcontent" />
 		<result column="pcategory" property="pcategory" />
+		<result column="pdln" property="pdln" />
+		<result column="paddress" property="paddress" />
 		<association property="hospital" javaType="hospital">
 			<result column="hname" property="hname" />
 			<result column="hpn" property="hpn" />
+			<result column="hdln" property="hdln" />
+			<result column="hdirector" property="hdirector" />
+			<result column="hod" property="hod" />
+			<result column="hemail" property="hemail" />
 		</association>
 	</resultMap>
 	
-	<resultMap id="selectProgressWithHospitalResultMap2" type="progress">
-		<result column="pdate" property="pdate" />
-		<result column="pcontent" property="pcontent" />
-		<result column="pcategory" property="pcategory" />
-		<collection property="hospital" ofType="Hospital" column="pdln" select="selectAll"></collection>
-	</resultMap>
 	
-	<select id="selectAll" resultMap="selectProgressWithHospitalResultMap">
+	<select id="selectByPdln" parameterType="string" resultMap="selectProgressWithHospitalResultMap">
 		select *
 		from progress, hospital
-		where progress.pdln = hospital.hdln and progress.paddress = hospital.haddress
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and progress.pdln=#{pdln}
 	</select>
+	
+	
+
 
 </mapper>

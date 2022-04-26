@@ -1,5 +1,6 @@
 package com.mycompany.webapp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,16 +19,15 @@ public class ProgressService {
 	@Resource
 	private ProgressDao progressDao;
 	
-	public List<Progress> getProgress(Pager pager) {
+	public List<Progress> getProgresses(Pager pager) {
 		return progressDao.selectByPager(pager);
 	}
 
 	public int getTotalProgressNum() {
 		return progressDao.count();
 	}
-	
-	public List<Progress> getProgressNopaging() {
-		return progressDao.selectAll();
+
+	public Progress getProgress(String pdln) {
+		return progressDao.selectByPdln(pdln);
 	}
-	
 }

@@ -37,7 +37,7 @@
                 <tbody>
                   <tr>
                     <th scope="row">병원장</th>
-                    <td>김혜현</td>
+                    <td>${progress.hospital.hdirector}</td>
                     <th scope="row">병원번호</td>
                     <td>02-123-1234</td>
                   </tr>
