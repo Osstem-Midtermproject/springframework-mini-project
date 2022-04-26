@@ -34,25 +34,6 @@ public class UserController {
 		return "/user/userHome";
 	}
 
-	@RequestMapping("/userInformation")
-	public String userInformation() {
-
-		log.info("실행");
-		return "/user/userInformation";
-	}
-
-	@RequestMapping("/contractsView")
-	public String contractsView() {
-		log.info("실행");
-		return "/user/contractsView";
-	}
-
-	@RequestMapping("/progressDetail")
-	public String progressDetail() {
-		log.info("실행");
-		return "/user/progressDetail";
-	}
-
 	//로그인창 뜨게
 	@RequestMapping("/login")
 	public String login() {
@@ -60,7 +41,7 @@ public class UserController {
 		return "/user/login";
 	}
 
-	//로그인 버튼 눌렀을 때
+	//로그인 버튼 눌렀을 때 : user이면 userHome으로, admin이면 dashborad로 페이지 넘어감
 	@PostMapping("/login")
 	public String login(Users user, HttpSession session, Model model) {
 		
@@ -87,10 +68,31 @@ public class UserController {
 		}
 	}
 	
+	//로그아웃 : 성공하면 홈으로 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionUserId");
 		return "redirect:/user/userHome";
+	}
+	
+	
+	@RequestMapping("/userInformation")
+	public String userInformation() {
+
+		log.info("실행");
+		return "/user/userInformation";
+	}
+
+	@RequestMapping("/contractsView")
+	public String contractsView() {
+		log.info("실행");
+		return "/user/contractsView";
+	}
+
+	@RequestMapping("/progressDetail")
+	public String progressDetail() {
+		log.info("실행");
+		return "/user/progressDetail";
 	}
 	
 	@GetMapping("/contractForm")

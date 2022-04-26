@@ -27,20 +27,6 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  	<script>
-  	(function() {
-
-  	  /**
-  	   * Sidebar toggle
-  	   */
-  	  if (select('.toggle-sidebar-btn')) {
-  	    on('click', '.toggle-sidebar-btn', function(e) {
-  	      select('body').classList.toggle('toggle-sidebar')
-  	    })
-  	  }
-  	})();
-  	</script>
   	
     <style>
         input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
@@ -60,7 +46,7 @@
         <div class="container-fluid d-flex align-items-center">
             <!-- navbar -->
             <nav id="navbar" class="navbar navbar-expand-sm navbar-light row flex-grow-1" >
-                <a class="row" href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="160rem"></a>
+                <a class="row" href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="120rem"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>

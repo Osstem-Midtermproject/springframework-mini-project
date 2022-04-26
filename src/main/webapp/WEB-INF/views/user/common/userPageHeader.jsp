@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <!-- 내용 -->
     <!-- 전체 내용이 들어갈 -->
     <div class="" style="margin-left: 300px;">
@@ -8,7 +9,7 @@
                     <i class="bi bi-person-circle" style="font-size: 150px; color: white;"></i>
                 </div>
                 <div class="col text-left" style="color: white; font-weight: 500;">
-                    <span style="font-weight: 700; font-size: 2.5rem;">김강윤</span>님<br>
-                    <span style="font-weight: 300; font-size: 0.8rem; margin-left: 0.5rem;">가입일: 2022-02-17</span>
+                    <span style="font-weight: 700; font-size: 2.5rem;">${user.uname}</span>님<br>
+                    <span style="font-weight: 300; font-size: 1rem; margin-left: 0.2rem;">가입일: <fmt:formatDate pattern="yyyy-MM-dd" value="${user.umembershipdate}"/></span>
                 </div>
             </div>
