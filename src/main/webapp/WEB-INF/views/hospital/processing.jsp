@@ -42,45 +42,27 @@
                       <th scope="col">신청일</th>
                       <th scope="col" colspan="2">제목</th>
                       <th scope="col">연락처</th>
-                      <th scope="col">
+                      <!-- <th scope="col">
                         <select class="form-select border-0" style="font-weight: bold;">
                           <option selected>구분</option>
                           <option value="1">AS</option>
                           <option value="2">상담</option>
                         </select>
-                      </th>
+                      </th> -->
                       <th scope="col">상태</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">1</th>
-                      <td>연세치과</td>
-                      <td>2022-04-03</td>
-                      <td colspan="2">AS 신청합니다.</td>
-                      <td>010-1111-1111</td>
-                      <td>AS</td>
-                      <td>불확정</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">2</th>
-                      <td>고운맘치과</td>
-                      <td>2022-04-10</td>
-                      <td colspan="2">AS 신청합니다.</td>
-                      <td>010-2222-2222</td>
-                      <td>AS</td>
-                      <td>불확정</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">3</th>
-                      <td>연세유라인치과</td>
-                      <td>2022-04-13</td>
-                      <td colspan="2">시공상담 신청합니다.</td>
-                      <td>010-3333-3333</td>
-                      <td>상담</td>
-                      <td>불확정</td>
-                    </tr>
-                    
+                    <c:forEach var="progress" items="${progress}">
+                       <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
+                        <th scope="row">1</th>
+                        <td>${progress.hospital.hname}</td>
+                         <td><fmt:formatDate value="${progress.pdate}" pattern="yyyy-MM-dd"/></td>
+                        <td colspan="2">${progress.pcontent}</td>
+                        <td>${progress.hospital.hpn}</td>
+                        <td>${progress.pcategory}</td>
+                      <tr>
+                    </c:forEach>
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
@@ -116,6 +98,8 @@
               </div>
             </div>
 
+
+         <!---------------------------- pagination 추가 ------------------------------->
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">진행 상황</h5>
@@ -131,8 +115,7 @@
                     <tr>
                       <th scope="col">번호</th>
                       <th scope="col">병원</th>
-                      <th scope="col">시공일</th>
-                      <th scope="col">착공일</th>
+                      <th scope="col">날짜</th>
                       <th scope="col" colspan="2">세부내용</th>
                       <th scope="col">연락처</th>
                       <th scope="col">
@@ -149,70 +132,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">1</th>
-                      <td>퍼펙트치과의원</td>
-                      <td >2022-04-03</td>
-                      <td>2022-05-03</td>
-                      <td colspan="2">내부 설비 인테리어</td>
-                      <td>010-1111-1111</td>
-                      <td>시공중</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">2</th>
-                      <td>서울혜치과의원</td>
-                      <td>미정</td>
-                      <td>미정</td>
-                      <td colspan="2">내부 설비 인테리어</td>
-                      <td>010-2222-2222</td>
-                      <td>상담중</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">3</th>
-                      <td>강남레옹치과의원</td>
-                      <td>미정</td>
-                      <td>미정</td>
-                      <td colspan="2">진찰실 리모델링</td>
-                      <td>010-3333-3333</td>
-                      <td>계약중</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">4</th>
-                      <td>엔치과의원</td>
-                      <td>미정</td>
-                      <td>미정</td>
-                      <td colspan="2">개원 인테리어 신청</td>
-                      <td>010-4444-4444</td>
-                      <td>계약중</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">5</th>
-                      <td>화이트드림치의원</td>
-                      <td>2022-04-13</td>
-                      <td>2022-05-13</td>
-                      <td colspan="2">로비 리모델링</td>
-                      <td>010-5555-5555</td>
-                      <td>시공중</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">6</th>
-                      <td>킹콩치과의원</td>
-                      <td>미정</td>
-                      <td>미정</td>
-                      <td colspan="2">개원 인테리어</td>
-                      <td>010-6666-6666</td>
-                      <td>상담예정</td>
-                    </tr>
-                    <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
-                      <th scope="row">7</th>
-                      <td>강남케이탑치과의원</td>
-                      <td>미정</td>
-                      <td>미정</td>
-                      <td colspan="2">대기실, 인포메이션 리모델링</td>
-                      <td>010-7777-7777</td>
-                      <td>상담예정</td>
-                    </tr>
-
+                     <c:forEach var="progress" items="${progress}">
+                       <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
+                        <th scope="row">1</th>
+                        <td>${progress.hospital.hname}</td>
+                         <td><fmt:formatDate value="${progress.pdate}" pattern="yyyy-MM-dd"/></td>
+                        <td colspan="2">${progress.pcontent}</td>
+                        <td>${progress.hospital.hpn}</td>
+                        <td>${progress.pcategory}</td>
+                      <tr>
+                    </c:forEach>
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
@@ -225,11 +154,79 @@
                     <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                   </form>
                 </div><!-- End Search-Bar -->
-
               </div>
             </div>
-          </div>
+              <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">진행 상황</h5>
+                
+                <div class="d-flex justify-content-between">                  
+                  <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+                  <%@ include file="/WEB-INF/views/common/searchbar.jsp"%>
+                </div>
 
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">병원</th>
+                      <th scope="col">날짜</th>
+                      <th scope="col" colspan="2">세부내용</th>
+                      <th scope="col">연락처</th>
+                      <th scope="col">
+                        <select class="form-select border-0" style="font-weight: bold;">
+                          <option selected>진행상황</option>
+                          <option value="1">상담예정</option>
+                          <option value="2">상담중</option>
+                          <option value="3">추가상담</option>
+                          <option value="4">계약진행중</option>
+                          <option value="5">계약완료</option>
+                          <option value="6">시공중</option>
+                        </select>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     <c:forEach var="progress" items="${progress}">
+                       <tr style="cursor:pointer;" onClick = "location.href='${pageContext.request.contextPath}/hospital/processing/detail'">
+                        <th scope="row">1</th>
+                        <td>${progress.hospital.hname}</td>
+                         <td><fmt:formatDate value="${progress.pdate}" pattern="yyyy-MM-dd"/></td>
+                        <td colspan="2">${progress.pcontent}</td>
+                        <td>${progress.hospital.hpn}</td>
+                        <td>${progress.pcategory}</td>
+                      <tr>
+                    </c:forEach>
+                  
+                  
+                  <tr>
+               <td colspan="4" class="text-center">
+                  <div>
+                     <a class="btn btn-outline-primary btn-sm" href="processing?pageNo=1">처음</a>
+                     <c:if test="${pager.groupNo>1}">
+                        <a class="btn btn-outline-info btn-sm" href="processing?pageNo=${pager.startPageNo-1}">이전</a>
+                     </c:if>
+                     
+                     <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+                        <c:if test="${pager.pageNo != i}">
+                           <a class="btn btn-outline-success btn-sm" href="processing?pageNo=${i}">${i}</a>
+                        </c:if>
+                        <c:if test="${pager.pageNo == i}">
+                           <a class="btn btn-danger btn-sm" href="processing?pageNo=${i}">${i}</a>
+                        </c:if>
+                     </c:forEach>
+                     
+                     <c:if test="${pager.groupNo<pager.totalGroupNo}">
+                        <a class="btn btn-outline-info btn-sm" href="processing?pageNo=${pager.endPageNo+1}">다음</a>
+                     </c:if>
+                     <a class="btn btn-outline-primary btn-sm" href="processing?pageNo=${pager.totalPageNo}">맨끝</a>
+                  </div>
+               </td>
+              </tr>
+            </tbody>
+                </table>
+             
         </div>
       </section>
     </div>

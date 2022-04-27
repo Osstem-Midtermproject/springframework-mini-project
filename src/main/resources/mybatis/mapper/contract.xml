@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.ContractDao">
+
+<resultMap id="selectcont" type="contract">
+      <result column="cont_date" property="contDate" />
+      <result column="cont_down_payment" property="contDownPayment" />
+      <result column="cont_additional_amount" property="contAdditionalAmount" />
+</resultMap>
+<select id="selectSales" resultMap="selectcont">
+		select cont_date,cont_down_payment,cont_additional_amount
+		from contract
+</select>
+
+
+</mapper>

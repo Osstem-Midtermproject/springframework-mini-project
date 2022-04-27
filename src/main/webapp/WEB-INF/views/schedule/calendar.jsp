@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
- <div id="dialog" title="일정 관리" style="display: none">
+<div id="dialog" title="일정 관리" style="display: none">
       <div id="form-div">
         <form>
           <div class="form-group mt-2 mb-4">
@@ -43,7 +43,23 @@
         </div>
       </div>
     </main>
-     <script>
+    <script>
+    var scheduleEvent=[];
+    var startdate;
+    <c:forEach var="schedule" items="${cs}">
+        startdate= "${schedule.consScheStartdate}";
+   		scheduleEvent.push({
+   			id: "${schedule.consScheId}",
+        	title:  "${schedule.consScheHospitalName}",
+        	start:  moment("${schedule.consScheStartdate}").format("YYYY-MM-DDTHH:mm"),
+        	end:  moment("${schedule.consScheEnddate}").format("YYYY-MM-DDTHH:mm"),
+        	extendedProps: {
+        		content: "${schedule.consScheContent}",
+        		category:"${schedule.constructionCategory.consCateType}"
+          	},
+  		});		
+	</c:forEach>
+    
       var id = 0;
       var calendar;
       var diaLogOpt = {
@@ -77,16 +93,16 @@
           var calendarEl = $("#calendar")[0];
           // full-calendar 생성하기
           calendar = new FullCalendar.Calendar(calendarEl, {
+        	schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
             height: "700px", // calendar 높이 설정
             expandRows: true, // 화면에 맞게 높이 재설정
             slotMinTime: "08:00", // Day 캘린더에서 시작 시간
             slotMaxTime: "20:00", // Day 캘린더에서 종료 시간
-            schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
             // 해더에 표시할 툴바
             headerToolbar: {
               left: "prev,next today",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
             },
 
             initialView: "dayGridMonth", // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
@@ -101,7 +117,7 @@
               let title = info.event.title;
               let startday = moment(info.event.start).format("YYYY/MM/DD");
               let endday =
-                moment(info.event.end).format("YYYY/MM/DD") != "Invalid date" ? moment(info.event.end).format("YYYY/MM/") + (Number(moment(info.event.end).format("DD")) - 1).toString() : "";
+              moment(info.event.end).format("YYYY/MM/DD") != "Invalid date" ? moment(info.event.end).format("YYYY/MM/") + (Number(moment(info.event.end).format("DD")) - 1).toString() : "";
               let content = info.event.extendedProps.content == true ? info.event.extendedProps.content : "";
 
               $(info.el).qtip({
@@ -132,15 +148,22 @@
                 },
               });
               if (info.event.groupId === "벽지") {
-                console.log(1);
+                
                 $(info.el).css("background-color", "#FFB6C1");
               }
             },
+            eventDrop: function (info) {
+               let id=info.event.id;
+               let start=moment(info.event.start).format("YYYY-MM-DD");
+               let end=moment(info.event.end).format("YYYY-MM-DD");
+               let content=info.event.extendedProps.content;
+               schedule(id,start,end,content);
+             },
             eventAdd: function (info) {},
             eventChange: function (info) {},
             eventRemove: function (obj) {},
             eventClick: function (info) {
-              console.log(info.event);
+             
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
                 var btnOpt = {
@@ -192,7 +215,6 @@
                 var btnOpt = {
                   저장: function () {
                     id++;
-                    elec($("#datetitle").val(),$("#datecontent").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -211,10 +233,10 @@
                 };
               } else {
                 $("#timebox").css("display", "none");
-                var btnOpt = {            
+                var btnOpt = {
                   저장: function () {
                     id++;
-                    elec($("#datetitle").val(),$("#datecontent").val());
+                    
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -242,66 +264,7 @@
               calendar.unselect();
             },
             // 이벤트
-            events: [
-              {
-                groupId: "전기",
-                title: "All Day Event",
-                start: "2022-04-16",
-                extendedProps: {
-                  category: "전기",
-                },
-              },
-              {
-                groupId: "전기",
-                title: "Long Event",
-                start: "2022-04-07",
-                end: "2022-04-11",
-                extendedProps: {
-                  category: "전기",
-                },
-              },
-              {
-                groupId: "전기",
-
-                title: "Repeating Event",
-                start: "2022-04-20T16:00:00",
-                extendedProps: {
-                  category: "전기",
-                },
-              },
-              {
-                groupId: "벽지",
-
-                title: "Repeating Event",
-                start: "2022-04-20T16:00:00",
-                extendedProps: {
-                  category: "벽지",
-                },
-              },
-              {
-                groupId: "벽지",
-                title: "Conference",
-                start: "2022-04-13",
-                end: "2022-04-16",
-                extendedProps: {
-                  category: "벽지",
-                },
-              },
-              {
-                groupId: "벽지",
-                title: "Conferenceaaaa",
-                start: "2022-04-14",
-                end: "2022-04-17",
-                extendedProps: {
-                  category: "벽지",
-                },
-              },
-              {
-                groupid: "벽지",
-                title: "Meeting",
-                start: "2022-04-1010:30:00",
-              },
-            ],
+           
           });
 
           // 캘린더 랜더링
@@ -313,67 +276,86 @@
           let calEvents = calendar.getEvents();
           if ($("#btncheck1")[0].checked === false) {
             for (e of calEvents) {
-              console.log(e);
+            
               if (e.groupId === "전기") {
-                console.log(1);
+              
                 e.setProp("display", "none");
               }
             }
           } else {
             for (e of calEvents) {
-              console.log(e);
+             
               if (e.groupId === "전기") {
-                console.log(1);
+             
                 e.setProp("display", "block");
               }
             }
           }
           if ($("#btncheck2")[0].checked === false) {
             for (e of calEvents) {
-              console.log(e);
+             
               if (e.groupId === "벽지") {
-                console.log(1);
+               
                 e.setProp("display", "none");
               }
             }
           } else {
             for (e of calEvents) {
-              console.log(e);
+            
               if (e.groupId === "벽지") {
-                console.log(1);
+              
                 e.setProp("display", "block");
               }
             }
           }
           if ($("#btncheck3")[0].checked === false) {
             for (e of calEvents) {
-              console.log(e);
+            
               if (e.groupId === "인테리어") {
-                console.log(1);
+               
                 e.setProp("display", "none");
               }
             }
           } else {
             for (e of calEvents) {
-              console.log(e);
+             
               if (e.groupId === "인테리어") {
-                console.log(1);
+               
                 e.setProp("display", "block");
               }
             }
           }
         });
       }
-      function elec(title,content){  
+      var e = {
+        groupId: "벽지",
+        title: "Conferenceaaaa",
+        start: "2022-04-14",
+        end: "2022-04-17",
+        extendedProps: {
+          category: "벽지",
+        },
+      };
+      $(function () {
+    	 
+    	  for (e of scheduleEvent) {
+    		  console.log(e.id);
+              calendar.addEvent(e);
+           }
+      });
+      function schedule(id,start,end,content){  
           $.ajax({
             url:"calendar",
-           data:{title:title,
-        		content:content   
-           }          
+           data:{id:id,
+        	   			start:start,
+        	   			end:end,
+        	   			content:content
+        	}
+            
           }).done((data)=>{
-          	console.log("done");
-         
+          	
           });
-       }
+        } 
     </script>
+    
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>

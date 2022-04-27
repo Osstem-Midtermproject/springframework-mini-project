@@ -15,7 +15,15 @@
 		<!-- 요청내역 -->
 		<typeAlias type="com.mycompany.webapp.dto.RequestDetails" alias="requestDetails"/>		
 		<!-- 진행상황 -->
-		<typeAlias type="com.mycompany.webapp.dto.Progress" alias="progress"/>		
+		<typeAlias type="com.mycompany.webapp.dto.Progress" alias="progress"/>
+		<!-- 진행상황 -->
+		<typeAlias type="com.mycompany.webapp.dto.ConstructionSchedule" alias="constructionSchedule"/>
+		<!-- 병원 -->
+		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>
+		<!-- 팀 -->
+		<typeAlias type="com.mycompany.webapp.dto.Team" alias="team"/>	
+		<!-- 계약 -->
+		<typeAlias type="com.mycompany.webapp.dto.Contract" alias="contract"/>									
 		
 	</typeAliases>
 	

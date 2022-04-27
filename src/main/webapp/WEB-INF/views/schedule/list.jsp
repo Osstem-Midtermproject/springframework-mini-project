@@ -108,6 +108,7 @@
                   }
                 }
               }
+              console.log(1);
             </script>
 
 				<table class="table datatable" style="font-size: small;">

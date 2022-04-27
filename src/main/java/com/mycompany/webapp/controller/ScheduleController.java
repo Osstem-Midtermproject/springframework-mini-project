@@ -1,9 +1,17 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.dto.ConstructionSchedule;
+import com.mycompany.webapp.service.CalendarService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -11,12 +19,31 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/schedule")
 public class ScheduleController {
+	
+	
+	@Resource
+	CalendarService calendarService;
+	
 	@GetMapping("/calendar")
-	public String calendar(String title,String content) {
-		log.info(title);
-		log.info(content);
+	public String calendar(Model model,String id,String start,String end,String content) {
+		List<ConstructionSchedule> cs=calendarService.getSchedule();
+		model.addAttribute("cs",cs);
+		if(id!=null) {
+			log.info(id);
+			ConstructionSchedule schedule=new ConstructionSchedule();
+			schedule.setConsScheId(Integer.parseInt(id));
+			schedule.setConsScheStartdate(start);
+			schedule.setConsScheEnddate(end);
+			schedule.setConsScheContent(content);
+			int row=calendarService.updateSchedule(schedule);
+		    
+		}
+		
+	
 		return "schedule/calendar";
 	}
+	
+	
 	
 	@RequestMapping("/detailForm")
 	public String detailForm() {
