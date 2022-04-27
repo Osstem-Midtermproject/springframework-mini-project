@@ -12,6 +12,7 @@
          <result column="hpn" property="hpn" />
       </association>
    </resultMap>
+   
    <select id="selectByPager" parameterType="pager" resultMap="selectProgressWithHospitalResultMap">
       select rnum, pdate, pcontent,pcategory,hname,hpn
           from (
