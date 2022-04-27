@@ -69,7 +69,7 @@
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="${pageContext.request.contextPath}/hospital/processing">
-              <i class="bi bi-clock-history"></i><span>Processing</span>
+              <i class="bi bi-clock-history"></i><span>시공 내역 Processing</span>
             </a>
           </li>
           <li>

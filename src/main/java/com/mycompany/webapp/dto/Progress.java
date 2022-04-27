@@ -10,6 +10,7 @@ import lombok.Data;
 //진행상황
 @Data
 public class Progress {
+<<<<<<< HEAD
 	   private int pno;
 	   private Date pdate;         //날짜
 	   private String pdln;      //의사면허번호
@@ -28,4 +29,24 @@ public class Progress {
 	   //연관 관계에 있는 객체(Association)
 	   //병원
 	   private Hospital hospital;
+=======
+	private Date pdate;			//날짜
+	private String pdln;		//의사면허번호
+	private String paddress;	//주소
+	private String pcategory;	//진행카테고리
+	//private Blob pimage;		//이미지
+	private String pcontent;	//내용
+	
+	//이미지
+	private String pattachoname;
+	private String pattachsname;
+	private String pattachtype;
+	private MultipartFile pimage;	//이미지
+	
+	private int pno;
+	
+	//연관 관계에 있는 객체(Association)
+	//병원
+	private Hospital hospital;
+>>>>>>> refs/heads/hh
 }

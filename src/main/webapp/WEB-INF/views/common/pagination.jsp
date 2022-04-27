@@ -1,25 +1,38 @@
 <nav>
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">
+    <li class="page-item">
+      <a class="page-link" href="?pageNo=1">
         <span>&laquo;</span>
       </a>
     </li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#">
-        <span>&lsaquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#">
-        <span>&rsaquo;</span>
-      </a>
-    </li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#">
+    
+    <c:if test="${pager.groupNo>1}">
+	  <li class="page-item">
+	    <a class="page-link" href="?pageNo=${pager.startPageNo-1}">
+	      <span>&lsaquo;</span>
+	    </a>
+	  </li>
+	</c:if>
+	
+	<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+		<c:if test="${pager.pageNo != i}">
+			<li class="page-item"><a class="page-link" href="?pageNo=${i}">${i}</a></li>
+		</c:if>
+		<c:if test="${pager.pageNo == i}">
+			<li class="page-item"><a class="page-link text-primary" href="?pageNo=${i}">${i}</a></li>
+		</c:if>
+	</c:forEach>
+    
+    <c:if test="${pager.groupNo<pager.totalGroupNo}">
+      <li class="page-item">
+        <a class="page-link" href="?pageNo=${pager.endPageNo+1}">
+          <span>&rsaquo;</span>
+        </a>
+      </li>
+    </c:if>
+    
+    <li class="page-item">
+      <a class="page-link" href="?pageNo=${pager.totalPageNo}">
         <span>&raquo;</span>
       </a>
     </li>
