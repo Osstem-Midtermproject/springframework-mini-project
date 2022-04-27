@@ -27,8 +27,5 @@ public class Progress {
 	
 	//연관 관계에 있는 객체(Association)
 	//병원
-	
 	private Hospital hospital;
-	
-	//private List<Hospital> hospital;
 }

@@ -15,6 +15,11 @@ public class Hospital {
 	private Date hod;//병원 개업일(opening day)
 	private String hemail;	//병원 이메일
 	
+	private int hno;
+	
+	//요청내역
 	private RequestDetails requestDetails;
+	//진행상황
+	private Progress progress;
 	
 }

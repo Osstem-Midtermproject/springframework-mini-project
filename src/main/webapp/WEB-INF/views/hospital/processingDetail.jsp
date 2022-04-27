@@ -37,21 +37,21 @@
                 <tbody>
                   <tr>
                     <th scope="row">병원장</th>
-                    <td>${progress.hospital.hdirector}</td>
+                    <td>${hospital.hdirector}</td>
                     <th scope="row">병원번호</td>
-                    <td>02-123-1234</td>
+                    <td>${hospital.hpn}</td>
                   </tr>
                   <tr>
                     <th scope="row">병원위치</th>
-                    <td>서울 송파구 중대로 135 아이티벤처타워</td>
+                    <td>${hospital.haddress}</td>
                     <th scope="row">직통번호</td>
-                    <td>010-9876-5432</td>
+                  	<td><fmt:formatDate value="${hospital.hod}" pattern="yyyy-MM-dd"/></td>
                   </tr>
                   <tr>
                     <th scope="row">개업일</th>
-                    <td>2012-05-12</td>
+                    <td>${hospital.hod}</td>
                     <th scope="row">이메일</td>
-                    <td>osstem@mycompany.com</td>
+                    <td>${hospital.hemail}</td>
                   </tr>
                   
                 </tbody>

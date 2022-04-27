@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.HospitalDao">
+	
+	<select id="selectByPager" parameterType="pager"  resultMap="selectHospitalWithProgressResultMap">
+		select rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		    from (
+		        select ROWNUM as rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		        from (
+		            SELECT hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		            FROM hospital, progress
+		            where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
+		        )
+		    where rownum &lt;= #{endRowNo}
+		    )
+		where rnum &gt;= #{startRowNo}
+		
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*)
+		from progress, hospital
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
+	</select>
+	
+	<resultMap id="selectHospitalWithProgressResultMap" type="hospital">
+		<result column="rnum" property="hno" />
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="progress" javaType="progress">
+			<result column="pdate" property="pdate" />
+			<result column="pcontent" property="pcontent" />
+			<result column="pcategory" property="pcategory" />
+			<result column="pdln" property="pdln" />
+			<result column="paddress" property="paddress" />
+		</association>
+	</resultMap>
+	
+	
+	<select id="selectByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
+		select * 
+		from 
+			(select *
+			from progress, hospital
+			where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
+			order by progress.pdate desc)
+			where rownum = 1
+			
+	</select>
+	
+	
+
+
+</mapper>
