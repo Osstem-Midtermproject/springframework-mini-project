@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.mycompany.webapp.dao.ManagementDao">
 
-	<!-- <select id="selectByUserId" parameterType="String" resultType="users">
-		SELECT users.userid, users.uaddress, hospital.hname FROM users, hospital WHERE users.uaddress = hospital.hname
-	</select> -->
-	
-	<resultMap id = "selectUserwithHospitalResultMap" type = "users">
+  <resultMap id = "selectUserwithHospitalResultMap" type = "users">
 	<!-- Type = "dto.Board"도 가능 -->
 		<result column = "userid" property="userId"/>
 		<result column = "uaddress" property="uaddress"/>
 		<result column = "uname" property="uname"/>
+		<result column = "UPHONENUMBER" property="uphoneNumber"/>
+		<result column = "UMEMBERSHIPDATE" property="umembershipDate"/>
+		
 		
 		<association property="hospital" javaType="hospital">
 			<result column = "hname" property="hname"/>
 			<result column = "haddress" property="haddress"/>
+			<result column = "hdln" property="hdln"/>
 		</association>
 	</resultMap>
 	
-	<select id="selectByUserId" parameterType="String" resultMap="selectUserwithHospitalResultMap">
-		SELECT userid, uaddress, hname FROM users, hospital WHERE uaddress = haddress AND udln = hdln
-	</select>
-	
-	<select id="count" resultType="int">
-		SELECT count(*) FROM users
-	</select>
-	
+   <select id="selectByUserId" parameterType="pager" resultMap="selectUserwithHospitalResultMap">
+      
+ select hdln, userid, uaddress, hname, uphonenumber, umembershipdate, uname
+          from (
+              select hdln, userid, uaddress, hname, uphonenumber, umembershipdate, uname
+              from (
+                  SELECT hdln, userid, uaddress, hname, uphonenumber, umembershipdate, uname
+                  FROM users, hospital 
+                  WHERE uaddress = haddress AND udln = hdln
+                   )
+          where rownum &lt;= 5
+          )
+      where rownum &gt;= 1
+   </select>
+   
+   <select id="count" resultType="int">
+      select count(*)
+      from users, hospital 
+      WHERE uaddress = haddress AND udln = hdln
+   </select>  
+   
+   <select id="deleteByHdln" resultType="int">
+      DELETE FROM hospital
+	  WHERE
+	  hdln = #{hdln}
+   </select>   
 </mapper>
