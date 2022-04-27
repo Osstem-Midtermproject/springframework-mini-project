@@ -50,8 +50,8 @@
 			where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
 			order by progress.pdate desc)
 			where rownum = 1
-			
 	</select>
+	
 	
 	
 
