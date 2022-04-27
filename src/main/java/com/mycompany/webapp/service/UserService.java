@@ -32,6 +32,7 @@ public class UserService {
 			}else {
 				dbUser.setResult(LoginResult.FAIL_MPASSWORD);
 			}
+			//비밀번호 암호화
 			/*			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 						String str = passwordEncoder.encode(user.getUpassword());
 						

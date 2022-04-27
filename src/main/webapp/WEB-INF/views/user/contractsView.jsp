@@ -19,40 +19,30 @@
                         <thead>
                             <th scope="col">번호</th>
                             <th scope="col">병원이름</th>
-                            <th scope="col">담당자 이름</th>
-                            <th scope="col">담당자 전화번호</th>
+                            <th scope="col">병원장 이름</th>
                             <th scope="col">계약일</th>
+                            <th scope="col">계약금</th>
                             <th scope="col">계약상태</th>
                             <th scope="col">계약서</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>강윤치과 송파점</td>
-                                <td>전병천</td>
-                                <td>010-4444-1234</td>
-                                <td>2022-02-17</td>
-                                <td>계약완료</td>
-                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;" href="contractForm">계약서 보기</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>강윤치과 강남점</td>
-                                <td>이주영</td>
-                                <td>010-2222-1234</td>
-                                <td>2021-04-23</td>
-                                <td>계약완료</td>
-                                <td><a class="btn btn-sm btn-secondary" style="font-size: x-small;" href="contractFormPdf">계약서 보기</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>강윤치과 봉천점</td>
-                                <td>김혜현</td>
-                                <td>010-3333-1234</td>
-                                <td>2018-09-30</td>
-                                <td>계약파기</td>
-                                <td><a class="btn btn-sm btn-secondary disabled" style="font-size: x-small;" href="contractForm">계약서 보기</a> </td>
-                            </tr>
+				            <c:forEach var="contract" items="${contractList}" varStatus="status">
+								<tr>
+									<th scope="row">${status.index+1}</th>
+	                                <td>${user.hospital.hname}</td>
+	                                <td>${user.hospital.hdirector}</td>
+	                                <td><fmt:formatDate value="${contract.contDate}" pattern="yyyy-MM-dd"/></td>
+	                                <td>${contract.contDownPayment}</td>
+	                                <c:if test="${contract.contStatus==1}">
+	                                	<td>계약완료</td>
+	                                	<td><a class="btn btn-sm btn-secondary" style="font-size: x-small;" href="contractFormPdf">계약서 보기</a> </td>
+	                                </c:if>
+	                                <c:if test="${contract.contStatus==0}">
+	                                	<td>계약파기</td>
+	                                	<td><a class="btn btn-sm btn-secondary disabled" style="font-size: x-small;" href="contractFormPdf">계약서 보기</a> </td>
+	                                </c:if>
+								</tr>
+							</c:forEach>
                         </tbody>
                     </table>
 

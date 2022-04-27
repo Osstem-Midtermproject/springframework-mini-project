@@ -20,7 +20,10 @@
 		<!-- user -->
 		<typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>	
 		<!-- 병원 -->	
-		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>		
+		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>	
+		<!-- 계약서 -->	
+		<typeAlias type="com.mycompany.webapp.dto.Contract" alias="contract"/>		
+		
 		
 	</typeAliases>
 	

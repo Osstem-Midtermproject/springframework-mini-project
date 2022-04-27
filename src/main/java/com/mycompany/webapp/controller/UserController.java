@@ -1,15 +1,21 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Users;
+import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 
@@ -22,12 +28,18 @@ public class UserController {
 
 	@Resource 
 	UserService userService;
+	
+	@Resource 
+	ContractService contractService;
 
+	//유저 메인 페이지 뜨게
 	@RequestMapping("/userHome")
 	public String userHome() {
 		log.info("실행");
 		return "/user/userHome";
 	}
+	
+	//유저 메인 페이지 뜨게
 	@RequestMapping("/")
 	public String user() {
 		log.info("실행");
@@ -75,24 +87,38 @@ public class UserController {
 		return "redirect:/user/userHome";
 	}
 	
-	
+	//회원 정보 
 	@RequestMapping("/userInformation")
 	public String userInformation() {
-
 		log.info("실행");
 		return "/user/userInformation";
 	}
 
-	@RequestMapping("/contractsView")
-	public String contractsView() {
-		log.info("실행");
-		return "/user/contractsView";
-	}
-
+	//진행 내역
 	@RequestMapping("/progressDetail")
 	public String progressDetail() {
 		log.info("실행");
 		return "/user/progressDetail";
+	}
+	
+	//계약 현황 : 계약서 리스트 불러와서 보여주기
+	@RequestMapping("/contractsView")
+	public String contractsView(HttpSession session) {
+		log.info("실행");
+		
+		Users user = (Users)session.getAttribute("user");
+		Hospital hospital = user.getHospital();
+		String hdln = hospital.getHdln();
+		String haddress = hospital.getHaddress();
+		log.info(hdln);
+		log.info(haddress);
+
+		List<Contract> contractList = contractService.showContractsView(hdln, haddress);
+		session.setAttribute("contractList", contractList);
+		
+		log.info(contractList.size());
+		
+		return "/user/contractsView";
 	}
 	
 	@GetMapping("/contractForm")
