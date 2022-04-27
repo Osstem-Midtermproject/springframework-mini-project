@@ -7,12 +7,12 @@ import lombok.Data;
 @Data
 public class Hospital {
 	
-	private String hdln;//의사면허번호
-	private String haddress;//주소
-	private String hname;//병원명
-	private String hdirector;//병원장
-	private String hpn;//병원 전화번호
-	private Date hod;//병원 개업일(opening day)
-	private String hemail;	//병원 이메일
+	private String hDln;//의사면허번호
+	private String hAddress;//주소
+	private String hName;//병원명
+	private String hDirector;//병원장
+	private String hPn;//병원 전화번호
+	private Date hOd;//병원 개업일(opening day)
+	private String hEmail;	//병원 이메일
 	
 }

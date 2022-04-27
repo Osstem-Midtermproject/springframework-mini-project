@@ -1,9 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 
 <style>
 	.btn-outline-primary {
@@ -80,41 +77,9 @@ button:focus {
             </tr>
           </thead>
           <tbody>
-          <c:forEach var="board" items="${boards}">
-            <tr>
-     		  <td>테스</td>
-     		  <td>${board.uaddress}</td>
-              
-              
-            </tr>
-           </c:forEach>
-           
-          <%--  <tr>
-				<td colspan="4" class="text-center">
-					<div>
-						<a class="btn btn-outline-primary btn-sm" href="boardList?pageNo=1">처음</a>
-						<c:if test="${pager.groupNo>1}">
-							<a class="btn btn-outline-info btn-sm" href="boardList?pageNo=${pager.startPageNo-1}">이전</a>
-						</c:if>
-						
-						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-outline-success btn-sm" href="boardList?pageNo=${i}">${i}</a>
-							</c:if>
-							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-danger btn-sm" href="boardList?pageNo=${i}">${i}</a>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${pager.groupNo<pager.totalGroupNo}">
-							<a class="btn btn-outline-info btn-sm" href="boardList?pageNo=${pager.endPageNo+1}">다음</a>
-						</c:if>
-						<a class="btn btn-outline-primary btn-sm" href="boardList?pageNo=${pager.totalPageNo}">맨끝</a>
-					</div>
-				</td>
-			</tr>
             <tr>
               <th scope="row">1</th>
+              <td>Brandon</td>
               <td>경찰병원</td>
               <td>울릉도 동남쪽 200리</td>
               <td>010-1234-1234</td>
@@ -122,24 +87,59 @@ button:focus {
               <td>2016-05-25</td>
               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
-            </tr> --%>
-            
-            
-        
-            <%--  
-            	<c:forEach var="board" items="${boards}">
-				<tr>
-					<td>${board.bno}</td>
-					<td><a href="boardDetail?bno=${board.bno}">${board.btitle}</a></td>
-					<td>${board.mid}</td>
-					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
-				</tr>
-			</c:forEach>  --%>
-            
-            
-            
-            
-          
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>kosa</td>
+              <td>소방소병원</td>
+              <td>서울시 부산구 130</td>
+              <td>010-1234-1234</td>
+              <td>김강윤</td>
+              <td>2011-04-21</td>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
+              <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>qoffldkd</td>
+              <td>군인병원</td>
+              <td>강원도 평창시 321</td>
+              <td>010-1234-1234</td>
+              <td>김혜현</td>
+              <td>2006-05-25</td>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
+              <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>dlfidz</td>
+              <td>저쪽병원</td>
+              <td>충청북도 충남시</td>
+              <td>010-1234-1234</td>
+              <td>이주영</td>
+              <td>2132-05-25</td>
+               <td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
+              <button type="button" class="btn btn-outline-primary" onclick="location.href='https://dokdo.mofa.go.kr/kor/'">삭제</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+      </div>
+    </div>
+    
+    <div class="card-body"
+						style="display: flex; justify-content: center;">
+						<!-- Basic Pagination -->
+						<nav style="align-items: center;">
+							<ul id="pagingul">
+							</ul>
+						</nav>
+						
+						 <nav style="align-items: center;"> 
+              <ul id="pagingul">
+              </ul>
+            </nav>
 
             <script>
               let totalData=66;      //총 데이터 수

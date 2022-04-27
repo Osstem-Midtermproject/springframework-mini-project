@@ -17,12 +17,6 @@
 		<!-- 진행상황 -->
 		<typeAlias type="com.mycompany.webapp.dto.Progress" alias="progress"/>		
 		
-		<!-- 진행상황 -->
-		<typeAlias type="com.mycompany.webapp.dto.Users" alias="users"/>	
-		
-		<!-- 진행상황 -->
-		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>	
-		
 	</typeAliases>
 	
 </configuration>
