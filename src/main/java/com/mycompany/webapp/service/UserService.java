@@ -25,7 +25,9 @@ public class UserService {
 		Users dbUser = userDao.selectByUserId(user.getUserid());
 		
 		if(dbUser==null) {
-			dbUser.setResult(LoginResult.FAIL_MID);
+			Users u = new Users();
+			u.setResult(LoginResult.FAIL_MID);
+			return u;
 		}else {
 			if(user.getUpassword().equals(dbUser.getUpassword())) {
 				dbUser.setResult(LoginResult.SUCCESS);
