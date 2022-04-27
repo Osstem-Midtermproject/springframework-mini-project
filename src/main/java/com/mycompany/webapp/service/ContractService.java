@@ -12,6 +12,7 @@ import com.mycompany.webapp.dto.Contract;
 import lombok.extern.log4j.Log4j2;
 
 @Service
+@Log4j2
 public class ContractService {
 
 	@Resource
@@ -21,6 +22,9 @@ public class ContractService {
 		List<Contract> contractList = contractDao.selectByHAddressAndHDln(hdln, haddress);
 		return contractList;
 	}
-	 
 	
+	public List<Contract> getContracts(){
+		
+		return contractDao.selectSales();
+	}	
 }

@@ -10,4 +10,5 @@ import com.mycompany.webapp.dto.Contract;
 public interface ContractDao {
 
 	List<Contract> selectByHAddressAndHDln(String hdln, String haddress);
+	public List<Contract> selectSales();
 }

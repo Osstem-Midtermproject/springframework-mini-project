@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.ConstructionScheduleDao">
+<resultMap id="selectSchedule"  type="constructionSchedule">
+			<result column="cons_sche_id" property="consScheId"/>
+			<result column="cons_sche_startdate" property="consScheStartdate"/>
+			<result column="cons_sche_enddate" property="consScheEnddate"/>
+			<result column="cons_sche_content"  property="consScheContent"/>
+			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
+			<association property="constructionCategory" javaType="com.mycompany.webapp.dto.ConstructionCategory">	
+					<result column="cons_cate_type" property="consCateType"/>	
+			</association>
+			<association property="hospital" javaType="hospital">	
+					<result column="hdirector" property="hdirector"/>	
+			</association>
+</resultMap>
+<select id="selectAll" resultMap="selectSchedule">
+		select c.cons_sche_id, c.cons_sche_startdate, c.cons_sche_enddate, c.cons_sche_content, c.cons_sche_hospitalname,  cc.cons_cate_type,h.hdirector
+		from constructionschedule c, hospital h, constructioncategory cc
+		where c.cons_sche_dln=h.hdln and c.cons_sche_address=h.haddress and c.cons_sche_categoryid=cc.cons_cate_id
+</select>
+
+<update id="updateSchedule"  parameterType="constructionSchedule" >
+		update constructionschedule
+		set cons_sche_startdate=#{consScheStartdate},cons_sche_enddate=#{consScheEnddate}
+		where cons_sche_id=#{consScheId}
+</update>
+
+
+</mapper>

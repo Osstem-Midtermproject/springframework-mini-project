@@ -1,13 +1,15 @@
 package com.mycompany.webapp.controller;
 
-import java.util.Locale;
+import java.util.List;
 
+import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.service.ContractService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -15,9 +17,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/analysis")
 public class AnalysisController {
+	
+	@Resource
+	ContractService contractService;
+	
+	
+	
 	@RequestMapping("/analysis")
-	public String analysis() {
+	public String analysis(Model model) {
 		log.info("실행");
+		List<Contract> contract=contractService.getContracts();
+		log.info(contract);
+		model.addAttribute("contract",contract);
 		
 		///WEB-INF/views/analysis/analysis.jsp
 		return "analysis/analysis";

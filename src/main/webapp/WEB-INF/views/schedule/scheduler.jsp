@@ -67,6 +67,7 @@
       </div>
     </main>
     <script>
+     
       var id = 1;
       var diaLogOpt = {
         title: "일정관리",
