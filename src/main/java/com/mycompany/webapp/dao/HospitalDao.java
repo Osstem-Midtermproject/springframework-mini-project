@@ -14,9 +14,14 @@ public interface HospitalDao {
 	public int count();
 	
 	//hdln으로 detail 페이지 들어가기
-	public Hospital selectByHdln(String pdln);
+	public Hospital selectByHdln(String hdln);
+	public Hospital selectHospitalDetailByHdln(String hdln);
 	
+	//hdln으로 진행상태 확인하기
+	public Hospital selectHospitalStateByHdln(String hdln);
 	
+	//hdln과 contIdentificationNumber 으로 계약일 가져오기
+	public Hospital selectHospitalContDateByHdln(String hdln, String contIdentificationNumber);
 	
 	
 }

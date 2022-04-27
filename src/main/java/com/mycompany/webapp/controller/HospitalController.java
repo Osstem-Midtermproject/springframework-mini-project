@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,19 +36,25 @@ public class HospitalController {
 	}
 
 	@GetMapping("/processing/detail")
-	public String processingDetail(String hdln, Model model) {
+	public String processingDetail(String hdln, String contIdentificationNumber, Model model) {
 		Hospital hospital = hospitalService.getHospital(hdln);
 		model.addAttribute("hospital", hospital);
 		log.info(hospital);
+		
+		Hospital hospitalState = hospitalService.getHospitalState(hdln);
+		model.addAttribute("hospitalState", hospitalState);
+		log.info(hospitalState);
+		
+		/*Hospital hospitalContDate = hospitalService.getHospitalContDate(hdln, contIdentificationNumber);
+		model.addAttribute("hospitalContDate", hospitalContDate);
+		log.info(hospitalContDate);*/
 		return "hospital/processingDetail";
+		
+		
 	}
 	
-	@PostMapping("view.do")
-	public String getView(String hdln, Model model) {
-		Hospital hospital = hospitalService.getHospital(hdln);
-		model.addAttribute("progressView", hospital);
-		return "view";
-	}
+	
+
 
    @RequestMapping("/history")
    public String history() {

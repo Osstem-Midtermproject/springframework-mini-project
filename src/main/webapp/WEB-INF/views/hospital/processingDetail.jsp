@@ -23,8 +23,8 @@
           <img src="${pageContext.request.contextPath}/resources/images/office_img.png" style="height: 100%; width: 100%;">
         </div>
         <div>
-          <h3><span class="badge bg-success">진행중</span></h3>
-          <h2>오스템임플란트</h2>
+          <h3><span class="badge bg-success">${hospitalState.state.skind}</span></h3>
+          <h2>${hospital.hname}</h2>
           <span>계약일 2020-10-30</span>
         </div>
       </div>
@@ -78,58 +78,71 @@
                     <tbody>
                       <tr>
                         <th scope="row">제목</th>
-                        <td>상담 신청합니다.</td>
+                        <td>${hospital.requestDetails.rdTitle}</td>
                         <th scope="row">신청일</th>
-                        <td>2022-01-20</td>
+                        <td><fmt:formatDate value="${hospital.requestDetails.rdApplicationdate}" pattern="yyyy-MM-dd"/></td>
                       </tr>
                       <tr>
                         <th scope="row">예산</th>
-                        <td>1억</td>
+                        <td>${hospital.requestDetails.rdBudget}</td>
                         <th scope="row">면적</th>
-                        <td>115m2 / 35평</td>
+                        <td>${hospital.requestDetails.rdSpace}</td>
                       </tr>
                       <tr>
                         <th scope="row">건물층</th>
-                        <td>3층</td>
+                        <td>${hospital.requestDetails.rdFloor}</td>
                         <th scope="row">공간수</th>
-                        <td>6개</td>
+                        <td>없음</td>
                       </tr>
                       <tr>
                         <th scope="row">디자인</th>
-                        <td>화이트</td>
+                        <td>${hospital.requestDetails.rdDesign}</td>
                         <th scope="row">상담일</th>
-                        <td>2022-01-27</td>
+                        <td><fmt:formatDate value="${hospital.requestDetails.rdCounDate}" pattern="yyyy-MM-dd"/></td>
                       </tr>
                       <tr>
                         <th scope="row">구분</th>
-                        <td>부분 인테리어</td>
+                        <td>없음</td>
                         <th scope="row">공간</th>
-                        <td>대기실/인포메이션</td>
+                        <td>없음</td>
                       </tr>
 
                       <tr>
                         <th scope="row">상담내역</th>
-                        <td colspan="3" style="width: 85%;">북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</td>
+                        <td colspan="3" style="width: 85%;">없음</td>
                       </tr>
                       
                       <!-- 추가요청이 들어올 때마다 추가 -->
                       <tr>
                         <th scope="row">추가요청</th>
-                        <td colspan="3" style="width: 85%;">북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</td>
+                        <td colspan="3" style="width: 85%;">
+                        	<div id="additionalRequest">
+                        		<div>북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</div>
+                        		<br>
+                        		<div>북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</div>
+                        		<br>
+                        		<div>북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</div>
+                        		<br>
+                        		<div>북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</div>
+                        		<br>
+                        	</div>
+                        </td>
                       </tr>
-                      
-                      <tr>
-                        <th scope="row"></th>
-                        <td colspan="3" style="width: 85%;">북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</td>
-                      </tr>
-    
-                      <tr>
-                        <th scope="row"></th>
-                        <td colspan="3" style="width: 85%;">북유럽 컨셉으로 단조로운 디자인의 가구와 소품들을 사용하고, 소재 본래의 질감과 함께 매끄러운 마감이 가미됐음 좋겠습니다. 기본적으로 흰색과 베이지색, 우드톤이 사용 되고 부드러운 파스텔톤으로 포인트를 줬으면 좋겠습니다.</td>
-                      </tr>
-    
                     </tbody>
+                    
+                    <div id="dialog">
+					    <div id="form-div">
+					      <form>
+					        <div class="form-group mt-2 mb-4">
+					          <label for="utitle">추가요청</label>
+					          <input type="utitle" class="form-control" id="additionalContent" style="height: 140px" />
+					        </div>
+					      </form>
+					    </div>
+					</div>
+					
                   </table>
+                  <button id="insertButton">추가</button>
                 </div>
                 <div class="tab-pane fade" id="bordered-past">
                   <table class="table">
@@ -177,7 +190,6 @@
                   </table>
                 </div>
               </div><!-- End Bordered Tabs -->
-
             </div>
           </div>
 
@@ -304,5 +316,49 @@
     </section>
 
   </main><!-- End #main -->
+  
+   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+				
+	<script>
+ 	  $(function() {
+		  $("#dialog").dialog({
+			  autoOpen:false,
+			  modal:true,
+			  resizable: false,
+			  
+			  buttons: {
+				  "확인": function() {
+					  var divTag = "<div>";
+					  divTag += $("#additionalContent").val();
+					  divTag += "</div>";
+					  divTag += "<br>";
+					  
+					  $("#additionalRequest").append(divTag); 					  
+					  $(this).dialog("close");
+				  }, "취소": function() {
+					  $(this).dialog("close");
+				  }
+			  }
+		  })
+		  $("#additionalContent").val("");
+	  });
+ 	 
+ 	  
+ 	 $("#insertButton").on("click", function() {
+		  $("#dialog").dialog("open");
+		  $("#additionalContent").val("");
+	 });
+
+ 	 function insert(content){  
+       $.ajax({
+         url:"detail",
+         data:{content:content
+    	 }
+       }).done((data)=>{
+	   });
+     } 
+	
+	</script>
   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

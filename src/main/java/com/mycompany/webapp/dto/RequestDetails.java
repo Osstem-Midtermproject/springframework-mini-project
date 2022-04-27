@@ -19,7 +19,8 @@ public class RequestDetails {
 	String rdDesign;			//디자인
 	Date rdCounDate;			//상담일
 	String rdSpace;				//공간
-	Blob rdRefeImg;				//참고인테리어(이미지)
+	Byte[] rdRefeImg;				//참고인테리어(이미지)
 	Date rdRequestConsPeriod;	//요청시공기간
+	String rdSid;				//진행상황 
 
 }

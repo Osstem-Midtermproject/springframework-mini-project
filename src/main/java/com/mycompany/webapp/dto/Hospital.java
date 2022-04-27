@@ -17,9 +17,16 @@ public class Hospital {
 	
 	private int hno;
 	
+
+	//연관 관계에 있는 객체(Association)
+
 	//요청내역
 	private RequestDetails requestDetails;
 	//진행상황
 	private Progress progress;
+	//진행상태
+	private State state;
+	//계약서
+	private Contract contract;
 	
 }

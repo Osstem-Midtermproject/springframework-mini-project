@@ -26,7 +26,8 @@
 		<typeAlias type="com.mycompany.webapp.dto.Contract" alias="contract"/>									
 		<!-- user -->
 		<typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>	
-
+		<!-- 진행상태 -->
+		<typeAlias type="com.mycompany.webapp.dto.State" alias="state"/>	
 		
 	</typeAliases>
 	
