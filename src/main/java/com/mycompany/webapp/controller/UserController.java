@@ -1,11 +1,13 @@
 package com.mycompany.webapp.controller;
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -121,14 +123,24 @@ public class UserController {
 		return "/user/contractsView";
 	}
 	
-	@GetMapping("/contractForm")
-	public String contractForm() {
-		return "/element/contractForm";
-	}
-
+	//계약서 보기 버튼 클릭하면 계약서 보여줌
 	@GetMapping("/contractFormPdf")
-	public String contractFormPdf() {
+	public String contractFormPdf(int fileIndex, HttpSession session, HttpServletRequest request) {
 		log.info("실행");
+		log.info(fileIndex);
+
+		List<Contract> contractList = (List<Contract>) session.getAttribute("contractList");
+		Contract contract = contractList.get(fileIndex);
+		
+		byte[] pdf = contract.getCont();
+		Encoder e = Base64.getEncoder();
+		byte[] encodedBytes = e.encode(pdf);
+		
+		String pdfString = new String(encodedBytes);
+		log.info(pdfString);
+		
+		request.setAttribute("pdfString", pdfString);
+		
 		return "/element/contractFormPdf";
 	}
 	
