@@ -45,11 +45,11 @@
                     <th scope="row">병원위치</th>
                     <td>${hospital.haddress}</td>
                     <th scope="row">직통번호</td>
-                  	<td><fmt:formatDate value="${hospital.hod}" pattern="yyyy-MM-dd"/></td>
+                  	<td>${hospital.hpn}</td>
                   </tr>
                   <tr>
                     <th scope="row">개업일</th>
-                    <td>${hospital.hod}</td>
+                    <td><fmt:formatDate value="${hospital.hod}" pattern="yyyy-MM-dd"/></td>
                     <th scope="row">이메일</td>
                     <td>${hospital.hemail}</td>
                   </tr>

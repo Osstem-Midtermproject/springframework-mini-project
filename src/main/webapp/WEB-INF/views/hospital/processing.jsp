@@ -55,7 +55,7 @@
                         <th scope="row">1</th>
                         <td>${hospital.hname}</td>
                         <td>${hospital.hdirector}</td>
-                         <td><fmt:formatDate value="${hospital.progress.pdate}" pattern="yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${hospital.progress.pdate}" pattern="yyyy-MM-dd"/></td>
                         <td>${hospital.hpn}</td>
                         <td>${hospital.progress.pcategory}</td>                        
                       <tr>
@@ -67,7 +67,6 @@
                 
               </div>
             </div>
-
 
          <!---------------------------- pagination 추가 ------------------------------->
             <div class="card">
