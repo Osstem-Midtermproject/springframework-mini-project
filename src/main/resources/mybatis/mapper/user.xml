@@ -19,7 +19,7 @@
 			<result column="hdirector" property="hdirector" />
 			<result column="hpn" property="hpn" />
 			<result column="hod" property="hod" />
-			<result column="hemaill" property="hemail" />
+			<result column="hemail" property="hemail" />
 		</association>
 	</resultMap>
 	<select id="selectByUserId" parameterType="string" resultMap="selectUserAndHospital">

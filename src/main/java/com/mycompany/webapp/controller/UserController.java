@@ -13,11 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Progress;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.ContractService;
+import com.mycompany.webapp.service.ProgressService;
 import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 
@@ -33,6 +37,9 @@ public class UserController {
 	
 	@Resource 
 	ContractService contractService;
+	
+	@Resource 
+	ProgressService progressService;
 
 	//유저 메인 페이지 뜨게
 	@RequestMapping("/userHome")
@@ -96,14 +103,30 @@ public class UserController {
 		return "/user/userInformation";
 	}
 
-	//진행 내역
+	//진행 내역-------------------------------------------------------------------------
 	@RequestMapping("/progressDetail")
-	public String progressDetail() {
+	public String progressDetail(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		log.info("실행");
+		Users user = (Users)session.getAttribute("user");
+		Hospital hospital = user.getHospital();
+		String hdln = hospital.getHdln();
+		String haddress = hospital.getHaddress();
+		
+		int totalProgressNum = progressService.getTotalProgressNum(hdln, haddress);
+		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
+		pager.setHdln(hdln);
+		pager.setHaddress(haddress);
+		model.addAttribute("pager", pager);
+		
+		List<Progress> progressList = progressService.showProgressList(pager);
+		log.info(progressList.toString());
+		model.addAttribute("hospitalprogressList", progressList);
+		log.info(model.getAttribute("hospitalprogressList"));
+
 		return "/user/progressDetail";
 	}
 	
-	//계약 현황 : 계약서 리스트 불러와서 보여주기
+	//계약 현황 : 계약서 리스트 불러와서 보여주기-----------------------------------------------
 	@RequestMapping("/contractsView")
 	public String contractsView(HttpSession session) {
 		log.info("실행");
