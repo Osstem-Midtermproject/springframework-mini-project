@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.HospitalDao;
+import com.mycompany.webapp.dto.AdditionalRequest;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.Progress;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -43,8 +43,26 @@ public class HospitalService {
 		return hospitalDao.selectHospitalStateByHdln(hdln);
 	}
 	
-	public Hospital getHospitalContDate(String hdln, String contIdentificationNumber) {
-		return hospitalDao.selectHospitalContDateByHdln(hdln, contIdentificationNumber);
+	public Hospital getHospitalContDate(String hdln) {
+		return hospitalDao.selectHospitalContDateByHdln(hdln);
 	}
 	
+	//hdln으로 계약서 쪽으로 병원정보 가져오기 계약서의 추가요청을 찾음 
+	public List<Hospital> getHospitalArContent(String hdln) {
+		return hospitalDao.selectHospitalArContentByHdln(hdln);
+	}
+	
+	//추가요청 내용 추가
+	public void writeContent(AdditionalRequest additionalRequests) {
+		hospitalDao.insert(additionalRequests);
+	}
+	
+	//진행상황 띄우기
+	public List<Hospital> getHospitalProgress(String hdln) {
+		return hospitalDao.selectProgressByHdln(hdln);
+	}
+
+	public void removeArContent(int arId) {
+		hospitalDao.deleteByArId(arId);
+	}
 }

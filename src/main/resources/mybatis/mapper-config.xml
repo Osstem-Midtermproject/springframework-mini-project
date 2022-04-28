@@ -27,7 +27,10 @@
 		<!-- user -->
 		<typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>	
 		<!-- 진행상태 -->
-		<typeAlias type="com.mycompany.webapp.dto.State" alias="state"/>	
+		<typeAlias type="com.mycompany.webapp.dto.State" alias="state"/>
+		<!-- 추가요청 -->
+		<typeAlias type="com.mycompany.webapp.dto.AdditionalRequest" alias="additionalRequest"/>
+		
 		
 	</typeAliases>
 	

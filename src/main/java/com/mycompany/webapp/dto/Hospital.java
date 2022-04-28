@@ -28,5 +28,6 @@ public class Hospital {
 	private State state;
 	//계약서
 	private Contract contract;
-	
+	//추가요청
+	private AdditionalRequest additionalRequest;
 }
