@@ -26,8 +26,15 @@
 		<typeAlias type="com.mycompany.webapp.dto.Contract" alias="contract"/>									
 		<!-- user -->
 		<typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>	
-		<!-- HosptialAndCategory -->
+		
+		<!-- HosptialAndCategory : 체크박스로 선택된 항목에 해당하는 리스트 뽑기 위해-->
 		<typeAlias type="com.mycompany.webapp.dto.HosptialAndCategory" alias="hac"/>
+		<!-- ThtidAndStartDateAndEndDate : 팀과 분기별로 매출 총액을 구하기 위해-->
+		<typeAlias type="com.mycompany.webapp.dto.ThtidAndStartDateAndEndDate" alias="tsd"/>
+		
+		<!-- 팀별 기록 -->
+		<typeAlias type="com.mycompany.webapp.dto.TeamHistory" alias="teamhistory"/>	
+		
 		
 	</typeAliases>
 	

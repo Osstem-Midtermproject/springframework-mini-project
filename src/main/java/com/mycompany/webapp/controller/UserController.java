@@ -8,12 +8,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
@@ -128,8 +131,9 @@ public class UserController {
 	}
 	
 	//체크박스의 체크된 황목에 따른 리스트 불러오기
-	@PostMapping("/checkBox")
-	public void checkBox(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session, @RequestParam(value = "checkArray[]") List<String> allData) {
+	@PostMapping(value = "/checkBox", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String checkBox(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session, @RequestParam(value = "checkArray[]") List<String> allData) {
 		log.info("ddd");
 		
 		Users user = (Users)session.getAttribute("user");
@@ -149,6 +153,7 @@ public class UserController {
 		pager.setHdln(hdln);
 		pager.setHaddress(haddress);
 		model.addAttribute("pager", pager);
+		//session.setAttribute("pager", pager);
 		
 		List<Progress> progressList = progressService.showProgressListByCheckBox(pager);
 
@@ -156,6 +161,19 @@ public class UserController {
 		model.addAttribute("hospitalprogressList", progressList);
 		log.info(model.getAttribute("hospitalprogressList"));
 		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("hospitalprogressList", progressList);
+		jsonObject.put("p", pager);
+		jsonObject.put("startPageNo",pager.getStartPageNo());
+		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("pageNo",pager.getPageNo());
+		jsonObject.put("totalPageNo",pager.getTotalPageNo());
+		jsonObject.put("groupNo",pager.getGroupNo());
+
+		
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
 	}
 	
 	//계약 현황 : 계약서 리스트 불러와서 보여주기-----------------------------------------------
