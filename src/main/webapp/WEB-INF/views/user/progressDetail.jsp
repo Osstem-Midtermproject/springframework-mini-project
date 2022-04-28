@@ -17,20 +17,47 @@
                         <span class="" style="padding-right: 3rem; font-weight: 600;">카테고리</span>
                         
                         <div class="" style="padding-right: 2rem; ">
-                            <input type="checkbox" id="cateCheckbox1" name="checkBox" >
-                            <label class="" for="jb-checkbox1">상담</label>
+                            <input type="checkbox" id="categoryCheckbox1" name="checkBox" value="상담" onclick="checkBox()" checked="checked">
+                            <label class="" for="categoryCheckbox1">상담</label>
                         </div>
                         <div class="" style="padding-right: 2rem;">
-                            <input type="checkbox" id="cateCheckbox1" name="checkBox">
-                            <label class="" for="jb-checkbox2">AS</label>
+                            <input type="checkbox" id="categoryCheckbox2" name="checkBox" value="계약" onclick="checkBox()" checked="checked">
+                            <label class="" for="categoryCheckbox2">계약</label>
                         </div>
                         <div class="" style="padding-right: 2rem;">
-                            <input type="checkbox" id="cateCheckbox1" name="checkBox">
-                            <label class="" for="jb-checkbox3">시공</label>
+                            <input type="checkbox" id="categoryCheckbox3" name="checkBox" value="시공" onclick="checkBox()" checked="checked">
+                            <label class="" for="categoryCheckbox3">시공</label>
+                        </div>
+                        <div class="" style="padding-right: 2rem;">
+                            <input type="checkbox" id="categoryCheckbox4" name="checkBox" value="AS" onclick="checkBox()" checked="checked">
+                            <label class="" for="categoryCheckbox4">AS</label>
                         </div>
                     </div>
                     
+                    <script type="text/javascript">
                     
+                    function checkBox() { 
+                    	console.log("s");
+                        var checkboxValues = [];
+                        
+                        $("input[name='checkBox']:checked").each(function(i) {
+                            checkboxValues.push($(this).val());
+                        }); 
+                    	
+                        console.log(checkboxValues);
+                        
+                        var allData = { "checkArray": checkboxValues };      
+                        $.ajax({
+                    		url: 'checkBox',
+                    		type: 'post',
+                    		data: { "checkArray": checkboxValues }
+                    	});
+                    }
+
+
+ 
+                    	
+                    </script>
 
                     <!-- 날짜 선택 -->
                     <script>

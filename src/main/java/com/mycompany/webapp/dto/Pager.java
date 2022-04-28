@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -20,6 +22,8 @@ public class Pager {
 	
 	private String hdln;
 	private String haddress;
+	
+	private List<String> category;
 
 	public Pager(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
 		this.rowsPerPage = rowsPerPage;

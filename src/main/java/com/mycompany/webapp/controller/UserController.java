@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
+import com.mycompany.webapp.dto.HosptialAndCategory;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Progress;
 import com.mycompany.webapp.dto.Users;
@@ -124,6 +125,37 @@ public class UserController {
 		log.info(model.getAttribute("hospitalprogressList"));
 
 		return "/user/progressDetail";
+	}
+	
+	//체크박스의 체크된 황목에 따른 리스트 불러오기
+	@PostMapping("/checkBox")
+	public void checkBox(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session, @RequestParam(value = "checkArray[]") List<String> allData) {
+		log.info("ddd");
+		
+		Users user = (Users)session.getAttribute("user");
+		Hospital hospital = user.getHospital();
+		String hdln = hospital.getHdln();
+		String haddress = hospital.getHaddress();
+		
+		HosptialAndCategory hac = new HosptialAndCategory();
+		hac.setHdln(hdln);
+		hac.setHaddress(haddress);
+		hac.setCategory(allData);
+		
+		int totalProgressNum = progressService.getTotalProgressNumByCheckBox(hac);
+		log.info(totalProgressNum);
+		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
+		pager.setCategory(allData);
+		pager.setHdln(hdln);
+		pager.setHaddress(haddress);
+		model.addAttribute("pager", pager);
+		
+		List<Progress> progressList = progressService.showProgressListByCheckBox(pager);
+
+		log.info(progressList.toString());
+		model.addAttribute("hospitalprogressList", progressList);
+		log.info(model.getAttribute("hospitalprogressList"));
+		
 	}
 	
 	//계약 현황 : 계약서 리스트 불러와서 보여주기-----------------------------------------------

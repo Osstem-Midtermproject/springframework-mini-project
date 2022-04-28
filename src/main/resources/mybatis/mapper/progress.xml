@@ -34,4 +34,34 @@
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hdln=#{param1} and haddress=#{param2}
 	</select>
 	
+	<select id="countByCheckBox" parameterType="hac" resultType="int">
+		select count(*)
+		from progress, hospital
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hdln=#{hdln} and haddress=#{haddress}
+		and category IN (
+        <foreach collection="category" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+    	)
+	</select>
+	
+	<select id="selectProgressListByCheckBox" parameterType="pager"  resultMap="selectProgressListByPagerResultMap">
+		select rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		    from (
+		        select ROWNUM as rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		        from (
+                    select pdate, pcategory, hdln, hname, hdirector, hpn from progress 
+                    INNER JOIN hospital on pdln = hdln and paddress = haddress 
+                    where pdln=#{hdln} and paddress=#{haddress} and category IN (
+				        <foreach collection="category" item="item" index="index" separator=",">
+				            #{item}
+				        </foreach>
+				    )
+                    order by pdate desc
+		        )
+		    where rownum &lt;= #{endRowNo}
+		    )
+		where rnum &gt;= #{startRowNo}	
+	</select>
+	
 </mapper>

@@ -26,7 +26,8 @@
 		<typeAlias type="com.mycompany.webapp.dto.Contract" alias="contract"/>									
 		<!-- user -->
 		<typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>	
-
+		<!-- HosptialAndCategory -->
+		<typeAlias type="com.mycompany.webapp.dto.HosptialAndCategory" alias="hac"/>
 		
 	</typeAliases>
 	
