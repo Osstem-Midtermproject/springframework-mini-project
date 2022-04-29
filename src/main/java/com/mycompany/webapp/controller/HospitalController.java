@@ -85,14 +85,21 @@ public class HospitalController {
       return "hospital/location";
    }
    
-   //지역 선택시 파라미터 값 처리를 위한 호출 
+   //지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 
    @GetMapping("/location/detail")
-   public String location2(String addfressHospital, Model model, HttpServletRequest request) {
+   public String location2(String addfressHospital, Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int locationPageNo) {
       log.info("Location 실행");
       String locationHaddress = request.getParameter("locationHaddress");
-    
-        log.info(locationHaddress);
-		List<Hospital> locationHospital = hospitalService.getLocationHospital2(locationHaddress);
+      log.info(locationHaddress);
+	  List<Hospital> locationHospital = hospitalService.getLocationHospital2(locationHaddress);
+      
+      //지역별 병원의 개수로 설정
+      int getTotalLocationNum = locationHospital.size();
+      
+		Pager locationPager = new Pager(5, 5, getTotalLocationNum, locationPageNo);
+		model.addAttribute("locationPager", locationPager);
+		log.info("page");
+      
 		model.addAttribute("locationHospital", locationHospital);
 		log.info(locationHospital);
 		log.info("test");
