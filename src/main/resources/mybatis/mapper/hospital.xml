@@ -56,6 +56,7 @@
 		<result column="rnum" property="hno" />
 		<result column="hname" property="hname" />
 		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
 		<result column="haddress" property="haddress" />
 	</resultMap>
 	
@@ -63,11 +64,11 @@
 	<select id="selectByLocation" parameterType="pager" resultMap="selectHospitalWithLocation">
 		
 		
-		select rnum, hname, haddress, hpn	
+		select rnum, hname, haddress, hpn, hdln
           from (
-              select ROWNUM as rnum, hname, haddress, hpn
+              select ROWNUM as rnum, hname, haddress, hpn, hdln
               from (
-                  SELECT hname, haddress, hpn
+                  SELECT hname, haddress, hpn, hdln
                   FROM hospital 
                  
                   <!-- 주소가 들어가야한다.  -->
@@ -84,13 +85,16 @@
 	<select id="selectByLocation2" parameterType="String" resultMap="selectHospitalWithLocation">
 		
 	
-              select ROWNUM as rnum, hname, haddress, hpn
+              select ROWNUM as rnum, hname, haddress, hpn, hdln
            
                   FROM hospital 
                   WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
                
 	
 	</select>
+	
+	
+
 	
 
 	
