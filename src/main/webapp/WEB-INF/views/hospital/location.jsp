@@ -342,8 +342,9 @@ button:focus {
 								id="location14">부산</th>
 						</tr>
 						<tr>
-							<th tabindex="0" scope="col" id="sod" id="location2"
-								onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=서울'">서울</th>
+							<th tabindex="0" scope="col"
+								onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=서울'"
+								id="location2">서울</th>
 							<th tabindex="0" scope="col"
 								onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=울산'"
 								id="location6">울산</th>
