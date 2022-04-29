@@ -52,6 +52,48 @@
 			where rownum = 1
 	</select>
 	
+	<resultMap id="selectHospitalWithLocation" type="hospital">
+		<result column="rnum" property="hno" />
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="haddress" property="haddress" />
+	</resultMap>
+	
+	<!-- 전체 지역별 출력 -->
+	<select id="selectByLocation" parameterType="pager" resultMap="selectHospitalWithLocation">
+		
+		
+		select rnum, hname, haddress, hpn	
+          from (
+              select ROWNUM as rnum, hname, haddress, hpn
+              from (
+                  SELECT hname, haddress, hpn
+                  FROM hospital 
+                 
+                  <!-- 주소가 들어가야한다.  -->
+                   )
+         	    where rownum &lt;= #{endRowNo}
+		    )
+		where rnum &gt;= #{startRowNo}
+	
+	</select>
+	
+	<!-- 선택 지역별 출력 -->
+	<!-- 페이저 처리 해야댐 제길 -->
+	
+	<select id="selectByLocation2" parameterType="String" resultMap="selectHospitalWithLocation">
+		
+	
+              select ROWNUM as rnum, hname, haddress, hpn
+           
+                  FROM hospital 
+                  WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
+               
+	
+	</select>
+	
+
+	
 	
 	
 

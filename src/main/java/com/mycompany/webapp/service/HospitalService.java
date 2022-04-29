@@ -30,4 +30,16 @@ public class HospitalService {
 	public Hospital getHospital(String hdln) {
 		return hospitalDao.selectByHdln(hdln);
 	}
+	
+	//지역 병원 목록 전체출력
+	public List<Hospital> getLocationHospital(Pager pager) {
+		log.info("tlfgod");
+		return hospitalDao.selectByLocation(pager); 
+	}
+	
+	//지역 병원 지역별로 출력
+	public List<Hospital> getLocationHospital2(String addfressHospital) {
+		log.info("tlfgod");
+		return hospitalDao.selectByLocation2(addfressHospital); 
+	}
 }

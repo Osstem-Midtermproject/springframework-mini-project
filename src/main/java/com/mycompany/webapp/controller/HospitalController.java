@@ -1,9 +1,17 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.service.HospitalService;
 
@@ -57,11 +66,40 @@ public class HospitalController {
       return "hospital/history";
    }
 
-   @RequestMapping("/location")
-   public String location() {
-      log.info("실행");
+   //지도 별, 위치 별 병원 목록 컨트롤 호출 
+   @GetMapping("/location")
+   public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
+      log.info("Location 실행");
+      
+        int getTotalLocationNum = hospitalService.getTotalHospitalNum();
+		Pager locationPager = new Pager(5, 5, getTotalLocationNum, locationPageNo);
+		model.addAttribute("locationPager", locationPager);
+		log.info("page");
+
+		
+		List<Hospital> locationHospital = hospitalService.getLocationHospital(locationPager);
+		model.addAttribute("locationHospital", locationHospital);
+		log.info(locationHospital);
+		log.info("test");
+
       return "hospital/location";
    }
+   
+   //지역 선택시 파라미터 값 처리를 위한 호출 
+   @GetMapping("/location/detail")
+   public String location2(String addfressHospital, Model model, HttpServletRequest request) {
+      log.info("Location 실행");
+      String locationHaddress = request.getParameter("locationHaddress");
+    
+        log.info(locationHaddress);
+		List<Hospital> locationHospital = hospitalService.getLocationHospital2(locationHaddress);
+		model.addAttribute("locationHospital", locationHospital);
+		log.info(locationHospital);
+		log.info("test");
+
+      return "hospital/location";
+   }
+   
 
    @RequestMapping("/contractHistory")
    public String contractHistory() {

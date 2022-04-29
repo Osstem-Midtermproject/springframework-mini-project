@@ -17,6 +17,8 @@ public class Hospital {
 	
 	private int hno;
 	
+	private String Hadress; //임시
+	
 	//요청내역
 	private RequestDetails requestDetails;
 	//진행상황
