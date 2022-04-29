@@ -181,7 +181,12 @@ button:focus {
 						$(document).ready(function(){ 
 							const urlParams = new URL(location.href).searchParams;
 
+							//처음 페이지에서는 강원도가 나오도록한다.
 							const name = urlParams.get('locationHaddress');
+							if(name == null){
+								lo = '1';
+							}
+							
 							console.log(name);
 
 							if(name == '강원'){
