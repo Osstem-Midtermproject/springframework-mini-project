@@ -60,7 +60,7 @@
 							<td>${board.uphonenumber}</td>
 							<td>${board.uname}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.umembershipdate}"/></td>
-							<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modifymanagement'">수정</button>
+							<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modify_management'">수정</button>
               					<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/deletemanagement?hdln=${board.hospital.hdln}'">삭제</button></td>
               					
 						</tr>
@@ -70,33 +70,7 @@
 			</table>
 
 
-			<td colspan="4" class="text-center">
-				<div>
-					<a class="btn btn-outline-primary btn-sm" href="boardList?pageNo=1">처음</a>
-					<c:if test="${pager.groupNo>1}">
-						<a class="btn btn-outline-info btn-sm"
-							href="boardList?pageNo=${pager.startPageNo-1}">이전</a>
-					</c:if>
-
-					<c:forEach var="i" begin="${pager.startPageNo}"
-						end="${pager.endPageNo}">
-						<c:if test="${pager.pageNo != i}">
-							<a class="btn btn-outline-success btn-sm"
-								href="boardList?pageNo=${i}">${i}</a>
-						</c:if>
-						<c:if test="${pager.pageNo == i}">
-							<a class="btn btn-danger btn-sm" href="boardList?pageNo=${i}">${i}</a>
-						</c:if>
-					</c:forEach>
-
-					<c:if test="${pager.groupNo<pager.totalGroupNo}">
-						<a class="btn btn-outline-info btn-sm"
-							href="boardList?pageNo=${pager.endPageNo+1}">다음</a>
-					</c:if>
-					<a class="btn btn-outline-primary btn-sm"
-						href="boardList?pageNo=${pager.totalPageNo}">맨끝</a>
-				</div>
-			</td>
+			  <%@ include file="/WEB-INF/views/common/pagination.jsp"%>
 			
 		<!-- 	<div class="card-body"
 						style="display: flex; justify-content: center;">

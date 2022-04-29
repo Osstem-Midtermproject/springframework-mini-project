@@ -14,5 +14,7 @@ public interface ManagementDao {
 	public List<Users> selectByUserId(Pager pager);
 	public int count();
 	public void deleteByHdln(String hdln);
+	public  void  updateByHdln(Users user);
+	
 	
 }

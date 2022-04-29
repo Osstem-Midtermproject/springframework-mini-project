@@ -44,5 +44,10 @@
       DELETE FROM hospital
 	  WHERE
 	  hdln = #{hdln}
-   </select>   
+   </select>  
+   
+   <!-- 종속 제약에 의한 업데이트 제한 해결해야한다. -->
+	 <update id="updateByHdln" parameterType="user">
+		UPDATE users set  uname=#{uname}, uphonenumber=#{uphonenumber} WHERE udln = 12345
+	</update>
 </mapper>

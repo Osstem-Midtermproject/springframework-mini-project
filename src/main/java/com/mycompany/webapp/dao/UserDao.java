@@ -12,4 +12,5 @@ import lombok.extern.log4j.Log4j2;
 @Mapper
 public interface UserDao {
 	public Users selectByUserId(String userid);
+	
 }

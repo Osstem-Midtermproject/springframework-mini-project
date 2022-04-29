@@ -37,5 +37,13 @@ public class ManagementService {
 		
 	}
 	
+	public void updateUser(Users user) {
+		managementDao.updateByHdln(user);
+		
+		
+	}
+
+	
+	
 	
 }
