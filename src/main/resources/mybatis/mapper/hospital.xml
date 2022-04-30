@@ -52,6 +52,37 @@
 			where rownum = 1
 	</select>
 	
+	<resultMap id="selectHospitalDetailWithResultDetailsResultMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="requestDetails" javaType="requestDetails">
+			<result column="rd_dln" property="rdDln" />
+			<result column="rd_address" property="rdAddress" />
+			<result column="rd_state" property="rdState" />
+			<result column="rd_applicationdate" property="rdApplicationdate" />
+			<result column="rd_title" property="rdTitle" />
+			<result column="rd_budget" property="rdBudget" />
+			<result column="rd_floor" property="rdFloor" />
+			<result column="rd_design" property="rdDesign" />
+			<result column="rd_coun_date" property="rdCounDate" />
+			<result column="rd_space" property="rdSpace" />
+			<result column="rd_refe_img" property="rdRefeImg" />
+			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
+			<result column="rd_sid" property="rdSid" />
+		</association>
+	</resultMap>
+	
+	<select id="selectHospitalDetailByHdln" parameterType="string" resultMap="selectHospitalDetailWithResultDetailsResultMap">
+		select *
+		from hospital, requestdetails
+		where hospital.hdln = REQUESTDETAILS.rd_dln and hospital.haddress = REQUESTDETAILS.rd_address and hospital.hdln=#{hdln}
+	</select>
+	
 	<resultMap id="selectHospitalWithLocation" type="hospital">
 		<result column="rnum" property="hno" />
 		<result column="hname" property="hname" />
@@ -99,7 +130,140 @@
 
 	
 	
+	<resultMap id="selectHospitalStateWithResultDetailsAndStateResultMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="requestDetails" javaType="requestDetails">
+			<result column="rd_dln" property="rdDln" />
+			<result column="rd_address" property="rdAddress" />
+			<result column="rd_state" property="rdState" />
+			<result column="rd_applicationdate" property="rdApplicationdate" />
+			<result column="rd_title" property="rdTitle" />
+			<result column="rd_budget" property="rdBudget" />
+			<result column="rd_floor" property="rdFloor" />
+			<result column="rd_design" property="rdDesign" />
+			<result column="rd_coun_date" property="rdCounDate" />
+			<result column="rd_space" property="rdSpace" />
+			<result column="rd_refe_img" property="rdRefeImg" />
+			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
+			<result column="rd_sid" property="rdSid" />
+		</association>
+		<association property="state" javaType="state">
+			<result column="sid" property="sid" />
+			<result column="skind" property="skind" />
+		</association>
+	</resultMap>
 	
-
-
+	<select id="selectHospitalStateByHdln" parameterType="string" resultMap="selectHospitalStateWithResultDetailsAndStateResultMap">
+		select sid, skind
+		from hospital, requestdetails, state
+		where hospital.hdln = REQUESTDETAILS.rd_dln and hospital.haddress = REQUESTDETAILS.rd_address and hospital.hdln=#{hdln} and REQUESTDETAILS.rd_sid = state.sid
+	</select>
+	
+	<resultMap id="selectHospitalContractDateWithContractMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="contract" javaType="contract">
+			<result column="cont_identification_number" property="contIdentificationNumber" />
+			<result column="cont" property="cont" />
+			<result column="cont_design_identification" property="contDesignIdentification" />
+			<result column="cont_down_payment" property="contDownPayment" />
+			<result column="cont_date" property="contDate" />
+			<result column="cont_details" property="contDetails" />
+			<result column="cont_area" property="contArea" />
+			<result column="cont_dln" property="contDln" />
+			<result column="cont_address" property="contAddress" />
+			<result column="cont_period" property="contPeriod" />
+			<result column="cont_completion_status" property="contCompletionStatus" />
+			<result column="cont_status" property="contStatus" />
+			<result column="cont_additional_amount" property="contAdditionalAmount" />
+		</association>
+	</resultMap>
+	
+	<!-- 병원 테이블의 의사면허번호와 계약서의 의사면허번호 그리고 병원 테이블의 주소와 계약서의 주소를 join 하고 hdln의 값과 contIdentificationNumber 값을 넘겨 받음 -> 페이지 전환상의 문제가 있어서 실행 못함. 다시 생각해봐야 할듯-->
+	<select id="selectHospitalContDateByHdln" parameterType="string" resultMap="selectHospitalContractDateWithContractMap">
+		select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date
+		from hospital, contract
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and rownum = 1
+	</select>
+	
+	<resultMap id="selectHospitaArContentWithContractsAndAdditionalRequestResultMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="contract" javaType="contract">
+			<result column="cont_identification_number" property="contIdentificationNumber" />
+			<result column="cont" property="cont" />
+			<result column="cont_design_identification" property="contDesignIdentification" />
+			<result column="cont_down_payment" property="contDownPayment" />
+			<result column="cont_date" property="contDate" />
+			<result column="cont_details" property="contDetails" />
+			<result column="cont_area" property="contArea" />
+			<result column="cont_dln" property="contDln" />
+			<result column="cont_address" property="contAddress" />
+			<result column="cont_period" property="contPeriod" /> 
+			<result column="cont_completion_status" property="contCompletionStatus" />
+			<result column="cont_status" property="contStatus" />
+			<result column="cont_additional_amount" property="contAdditionalAmount" />
+		</association>
+		<association property="additionalRequest" javaType="additionalRequest">
+			<result column="ar_id" property="arId" />
+			<result column="ar_date" property="arDate" />
+			<result column="ar_cont_id" property="arContId" />
+			<result column="ar_content" property="arContent" />
+			<result column="ar_ad_amount" property="arAdAmount" />
+		</association>
+	</resultMap>
+	
+	
+	<select id="selectHospitalArContentByHdln" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
+		select ar_content, cont_identification_number, ar_id
+		from hospital, contract, additionalrequest
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and contract.cont_identification_number = additionalrequest.ar_cont_id
+		order by ar_date
+	</select>
+	
+	<select id="selectHospitalArContentByContId" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
+		select ar_id, ar_content, ar_cont_id
+		from hospital, contract, additionalrequest
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and contract.cont_identification_number = additionalrequest.ar_cont_id and additionalrequest.ar_cont_id = #{contId}
+		order by ar_date
+	</select>
+	
+	<!-- 추가요청 insert -->
+	<insert id="insert" parameterType="additionalRequest">
+		<selectKey keyProperty="arId" resultType="int" order="BEFORE">
+			select seq_ar.nextval from dual
+		</selectKey>
+		
+		INSERT INTO additionalRequest (ar_id, ar_date, ar_cont_id, ar_content, ar_ad_amount)
+		VALUES(#{arId}, SYSDATE, #{arContId}, #{arContent}, 1000000)
+	</insert>
+	
+	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
+		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent
+		from progress, hospital
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
+		order by progress.pdate asc
+	</select>
+	
+	<!-- 추가요청 delete -->
+	<delete id="deleteByArId" parameterType="int">
+		DELETE FROM additionalRequest WHERE ar_id=#{arId}
+	</delete>
+	
 </mapper>
