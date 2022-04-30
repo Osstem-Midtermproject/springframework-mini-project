@@ -39,8 +39,6 @@
 		<!-- ThtidAndStartDateAndEndDate : 팀과 분기별로 매출 총액을 구하기 위해-->
 		<typeAlias type="com.mycompany.webapp.dto.ThtidAndStartDateAndEndDate" alias="tsd"/>
 		
-		<!-- 팀별 기록 -->
-		<typeAlias type="com.mycompany.webapp.dto.TeamHistory" alias="teamhistory"/>	
 		
 		
 	</typeAliases>

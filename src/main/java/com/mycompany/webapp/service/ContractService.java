@@ -47,4 +47,9 @@ public class ContractService {
 	public List<Contract> showContractListBySearchBar(Pager pager) {
 		return contractDao.selectContractListBySearch(pager);
 	}
+
+	public Contract getContract(String fileNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

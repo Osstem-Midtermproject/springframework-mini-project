@@ -2,13 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.TeamHistoryDao">
 
-<<<<<<< HEAD
-<insert id="insertTeamHis"  parameterType="teamHistory">
-	<selectKey keyProperty="thn" resultType="int" order="BEFORE">
-				select seq_teamhistory.nextval from dual
-	</selectKey>
-	insert into teamhistory values(#{thn},#{thtid},#{tha},#{ths},to_date(#{thd},'yyyy-mm-dd'))
-</insert>
+
+
 
 <resultMap id="YearSales"  type="teamHistory">
 			<result column="sum(tha)" property="tha"/>
@@ -39,23 +34,15 @@
 	where thd between #{param1} and #{param2}
 	group by thd
 	order by thd asc
+</select>
 
-=======
-<insert id="insertTeamHis"  parameterType="teamhistory">
+<insert id="insertTeamHis"  parameterType="teamHistory">
 	<selectKey keyProperty="thn" resultType="int" order="BEFORE">
 				select seq_teamhistory.nextval from dual
 	</selectKey>
 	insert into teamhistory values(#{thn},#{thtid},#{tha},#{ths},to_date(#{thd},'yyyy-mm-dd'))
 </insert>
 	
-<select id="selectTeamHis" resultType="teamhistory">
-	select *
-	from teamhistory
-</select>
 
-<select id="selectTeamSalesByTeamId" resultType="long" parameterType="tsd">
-	select sum(tha) from teamhistory where thtid=#{thtid} and thd BETWEEN #{startDate} and #{endDate}
->>>>>>> refs/remotes/origin/JY
-</select>
 
 </mapper>
