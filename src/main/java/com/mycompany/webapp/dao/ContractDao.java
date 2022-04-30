@@ -5,10 +5,21 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Progress;
 
 @Mapper
 public interface ContractDao {
 
+	//user/contractsView : user의 계약기록 리스트 페이징
 	List<Contract> selectByHAddressAndHDln(String hdln, String haddress);
 	public List<Contract> selectSales();
+	
+	//hospital/contractHistory : 계약기록 리스트 페이징
+	List<Contract> selectAllContractListByPager(Pager pager);
+	public int allContractListCount();
+	
+	//hospital/contractHistory : 계약기록 리스트 페이징 -> 검색한 병원만 나오게
+	int contractListCountBySearch(String searchBar);
+	List<Contract> selectContractListBySearch(Pager pager);
 }

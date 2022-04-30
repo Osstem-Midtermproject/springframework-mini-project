@@ -99,7 +99,7 @@
 
 		<!-- 리스트 -->
 		<table class="table table-hover"
-			style="margin-bottom: 2rem; font-weight: 600; font-size: 0.8rem;">
+			style="margin-bottom: 2rem; font-weight: 600; font-size: 0.8rem; height: 10rem">
 			<thead>
 				<th scope="col">번호</th>
 				<th scope="col">병원이름</th>
@@ -130,6 +130,10 @@
 
 	</div>
 </div>
+</div>
+</div>
+
+<%@ include file="/WEB-INF/views/user/common/footer.jsp"%>
 
 <script type="text/javascript">
                     
@@ -153,8 +157,9 @@
                     		console.log(result);
                     		
                     		var str="";
-                    		
+
                     	    $.each(result.hospitalprogressList,function(index,list){
+                    	    	                        		
                     	    	str = str + "<tr><td>"+list.pno+
                     	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
                     	        "</td><td>"+list.hospital.hpn+"</td><td>"+list.pdate+"</td><td>"+list.pcategory+
@@ -172,17 +177,14 @@
                     	    			str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
                     	    		}else{
                     	    			str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
-
                     	    		}
                     	    	}
                         	    str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
                     	    	str2 = str2 + "</ul>";
-                        	console.log(str2);
+                        		console.log(str2);
 
                     	    $("#pager2").html(str2);
                     	});
                     }
       	
-                    </script>
-
-<%@ include file="/WEB-INF/views/user/common/footer.jsp"%>
+</script>

@@ -10,6 +10,7 @@ import lombok.Data;
 //contract (계약서)의 DTO
 @Data
 public class Contract {
+	private int cno;
 	private String contIdentificationNumber; //계약서 식별 번호
 	private byte[] cont; //계약서(pdf)
 	private String contDesignIdentification;//디자인식별번호

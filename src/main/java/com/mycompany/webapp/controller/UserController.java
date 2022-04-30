@@ -145,6 +145,7 @@ public class UserController {
 		hac.setHdln(hdln);
 		hac.setHaddress(haddress);
 		hac.setCategory(allData);
+		log.info("allData: " + allData);  //[상담, 계약, 시공, AS]
 		
 		int totalProgressNum = progressService.getTotalProgressNumByCheckBox(hac);
 		log.info(totalProgressNum);
@@ -162,7 +163,7 @@ public class UserController {
 		log.info(model.getAttribute("hospitalprogressList"));
 		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("hospitalprogressList", progressList);
+		jsonObject.put("hospitalprogressList", progressList);        
 		jsonObject.put("p", pager);
 		jsonObject.put("startPageNo",pager.getStartPageNo());
 		jsonObject.put("endPageNo",pager.getEndPageNo());
