@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.TeamHistoryDao">
+
+<insert id="insertTeamHis"  parameterType="teamhistory">
+	<selectKey keyProperty="thn" resultType="int" order="BEFORE">
+				select seq_teamhistory.nextval from dual
+	</selectKey>
+	insert into teamhistory values(#{thn},#{thtid},#{tha},#{ths},to_date(#{thd},'yyyy-mm-dd'))
+</insert>
+
+<resultMap id="YearSales"  type="teamHistory">
+			<result column="sum(tha)" property="tha"/>
+			<result column="to_char(thd,'yyyy-mm')" property="thd"/>
+</resultMap>	
+<select id="selectYearSales"  resultMap="YearSales">
+	select sum(tha),to_char(thd,'yyyy-mm')
+	from teamhistory
+	group by
+	to_char(thd,'yyyy-mm')
+</select>
+
+<resultMap id="TeamSales"  type="teamHistory">
+			<result column="sum(tha)" property="tha"/>
+			<result column="thtid" property="thtid"/>
+</resultMap>
+<select id="selectSales"  parameterType="string" resultMap="TeamSales">
+	select sum(tha),thtid from teamhistory where thd BETWEEN #{param1} and #{param2} GROUP by thtid
+</select>
+
+<resultMap id="MonthSales"  type="teamHistory">
+			<result column="sum(tha)" property="tha"/>
+			<result column="to_char(thd,'mm-dd')" property="thd"/>
+</resultMap>
+<select id="selectMonthSales"  parameterType="string" resultMap="MonthSales">
+	select sum(tha),to_char(thd,'mm-dd')
+	from teamhistory
+	where thd between #{param1} and #{param2}
+	group by thd
+	order by thd asc
+
+</select>
+
+</mapper>

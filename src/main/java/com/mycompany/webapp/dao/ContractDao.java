@@ -11,4 +11,6 @@ public interface ContractDao {
 
 	List<Contract> selectByHAddressAndHDln(String hdln, String haddress);
 	public List<Contract> selectSales();
+	public void insertContract(Contract contract);
+	
 }

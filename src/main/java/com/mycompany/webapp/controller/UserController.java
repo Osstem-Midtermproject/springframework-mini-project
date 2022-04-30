@@ -8,16 +8,24 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
+import com.mycompany.webapp.dto.HosptialAndCategory;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Progress;
 import com.mycompany.webapp.dto.Users;
 import com.mycompany.webapp.service.ContractService;
+import com.mycompany.webapp.service.ProgressService;
 import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 
@@ -33,6 +41,9 @@ public class UserController {
 	
 	@Resource 
 	ContractService contractService;
+	
+	@Resource 
+	ProgressService progressService;
 
 	//유저 메인 페이지 뜨게
 	@RequestMapping("/userHome")
@@ -96,14 +107,68 @@ public class UserController {
 		return "/user/userInformation";
 	}
 
-	//진행 내역
+	//진행 내역-------------------------------------------------------------------------
 	@RequestMapping("/progressDetail")
-	public String progressDetail() {
+	public String progressDetail(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		log.info("실행");
+		Users user = (Users)session.getAttribute("user");
+		Hospital hospital = user.getHospital();
+		String hdln = hospital.getHdln();
+		String haddress = hospital.getHaddress();
+		
+		int totalProgressNum = progressService.getTotalProgressNum(hdln, haddress);
+		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
+		pager.setHdln(hdln);
+		pager.setHaddress(haddress);
+		model.addAttribute("pager", pager);
+		
+		List<Progress> progressList = progressService.showProgressList(pager);
+		log.info(progressList.toString());
+		model.addAttribute("hospitalprogressList", progressList);
+		log.info(model.getAttribute("hospitalprogressList"));
+
 		return "/user/progressDetail";
 	}
 	
-	//계약 현황 : 계약서 리스트 불러와서 보여주기
+	//체크박스의 체크된 황목에 따른 리스트 불러오기
+	@PostMapping(value = "/checkBox", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String checkBox(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session, @RequestParam(value = "checkArray[]") List<String> allData) {
+		log.info("ddd");
+		
+		Users user = (Users)session.getAttribute("user");
+		Hospital hospital = user.getHospital();
+		String hdln = hospital.getHdln();
+		String haddress = hospital.getHaddress();
+		
+		HosptialAndCategory hac = new HosptialAndCategory();
+		hac.setHdln(hdln);
+		hac.setHaddress(haddress);
+		hac.setCategory(allData);
+		
+		int totalProgressNum = progressService.getTotalProgressNumByCheckBox(hac);
+		log.info(totalProgressNum);
+		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
+		pager.setCategory(allData);
+		pager.setHdln(hdln);
+		pager.setHaddress(haddress);
+		model.addAttribute("pager", pager);
+		
+		List<Progress> progressList = progressService.showProgressListByCheckBox(pager);
+
+		log.info(progressList.toString());
+		model.addAttribute("hospitalprogressList", progressList);
+		log.info(model.getAttribute("hospitalprogressList"));
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("hospitalprogressList", progressList);
+		
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+	}
+	
+	//계약 현황 : 계약서 리스트 불러와서 보여주기-----------------------------------------------
 	@RequestMapping("/contractsView")
 	public String contractsView(HttpSession session) {
 		log.info("실행");
@@ -126,18 +191,21 @@ public class UserController {
 	//계약서 보기 버튼 클릭하면 계약서 보여줌
 	@GetMapping("/contractFormPdf")
 	public String contractFormPdf(int fileIndex, HttpSession session, HttpServletRequest request) {
-		log.info("실행");
-		log.info(fileIndex);
+	
 
 		List<Contract> contractList = (List<Contract>) session.getAttribute("contractList");
+		log.info("실행");
+		log.info(fileIndex);
 		Contract contract = contractList.get(fileIndex);
-		
+		log.info("3"+contract);
 		byte[] pdf = contract.getCont();
+		log.info("4"+pdf);
 		Encoder e = Base64.getEncoder();
 		byte[] encodedBytes = e.encode(pdf);
-		
+		log.info("5"+encodedBytes);
 		String pdfString = new String(encodedBytes);
 		log.info(pdfString);
+		
 		
 		request.setAttribute("pdfString", pdfString);
 		

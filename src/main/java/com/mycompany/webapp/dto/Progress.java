@@ -24,6 +24,8 @@ public class Progress {
 	   private String pattachtype;
 	   private MultipartFile pimage;   //이미지
 	  
+	   //카테고리 필요해서 추가함 (상담/계약/시공/AS)
+	   private String category;
 	   
 	   //연관 관계에 있는 객체(Association)
 	   //병원

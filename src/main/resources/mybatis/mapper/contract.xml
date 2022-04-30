@@ -33,5 +33,6 @@
 		select cont_date,cont_down_payment,cont_additional_amount
 		from contract
 </select>
+
 	
 </mapper>
