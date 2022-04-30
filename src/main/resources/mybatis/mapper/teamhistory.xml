@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.TeamHistoryDao">
 
-<<<<<<< HEAD
 <insert id="insertTeamHis"  parameterType="teamHistory">
 	<selectKey keyProperty="thn" resultType="int" order="BEFORE">
 				select seq_teamhistory.nextval from dual
@@ -18,7 +17,7 @@
 	select sum(tha),to_char(thd,'yyyy-mm')
 	from teamhistory
 	group by
-	to_char(thd,'yyyy-mm')
+	to_char(thd,'yyyy-mm') 
 </select>
 
 <resultMap id="TeamSales"  type="teamHistory">
@@ -40,7 +39,6 @@
 	group by thd
 	order by thd asc
 
-=======
 <insert id="insertTeamHis"  parameterType="teamhistory">
 	<selectKey keyProperty="thn" resultType="int" order="BEFORE">
 				select seq_teamhistory.nextval from dual
@@ -55,7 +53,6 @@
 
 <select id="selectTeamSalesByTeamId" resultType="long" parameterType="tsd">
 	select sum(tha) from teamhistory where thtid=#{thtid} and thd BETWEEN #{startDate} and #{endDate}
->>>>>>> refs/remotes/origin/JY
 </select>
 
 </mapper>

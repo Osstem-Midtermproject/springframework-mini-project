@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class TeamHistory {
-	
-	int thn;
-	String thtid;
-<<<<<<< HEAD
-	long tha;
-=======
-	int tha;
->>>>>>> refs/remotes/origin/JY
-	double ths;
-	String thd;
+   
+   int thn;
+   String thtid;
+
+   long tha;
+
+   
+
+   double ths;
+   String thd;
 }

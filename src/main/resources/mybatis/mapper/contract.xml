@@ -80,19 +80,11 @@
       <result column="cont_date" property="contDate" />
       <result column="cont_down_payment" property="contDownPayment" />
       <result column="cont_additional_amount" property="contAdditionalAmount" />
-<<<<<<< HEAD
 </resultMap>
 <select id="selectSales" resultMap="selectcont">
 		select cont_date,cont_down_payment,cont_additional_amount
 		from contract
 </select>
 
-=======
-	</resultMap>
-	<select id="selectSales" resultMap="selectcont">
-			select cont_date,cont_down_payment,cont_additional_amount
-			from contract
-	</select>
->>>>>>> refs/remotes/origin/JY
 	
 </mapper>
