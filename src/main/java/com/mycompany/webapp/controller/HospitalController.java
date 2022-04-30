@@ -87,7 +87,7 @@ public class HospitalController {
    
    //지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 
    @GetMapping("/location/detail")
-   public String location2(String addfressHospital, Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int locationPageNo) {
+   public String location2(String addressHospital, Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int locationPageNo) {
       log.info("Location 실행");
       String locationHaddress = request.getParameter("locationHaddress");
       log.info(locationHaddress);
@@ -103,6 +103,7 @@ public class HospitalController {
 		model.addAttribute("locationHospital", locationHospital);
 		log.info(locationHospital);
 		log.info("test");
+		log.info(model);
 
       return "hospital/location";
    }

@@ -16,5 +16,7 @@ public interface ManagementDao {
 	public void deleteByHdln(String hdln);
 	public  void  updateByHdln(Users user);
 	
+
+	
 	
 }
