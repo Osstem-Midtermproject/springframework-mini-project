@@ -145,6 +145,7 @@ public class UserController {
 		hac.setHdln(hdln);
 		hac.setHaddress(haddress);
 		hac.setCategory(allData);
+		log.info("allData: " + allData);  //[상담, 계약, 시공, AS]
 		
 		int totalProgressNum = progressService.getTotalProgressNumByCheckBox(hac);
 		log.info(totalProgressNum);
@@ -153,6 +154,7 @@ public class UserController {
 		pager.setHdln(hdln);
 		pager.setHaddress(haddress);
 		model.addAttribute("pager", pager);
+		//session.setAttribute("pager", pager);
 		
 		List<Progress> progressList = progressService.showProgressListByCheckBox(pager);
 
@@ -161,7 +163,14 @@ public class UserController {
 		log.info(model.getAttribute("hospitalprogressList"));
 		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("hospitalprogressList", progressList);
+		jsonObject.put("hospitalprogressList", progressList);        
+		jsonObject.put("p", pager);
+		jsonObject.put("startPageNo",pager.getStartPageNo());
+		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("pageNo",pager.getPageNo());
+		jsonObject.put("totalPageNo",pager.getTotalPageNo());
+		jsonObject.put("groupNo",pager.getGroupNo());
+
 		
 		String json = jsonObject.toString();
 		log.info(json);
@@ -191,21 +200,18 @@ public class UserController {
 	//계약서 보기 버튼 클릭하면 계약서 보여줌
 	@GetMapping("/contractFormPdf")
 	public String contractFormPdf(int fileIndex, HttpSession session, HttpServletRequest request) {
-	
-
-		List<Contract> contractList = (List<Contract>) session.getAttribute("contractList");
 		log.info("실행");
 		log.info(fileIndex);
+
+		List<Contract> contractList = (List<Contract>) session.getAttribute("contractList");
 		Contract contract = contractList.get(fileIndex);
-		log.info("3"+contract);
+		
 		byte[] pdf = contract.getCont();
-		log.info("4"+pdf);
 		Encoder e = Base64.getEncoder();
 		byte[] encodedBytes = e.encode(pdf);
-		log.info("5"+encodedBytes);
+		
 		String pdfString = new String(encodedBytes);
 		log.info(pdfString);
-		
 		
 		request.setAttribute("pdfString", pdfString);
 		

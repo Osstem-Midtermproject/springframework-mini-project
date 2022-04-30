@@ -7,7 +7,11 @@ public class TeamHistory {
 	
 	int thn;
 	String thtid;
+<<<<<<< HEAD
 	long tha;
+=======
+	int tha;
+>>>>>>> refs/remotes/origin/JY
 	double ths;
 	String thd;
 }

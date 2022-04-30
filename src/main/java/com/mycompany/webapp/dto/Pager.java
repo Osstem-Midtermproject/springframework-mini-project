@@ -23,6 +23,8 @@ public class Pager {
 	private String hdln;
 	private String haddress;
 	
+	private String searchBar;
+	
 	private List<String> category;
 
 	public Pager(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {

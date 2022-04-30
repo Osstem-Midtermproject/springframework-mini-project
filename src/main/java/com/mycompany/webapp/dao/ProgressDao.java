@@ -19,3 +19,4 @@ public interface ProgressDao {
    int countByCheckBox(HosptialAndCategory hac);
    List<Progress> selectProgressListByCheckBox(Pager pager);
 }
+
