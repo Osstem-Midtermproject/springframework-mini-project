@@ -25,5 +25,6 @@ public class Contract {
 	private int contAdditionalAmount; //추가 금액
 	
 	private Hospital hospital;
+	private AdditionalRequest additionalRequest;
 	
 }

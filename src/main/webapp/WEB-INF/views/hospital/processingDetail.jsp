@@ -258,6 +258,8 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
+
+
 <script>
  	  $(function() {
 		  $("#dialog").dialog({
@@ -267,14 +269,43 @@
 			  
 			  buttons: {
 				  "확인": function() {
-					  var divTag = "<div>";
-					  divTag += $("#additionalContent").val();
-					  divTag += "</div>";
-					  divTag += "<br>";
 					  
-					  $("#additionalRequest").append(divTag);
-					  let arContent = $("#additionalContent").val();
-					  insert(arContent, "${hospital.hdln}")
+					  let hos=[];
+					  
+					  
+					  /* console.log("${hospitalArContent}"); */
+					  
+					  
+					  
+					  <c:forEach var="ar" items="${hospitalArContent}">
+					  	hos.push({
+					  		additionalRequest: "${ar.additionalRequest.arId}"
+					  	});
+					  </c:forEach>
+					  
+					  
+					  
+					  console.log(hos[hos.length-1]);
+					  
+						
+					  if(arid =! null) {
+						  arid = hos[hos.length-1].additionalRequest;  
+					  } else {
+						  
+					  }
+					  
+
+					  newarId = Number(arid)+1;
+					  
+					  	  let arContent = $("#additionalContent").val();
+					  
+					  
+					  console.log(arContent);
+					  console.log("${hospitalContDate.contract.contIdentificationNumber}");
+					  
+					  
+					  insert(arContent, "${hospitalContDate.contract.contIdentificationNumber}")
+					  
 					  
 					  $(this).dialog("close");
 				  }, "취소": function() {
@@ -282,7 +313,6 @@
 				  }
 			  }
 		  })
-		  $("#additionalContent").val("");
 	  });
  	 
  	  
@@ -291,33 +321,61 @@
 		  $("#additionalContent").val("");
 	 });
 
- 	 function insert(arContent, hdln) {  
+ 	 function insert(arContent, arContId) {  
        $.ajax({
-         url:"detail",
+         url:"arContentInsert",
+    	 type:'post',
          data:{
         	 arContent:arContent,
-        	 hdln:hdln
+        	 arContId:arContId
     	 }
        }).done((data) => {
-    	   console.log(arContent);
+    	   select(arContId, arContent)
+    	   console.log("insert 성공");
+    	   console.log(data);
+    	   $("#additionalContent").val("");
 	   });
      }
  	 
- 	 $(".arContentDeleteBtn").click(function() {
- 		 var arId = $(this).attr("data-del");
- 		 console.log(arId)
- 		 $.ajax({
- 			 url:"arContentDelete",
+ 	 function select(arContId, arContent) {
+ 		$.ajax({
+ 	         url:"details",
+ 	    	 type:'post',
  	         data:{
- 	        	 arId:arId
- 	         }
- 		 }).done((data) => {
- 			$("#additionalArContent").html('');
- 			$("#arContentDeleteBtn").html('');
- 		 });
- 	 })
-
+ 	        	 contId:arContId,
+ 	        	 arContent:arContent
+ 	    	 }
+ 	    }).done((data) => {
+ 	    	console.log(data.arId);
+ 	    	var html = "";
+ 	    	html += "<div id='additionalArContent' class='d-inline'>";
+ 	    	html += arContent;
+ 	    	html += "</div>";
+ 	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
+ 	    	html += data.arId;
+ 	    	html += ">삭제</a>";
+ 	    	html += "<br>";
+ 	    	
+ 	    	$("#additionalRequest").append(html);
+ 	    	
+ 	    	console.log("성공");
+ 	    	
+ 		});
+ 	 }
  	 
+ 	$(".arContentDeleteBtn").click(function() {
+		 var arId = $(this).attr("data-del");
+		 console.log(arId)
+		 $.ajax({
+			 url:"arContentDelete",
+	         data:{
+	        	 arId:arId
+	         }
+		 }).done((data) => {
+			$("#additionalArContent").html('');
+			$("#arContentDeleteBtn").html('');
+		 });
+	 });
 	</script>
 
 <!-- 

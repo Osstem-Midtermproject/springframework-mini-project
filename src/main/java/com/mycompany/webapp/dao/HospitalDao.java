@@ -3,9 +3,9 @@ package com.mycompany.webapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.AdditionalRequest;
+import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
 
@@ -27,6 +27,9 @@ public interface HospitalDao {
 	
 	//hdln으로 계약서 쪽으로 병원정보 가져오기 계약서의 추가요청을 찾음 
 	public List<Hospital> selectHospitalArContentByHdln(String hdln);
+
+	//계약서 식별 번호로 추가요청 리스트 띄우기 
+	public List<Hospital> selectHospitalArContentByContId(String contId);
 	
 	//추가요청 내용 추가
 	public int insert(AdditionalRequest additionalRequests);
@@ -36,7 +39,5 @@ public interface HospitalDao {
 	
 	
 	public int deleteByArId(int arId);
-	
-	
 	
 }

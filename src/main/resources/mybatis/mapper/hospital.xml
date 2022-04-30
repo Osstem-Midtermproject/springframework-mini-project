@@ -163,13 +163,13 @@
 			<result column="cont_identification_number" property="contIdentificationNumber" />
 			<result column="cont" property="cont" />
 			<result column="cont_design_identification" property="contDesignIdentification" />
-			<!-- <result column="cont_down_payment" property="contDownPayment" /> -->
+			<result column="cont_down_payment" property="contDownPayment" />
 			<result column="cont_date" property="contDate" />
 			<result column="cont_details" property="contDetails" />
-			<!-- <result column="cont_area" property="contArea" /> -->
+			<result column="cont_area" property="contArea" />
 			<result column="cont_dln" property="contDln" />
 			<result column="cont_address" property="contAddress" />
-			<!-- <result column="cont_period" property="contPeriod" /> -->
+			<result column="cont_period" property="contPeriod" /> 
 			<result column="cont_completion_status" property="contCompletionStatus" />
 			<result column="cont_status" property="contStatus" />
 			<result column="cont_additional_amount" property="contAdditionalAmount" />
@@ -191,7 +191,14 @@
 		order by ar_date
 	</select>
 	
+	<select id="selectHospitalArContentByContId" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
+		select ar_id, ar_content, ar_cont_id
+		from hospital, contract, additionalrequest
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and contract.cont_identification_number = additionalrequest.ar_cont_id and additionalrequest.ar_cont_id = #{contId}
+		order by ar_date
+	</select>
 	
+	<!-- 추가요청 insert -->
 	<insert id="insert" parameterType="additionalRequest">
 		<selectKey keyProperty="arId" resultType="int" order="BEFORE">
 			select seq_ar.nextval from dual
@@ -208,9 +215,9 @@
 		order by progress.pdate asc
 	</select>
 	
+	<!-- 추가요청 delete -->
 	<delete id="deleteByArId" parameterType="int">
 		DELETE FROM additionalRequest WHERE ar_id=#{arId}
 	</delete>
 	
-
 </mapper>

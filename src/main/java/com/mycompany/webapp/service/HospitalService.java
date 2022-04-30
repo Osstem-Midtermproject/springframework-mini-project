@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.HospitalDao;
 import com.mycompany.webapp.dto.AdditionalRequest;
+import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
 
@@ -52,6 +53,12 @@ public class HospitalService {
 		return hospitalDao.selectHospitalArContentByHdln(hdln);
 	}
 	
+	//contId로 계약서의 추가요청 찾기
+	public List<Hospital> getHospitalArContentByContId(String contId) {
+		log.info(hospitalDao.selectHospitalArContentByContId(contId));
+		return hospitalDao.selectHospitalArContentByContId(contId);
+	}
+	
 	//추가요청 내용 추가
 	public void writeContent(AdditionalRequest additionalRequests) {
 		hospitalDao.insert(additionalRequests);
@@ -65,4 +72,5 @@ public class HospitalService {
 	public void removeArContent(int arId) {
 		hospitalDao.deleteByArId(arId);
 	}
+
 }
