@@ -26,8 +26,8 @@
             </a>
           </li>
            <li>
-            <a href="${pageContext.request.contextPath}/analysis/hospital">
-              <i class="bi bi bi-cash-coin"></i><span>Hospital</span>
+            <a href="${pageContext.request.contextPath}/analysis/teamAnalysis">
+              <i class="bi bi bi-cash-coin"></i><span>TeamAnalysis</span>
             </a>
           </li>
         </ul>
@@ -38,13 +38,25 @@
           <i class="bi bi-calendar-check"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="${pageContext.request.contextPath}/schedule/calendar">
-              <i class="bi bi-calendar-week"></i><span>Calendar</span>
+          <li class="nav-item">
+            <a href="#"  data-bs-target="#forms-schedule" data-bs-toggle="collapse" >
+              <i class="bi bi-calendar-week"></i><span>Calendar</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+           	 <ul id="forms-schedule" class="nav-content collapse">
+            	 <li >
+            		<a href="${pageContext.request.contextPath}/schedule/calendar">
+              			<span>-상담/AS</span>
+            		</a>
+          		</li>
+          		<li>
+            		<a href="${pageContext.request.contextPath}/schedule/calendar">
+              		<span>-시공</span>
+            		</a>
+          		</li>
+            </ul>
           </li>
+          
           <li>
-            <li>
             <a href="${pageContext.request.contextPath}/schedule/scheduler">
               <i class="bi bi-calendar-week-fill"></i><span>Scheduler</span>
             </a>

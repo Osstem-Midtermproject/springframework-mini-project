@@ -26,5 +26,12 @@ public class ContractService {
 	public List<Contract> getContracts(){
 		
 		return contractDao.selectSales();
-	}	
+	}
+	
+	public void insertContract(Contract contract){
+		
+	   contractDao.insertContract(contract);
+	}
+
+
 }

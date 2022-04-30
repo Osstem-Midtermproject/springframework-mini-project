@@ -45,9 +45,7 @@
     </main>
     <script>
     var scheduleEvent=[];
-    var startdate;
     <c:forEach var="schedule" items="${cs}">
-        startdate= "${schedule.consScheStartdate}";
    		scheduleEvent.push({
    			id: "${schedule.consScheId}",
         	title:  "${schedule.consScheHospitalName}",
@@ -157,7 +155,7 @@
                let start=moment(info.event.start).format("YYYY-MM-DD");
                let end=moment(info.event.end).format("YYYY-MM-DD");
                let content=info.event.extendedProps.content;
-               schedule(id,start,end,content);
+               scheduleUpdate(id,start,end,content);
              },
             eventAdd: function (info) {},
             eventChange: function (info) {},
@@ -343,7 +341,7 @@
               calendar.addEvent(e);
            }
       });
-      function schedule(id,start,end,content){  
+      function scheduleUpdate(id,start,end,content){  
           $.ajax({
             url:"calendar",
            data:{id:id,

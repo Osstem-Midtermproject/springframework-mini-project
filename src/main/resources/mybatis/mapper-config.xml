@@ -16,7 +16,7 @@
 		<typeAlias type="com.mycompany.webapp.dto.RequestDetails" alias="requestDetails"/>		
 		<!-- 진행상황 -->
 		<typeAlias type="com.mycompany.webapp.dto.Progress" alias="progress"/>
-		<!-- 진행상황 -->
+		<!-- 시공스케줄-->
 		<typeAlias type="com.mycompany.webapp.dto.ConstructionSchedule" alias="constructionSchedule"/>
 		<!-- 병원 -->
 		<typeAlias type="com.mycompany.webapp.dto.Hospital" alias="hospital"/>
@@ -30,7 +30,9 @@
 		<typeAlias type="com.mycompany.webapp.dto.State" alias="state"/>
 		<!-- 추가요청 -->
 		<typeAlias type="com.mycompany.webapp.dto.AdditionalRequest" alias="additionalRequest"/>
-		
+		<!-- 팀히스토리 -->
+		<typeAlias type="com.mycompany.webapp.dto.TeamHistory" alias="teamHistory"/>
+		<!-- 병원카테고리 -->
 		
 	</typeAliases>
 	
