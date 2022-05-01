@@ -1,9 +1,12 @@
 package com.mycompany.webapp.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.AdditionalRequest;
-import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.service.HospitalService;
@@ -142,12 +144,53 @@ public class HospitalController {
 		
 		return json;
 	}
+	
+	//모든 추가요청을 ajax로 불러오기
+	@PostMapping(value="processing/detailss", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String getContents(String contId, Model model) {
+		log.info("실행");
+		log.info("contId: " + contId);
+		
+		List<Hospital> newHospitalArContent = hospitalService.getHospitalArContentByContId(contId);
+		log.info("모든 추가요청을 ajax로 불러옴" + newHospitalArContent);
 
-	@GetMapping("processing/arContentDelete")
-	public String arContentDelete(int arId) {
-		hospitalService.removeArContent(arId);
-		log.info(arId);
-		return "/hospital/processingDetail";
+		for(int i=0; i<newHospitalArContent.size(); i++) {
+			log.info(i + "번쨰 추가 요청" + newHospitalArContent.get(i).getAdditionalRequest().getArContent());
+		}
+		
+		
+		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
+		
+		if(newHospitalArContent.size() > 0){
+            for(int i=0; i<newHospitalArContent.size(); i++){
+                HashMap<String, Object> hm = new HashMap<String, Object>();
+                hm.put("arId", newHospitalArContent.get(i).getAdditionalRequest().getArId());
+                hm.put("arContent", newHospitalArContent.get(i).getAdditionalRequest().getArContent());
+                hmlist.add(hm);
+            }
+            
+        }
+        
+        JSONArray jsonArray = new JSONArray(hmlist);        
+		String json = jsonArray.toString();
+		log.info(json);
+		
+		return json;
+	}
+
+	@PostMapping(value="processing/arContentDelete", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String deleteContent(int arId, Model model) {
+		hospitalService.removeArContent(arId);	
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		log.info(json);
+		
+		return json;
+	
 	}
 
 	@RequestMapping("/history")

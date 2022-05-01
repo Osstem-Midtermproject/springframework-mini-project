@@ -208,6 +208,11 @@
 		VALUES(#{arId}, SYSDATE, #{arContId}, #{arContent}, 1000000)
 	</insert>
 	
+	<!-- 추가요청 delete -->
+	<delete id="deleteByArId" parameterType="int">
+		DELETE FROM additionalRequest WHERE ar_id=#{arId}
+	</delete>
+	
 	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
 		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent
 		from progress, hospital
@@ -215,9 +220,5 @@
 		order by progress.pdate asc
 	</select>
 	
-	<!-- 추가요청 delete -->
-	<delete id="deleteByArId" parameterType="int">
-		DELETE FROM additionalRequest WHERE ar_id=#{arId}
-	</delete>
 	
 </mapper>

@@ -124,11 +124,11 @@
 										    <th scope="row">추가요청</th>
 											<td colspan="3" style="width: 85%;">
 												<div id="additionalRequest">
-													<c:forEach var="hospitalArContent" items="${hospitalArContent}">
+													<%-- <c:forEach var="hospitalArContent" items="${hospitalArContent}">
 														<div id="additionalArContent" class="d-inline">${hospitalArContent.additionalRequest.arContent}</div>
 														<a href='javascript:;' class="arContentDeleteBtn" data-del=${hospitalArContent.additionalRequest.arId}>삭제</a>
 														<br>
-													</c:forEach>
+													</c:forEach> --%>
 												</div>
 											</td>
 										</tr>
@@ -269,43 +269,13 @@
 			  
 			  buttons: {
 				  "확인": function() {
+					  let arContent = $("#additionalContent").val();
 					  
-					  let hos=[];
-					  
-					  
-					  /* console.log("${hospitalArContent}"); */
-					  
-					  
-					  
-					  <c:forEach var="ar" items="${hospitalArContent}">
-					  	hos.push({
-					  		additionalRequest: "${ar.additionalRequest.arId}"
-					  	});
-					  </c:forEach>
-					  
-					  
-					  
-					  console.log(hos[hos.length-1]);
-					  
-						
-					  if(arid =! null) {
-						  arid = hos[hos.length-1].additionalRequest;  
-					  } else {
-						  
-					  }
-					  
-
-					  newarId = Number(arid)+1;
-					  
-					  	  let arContent = $("#additionalContent").val();
-					  
-					  
+					  console.log("확인 버튼을 눌렀을 때, arContent:")
 					  console.log(arContent);
 					  console.log("${hospitalContDate.contract.contIdentificationNumber}");
 					  
-					  
 					  insert(arContent, "${hospitalContDate.contract.contIdentificationNumber}")
-					  
 					  
 					  $(this).dialog("close");
 				  }, "취소": function() {
@@ -330,8 +300,11 @@
         	 arContId:arContId
     	 }
        }).done((data) => {
-    	   select(arContId, arContent)
     	   console.log("insert 성공");
+    	   /* console.log("추가된 것만 불러오기");
+    	   select(arContId, arContent) */
+    	   console.log("모든 요소 불러오기");
+    	   getContentList();
     	   console.log(data);
     	   $("#additionalContent").val("");
 	   });
@@ -363,24 +336,77 @@
  		});
  	 }
  	 
- 	$(".arContentDeleteBtn").click(function() {
+ 	 /* 모든 추가요청을 ajax로 불러오기 */
+ 	 function getContentList() {
+ 		$.ajax({
+	         url:"detailss",
+	    	 type:'post',
+	         data:{
+	        	 contId:"${hospitalContDate.contract.contIdentificationNumber}"
+	    	 }
+	    }).done((data) => {
+	    	console.log(data);
+	    	var html = "";
+	    	if (data.length > 0) {
+	    		for (i=0; i<data.length; i++) {
+	    			html += "<div id='additionalArContent' class='d-inline'>";
+	    	    	html += data[i].arContent
+	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
+	    	    	html += data[i].arId;
+	    	    	html += "> 삭제 </a>";
+	    	    	html += "<a href='javascript:;' class='arContentUpdateBtn' data-code=";
+ 	    	    	html += data[i].arId;
+ 	    	    	html += ">수정</a>";
+	    	    	html += "</div>";
+ 	    	    	html += "<br>";
+	    		} 
+	    	} else {
+	    			html += "<div id='additionalArContent' class='d-inline'>";
+	    	    	html += "등록된 글이 없습니다.";
+	    	    	html += "</div>";
+	
+	    	}
+	    	$("#additionalRequest").html(html);
+	    	/* $("#additionalRequest").append(html); */
+	    	console.log("성공");
+	    	
+	    });
+ 	 }
+ 	 
+ 	$(function(){
+ 	    
+ 		getContentList();
+ 	    
+ 	});
+ 	 	 
+	 $(document).on("click",".arContentDeleteBtn",function(){
+		 console.log("실행");
 		 var arId = $(this).attr("data-del");
 		 console.log(arId)
+		 
 		 $.ajax({
 			 url:"arContentDelete",
+			 type:'post',
 	         data:{
 	        	 arId:arId
 	         }
 		 }).done((data) => {
-			$("#additionalArContent").html('');
-			$("#arContentDeleteBtn").html('');
+			console.log("성공");
+			getContentList();
 		 });
 	 });
+	 
+	 $(document).on("click",".arContentUpdateBtn",function(){
+		 console.log("실행");
+		 $("#dialog").dialog("open");
+		 console.log($("#additionalArContent"));
+		 var target = $(this);
+		 var data_code = $(this).attr("data-code");
+		 
+		 console.log(data_code);
+	 });
+	 
 	</script>
 
-<!-- 
-js 문제점
-insert 했을 때, 내용은 추가 되나 삭제 버튼이 추가 되지 않음.
-delete 헀을 때, 내용이 삭제가 되나 해당 내용 삭제가 아니라 첫번째 글이 삭제 됨. 데이터 베이스 상에서는 해당 내용이 삭제됨.
-  -->
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
