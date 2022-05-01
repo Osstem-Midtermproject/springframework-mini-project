@@ -47,4 +47,9 @@ public class ContractService {
 	public List<Contract> showContractListBySearchBar(Pager pager) {
 		return contractDao.selectContractListBySearch(pager);
 	}
+	
+	//계약서 보기 버튼이 눌리면 계약서 가져오는
+	public Contract getContract(String fileNum) { 
+		return contractDao.selectContByContId(fileNum);
+	}
 }

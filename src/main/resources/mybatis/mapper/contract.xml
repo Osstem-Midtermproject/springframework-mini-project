@@ -2,89 +2,96 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.ContractDao">
 
-	<!-- [user] user/contractsView : 계약서 테이블에서 병원정보로 해당 병원의 계약에 관한 정보 리스트 불러오기-->
-	<resultMap id="selectUserAndHospital" type="contract">
-		<result column="cont_status" property="contStatus" />
-		<result column="cont_period" property="contPeriod" />
-		<result column="cont_area" property="contArea" />
-		<result column="cont_date" property="contDate" />
-		<result column="cont_down_payment" property="contDownPayment" />
-		<result column="cont" property="cont" />
-		<association property="hospital" javaType="hospital">
-			<result column="hdln" property="hdln" />
-			<result column="haddress" property="haddress" />
-			<result column="hname" property="hname" />
-			<result column="hdirector" property="hdirector" />
-			<result column="hpn" property="hpn" />
-			<result column="hod" property="hod" />
-			<result column="hemail" property="hemail" />
-		</association>
-	</resultMap>
-	<select id="selectByHAddressAndHDln" parameterType="string" resultMap="selectUserAndHospital">
-		select * from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress where cont_dln = #{param1} and cont_address=#{param2}
-	</select>
-	
-	
-	<!-- [admin] hospital/contractHistory : 계약기록 리스트 페이징 처리 -->
-	<resultMap id="selectAllContractListByPagerResultMap" type="contract">
-		<result column="rnum" property="cno" />
-		<result column="cont_status" property="contStatus" />
-		<result column="cont_period" property="contPeriod" />
-		<result column="cont_area" property="contArea" />
-		<result column="cont_date" property="contDate" />
-		<result column="cont_down_payment" property="contDownPayment" />
-		<result column="cont" property="cont" />
-		<association property="hospital" javaType="hospital">
-			<result column="hname" property="hname" />
-			<result column="hdirector" property="hdirector" />
-			<result column="hpn" property="hpn" />
-		</association>
-	</resultMap>
-	<select id="selectAllContractListByPager" parameterType="pager"  resultMap="selectAllContractListByPagerResultMap">
-		select rnum, cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn
-		    from (
-		        select ROWNUM as rnum, cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn
-		        from (
-					select cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn
+   <!-- [user] user/contractsView : 계약서 테이블에서 병원정보로 해당 병원의 계약에 관한 정보 리스트 불러오기-->
+   <resultMap id="selectUserAndHospital" type="contract">
+      <result column="cont_status" property="contStatus" />
+      <result column="cont_period" property="contPeriod" />
+      <result column="cont_area" property="contArea" />
+      <result column="cont_date" property="contDate" />
+      <result column="cont_down_payment" property="contDownPayment" />
+      <result column="cont" property="cont" />
+      <association property="hospital" javaType="hospital">
+         <result column="hdln" property="hdln" />
+         <result column="haddress" property="haddress" />
+         <result column="hname" property="hname" />
+         <result column="hdirector" property="hdirector" />
+         <result column="hpn" property="hpn" />
+         <result column="hod" property="hod" />
+         <result column="hemail" property="hemail" />
+      </association>
+   </resultMap>
+   <select id="selectByHAddressAndHDln" parameterType="string" resultMap="selectUserAndHospital">
+      select * from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress where cont_dln = #{param1} and cont_address=#{param2}
+   </select>
+   
+   
+   <!-- [admin] hospital/contractHistory : 계약기록 리스트 페이징 처리 -->
+   <resultMap id="selectAllContractListByPagerResultMap" type="contract">
+      <result column="rnum" property="cno" />
+      <result column="cont_identification_number" property="contIdentificationNumber" />
+      <result column="cont_status" property="contStatus" />
+      <result column="cont_period" property="contPeriod" />
+      <result column="cont_area" property="contArea" />
+      <result column="cont_date" property="contDate" />
+      <result column="cont_down_payment" property="contDownPayment" />
+      <association property="hospital" javaType="hospital">
+         <result column="hname" property="hname" />
+         <result column="hdirector" property="hdirector" />
+         <result column="hpn" property="hpn" />
+      </association>
+   </resultMap>
+   <select id="selectAllContractListByPager" parameterType="pager"  resultMap="selectAllContractListByPagerResultMap">
+      select rnum, cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn
+          from (
+              select ROWNUM as rnum, cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn
+              from (
+               select cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn
                     from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress order by cont_date desc
-		        )
-		    where rownum &lt;= #{endRowNo}
-		    )
-		where rnum &gt;= #{startRowNo}	
-	</select>
-	<select id="allContractListCount" resultType="int">
-		select count(*) from contract
-	</select>
-	
-	
-	<!-- //hospital/contractHistory : 계약기록 리스트 페이징 -> 검색한 병원만 나오게(searchBar) -->
-	<select id="selectContractListBySearch" parameterType="pager"  resultMap="selectAllContractListByPagerResultMap">
-		select rnum, cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn 
-		    from (
-		        select ROWNUM as rnum, cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn 
-		        from (
-					select cont_status, cont_period, cont_area, cont_date, cont_down_payment, cont, hname ,hdirector,hpn 
+              )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>
+   <select id="allContractListCount" resultType="int">
+      select count(*) from contract
+   </select>
+   
+   
+   <!-- //hospital/contractHistory : 계약기록 리스트 페이징 -> 검색한 병원만 나오게(searchBar) -->
+   <select id="selectContractListBySearch" parameterType="pager"  resultMap="selectAllContractListByPagerResultMap">
+      select rnum, cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn 
+          from (
+              select ROWNUM as rnum, cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn 
+              from (
+               select cont_identification_number, cont_status, cont_period, cont_area, cont_date, cont_down_payment, hname ,hdirector,hpn 
                     from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress where hname like '%'|| #{searchBar} ||'%' order by cont_date desc
-		        )
-		    where rownum &lt;= #{endRowNo}
-		    )
-		where rnum &gt;= #{startRowNo}	
+              )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>
+   <select id="contractListCountBySearch" resultType="int" parameterType="string">
+      select count(*) from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress where hname like '%'|| #{searchBar} ||'%'       
+   </select>
+      
+   	<!-- 계약서 PDF 파일을 보여주기 위해서 DB에 저장된 계약서 PDF 파일을 가져오기 -->
+	<select id="selectContByContId" resultType="contract" parameterType="string">
+		select cont from contract where cont_identification_number = #{fileNum}    
 	</select>
-	<select id="contractListCountBySearch" resultType="int" parameterType="string">
-		select count(*) from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress where hname like '%'|| #{searchBar} ||'%'       
-	</select>
-		
-	
-	
-	<resultMap id="selectcont" type="contract">
+   
+   <resultMap id="selectcont" type="contract">
       <result column="cont_date" property="contDate" />
       <result column="cont_down_payment" property="contDownPayment" />
       <result column="cont_additional_amount" property="contAdditionalAmount" />
+
 </resultMap>
 <select id="selectSales" resultMap="selectcont">
-		select cont_date,cont_down_payment,cont_additional_amount
-		from contract
+      select cont_date,cont_down_payment,cont_additional_amount
+      from contract
 </select>
 
-	
+
+   
+
+   
 </mapper>

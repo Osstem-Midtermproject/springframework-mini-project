@@ -42,36 +42,51 @@
 
 		<script type="text/javascript">
                     
-                    function checkBox() { 
-                    	console.log("s");
-                        var checkboxValues = [];
-                        
-                        $("input[name='checkBox']:checked").each(function(i) {
-                            checkboxValues.push($(this).val());
-                        }); 
-                    	
-                        console.log(checkboxValues);
-                        
-                        var allData = { "checkArray": checkboxValues };      
-                        $.ajax({
-                    		url: 'checkBox',
-                    		type: 'post',
-                    		data: { "checkArray": checkboxValues }
-                    	}).done(function (result){
-                    		console.log(${result.hospitalprogressList.pno});
-                    		console.log(result);
-                    		
-                    		var str="";
-                    		
-                    	    $.each(result.hospitalprogressList,function(index,list){
-                    	    	str = str + "<tr><td>"+list.pno+
-                    	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
-                    	        "</td><td>"+list.hospital.hpn+"</td><td>"+list.pdate+"</td><td>"+list.pcategory+
-                    	        "</td></tr>";
-
-                    	    })
-                    	    
-                	    	$("#progressListTbody").html(str);
+        function checkBox(no) { 
+        	console.log("s");
+            var checkboxValues = [];
+            
+            $("input[name='checkBox']:checked").each(function(i) {
+                checkboxValues.push($(this).val());
+            }); 
+        	
+            console.log(checkboxValues);
+            
+            var allData = { "checkArray": checkboxValues };      
+            $.ajax({
+        		url: 'checkBox',
+        		type: 'post',
+        		data: { "checkArray": checkboxValues, "pageNo": no}
+        	}).done(function (result){
+        		console.log(${result.hospitalprogressList.pno});
+        		console.log(result);
+        		
+        		var str="";
+        		
+        	    $.each(result.hospitalprogressList,function(index,list){
+        	    	str = str + "<tr><td>"+list.pno+
+        	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
+        	        "</td><td>"+list.hospital.hpn+"</td><td>"+list.pdate+"</td><td>"+list.pcategory+
+        	        "</td></tr>";
+        	    })
+        	    
+    	    	$("#progressListBody").html(str);
+        	  
+        	    var str2 ="<ul class='pagination justify-content-center'>";
+        	    str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox(1)'><span>&laquo;</span></a></li>";
+        	    	for(var i=result.startPageNo; i<=result.endPageNo; i++){
+        	    		console.log(i);
+        	    		if(i != result.pageNo){
+        	    			str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
+        	    		}else{
+        	    			str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
+        	    		}
+        	    	}
+            	    str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+        	    	str2 = str2 + "</ul>";
+            	console.log(str2);
+            	
+        	    $("#progressListPager").html(str2);
 
                     	});
                     }
@@ -145,7 +160,7 @@
 				<th scope="col">날짜</th>
 				<th scope="col">진행상태</th>
 			</thead>
-			<tbody id="progressListTbody">
+			<tbody id="progressListBody">
 				<c:forEach var="progress" items="${hospitalprogressList}"
 					varStatus="status">
 					<tr>
@@ -161,8 +176,8 @@
 			</tbody>
 		</table>
 		<!-- 페이징 -->
-		<div id="pager">
-			<%@ include file="/WEB-INF/views/common/pagination.jsp"%>  
+		<div id="progressListPager">
+			<%@ include file="/WEB-INF/views/common/pagination2.jsp"%>  
 		</div>
 
 

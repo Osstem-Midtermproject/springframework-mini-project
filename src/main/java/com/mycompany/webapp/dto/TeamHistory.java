@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class TeamHistory {
+
    
    int thn;
    String thtid;
@@ -15,3 +16,7 @@ public class TeamHistory {
    double ths;
    String thd;
 }
+
+
+	
+

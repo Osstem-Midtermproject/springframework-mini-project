@@ -158,7 +158,8 @@ public class HospitalController {
 		log.info(json);
 		
 		return json;
-
+	}
+	
 	@GetMapping("processing/arContentDelete")
 	public String arContentDelete(int arId) {
 		hospitalService.removeArContent(arId);
@@ -216,12 +217,6 @@ public class HospitalController {
    
 
 
-	@RequestMapping("/contractHistory")
-	public String contractHistory() {
-		log.info("실행");
-		return "hospital/contract_history";
-	}
-
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 초기에 보여질 전체 병원의 계약 기록 리스트
 	@RequestMapping("/contractHistory")
 	public String contractHistory(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
@@ -236,7 +231,7 @@ public class HospitalController {
 		model.addAttribute("contractList", contractList);
 		log.info(model.getAttribute("contractList"));
 
-		return "hospital/contract_history";
+		return "hospital/contractHistory";
 	}
 
 
@@ -276,20 +271,17 @@ public class HospitalController {
 	@GetMapping("/contractFormPdfAdmin")
 	public String contractFormPdfAdmin(String fileNum, HttpSession session, HttpServletRequest request) {
 
-		log.info(fileNum);
-
 		Contract c = contractService.getContract(fileNum);
 		byte[] pdf = c.getCont();
-		log.info(pdf);
 
 		Encoder e = Base64.getEncoder();
 		byte[] encodedBytes = e.encode(pdf);
 
 		String pdfString = new String(encodedBytes);
-		log.info(pdfString);
 
 		request.setAttribute("pdfString", pdfString);
 		return "/element/contractFormPdf";
 	}
+	
 
 }
