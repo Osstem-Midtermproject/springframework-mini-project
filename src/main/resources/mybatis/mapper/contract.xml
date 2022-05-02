@@ -79,18 +79,24 @@
 		select cont from contract where cont_identification_number = #{fileNum}    
 	</select>
    
-   <resultMap id="selectcont" type="contract">
+    <resultMap id="selectcont" type="contract">
       <result column="cont_date" property="contDate" />
       <result column="cont_down_payment" property="contDownPayment" />
       <result column="cont_additional_amount" property="contAdditionalAmount" />
+	</resultMap>
+	
+	<select id="selectSales" resultMap="selectcont">
+	      select cont_date,cont_down_payment,cont_additional_amount
+	      from contract
+	</select>
 
-</resultMap>
-<select id="selectSales" resultMap="selectcont">
-      select cont_date,cont_down_payment,cont_additional_amount
-      from contract
-</select>
-
-
+	<!-- 계약금이 높은 계약 3건 select -->
+	<select id="selectTopContract" resultMap="selectAllContractListByPagerResultMap">
+		select * from 
+		(	select * from contract INNER JOIN hospital on cont_dln = hdln and cont_address = haddress 
+			order by cont_down_payment desc
+		)where rownum &lt;=3
+	</select> 
    
 
    

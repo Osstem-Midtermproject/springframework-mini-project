@@ -52,4 +52,8 @@ public class ContractService {
 	public Contract getContract(String fileNum) { 
 		return contractDao.selectContByContId(fileNum);
 	}
+
+	public List<Contract> getTopThreeContract() {
+		return contractDao.selectTopContract();
+	}
 }

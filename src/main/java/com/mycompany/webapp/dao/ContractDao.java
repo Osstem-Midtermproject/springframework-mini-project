@@ -26,5 +26,8 @@ public interface ContractDao {
 	
 	//계약서보기 버튼이 눌리면 계약서를 불러오기
 	Contract selectContByContId(String fileNum);
+	
+	//계약금이 높은 계약 3건 불러오기
+	List<Contract> selectTopContract();
 
 }

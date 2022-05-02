@@ -219,18 +219,10 @@ public class HospitalController {
 
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 초기에 보여질 전체 병원의 계약 기록 리스트
 	@RequestMapping("/contractHistory")
-	public String contractHistory(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
-		log.info("실행");
-
-		int totalContractNum = contractService.getTotalContractNum();
-		Pager pager = new Pager(5, 5, totalContractNum, pageNo);
-		model.addAttribute("pager", pager);
-
-		List<Contract> contractList = contractService.showContractList(pager);
-		log.info(contractList.toString());
-		model.addAttribute("contractList", contractList);
-		log.info(model.getAttribute("contractList"));
-
+	public String contractHistory(Model model, HttpSession session) {
+		List<Contract> topContractList = contractService.getTopThreeContract();
+		model.addAttribute("topContractList", topContractList);
+		log.info(topContractList);
 		return "hospital/contractHistory";
 	}
 

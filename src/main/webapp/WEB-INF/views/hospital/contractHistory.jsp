@@ -10,45 +10,46 @@
 
 			<!-- Table with hoverable rows -->
 
-			<section class="section">
-				<div class="col-xs-3"
-					style="display: flex; flex-flow: row; justify-content: center;">
-					<!-- Default Card -->
+			<section >
+				<div class="col-xs-3" style="display: flex; flex-flow: row; justify-content: center;">
+					<c:forEach items="${topContractList}" var="top" varStatus="status">
+						<div class="card" style="width: 300px; height: 250px; margin-left: 2rem; margin-right: 2rem;">
+							<div class="card-body" id="recentContract1">
+								<h5 class="card-title">${top.hospital.hname}<h6>${top.hospital.hdirector}</h6></h5>
+								<span>${top.contDownPayment}</span><br>
+								<span><fmt:formatDate value="${top.contDate}" pattern="yyyy-MM-dd"/></span><br>
+								<img alt="1" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
+							</div>
+						</div>
+					</c:forEach> 
+					
+<%-- 					<!-- Default Card -->
 					<div class="card"
 						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body">
+						<div class="card-body" id="recentContract1">
 							<h5 class="card-title">Default Card</h5>
-							assumenda.
+							<img alt="1" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
 						</div>
 					</div>
 					<!-- End Default Card -->
 
 					<div class="card"
 						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body">
+						<div class="card-body" id="recentContract2">
 							<h5 class="card-title">Default Card</h5>
-							assumenda.
+							<img alt="2" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
 						</div>
 					</div>
 					<!-- End Default Card -->
 
 					<div class="card"
 						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body">
+						<div class="card-body" id="recentContract3">
 							<h5 class="card-title">Default Card</h5>
-							assumenda.
+							<img alt="3" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
 						</div>
 					</div>
-					<!-- End Default Card -->
-
-					<div class="card"
-						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body">
-							<h5 class="card-title">Default Card</h5>
-							assumenda.
-						</div>
-					</div>
-					<!-- End Default Card -->
+					<!-- End Default Card --> --%>
 				</div>
 			</section>
 
@@ -80,29 +81,7 @@
 					<th scope="col">계약서</th>
 				</thead>
 				<tbody id=contractListTable>
-					<c:forEach var="contract" items="${contractList}"
-						varStatus="status">
-						<tr>
-							<th scope="row">${status.index+1}</th>
-							<td>${contract.hospital.hname}</td>
-							<td>${contract.hospital.hdirector}</td>
-							<td><fmt:formatDate value="${contract.contDate}"
-									pattern="yyyy-MM-dd" /></td>
-							<td>${contract.contDownPayment}</td>
 
-							<c:if test="${contract.contStatus==1}">
-								<td>계약완료</td>
- 								<td><a class="btn btn-sm btn-secondary"
-									style="font-size: x-small;"
-									href="contractFormPdfAdmin?fileNum=${contract.contIdentificationNumber}">계약서보기</a></td> 
-							</c:if>
-							<c:if test="${contract.contStatus==0}">
-								<td>계약파기</td>
- 								<td><a class="btn btn-sm btn-secondary disabled"
-									style="font-size: x-small;">계약서보기</a></td> 
-							</c:if>
-						</tr>
-					</c:forEach>
 
 				</tbody>
 			</table>
@@ -131,9 +110,25 @@
                    	}).done(function (result){
                     		
               		var str="";
+              		var firstStr="";
 
                     $.each(result.searchContractList,function(index,list){
-                    	    	                        		
+                    	
+/*                 		if(index<3){
+	                		firstStr = "<h5 class='card-title'>" + list.hospital.hname + "</h5>";
+	                		firstStr += "<span>" + list.hospital.hdirector + "</span><br>";
+	                		firstStr += "<span>" + list.contDownPayment + "</span>";
+	                		firstStr += "<span>" + list.contDate + "</span>";
+	                		firstStr += "<img alt='1' src='${pageContext.request.contextPath}/resources/images/contract.png' width='100rem'>";
+                    	}     
+                		if(index==0){
+	                    	$("#recentContract1").html(firstStr);                			
+                		}else if(index==1){
+	                    	$("#recentContract2").html(firstStr);                			
+                		}else if(index==2){
+	                    	$("#recentContract3").html(firstStr);                			
+                		} */
+
                         str = str + "<tr><td>"+list.cno+
                     	"</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
                     	"</td><td>"+list.contDate+"</td><td>"+list.contDownPayment+"</td>";
