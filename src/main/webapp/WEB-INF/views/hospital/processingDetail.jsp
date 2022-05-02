@@ -281,13 +281,13 @@
 	    	var html = "";
 	    	if (data.length > 0) {
 	    		for (i=0; i<data.length; i++) {
-	    			html += "<div id='arContent";
-	    			html += data[i].arId;
-	    			html += "'class='d-inline'";
-	    	    	html += "data-code=";
+	    			html += "<div id='arContent' class='d-inline' data-code='";
 	    	    	html += data[i].arId;
-	    	    	html += ">";
+	    	    	html += "'>";
 	    	    	html += data[i].arContent;
+	    	    	html += "<span>";
+	    	    	html += data[i].arDate;
+	    	    	html += "</span>";
 	    	    	html += "</div>";
 	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
 	    	    	html += data[i].arId;

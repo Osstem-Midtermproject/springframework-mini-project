@@ -97,6 +97,7 @@ public class HospitalController {
                 HashMap<String, Object> hm = new HashMap<String, Object>();
                 hm.put("arId", newHospitalArContent.get(i).getAdditionalRequest().getArId());
                 hm.put("arContent", newHospitalArContent.get(i).getAdditionalRequest().getArContent());
+                hm.put("arDate", newHospitalArContent.get(i).getAdditionalRequest().getArDate());
                 hmlist.add(hm);
             }
             

@@ -193,7 +193,7 @@
 	</select>
 	
 	<select id="selectHospitalArContentByContId" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
-		select ar_id, ar_content, ar_cont_id
+		select ar_id, ar_content, ar_cont_id, ar_date
 		from hospital, contract, additionalrequest
 		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and contract.cont_identification_number = additionalrequest.ar_cont_id and additionalrequest.ar_cont_id = #{contId}
 		order by ar_date
