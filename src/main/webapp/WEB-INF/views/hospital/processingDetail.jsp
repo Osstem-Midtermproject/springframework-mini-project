@@ -57,7 +57,8 @@
 								<tr>
 									<th scope="row">개업일</th>
 									<td><fmt:formatDate value="${hospital.hod}" pattern="yyyy-MM-dd" /></td>
-									<th scope="row">계약서보기<td>계약서 목록 리스트? 아니면 pdf?</td>
+									<th scope="row">계약서</th>
+									<td><a class='btn btn-sm btn-secondary' style='font-size: x-small;' href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -192,22 +193,6 @@
 					</div>
 				</div>
 				<!-- End Recent Activity -->
-				
-				<%-- <div class="card">
-					<div class="card-body">
-						<h5 class="card-title">시공상황</h5>
-						<div class="progressList col-6">
-							<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
-								<c:if test="${hospitalProgress.progress.pcontent != null}">
-									<div class="progressImg" style="height: 200px">
-	               						<img src="${hospitalProgress.progress.pimg}" alt="" style="height: 100%; width: 100%;" >
-	               					</div>
-				                	<h6 style="padding: 15px 0 15px 0; margin: 0;">${hospitalProgress.progress.pcontent}</h6>
-			                	</c:if>
-		                    </c:forEach>
-			              </div>
-					</div>
-				</div> --%>
 			</div>
 		</div>
 	</section>
@@ -255,10 +240,10 @@
 						
 					  console.log("newArContent " + newArContent);
 					  
-					  var my_data = $("#dialogUpdateForm").data('param');
-					  console.log(my_data);
+					  var arId = $("#dialogUpdateForm").data('arId');
+					  console.log(arId);
 					  
-					  update(my_data, newArContent);
+					  update(arId, newArContent);
 					  
 					  $(this).dialog("close");
 				  }, "취소": function() {
@@ -281,14 +266,15 @@
 	    	var html = "";
 	    	if (data.length > 0) {
 	    		for (i=0; i<data.length; i++) {
-	    			html += "<div id='arContent' class='d-inline' data-code='";
+	    			html += "<div id='arContent"; 
 	    	    	html += data[i].arId;
-	    	    	html += "'>";
+	    			html += "' class='d-inline'";
+	    	    	html += ">";
 	    	    	html += data[i].arContent;
+	    	    	html += "</div>";
 	    	    	html += "<span>";
 	    	    	html += data[i].arDate;
 	    	    	html += "</span>";
-	    	    	html += "</div>";
 	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
 	    	    	html += data[i].arId;
 	    	    	html += "> 삭제 </a>";
@@ -356,7 +342,7 @@
 		 
 		 var arId = $(this).attr("data-code");
 		 console.log(arId)
-		 $("#dialogUpdateForm").data('param', arId).dialog("open");
+		 $("#dialogUpdateForm").data('arId', arId).dialog("open");
 		 
 		 var arContent = $(`#arContent\${arId}`).text();
 		 console.log(arContent);
