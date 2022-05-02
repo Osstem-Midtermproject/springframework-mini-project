@@ -38,6 +38,7 @@
 			<result column="pcategory" property="pcategory" />
 			<result column="pdln" property="pdln" />
 			<result column="paddress" property="paddress" />
+			<result column="pimg" property="pimg" />
 		</association>
 	</resultMap>
 	
@@ -151,6 +152,7 @@
 		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and rownum = 1
 	</select>
 	
+	<!-- 추가요청 list -->
 	<resultMap id="selectHospitaArContentWithContractsAndAdditionalRequestResultMap" type="hospital">
 		<result column="hname" property="hname" />
 		<result column="hpn" property="hpn" />
@@ -183,7 +185,6 @@
 		</association>
 	</resultMap>
 	
-	
 	<select id="selectHospitalArContentByHdln" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
 		select ar_content, cont_identification_number, ar_id
 		from hospital, contract, additionalrequest
@@ -213,8 +214,15 @@
 		DELETE FROM additionalRequest WHERE ar_id=#{arId}
 	</delete>
 	
+	<!-- 추가요청 update -->
+	<update id="updateByArId" parameterType="additionalRequest">
+		UPDATE additionalRequest SET ar_content=#{arContent} WHERE ar_id=#{arId}
+	</update>
+
+	
+	<!-- 진행상황 -->
 	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
-		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent
+		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg
 		from progress, hospital
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
 		order by progress.pdate asc

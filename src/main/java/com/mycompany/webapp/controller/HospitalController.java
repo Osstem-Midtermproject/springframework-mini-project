@@ -60,93 +60,23 @@ public class HospitalController {
 		log.info("계약일: " + hospitalContDate);
 
 		//추가요청 띄우기
-		List<Hospital> hospitalArContent = hospitalService.getHospitalArContent(hdln);
+		/*List<Hospital> hospitalArContent = hospitalService.getHospitalArContent(hdln);
 		log.info("추가요청 띄우기" + hospitalArContent);
-		model.addAttribute("hospitalArContent", hospitalArContent);
-
-		String arContId = hospitalContDate.getContract().getContIdentificationNumber();
-		List<Hospital> newHospitalArContentDiff = hospitalService.getHospitalArContentByContId(hospitalService.getHospitalContDate(hdln).getContract().getContIdentificationNumber());
-		log.info("1번 계약서의 추가요청: " + newHospitalArContentDiff.size());
+		model.addAttribute("hospitalArContent", hospitalArContent);*/
 		
-	
-		//추가요청 insert
-		/*AdditionalRequest additionalRequests = new AdditionalRequest();
-		
-		additionalRequests.setArContent(arContent);
-		additionalRequests.setArContId(arContId);
-		
-		log.info(additionalRequests);
-		
-		//추가요청시 값이 있다면 insert문 실행
-		if (arContent != null) {
-			log.info("arContId : " + arContId);
-			hospitalService.writeContent(additionalRequests);
-		} */
-
 		//진행상황 띄우기
 		List<Hospital> hospitalProgresses = hospitalService.getHospitalProgress(hdln);
+	
+		log.info(hospitalProgresses);
+	
 		model.addAttribute("hospitalProgresses", hospitalProgresses);
 		log.info(model.getAttribute("hospitalProgresses"));
 
 		return "hospital/processingDetail";
 	}
 	
-	@PostMapping(value="processing/arContentInsert", produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public String arContentInsert(String arContent, String arContId) {
-		log.info("실행");
-		
-		AdditionalRequest additionalRequests = new AdditionalRequest();
-		additionalRequests.setArContent(arContent);
-		additionalRequests.setArContId(arContId);
-		log.info("arContent: " + arContent);
-		log.info("arContId: " + arContId);
-		
-		hospitalService.writeContent(additionalRequests);
-	
-		
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		jsonObject.put("arContent", arContent);
-		jsonObject.put("arContId", arContId);
-		String json = jsonObject.toString();
-		log.info(json);
-		
-		return json;
-	}
-	
-	@PostMapping(value="processing/details", produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public String arContentSelect(String contId, String arContent, Model model) {
-		log.info("실행");
-		log.info("contId: " + contId);
-		
-		
-		//List<Hospital> newHospitalArContentDiff = hospitalService.getHospitalArContentByContId(hospitalService.getHospitalContDate(hdln).getContract().getContIdentificationNumber());
-		List<Hospital> newHospitalArContentDiff = hospitalService.getHospitalArContentByContId(contId);
-		List<Hospital> newHospitalArContent = hospitalService.getHospitalArContentByContId(contId);
-		
-		for(int i=0; i<newHospitalArContentDiff.size(); i++) {
-			log.info(newHospitalArContentDiff.get(i).getAdditionalRequest().getArContent());
-		}
-		
-		log.info("newHospitalArContent: " + newHospitalArContent);
-		log.info("newHospitalArContentDiff" + newHospitalArContentDiff);
-	
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		jsonObject.put("arContId", contId);
-		jsonObject.put("arContent", arContent);
-		jsonObject.put("arId", newHospitalArContent.get(0).getAdditionalRequest().getArId());
-		log.info(jsonObject);
-		String json = jsonObject.toString();
-		log.info(json);
-		
-		return json;
-	}
-	
 	//모든 추가요청을 ajax로 불러오기
-	@PostMapping(value="processing/detailss", produces="application/json; charset=UTF-8")
+	@PostMapping(value="processing/arContentList", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String getContents(String contId, Model model) {
 		log.info("실행");
@@ -178,7 +108,32 @@ public class HospitalController {
 		
 		return json;
 	}
+	
+	//insert
+	@PostMapping(value="processing/arContentInsert", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String arContentInsert(String arContent, String arContId) {
+		log.info("실행");
+		
+		AdditionalRequest additionalRequest = new AdditionalRequest();
+		additionalRequest.setArContent(arContent);
+		additionalRequest.setArContId(arContId);
+		log.info("arContent: " + arContent);
+		log.info("arContId: " + arContId);
+		
+		hospitalService.writeContent(additionalRequest);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		jsonObject.put("arContent", arContent);
+		jsonObject.put("arContId", arContId);
+		String json = jsonObject.toString();
+		log.info(json);
+		
+		return json;
+	}
 
+	//delete
 	@PostMapping(value="processing/arContentDelete", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String deleteContent(int arId, Model model) {
@@ -191,6 +146,31 @@ public class HospitalController {
 		
 		return json;
 	
+	}
+	
+	//update
+	@PostMapping(value="processing/arContentUpdate", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String updateContent(int arId, String newArContent, Model model) {
+		log.info("실행");
+		AdditionalRequest newAdditionalRequest = new AdditionalRequest();
+		newAdditionalRequest.setArId(arId);
+		newAdditionalRequest.setArContent(newArContent);
+		
+		log.info(arId);
+		log.info(newArContent);
+		
+		log.info("arContentUpdate" + "{arId: " + arId + ", newArContent: " + newArContent + "}");
+		
+		hospitalService.updateArContent(newAdditionalRequest);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		jsonObject.put("arId", arId);
+		jsonObject.put("arContent", newArContent);
+		String json = jsonObject.toString();
+		
+		return json;
 	}
 
 	@RequestMapping("/history")

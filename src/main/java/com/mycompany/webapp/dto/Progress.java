@@ -15,7 +15,6 @@ public class Progress {
 	   private String pdln;      //의사면허번호
 	   private String paddress;   //주소
 	   private String pcategory;   //진행카테고리
-	   //private Blob pimage;      //이미지
 	   private String pcontent;   //내용
 	   
 	   //이미지
@@ -23,7 +22,7 @@ public class Progress {
 	   private String pattachsname;
 	   private String pattachtype;
 	   private MultipartFile pimage;   //이미지
-	  
+	   private String pimg;
 	   
 	   //연관 관계에 있는 객체(Association)
 	   //병원
