@@ -27,5 +27,12 @@
 		where cons_sche_id=#{consScheId}
 </update>
 
+<insert id="insertSchedule" parameterType="constructionSchedule">
+		<selectKey keyProperty="consScheId" resultType="int" order="BEFORE">
+            select seq_constructionschedule.nextval from dual
+   		</selectKey>
+	insert into constructionschedule values(#{consScheId},#{consScheTeamId},#{consScheContractId},to_date(#{consScheStartdate},'yyyy-mm-dd'),to_date(#{consScheEnddate},'yyyy-mm-dd'),#{consScheContent},#{consScheCategoryId},#{consScheHospitalName},#{consScheDln},#{consScheAddress})
+</insert>
+
 
 </mapper>

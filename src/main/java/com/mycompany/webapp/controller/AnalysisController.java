@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Contract;
-import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.TeamHistory;
 import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.TeamHistoryService;
@@ -75,6 +77,14 @@ public class AnalysisController {
 		///WEB-INF/views/analysis/hospital.jsp
 		return "analysis/hospital";
 	}
+	@GetMapping("/chat")
+	public String chat(Model model,HttpSession session,HttpServletRequest request) {
+		log.info(request.getRemoteAddr());
+		String userid=(String)session.getAttribute("sessionUserId");
+		log.info(userid);
+		model.addAttribute("userid",userid);
+		return "analysis/chat";
+	}
 
 	@RequestMapping("/design")
 	public String design(Model model) {
@@ -93,10 +103,20 @@ public class AnalysisController {
 	public String designajax(String design) {
 		log.info("실행");
 		log.info(design);	
+		List<Integer> cnt=new ArrayList();
+		List<String> thema=new ArrayList();
 		List<String> designlist=contractService.getTopDesignImg(design);
+		List<Contract> con=contractService.getThemaDesign(design);
+		for(int i=0;i<con.size();i++) {
+			cnt.add(con.get(i).getCno());
+			thema.add(con.get(i).getContArea());
+			
+		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
-		jsonObject.put("design",designlist);
+		jsonObject.put("designlist",designlist);
+		jsonObject.put("cnt", cnt);
+		jsonObject.put("thema", thema);
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;

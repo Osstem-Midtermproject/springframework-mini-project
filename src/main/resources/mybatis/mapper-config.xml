@@ -40,7 +40,8 @@
 		<typeAlias type="com.mycompany.webapp.dto.ThtidAndStartDateAndEndDate" alias="tsd"/>
 		<!-- 디자인 -->
 		<typeAlias type="com.mycompany.webapp.dto.Design" alias="design"/>
-		
+		<!-- 상담 -->
+		<typeAlias type="com.mycompany.webapp.dto.CounselingSchedule" alias="counselingSchedule"/>
 		
 		
 	</typeAliases>

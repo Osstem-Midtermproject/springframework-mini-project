@@ -118,7 +118,26 @@
 		from design
 		where dtt= #{dtt} 
 	</select>
-   
+	
+	<insert id="insertContract" parameterType="contract" >
+	 	<selectKey keyProperty="cno" resultType="int" order="BEFORE">
+            select seq_contract.nextval from dual
+   		</selectKey>
+		 insert into contract values(#{cno},null,#{contDesignIdentification},#{contDownPayment},to_date(#{contDate},'yyyy-mm-dd'),#{contDetails},#{contArea},
+		 #{contDln},#{contAddress},#{contPeriod},#{contCompletionStatus},#{contStatus},#{contAdditionalAmount})
+	</insert>
+   	
+   	<resultMap id="thema" type="contract">
+		<result column="count(c.cont_design_identification)"  property="cno"></result>
+		<result column="dname" property="contArea"></result>
+	</resultMap>
+   	<select id="selectThemaDesign" parameterType="string" resultMap="thema">
+   			select count(c.cont_design_identification),d.dname
+			from contract c,design d
+			where d.dtt=#{dtt} and c.cont_design_identification=d.did
+			group by d.dname
+			order by count(c.cont_design_identification) desc
+   	</select>
 
    
 </mapper>

@@ -64,4 +64,12 @@ public class ContractService {
 		
 		return contractDao.selectTopDesignImg(dtt);
 	}
+	public void setContract(Contract contract) {
+		
+		contractDao.insertContract(contract);
+	}
+	public List<Contract> getThemaDesign(String dtt){
+	
+		return contractDao.selectThemaDesign(dtt);
+	}
 }

@@ -74,9 +74,7 @@
 					<tbody id="contbody">
 						<c:forEach var="contract" items="${contract}">
 							<tr class="border-bottom border-200">
-								<td class="fw-semi-bold">
-									<fmt:formatDate value="${contract.contDate}" pattern="yyyy-MM-dd" />
-								</td>
+								<td class="fw-semi-bold">${contract.contDate}</td>
 								<td class="fw-semi-bold">${contract.contDownPayment}</td>
 								<td class="fw-semi-bold">${contract.contAdditionalAmount }</td>
 								<td class="fw-semi-bold">19,000,000</td>

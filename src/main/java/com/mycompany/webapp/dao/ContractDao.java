@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.Contract;
-import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
 
 @Mapper
@@ -14,8 +13,7 @@ public interface ContractDao {
 	//user/contractsView : user의 계약기록 리스트 페이징
 	List<Contract> selectByHAddressAndHDln(String hdln, String haddress);
 	public List<Contract> selectSales();
-	public void insertContract(Contract contract);
-
+	
 	//hospital/contractHistory : 계약기록 리스트 페이징
 	List<Contract> selectAllContractListByPager(Pager pager);
 	public int allContractListCount();
@@ -33,4 +31,8 @@ public interface ContractDao {
 	List<Contract> selectTopDesign();
 	
 	List<String> selectTopDesignImg(String dtt);
+	
+	void insertContract(Contract contract);
+	
+	List<Contract> selectThemaDesign(String dtt);
 }

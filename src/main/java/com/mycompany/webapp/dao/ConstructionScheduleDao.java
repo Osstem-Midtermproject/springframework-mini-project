@@ -12,5 +12,7 @@ public interface ConstructionScheduleDao {
 	public List<ConstructionSchedule> selectAll();
 	
     public int updateSchedule(ConstructionSchedule constructionSchedule);
+    
+    void insertSchedule(ConstructionSchedule constructionSchedule);
 	
 }

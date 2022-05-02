@@ -34,6 +34,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 		</init-param>
 		<!-- 요청에 대해 응답속도를 빠르게 해줌 배치할때 DispatcherServlet 객체를 미리 생성하도록 설정 -->
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 			<!-- Servlet 3.0에서 지원하는 multipart/form-data 파싱 기능을 위한 설정 -->
 		<multipart-config>
 		<!-- 절대 경로만 가능 -->

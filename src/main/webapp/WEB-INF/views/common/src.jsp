@@ -21,6 +21,7 @@
 <!-- Vendor JS Files -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/chart/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/chart/echarts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/chart/apexcharts.min.js"></script>
 <script src="assets/vendor/quill/quill.min.js"></script>

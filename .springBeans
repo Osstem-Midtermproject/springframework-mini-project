@@ -11,8 +11,14 @@
 		<config>src/main/resources/spring/dispatcher/viewresolver.xml</config>
 		<config>src/main/resources/spring/dispatcher/resources.xml</config>
 		<config>src/main/resources/spring/root/component_scan.xml</config>
+		<config>src/main/resources/spring/dispatcher/chat.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/spring/dispatcher/ch09_multipart_resolver.xml</config>
+		<config>src/main/resources/spring/dispatcher/ch12_viewresolver.xml</config>
+		<config>src/main/resources/spring/root/ch04_messagesource.xml</config>
+		<config>src/main/resources/spring/root/ch14_mybatis.xml</config>
+		<config>src/main/resources/spring/root/ch14_datasource.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
