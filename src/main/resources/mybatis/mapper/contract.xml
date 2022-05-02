@@ -97,6 +97,27 @@
 			order by cont_down_payment desc
 		)where rownum &lt;=3
 	</select> 
+	<resultMap id="design" type="contract">
+		<result column="contcd"  property="cno"></result>
+		<result column="contd" property="contDesignIdentification"></result>
+		<result column="dn" property="contArea"></result>
+		<result column="dtt"	property="contDetails"></result>
+	</resultMap>
+	<select id="selectTopDesign" resultMap="design">
+		select contcd,contd,dn,dtt
+		from (select count(c.cont_design_identification) as contcd,c.cont_design_identification as contd,d.dname as dn,d.dtt as dtt
+    				from contract c ,design d
+     				where c.cont_design_identification=d.did
+     				group by c.cont_design_identification,d.dname,d.dtt
+     				order by contcd desc)
+		where rownum&lt;=5
+	</select>
+	
+	<select id="selectTopDesignImg" parameterType="string" resultType="string" >
+		select dimg
+		from design
+		where dtt= #{dtt} 
+	</select>
    
 
    

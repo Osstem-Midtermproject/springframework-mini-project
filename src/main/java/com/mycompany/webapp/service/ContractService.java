@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.ContractDao;
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
 
 import lombok.extern.log4j.Log4j2;
@@ -55,5 +56,12 @@ public class ContractService {
 
 	public List<Contract> getTopThreeContract() {
 		return contractDao.selectTopContract();
+	}
+	public List<Contract> getTopDesign(){
+		return contractDao.selectTopDesign();
+	}
+	public List<String> getTopDesignImg(String dtt){
+		
+		return contractDao.selectTopDesignImg(dtt);
 	}
 }

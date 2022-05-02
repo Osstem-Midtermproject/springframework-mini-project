@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.Progress;
 
 @Mapper
 public interface ContractDao {
@@ -29,5 +29,8 @@ public interface ContractDao {
 	
 	//계약금이 높은 계약 3건 불러오기
 	List<Contract> selectTopContract();
-
+	
+	List<Contract> selectTopDesign();
+	
+	List<String> selectTopDesignImg(String dtt);
 }

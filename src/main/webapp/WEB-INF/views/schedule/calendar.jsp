@@ -120,7 +120,7 @@
 
               $(info.el).qtip({
                 content: {
-                  title: `<span id="qtitle${id}">` + title + `</span>`,
+                  title: "<span id=qtitle"+id+">" + title + `</span>`,
                   text:
                     `<label>StartDay : </label><span id="qstart${id}">` +
                     startday +
@@ -145,6 +145,7 @@
                   },
                 },
               });
+              id++;
               if (info.event.groupId === "벽지") {
                 
                 $(info.el).css("background-color", "#FFB6C1");

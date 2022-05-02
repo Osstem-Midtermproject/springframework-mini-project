@@ -14,7 +14,7 @@ public class Contract {
 	private String contIdentificationNumber; //계약서 식별 번호
 	private byte[] cont; //계약서(pdf)
 	private String contDesignIdentification;//디자인식별번호
-	private int contDownPayment; //계약금 
+	private long contDownPayment; //계약금 
 	private Date contDate;//계약일
 	private String contDetails; //계약 내용
 	private String contArea; //면적
