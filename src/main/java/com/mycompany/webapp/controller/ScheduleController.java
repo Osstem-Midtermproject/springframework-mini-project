@@ -33,8 +33,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/schedule")
 public class ScheduleController {
-
-
 	@Resource
 	CalendarService calendarService;
 
@@ -69,8 +67,6 @@ public class ScheduleController {
 		return "schedule/calendar";
 	}
 
-
-
 	@RequestMapping("/detailForm")
 	public String detailForm() {
 		log.info("실행");
@@ -82,13 +78,6 @@ public class ScheduleController {
 		log.info("실행");
 		return "schedule/list";
 	}
-
-	@RequestMapping("/team")
-	public String team() {
-		log.info("실행");
-		return "schedule/team";
-	}
-
 
 	@Resource
 	TeamService teamService;
