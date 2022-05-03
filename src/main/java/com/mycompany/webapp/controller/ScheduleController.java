@@ -63,38 +63,43 @@ public class ScheduleController {
 		return "schedule/list";
 	}
 	
-	@RequestMapping("/team")
-	public String team() {
-		log.info("실행");
-		return "schedule/team";
-	}
-	
-	
 	@Resource
 	TeamService teamService;
 	
+	//동일한 정보를 가져오게 되므로 아래의 teamService와 동일한 코드를 지니게 된다. -jBC
+	@RequestMapping("/team")
+	public String team(Model model) {
+		log.info("실행");
+		
+		//리스트의 형식으로 가져온다 
+		List<Team> detailTeamInformationPage = teamService.getTeamInformationSchedule();
+		
+		model.addAttribute("detailTeamInformationPage", detailTeamInformationPage);
+		log.info(detailTeamInformationPage);
+		log.info(model);
+				
+		return "schedule/team";
+	}
+
 	//team page에서 해당 팀을 선택하면 해당 팅믜 화면으로 이동하기 위한 컨트롤러 이다. 파라미터는 팀 ID로 구별한다. 
-	   @GetMapping("/team/detail")
-	   public String teamDetail(String detailTeamId2, Model model, HttpServletRequest request) {
-	      log.info("Location 실행");
+	@GetMapping("/team/detail")
+	public String teamDetail(String detailTeamId2, Model model, HttpServletRequest request) {
+		log.info("Location 실행");
+	   
+		//url주소의 파라미터를 가져온다. 여기서 가져오는 파라미터는 팀 구별 iD이며 파라미터 명은 tid이다.
+		String detailTeamId = request.getParameter("tid");
+		log.info(detailTeamId);
 	      
-	      //url주소의 파라미터를 가져온다. 여기서 가져오는 파라미터는 팀 구별 iD이며 파라미터 명은 tid이다.
-	      String detailTeamId = request.getParameter("tid");
-	      log.info(detailTeamId);
+		//리스트의 형식으로 가져온다 
+		List<Team> detailTeamInformation = teamService.getTeamInformation(detailTeamId);
 	      
-	      //리스트의 형식으로 가져온다 
-		  List<Team> detailTeamInformation = teamService.getTeamInformation(detailTeamId);
-	      
-			model.addAttribute("detailTeamInformation", detailTeamInformation);
-			log.info(detailTeamInformation);
-			log.info(model);
-	      return "schedule/team_detail";
+		model.addAttribute("detailTeamInformation", detailTeamInformation);
+		log.info(detailTeamInformation);
+		log.info(model);
+		
+		return "schedule/team_detail";
 	   }
-	
-	
-	
-	
-	
+
 	@RequestMapping("/scheduler")
 	public String scheduler() {
 	

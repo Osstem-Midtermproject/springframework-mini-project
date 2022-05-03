@@ -406,7 +406,7 @@ button:focus {
 									<td>${location.haddress}</td>
 									<td>${location.hpn}</td>
 									<td><button type="button" class="btn btn-outline-primary"
-											onclick="location.href='${pageContext.request.contextPath}/location/hospital/processing/detail?hdln=${location.hdln}'">내역보기</button></td>
+											onclick="location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=${location.hdln}'">내역보기</button></td>
 									<td><button type="button" class="btn btn-outline-primary"
 											onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button></td>
 
