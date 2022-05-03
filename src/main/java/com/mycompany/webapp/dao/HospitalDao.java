@@ -3,6 +3,7 @@ package com.mycompany.webapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.AdditionalRequest;
 import com.mycompany.webapp.dto.Contract;
@@ -32,13 +33,17 @@ public interface HospitalDao {
 	public List<Hospital> selectHospitalArContentByContId(String contId);
 	
 	//추가요청 내용 추가
-	public int insert(AdditionalRequest additionalRequests);
+	public int insert(AdditionalRequest additionalRequest);
 	
 	//진행상황 띄우기
 	public List<Hospital> selectProgressByHdln(String hdln);
 	
+	//추가요청 내용 삭제
 	public int deleteByArId(int arId);
 	
+	//추가요청 내용 수정
+	public int updateByArId(AdditionalRequest additionalRequests);
+
 	//hospital location 리스트(주소 별로)
 	public List<Hospital> selectByLocation(Pager pager);
 	
