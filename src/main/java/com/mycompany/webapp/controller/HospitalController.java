@@ -239,6 +239,45 @@ public class HospitalController {
       return "hospital/location";
    }
    
+   //로케이션 이미지 변경 ajax
+   	@PostMapping(value = "mapimage", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String changemap(String location, Model model,  HttpServletRequest request) {
+		log.info(location);
+		
+		// String locationHaddress = request.getParameter("locationHaddress");
+	
+		return  location;
+	}
+   	
+//   	@PostMapping(value = "/location/mapimage", produces = "application/json; charset=UTF-8")
+//	@ResponseBody
+//	public String changemap(String location, @RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
+//		log.info(location);
+//		
+//		List<Hospital> locationHospital = hospitalService.getLocationHospital2(location);
+//
+//		//지역별 병원의 개수로 설정
+//	    int getTotalLocationNum = locationHospital.size();
+//		
+//		Pager pager = new Pager(5, 5, getTotalLocationNum, pageNo);
+//		model.addAttribute("pager", pager);
+//
+//		model.addAttribute("locationHospital", locationHospital);
+//
+//		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put("locationHospital", locationHospital);        
+//		jsonObject.put("startPageNo",pager.getStartPageNo());
+//		jsonObject.put("endPageNo",pager.getEndPageNo());
+//		jsonObject.put("pageNo",pager.getPageNo());
+//		jsonObject.put("totalPageNo",pager.getTotalPageNo());
+//		jsonObject.put("groupNo",pager.getGroupNo());
+//
+//		String json = jsonObject.toString();
+//		log.info(json);
+//		return json;
+//	}
+   
 
 
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 초기에 보여질 전체 병원의 계약 기록 리스트
