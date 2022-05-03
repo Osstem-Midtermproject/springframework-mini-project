@@ -1,6 +1,8 @@
 package com.mycompany.webapp.dto;
 
-import java.util.Date;
+
+import java.sql.Date;
+
 import lombok.Data;
 
 //hospital 테이블(병원)의 DTO

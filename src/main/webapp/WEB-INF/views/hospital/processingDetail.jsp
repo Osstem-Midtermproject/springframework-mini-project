@@ -32,7 +32,7 @@
 				</h3>
 				<h2>${hospital.hname}</h2>
 				
-				<span>계약일: <fmt:formatDate value="${hospitalContDate.contract.contDate}" pattern="yyyy-MM-dd" /></span>
+				<span>계약일: ${hospitalContDate.contract.contDate}</span>
 			</div>
 		</div>
 		<div class="row">
@@ -56,7 +56,7 @@
 								</tr>
 								<tr>
 									<th scope="row">개업일</th>
-									<td><fmt:formatDate value="${hospital.hod}" pattern="yyyy-MM-dd" /></td>
+									<td>${hospital.hod}</td>
 									<th scope="row">계약서</th>
 									<td><a class='btn btn-sm btn-secondary' style='font-size: x-small;' href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
 								</tr>
@@ -90,9 +90,7 @@
 											<th scope="row">제목</th>
 											<td>${hospital.requestDetails.rdTitle}</td>
 											<th scope="row">신청일</th>
-											<td><fmt:formatDate
-													value="${hospital.requestDetails.rdApplicationdate}"
-													pattern="yyyy-MM-dd" /></td>
+											<td>${hospital.requestDetails.rdApplicationdate}</td>
 										</tr>
 										<tr>
 											<th scope="row">예산</th>
@@ -104,9 +102,7 @@
 											<th scope="row">디자인</th>
 											<td>${hospital.requestDetails.rdDesign}</td>
 											<th scope="row">상담일</th>
-											<td><fmt:formatDate
-													value="${hospital.requestDetails.rdCounDate}"
-													pattern="yyyy-MM-dd" /></td>
+											<td>${hospital.requestDetails.rdCounDate}</td>
 										</tr>
 
 										<tr>
@@ -183,7 +179,7 @@
 							
 								<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
 			                  	  <div class="activity-item d-flex">
-			                  	    <div class="activite-label"><fmt:formatDate value="${ hospitalProgress.progress.pdate}" pattern="yyyy-MM-dd"/></div>
+			                  	    <div class="activite-label">${ hospitalProgress.progress.pdate}</div>
 			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
 			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory}</div>
 			                      </div>

@@ -1,7 +1,7 @@
 package com.mycompany.webapp.dto;
 
-import java.sql.Blob;
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.Data;
 

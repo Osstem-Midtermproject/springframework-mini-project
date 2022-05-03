@@ -1,9 +1,7 @@
 package com.mycompany.webapp.dto;
 
-import java.util.Date;
-import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.sql.Date;
 
 import lombok.Data;
 

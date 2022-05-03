@@ -1,9 +1,6 @@
 package com.mycompany.webapp.dto;
 
-import java.sql.Blob;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -15,7 +12,7 @@ public class Contract {
 	private byte[] cont; //계약서(pdf)
 	private String contDesignIdentification;//디자인식별번호
 	private long contDownPayment; //계약금 
-	private String contDate;//계약일
+	private Date contDate;//계약일
 	private String contDetails; //계약 내용
 	private String contArea; //면적
 	private String contDln; //의사면허번호

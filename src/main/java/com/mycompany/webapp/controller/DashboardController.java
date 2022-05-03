@@ -47,7 +47,7 @@ public class DashboardController {
 		for(int i=0;i<9;i++) {
 			con.setContDesignIdentification("BK50000");
 			con.setContDownPayment((int)((Math.random()*100000000)/1000000)*10000000);
-			con.setContDate("2022-05-1"+i);
+			//con.setContDate("2022-05-1"+i);
 			con.setContDetails("병원 지으러 가자");
 			con.setContArea("20평");
 			con.setContDln("547938");
@@ -70,7 +70,7 @@ public class DashboardController {
 			cons.setConsScheHospitalName("다람쥐키즈치과의원");
 			cons.setConsScheDln("342573");
 			cons.setConsScheAddress("강원 원주시 지정면 신지정로 322 탑프라자 5층 501호 ~ 504호");
-			contractService.setContract(con);
+			//contractService.setContract(con);
 			//counselingScheduleService.setSchedule(cous);
 			//constructionScheduleService.setConstructionSchedule(cons);
 			
