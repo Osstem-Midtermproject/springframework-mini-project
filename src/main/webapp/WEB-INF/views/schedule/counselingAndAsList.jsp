@@ -23,26 +23,10 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">알림 내역</h5>
+                <h5 class="card-title">Notification List</h5>
                 
                 <div class="d-flex justify-content-between">                  
-                  
-					<!-- 카테고리 선택하는 체크박스 -->
-					<div class="d-flex " style="margin-bottom: 1rem;">
-						<span class="" style="padding-right: 3rem; font-weight: 600;">상담 & AS </span>
-			
-						<div class="" style="padding-right: 2rem;">
-							<input type="checkbox" id="categoryCheckbox1" name="checkBox"
-								value="상담" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox1">상담</label>
-						</div>
-						<div class="" style="padding-right: 2rem;">
-							<input type="checkbox" id="categoryCheckbox2" name="checkBox"
-								value="AS" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox2">AS</label>
-						</div>
-					</div>
-                 
+                                   
                     <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
                  
                  
@@ -56,7 +40,7 @@
 							<input id="searchBar" type="text" name="query"
 								placeholder="Search Hospital" value="${searchBar}"
 								title="Enter search keyword">
-							<button id="searchButton" type="button" title="Search" onclick="selectList(1)">
+							<button id="searchButton" type="button" title="Search" onclick="notificationList(1)">
 								<i class="bi bi-search"></i>
 							</button>
 						</div>
@@ -69,31 +53,28 @@
                   <thead class="bg-light">
                     <tr>
                       <th scope="col">번호</th>
-                      <th scope="col">병원</th>
-                      <th scope="col">신청인</th>
-                      <th scope="col">시공일</th>
-                      <th scope="col">연락처</th>
-                      <th scope="col">
-                      	<select class="form-select border-0 bg-light" style="font-weight: bold;">
-                          <option selected>시공상태</option>
-                          <option value="1">시공대기중</option>
-                          <option value="2">시공중</option>
-                          <option value="3">시공완료</option>
-                        </select>
-                      </th>
+                      <th scope="col">병원명</th>
+                      <th scope="col">내용</th>
+                      <th scope="col">제목</th>
+                      <th scope="col">신청일</th>
+                      <th scope="col">상담예정일</th>
+                      <th scope="col">상태</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="notificationListTable">
 
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
-                <%@ include file="/WEB-INF/views/common/pagination.jsp"%>
                 
+                <!-- pagination이 들어갈 자리 -->
+                <div id="notificationListPager">
+					                
+                </div>
               </div>
             </div>
 
-         <!---------------------------- pagination 추가 ------------------------------->
+         <!------------------------------------------------------------------------------------>
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Counseling & AS Schedule List</h5>
@@ -108,7 +89,7 @@
 							<div class="col-xs-4">
 								<div class="invalid-feedback">Please select a valid state.</div>
 							</div>
-							<input id="searchBar" type="text" name="query"
+							<input id="searchBar2" type="text" name="query"
 								placeholder="Search Hospital" value="${searchBar}"
 								title="Enter search keyword">
 							<button id="searchScheduleListButton" type="button" title="Search" onclick="selectScheduleList(1)">
@@ -159,6 +140,8 @@
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
 <script type="text/javascript">
+
+	//select box에서 상담이 선택되면 상담 스케줄 리스트를 보여주고, AS가 선택되면 AS 스케줄 리스트를 보여준다
 	$('#selectAsOrCounseling').change(function() {
 		if(this.value==2){
 			selectAsScheduleList(1);
@@ -168,16 +151,79 @@
 	});
 			
 	$(document).ready(function(){
+		notificationList(1);
 		selectScheduleList(1);
 	});
 			
 	$('#searchScheduleListButton').submit(function(e){
 		e.preventDefault();
 	});
-					
-    function selectScheduleList(no) { 
+	
+	
+	//알림 리스트를 보여주는-------------------------------------------------------------------------
+	function notificationList(no) { 
     	
         let searchBar = $("#searchBar").val();
+        $.ajax({
+        	url: 'notificationList',
+            type: 'post',
+            data: {"searchBar": searchBar , "pageNo": no}
+        }).done(function (result){
+                    
+	        console.log(result);
+	        
+	       	var str="";
+	
+	        $.each(result.notificationList,function(index,list){
+	        	console.log(list.rdAddress);
+	        	var arr = new Array();
+	        	arr[0]=
+	        	
+				
+				str = str + "<tr><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td><td>"+ list.rdContent +
+	        	"</td><td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate+"</td><td>"+
+	        	list.rdCounDate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정하기</button></td><tr>";
+	
+			})   
+	
+	        $("#notificationListTable").html(str);
+	                    	  
+	        var str2 ="<ul class='pagination justify-content-center'>";
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList(1)'><span>&laquo;</span></a></li>"; 
+	        
+	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
+	            if(i != result.pageNo){
+	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
+	            }else{
+	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
+	            }
+	        }
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "</ul>";
+	        
+			$("#notificationListPager").html(str2);
+				
+		});
+	}
+			
+	//확정하기 버튼이 눌리면 실행되는----------------------------------------------------------------------------
+	function confirmation(dln){
+		$.ajax({
+        	url: 'confirmation',
+            type: 'post',
+            data: {"dln": dln}
+        }).done(function (){
+    		notificationList(1);
+    		selectScheduleList(1);
+		});
+		
+	}
+	
+	//상담 스케줄 리스트를 보여주는----------------------------------------------------------------------------- 
+    function selectScheduleList(no) { 
+    	
+        let searchBar = $("#searchBar2").val();
+        
         $.ajax({
         	url: 'selectScheduleList',
             type: 'post',
@@ -190,10 +236,12 @@
 
         $.each(result.constructionScheduleList,function(index,list){
 
-        	console.log("y");
+			var date1 = list.counScheStartdate.substr(0, 10);
+			var time1 = list.counScheStartdate.substr(11,13);
+			
 			str = str + "<tr><td>"+list.counNo+"</td><td>"+"상담"+
         	"</td><td>"+list.counScheAddress+"</td><td>"+list.hospital.hname+
-        	"</td><td>"+list.counScheContent+"</td><td>"+list.counScheStartdate+"</td><tr>";
+        	"</td><td>"+list.counScheContent+"</td><td>"+date1+"</td><td>"+time1+"</td><tr>";
 
 		})   
 
@@ -216,9 +264,10 @@
 		});
 	}
     
+	//AS 스케줄 리스트를 보여주는
 	function selectAsScheduleList(no) { 
     	
-        let searchBar = $("#searchBar").val();
+        let searchBar = $("#searchBar2").val();
         $.ajax({
         	url: 'selectAsScheduleList',
             type: 'post',
@@ -232,10 +281,13 @@
         $.each(result.asScheduleList,function(index,list){
         	
 
-
+			var date = list.asStartDate.substr(0, 10);
+		
+			var time = list.asStartDate.substr(11,13);
+			
 			str = str + "<tr><td>"+list.asNo+"</td><td>"+"AS"+
-        	"</td><td>"+list.asAddress+"</td><td>"+ list.hospital.hname +
-        	"</td><td>"+list.asContent+"</td><td>"+list.asStartDate+"</td><td>"+list.asStartDate+"</td><tr>";
+        	"</td><td>"+list.hospital.hname+"</td><td>"+ list.asAddress +
+        	"</td><td>"+list.asContent+"</td><td>"+date+"</td><td>"+time+"</td><tr>";
 
 		})   
 

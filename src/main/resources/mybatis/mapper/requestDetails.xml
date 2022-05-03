@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.requestDetails">
+<mapper namespace="com.mycompany.webapp.dao.RequestDetailsDao">
+
+	<resultMap id="selectNotificationListResultMap"  type="requestDetails">
+			<result column="rnum" property="rdNo"/>
+			<result column="rd_content" property="rdContent"/>
+			<result column="rd_title"  property="rdTitle"/>
+			<result column="rd_applicationdate"  property="rdApplicationdate"/>
+			<result column="rd_coun_date"  property="rdCounDate"/>
+			<result column="rd_state"  property="rdState"/>
+			<result column="rd_address"  property="rdAddress"/>
+			<result column="rd_dln"  property="rdDln"/>
+			<association property="hospital" javaType="hospital">	
+					<result column="hname" property="hname"/> 	 
+			</association>
+	</resultMap>
+	<select id="selectNotificationList" parameterType="pager"  resultMap="selectNotificationListResultMap">
+      select rnum, hname, rd_content, rd_title, rd_applicationdate, rd_coun_date, rd_state, rd_dln, rd_address
+          from (
+              select ROWNUM as rnum, hname, rd_content, rd_title, rd_applicationdate, rd_coun_date, rd_state, rd_dln, rd_address
+              from (
+					select hname, rd_content, rd_title, rd_applicationdate, rd_coun_date, rd_state, rd_dln, rd_address
+					from requestdetails INNER JOIN hospital on rd_dln=hdln and rd_address=haddress
+			  		where rd_state = 1 and hname like '%'|| #{searchBar} ||'%'
+			  		order by rd_applicationdate desc
+          	        )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>
+   
+   <select id="selectNotificationTotalNum" resultType="int" parameterType="pager">
+		select count(*)
+		from requestdetails INNER JOIN hospital on rd_dln=hdln and rd_address=haddress		
+		where rd_state = 1 and hname like '%'|| #{searchBar} ||'%' 
+   </select>
+   
+   <update id="updateRdstate" parameterType="string">
+		update requestdetails 
+		set rd_state = 0 where rd_dln = #{dln} 
+   </update>
+   
+   	<resultMap id="requestDetailsResultMap"  type="requestDetails">
+			<result column="rd_content" property="rdContent"/>
+			<result column="rd_coun_date"  property="rdCounDate"/>
+			<result column="rd_address"  property="rdAddress"/>
+			<result column="rd_dln"  property="rdDln"/>
+	</resultMap>
+   <select id="selectRD" parameterType="string" resultMap="requestDetailsResultMap">
+   		select rd_dln, rd_address, rd_coun_date, rd_content 
+		from requestdetails where rd_dln = #{dln}
+   </select>
 
 </mapper>
 

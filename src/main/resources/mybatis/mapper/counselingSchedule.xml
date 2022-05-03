@@ -5,8 +5,8 @@
 <insert id="insertCounselingSchedule" parameterType="counselingSchedule" >
 	 	<selectKey keyProperty="counScheId" resultType="int" order="BEFORE">
             select seq_counselingschedule.nextval from dual
-   		</selectKey>
-		 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd'),to_date(#{counScheEnddate},'yyyy-mm-dd'),#{counScheDln},#{counScheAddress},#{counScheContent})
+   		</selectKey> 
+		 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI:SS'),#{counScheDln},#{counScheAddress},#{counScheContent})
 </insert>
 
 <resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
@@ -27,7 +27,7 @@
 		      select hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
 			  from counselingschedule INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 			  where hname like '%'|| #{searchBar} ||'%'
-			  order by coun_sche_startdate
+			  order by coun_sche_startdate desc
           )
           where rownum &lt;= #{endRowNo}
           )
@@ -39,5 +39,5 @@
 		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 		where hname like '%'|| #{searchBar} ||'%' 
    </select>
-
+   
 </mapper>

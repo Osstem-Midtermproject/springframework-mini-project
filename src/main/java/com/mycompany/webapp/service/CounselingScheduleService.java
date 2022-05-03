@@ -31,5 +31,6 @@ public class CounselingScheduleService {
 	public List<CounselingSchedule> getCounselingSchedule(Pager pager) {
 		return counselingScheduleDao.selectCounselingScheduleList(pager);
 	}
+
 	
 }

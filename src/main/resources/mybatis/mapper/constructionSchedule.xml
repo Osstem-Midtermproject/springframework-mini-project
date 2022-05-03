@@ -61,7 +61,7 @@
 				<foreach collection="consturctionCategory" item="item" index="index" separator=",">
 					#{item}
 				</foreach>
-			  )order by cons_sche_startdate
+			  )order by cons_sche_startdate desc
           )
           where rownum &lt;= #{endRowNo}
           )

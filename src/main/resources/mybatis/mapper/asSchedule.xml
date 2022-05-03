@@ -12,11 +12,11 @@
 
 	</resultMap>
 	<select id="selectAsScheduleList" parameterType="pager"  resultMap="selectAsScheduleResultMap">
-      select rnum, hname, hname, haddress, as_content, as_startdate 
+      select rnum, hname, as_address, as_content, as_startdate 
           from (
-              select ROWNUM as rnum, hname, haddress, as_content, as_startdate 
+              select ROWNUM as rnum, hname, as_address, as_content, as_startdate 
               from (
-		      select hname, haddress, as_content, as_startdate 
+		      select hname, as_address, as_content, as_startdate 
 			  from asschedule INNER JOIN hospital on as_dln = hdln and as_address = haddress
 			  where hname like '%'|| #{searchBar} ||'%'
 			  order by as_startdate

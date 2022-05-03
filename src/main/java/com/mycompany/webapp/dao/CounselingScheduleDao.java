@@ -18,4 +18,5 @@ public interface CounselingScheduleDao {
 	
 	
 	void insertCounselingSchedule(CounselingSchedule counselingSchedule);
+
 }
