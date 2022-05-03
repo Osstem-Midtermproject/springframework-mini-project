@@ -17,7 +17,7 @@
 
 <!-- Template Main CSS File -->
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <!-- Vendor JS Files -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/chart/chart.min.js"></script>

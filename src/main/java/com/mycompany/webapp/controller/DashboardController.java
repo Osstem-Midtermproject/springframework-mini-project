@@ -1,13 +1,15 @@
 package com.mycompany.webapp.controller;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -39,14 +41,11 @@ public class DashboardController {
 
 	
 	@RequestMapping("/dashboard")
-	public String dashboard() {
-		log.info("실행");
-		Contract con=new Contract();
-		CounselingSchedule cous=new CounselingSchedule();
-		ConstructionSchedule cons=new ConstructionSchedule();
+	public String dashboard(Model model,HttpSession session,HttpServletRequest request) {
+		String userid=(String)session.getAttribute("sessionUserId");
 		
 		
-		
+		model.addAttribute("userid",userid);
 		///WEB-INF/views/dashboard/dashboard.jsp
 		return "dashboard/dashboard";
 	}

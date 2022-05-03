@@ -6,7 +6,7 @@
 	 	<selectKey keyProperty="counScheId" resultType="int" order="BEFORE">
             select seq_counselingschedule.nextval from dual
    		</selectKey>
-		 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd'),to_date(#{counScheEnddate},'yyyy-mm-dd'),#{counScheDln},#{counScheAddress},#{counScheContent})
+		 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI:SS'),#{counScheDln},#{counScheAddress},#{counScheContent})
 </insert>
 
 <resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
@@ -39,5 +39,29 @@
 		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 		where hname like '%'|| #{searchBar} ||'%' 
    </select>
-
+   <resultMap id="selectcounAll"  type="counselingSchedule">
+   			<result column="coun_sche_id" property="counScheId"/>
+			<result column="coun_sche_startdate" property="counScheStartdate"/>
+			<result column="coun_sche_dln"  property="counScheDln"/>
+			<result column="coun_sche_address"  property="counScheAddress"/>
+			<result column="coun_sche_content"  property="counScheContent"/>
+			<association property="hospital" javaType="hospital">	
+					<result column="hname" property="hname"/>	
+			</association>
+	</resultMap>
+   <select id ="selectCountAll" resultMap="selectcounAll">
+   		select coun_sche_id,coun_sche_startdate,coun_sche_dln,coun_sche_address,coun_sche_content,hname
+		from counselingschedule,hospital 
+		where coun_sche_address=haddress
+	</select>
+	<update id="updateSchedule"  parameterType="counselingSchedule" >
+		update counselingschedule
+		set coun_sche_startdate=#{counScheStartdate}
+		where coun_sche_id=#{counScheId}
+</update>
+<update id="updateProgress"  parameterType="counselingSchedule" >
+		update progress
+		set pdate=#{counScheStartdate}, penddate=#{counScheStartdate}
+		where paddress=#{counScheAddress} and pdate=#{counScheStartdate}
+</update>
 </mapper>

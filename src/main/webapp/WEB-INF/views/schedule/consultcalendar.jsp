@@ -11,21 +11,6 @@
 			<div id="timebox" style="display: none">
 				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" /> <input type="text" value="" placeholder="종료시간" id="time2" required size="8" maxlength="5" />
 			</div>
-			<div>
-				<select class="form-select border-1" id="category" style="font-weight: 100; margin-bottom: 1.5rem;">
-					<option selected>시공종류</option>
-					<option value="1">전기</option>
-					<option value="2">벽지</option>
-					<option value="3">인테리어</option>
-					<option value="4">설비</option>
-				</select>
-				<select class="form-select border-1"   id="team"  style="font-weight: 100; margin-bottom: 1.5rem;">
-					<option selected>팀</option>
-					<option value="1">A팀</option>
-					<option value="2">B팀</option>
-					<option value="3">C팀</option>
-				</select>
-			</div>
 			<div class="form-group mt-2 mb-4">
 				<label for="utitle">내용</label> <input type="utitle" class="form-control" id="datecontent" style="height: 140px" />
 			</div>
@@ -36,11 +21,6 @@
 	<div class="d-flex flex-column">
 		<div class="card">
 			<div class="card-body">
-				<div style="margin-left: auto">
-					<div id="sidecontainer" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-						<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" /> <label id="select1" class="btn" for="btncheck1" onclick="save()">전기</label> <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" /> <label id="select2" class="btn" for="btncheck2" onclick="save()">벽지</label> <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" /> <label id="select3" class="btn" for="btncheck3" onclick="save()">인테리어</label> <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" /> <label id="select4" class="btn" for="btncheck4" onclick="save()">설비</label>
-					</div>
-				</div>
 				<div class="mt-4" id="calendar-container">
 					<div id="calendar"></div>
 				</div>
@@ -50,34 +30,22 @@
 </main>
 <script>
 	
-    function save(){
-    	$(function(){
-    		
-    		if ($("#btncheck1")[0].checked === false) {
-            	console.log(1);
-            }else{
-            	console.log(2);
-            }	
-    	})
     
-    }
     
     var scheduleEvent=[];
     <c:forEach var="schedule" items="${cs}">
    		scheduleEvent.push({
-   			id: "${schedule.consScheId}",
-        	title:  "${schedule.consScheHospitalName}",
-        	start:  moment("${schedule.consScheStartdate}").format("YYYY-MM-DD"),
-        	end:  moment("${schedule.consScheEnddate}").format("YYYY-MM-DD"),
+   			id: "${schedule.counScheId}",
+   			title:"${schedule.hospital.hname}",
+        	start:  moment("${schedule.counScheStartdate}").format("YYYY-MM-DDTHH:mm"),
         	extendedProps: {
-        		content: "${schedule.consScheContent}",
-        		category:"${schedule.constructionCategory.consCateType}",
-        		address:"${schedule.consScheAddress}",
-        		estart:moment("${schedule.consScheStartdate}").format("YYYY-MM-DD")
+        		content: "${schedule.counScheContent}",
+        		address:"${schedule.counScheAddress}",
+        		estart:moment("${schedule.counScheStartdate}").format("YYYY-MM-DD")
           	},
   		});		
 	</c:forEach>
-    
+     console.log(scheduleEvent);
       var id = 0;
       var calendar;
       var diaLogOpt = {
@@ -173,12 +141,11 @@
             },
             eventDrop: function (info) {
                let id=info.event.id;
-               let start=moment(info.event.start).format("YYYY-MM-DD");
-               let end=moment(info.event.end).format("YYYY-MM-DD");
+               let start=moment(info.event.start).format("YYYY-MM-DD");        
                let content=info.event.extendedProps.content;
                let address=info.event.extendedProps.address;
                let estart=info.event.extendedProps.estart;
-               scheduleUpdate(id,start,end,content,estart,address);
+               scheduleUpdate(id,start,content,estart,address);
                info.event.setExtendedProp("estart",moment(info.event.start).format("YYYY-MM-DD"))
              },
             eventAdd: function (info) {},
@@ -237,15 +204,15 @@
                 var btnOpt = {
                   저장: function () {
                     id++;
-                    console.log($("#category option:selected").text());
-                 
+                    
+                    scheduleInsert(moment(arg.start).format("YYYY-MM-DD") + " " + $("#time1").val(),$("#datecontent").val(),$("#datetitle").val(),$("#addresstitle").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
                       start: moment(arg.start).format("YYYY-MM-DD") + "T" + $("#time1").val(),
                       extendedProps: {
                         startTime: $("#time1").val(),
-                        endtTime: $("#time2").val(),
+                        address:$("#addresstitle").val(),
                         content: $("#datecontent").val(),
                       },
                     });
@@ -260,7 +227,7 @@
                 var btnOpt = {
                   저장: function () {
                     id++;
-                    scheduleInsert($("#team option:selected").val(),moment(arg.start).format("YYYY-MM-DD"),moment(arg.end).format("YYYY-MM-DD"),$("#datecontent").val(),$("#category option:selected").val(),$("#datetitle").val(),$("#addresstitle").val());
+                    scheduleInsert(moment(arg.start).format("YYYY-MM-DD") + " " + $("#time1").val(),$("#datecontent").val(),$("#datetitle").val(),$("#addresstitle").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -268,10 +235,10 @@
                       end: moment(arg.end).format("YYYY-MM-DD"),
                       allDay: arg.allDay,
                       extendedProps: {
+                    	startTime: $("#time1").val(),
                         content: $("#datecontent").val(),
                         address:$("#addresstitle").val(),
-                        category:$("#category option:selected").val(),
-                        teamId:$("#team option:selected").val(),
+     
                         estart:moment(arg.start).format("YYYY-MM-DD")
                       },
                     });
@@ -299,9 +266,6 @@
           calendar.render();
         });
       })();
-      function save() {
-       
-      }
      
       $(function () {
     	 
@@ -310,12 +274,11 @@
               calendar.addEvent(e);
            }
       });
-      function scheduleUpdate(id,start,end,content,estart,address){  
+      function scheduleUpdate(id,start,content,estart,address){  
           $.ajax({
-            url:"calendar",
+            url:"consultcalendar",
            data:{id:id,
         	   			start:start,
-        	   			end:end,
         	   			content,
         	   			estart:estart,
         	   			address:address
@@ -325,16 +288,14 @@
           	
           });
         } 
-      function scheduleInsert(teamId,start,end,content,categoryId,hospitalName,address){
-    	  $.ajax({
-              url:"calendarajax",
+      function scheduleInsert(start,content,hospitalName,address){
+    	  $.ajax({    
+              url:"consultcalendarajax",
               type:'post',
-              data:{teamId:teamId,
-          	   			start:start,
-          	   			end:end,
-          	   			content,
-          	   			categoryId:categoryId,
-          	   			hospitalName:hospitalName,
+              data:{
+          	   			start:start,         	   			
+          	   			content,       	   			
+         	   			hospitalName:hospitalName,
           	   			address:address
           	}
               

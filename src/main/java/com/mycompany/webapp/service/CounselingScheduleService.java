@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.CounselingScheduleDao;
+import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.Pager;
 
@@ -31,5 +32,19 @@ public class CounselingScheduleService {
 	public List<CounselingSchedule> getCounselingSchedule(Pager pager) {
 		return counselingScheduleDao.selectCounselingScheduleList(pager);
 	}
+	
+	public List<CounselingSchedule> getCountAll(){
+		
+		return counselingScheduleDao.selectCountAll();
+	}
+	public void setProgress(CounselingSchedule counselingSchedule) {
+		
+		counselingScheduleDao.updateProgress(counselingSchedule);
+	}
+	public void  updateSchedule(CounselingSchedule counselingSchedule) {
+		  
+		counselingScheduleDao.updateSchedule(counselingSchedule);
+	  }
+	
 	
 }
