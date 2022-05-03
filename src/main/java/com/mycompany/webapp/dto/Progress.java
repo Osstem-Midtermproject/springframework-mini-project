@@ -15,15 +15,11 @@ public class Progress {
 	   private String pdln;      //의사면허번호
 	   private String paddress;   //주소
 	   private String pcategory;   //진행카테고리
-	   //private Blob pimage;      //이미지
 	   private String pcontent;   //내용
 	   
 	   //이미지
-	   private String pattachoname;
-	   private String pattachsname;
-	   private String pattachtype;
-	   private MultipartFile pimage;   //이미지
-	  
+	   private String pimg;
+	   
 	   //카테고리 필요해서 추가함 (상담/계약/시공/AS)
 	   private String category;
 	   

@@ -60,18 +60,25 @@ public class HospitalService {
 	}
 	
 	//추가요청 내용 추가
-	public void writeContent(AdditionalRequest additionalRequests) {
-		hospitalDao.insert(additionalRequests);
+	public void writeContent(AdditionalRequest additionalRequest) {
+		hospitalDao.insert(additionalRequest);
 	}
 	
 	//진행상황 띄우기
 	public List<Hospital> getHospitalProgress(String hdln) {
 		return hospitalDao.selectProgressByHdln(hdln);
 	}
-
+	
+	//추가요청 내용 삭제
 	public void removeArContent(int arId) {
 		hospitalDao.deleteByArId(arId);
 	}
+	
+	//추가요청 내용 수정
+	public void updateArContent(AdditionalRequest additionalRequest) {
+		hospitalDao.updateByArId(additionalRequest);
+	}
+
 	
 	//지역 병원 목록 전체출력
 	public List<Hospital> getLocationHospital(Pager pager) {
