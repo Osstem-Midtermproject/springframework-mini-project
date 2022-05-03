@@ -33,5 +33,15 @@ public class RequestDetailsService {
 	public RequestDetails getRD(String dln) {
 		return requestDetailsDao.selectRD(dln);
 	}
+
+	//dashboard 알림 : 총 알림 수
+	public int getCount() {
+		return requestDetailsDao.selectCount();
+	}
+
+	//dashboard 알림 : 총 알림 리스트
+	public List<RequestDetails> getrequestDetailsList() {
+		return requestDetailsDao.selectRequestDetailsList();
+	}
 	
 }

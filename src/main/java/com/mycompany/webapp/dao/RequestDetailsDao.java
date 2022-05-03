@@ -18,4 +18,10 @@ public interface RequestDetailsDao {
 
 	//의사면허번호에 해당하는 요청내역 가져오기
 	public RequestDetails selectRD(String dln);
+
+	//dashboard 알림 : 총 알림 수
+	public int selectCount();
+
+	//dashboard 알림 : 알림 리스트
+	public List<RequestDetails> selectRequestDetailsList();
 }

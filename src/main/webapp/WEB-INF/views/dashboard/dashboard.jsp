@@ -217,71 +217,19 @@
             <div class="card-body">
               <h5 class="card-title">New Notification <p> <span> - Today</span></p></h5>
               
+              <!-- ------------------------------------------------------------------------------------- -->
               <div class="activity dropdown d-flex justify-content-center align-items-center" style="padding-bottom: 15px;">
-                <div class="alarm">
-                  <span>미래치과 상담신청</span>
+                <div class="alarm align-items-center justify-content-center">
+                  <span id="notificationTitle"></span><br>
+                  <span>상담신청</span>
                 </div>  
-                
                 <a class="text-center icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i>
-                    <span class="badge bg-danger badge-number align-text-top">4</span>
+                    <span class="badge bg-danger badge-number align-text-top" id="notificationNo"></span>
                   </a><!-- End Notification Icon -->
         
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                    <li class="dropdown-header">
-                      새로운 소식 4개가 있습니다
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-        
-                    <li class="notification-item">
-                      <i class="bi bi-check-circle text-warning"></i>
-                      <div>
-                        <h4>상담 신청</h4>
-                        <p>미래치과 : 2022.04.16</p>
-                      </div>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-        
-                    <li class="notification-item">
-                      <i class="bi bi-check-circle text-warning"></i>
-                      <div>
-                        <h4>AS 신청</h4>
-                        <p>주영치과 : 2022.04.15</p>
-                      </div>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-        
-                    <li class="notification-item">
-                      <i class="bi bi-check-circle text-warning"></i>
-                      <div>
-                        <h4>상담 신청</h4>
-                        <p>미래치과 : 2022.04.09</p>
-                      </div>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-        
-                    <li class="notification-item">
-                      <i class="bi bi-check-circle text-warning"></i>
-                      <div>
-                        <h4>상담 신청</h4>
-                        <p>미래치과 : 2022.04.06</p>
-                      </div>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="dropdown-footer">
-                      <a href="${pageContext.request.contextPath}/hospital/processing">전체보기</a>
-                    </li>
+        		  <!-- ajax로 내용이 들어감 -->
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" id="notificationList">
         
                   </ul><!-- End Notification Dropdown Items -->
               </div>
@@ -397,3 +345,41 @@
   </main><!-- End #main -->
 
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+ 
+ <script>
+
+	
+	$(function() {
+		timer = setInterval( function () {
+			//----------------------------------------------------------------------------------
+			$.ajax({
+	        	url: 'dashNotification',
+	            type: 'post',
+	        }).done(function (result){
+				
+	        	var title = result.requestDetailsList[0];
+	        	console.log(title);
+	        	
+	        	$("#notificationTitle").html(title.hospital.hname);
+				$("#notificationNo").html(result.totalCount);		
+				
+				var str ="";
+				str += "<li class='dropdown-header'>새로운 소식 " + result.totalCount + "개가 있습니다</li><li><hr class='dropdown-divider'></li>"
+
+		        $.each(result.requestDetailsList,function(index,list){
+					console.log(list);
+		        	var text = list.rdTitle + " 신청";
+		        	var date = list.rdApplicationdate.substr(0,10);
+					str += "<li class='notification-item'><i class='bi bi-check-circle text-warning'></i><div><h4>" + text +"</h4><p>" + list.hospital.hname + " : " + date + "</p></div></li><li><hr class='dropdown-divider'></li>";
+
+				}) 
+				
+				str += "<li class='dropdown-footer'><a href='${pageContext.request.contextPath}/schedule/counselingAndAsList'>전체보기</a></li>";
+				
+				$("#notificationList").html(str);	
+			});
+			//----------------------------------------------------------------------------------
+		}, 1000); 
+	});
+
+ </script>
