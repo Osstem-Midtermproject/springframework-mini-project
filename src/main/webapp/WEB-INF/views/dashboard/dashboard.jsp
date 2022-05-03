@@ -358,7 +358,6 @@
 	        }).done(function (result){
 				
 	        	var title = result.requestDetailsList[0];
-	        	console.log(title);
 	        	
 	        	$("#notificationTitle").html(title.hospital.hname);
 				$("#notificationNo").html(result.totalCount);		
@@ -368,7 +367,7 @@
 
 		        $.each(result.requestDetailsList,function(index,list){
 					console.log(list);
-		        	var text = list.rdTitle + " 신청";
+		        	var text = list.rdTitle + " 상담신청";
 		        	var date = list.rdApplicationdate.substr(0,10);
 					str += "<li class='notification-item'><i class='bi bi-check-circle text-warning'></i><div><h4>" + text +"</h4><p>" + list.hospital.hname + " : " + date + "</p></div></li><li><hr class='dropdown-divider'></li>";
 
