@@ -81,7 +81,7 @@ public class AnalysisController {
 	public String chat(Model model,HttpSession session,HttpServletRequest request) {
 		log.info(request.getRemoteAddr());
 		String userid=(String)session.getAttribute("sessionUserId");
-		log.info(userid);
+		
 		model.addAttribute("userid",userid);
 		return "analysis/chat";
 	}
