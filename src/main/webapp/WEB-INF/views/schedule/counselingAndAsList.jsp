@@ -190,6 +190,11 @@
 	                    	  
 	        var str2 ="<ul class='pagination justify-content-center'>";
 	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList(1)'><span>&laquo;</span></a></li>"; 
+	         
+    	  	if(result.groupNo > 1){
+    	  		var no = result.startPageNo-1;
+    	  		str2 += "<li class='page-item'><a class='page-link' onclick='notificationList("+ no +")'><span>&lsaquo;</span></a></li>";
+    	  	}
 	        
 	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
 	            if(i != result.pageNo){
@@ -198,6 +203,12 @@
 	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
 	            }
 	        }
+
+	    	if(result.groupNo < result.totalGroupNo){
+	        	var num = result.endPageNo +1;
+	        	str2 += "<li class='page-item'><a class='page-link' onclick='notificationList(" + num + ")'><span>&rsaquo;</span></a></li>";
+			}
+	        
 	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
 	        str2 = str2 + "</ul>";
 	        
@@ -249,6 +260,12 @@
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
+        
+	  	if(result.groupNo > 1){
+	  		var no = result.startPageNo-1;
+	  		str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
+	  	} 
+        
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
                 str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
@@ -256,6 +273,12 @@
                 str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
+        
+    	if(result.groupNo < result.totalGroupNo){
+      	  var num = result.endPageNo +1;
+      	  str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
+        }
+        
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         
@@ -295,6 +318,12 @@
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
+        
+	  	if(result.groupNo > 1){
+	  		var no = result.startPageNo-1;
+	  		str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
+	  	} 
+        
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
                 str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
@@ -302,6 +331,12 @@
                 str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
+        
+    	if(result.groupNo < result.totalGroupNo){
+      	  var num = result.endPageNo +1;
+      	  str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
+        }
+        
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         

@@ -23,33 +23,6 @@
 						</div>
 					</c:forEach> 
 					
-<%-- 					<!-- Default Card -->
-					<div class="card"
-						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body" id="recentContract1">
-							<h5 class="card-title">Default Card</h5>
-							<img alt="1" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
-						</div>
-					</div>
-					<!-- End Default Card -->
-
-					<div class="card"
-						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body" id="recentContract2">
-							<h5 class="card-title">Default Card</h5>
-							<img alt="2" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
-						</div>
-					</div>
-					<!-- End Default Card -->
-
-					<div class="card"
-						style="width: 300px; height: 250px; margin-left: 30px; margin-right: 30px;">
-						<div class="card-body" id="recentContract3">
-							<h5 class="card-title">Default Card</h5>
-							<img alt="3" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
-						</div>
-					</div>
-					<!-- End Default Card --> --%>
 				</div>
 			</section>
 
@@ -149,6 +122,12 @@
                     	  
                     var str2 ="<ul class='pagination justify-content-center'>";
                     str2 = str2 + "<li class='page-item'><a class='page-link' onclick='searchH(1)'><span>&laquo;</span></a></li>";
+                    
+            	  	if(result.groupNo > 1){
+            	  		var no = result.startPageNo-1;
+            	  		str2 += "<li class='page-item'><a class='page-link' onclick='searchH("+ no +")'><span>&lsaquo;</span></a></li>";
+            	  	}
+                    
                     for(var i=result.startPageNo; i<=result.endPageNo; i++){
                     	if(i != result.pageNo){
                     		str2 = str2 + "<li class='page-item'><a class='page-link' onclick='searchH(" +i + ")'>" +i +"</a></li>";
@@ -156,6 +135,13 @@
                     	    str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='searchH(" +i + ")'>" +i +"</a></li>";
                     	}
                    	}
+
+                    
+                  if(result.groupNo < result.totalGroupNo){
+                	  var num = result.endPageNo +1;
+                	  str2 += "<li class='page-item'><a class='page-link' onclick='searchH(" + num + ")'><span>&rsaquo;</span></a></li>";
+                  }
+                    
                     str2 = str2 + "<li class='page-item'><a class='page-link' onclick='searchH("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
                     str2 = str2 + "</ul>";
 

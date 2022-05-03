@@ -205,7 +205,8 @@ public class HospitalController {
         int getTotalLocationNum = hospitalService.getTotalHospitalNum();
 		Pager locationPager = new Pager(5, 5, getTotalLocationNum, locationPageNo);
 		model.addAttribute("locationPager", locationPager);
-		log.info("page");
+		log.info(getTotalLocationNum);
+		log.info(locationPager);
 
 		
 		List<Hospital> locationHospital = hospitalService.getLocationHospital(locationPager);
@@ -277,7 +278,9 @@ public class HospitalController {
 		jsonObject.put("pageNo",pager.getPageNo());
 		jsonObject.put("totalPageNo",pager.getTotalPageNo());
 		jsonObject.put("groupNo",pager.getGroupNo());
-
+		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
+		jsonObject.put("endPageNo",pager.getEndPageNo());
+		
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;

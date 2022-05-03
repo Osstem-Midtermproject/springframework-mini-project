@@ -10,7 +10,7 @@
 	<div class="text-center"
 		style="width: 100%; border-bottom: solid #f26522; margin-bottom: 2rem;">
 		<span style="font-weight: 600; font-size: 1.5rem; color: #f26522;">진행
-			내역 확인</span>
+			내역 확인</span> 
 	</div>
 	<div class="" style="width: 80%; margin: auto;">
 
@@ -74,16 +74,28 @@
         	  
         	    var str2 ="<ul class='pagination justify-content-center'>";
         	    str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox(1)'><span>&laquo;</span></a></li>";
-        	    	for(var i=result.startPageNo; i<=result.endPageNo; i++){
+        	    	
+        	  	if(result.groupNo > 1){
+        	  		var no = result.startPageNo-1;
+        	  		str2 += "<li class='page-item'><a class='page-link' onclick='checkBox("+ no +")'><span>&lsaquo;</span></a></li>";
+        	  	}   
+        	    
+        	    for(var i=result.startPageNo; i<=result.endPageNo; i++){
         	    		console.log(i);
         	    		if(i != result.pageNo){
         	    			str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
         	    		}else{
         	    			str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='checkBox(" +i + ")'>" +i +"</a></li>";
         	    		}
-        	    	}
-            	    str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
-        	    	str2 = str2 + "</ul>";
+        	    }
+        	    
+        		if(result.groupNo < result.totalGroupNo){
+              	  var num = result.endPageNo +1;
+              	  str2 += "<li class='page-item'><a class='page-link' onclick='checkBox(" + num + ")'><span>&rsaquo;</span></a></li>";
+                }
+        	    
+            	str2 = str2 + "<li class='page-item'><a class='page-link' onclick='checkBox("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+        	    str2 = str2 + "</ul>";
             	console.log(str2);
             	
         	    $("#progressListPager").html(str2);
