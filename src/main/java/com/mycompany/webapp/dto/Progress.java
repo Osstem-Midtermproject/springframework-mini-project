@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Progress {
 	   private int pno;
-	   private String pdate;			//시작일자
+	   private String pdate;		//시작일자
 	   private String penddate;		//종료일자
 	   private String pdln;			//의사면허번호
 	   private String paddress;		//주소
