@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycompany.webapp.dao.ConstructionScheduleDao"></mapper>
+<mapper namespace="com.mycompany.webapp.dao.CounselingScheduleDao">
+	
+	<resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
+			<result column="rnum" property="counNo"/>
+			<result column="coun_sche_startdate" property="counScheStartdate"/>
+			<result column="coun_sche_address"  property="counScheAddress"/>
+			<result column="coun_sche_content"  property="counScheContent"/>
+			<association property="hospital" javaType="hospital">	
+					<result column="hname" property="hname"/>	
+			</association>
+
+	</resultMap>
+	<select id="selectCounselingScheduleList" parameterType="pager"  resultMap="selectCounselingScheduleResultMap">
+      select rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+          from (
+              select ROWNUM as rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+              from (
+		      select hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+			  from counselingschedule INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
+			  where hname like '%'|| #{searchBar} ||'%'
+			  order by coun_sche_startdate
+          )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>
+   
+   <select id="selectCounselingScheduleCount" resultType="int" parameterType="pager">
+		select count(*) from counselingschedule 
+		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
+		where hname like '%'|| #{searchBar} ||'%' 
+   </select>
+</mapper>

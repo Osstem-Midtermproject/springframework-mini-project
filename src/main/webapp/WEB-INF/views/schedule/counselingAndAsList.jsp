@@ -124,7 +124,7 @@
                     <tr>
                       <th scope="col">순서</th>
                       <th scope="col">
-                      	<select class="form-select border-0 bg-light" style="font-weight: bold;">
+                      	<select class="form-select border-0 bg-light" id="selectAsOrCounseling" style="font-weight: bold;">
                           <option selected>구분</option>
                           <option value="1">상담</option>
                           <option value="2">AS</option>
@@ -159,6 +159,13 @@
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
 <script type="text/javascript">
+	$('#selectAsOrCounseling').change(function() {
+		if(this.value==2){
+			selectAsScheduleList(1);
+		}else{
+			selectScheduleList(1);
+		}
+	});
 			
 	$(document).ready(function(){
 		selectScheduleList(1);
@@ -184,25 +191,66 @@
         $.each(result.constructionScheduleList,function(index,list){
 
         	console.log("y");
-			str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
-        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheStartdate+
-        	"</td><td>"+list.consScheEnddate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
+			str = str + "<tr><td>"+list.counNo+"</td><td>"+"상담"+
+        	"</td><td>"+list.counScheAddress+"</td><td>"+list.hospital.hname+
+        	"</td><td>"+list.counScheContent+"</td><td>"+list.counScheStartdate+"</td><tr>";
 
 		})   
 
-		console.log(str);
         $("#scheduleListTable").html(str);
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(1)'><span>&laquo;</span></a></li>";
+        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
-                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }else{
-                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+        str2 = str2 + "</ul>";
+        
+		$("#scheduleListPager").html(str2);
+			
+		});
+	}
+    
+	function selectAsScheduleList(no) { 
+    	
+        let searchBar = $("#searchBar").val();
+        $.ajax({
+        	url: 'selectAsScheduleList',
+            type: 'post',
+            data: {"searchBar": searchBar , "pageNo": no}
+        }).done(function (result){
+                    
+        console.log(result);
+        
+       	var str="";
+
+        $.each(result.asScheduleList,function(index,list){
+        	
+
+
+			str = str + "<tr><td>"+list.asNo+"</td><td>"+"AS"+
+        	"</td><td>"+list.asAddress+"</td><td>"+ list.hospital.hname +
+        	"</td><td>"+list.asContent+"</td><td>"+list.asStartDate+"</td><td>"+list.asStartDate+"</td><tr>";
+
+		})   
+
+        $("#scheduleListTable").html(str);
+                    	  
+        var str2 ="<ul class='pagination justify-content-center'>";
+        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
+        for(var i=result.startPageNo; i<=result.endPageNo; i++){
+            if(i != result.pageNo){
+                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
+            }else{
+                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
+            }
+        }
+        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         
 		$("#scheduleListPager").html(str2);

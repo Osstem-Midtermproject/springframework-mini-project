@@ -39,6 +39,10 @@
 		<!-- ThtidAndStartDateAndEndDate : 팀과 분기별로 매출 총액을 구하기 위해-->
 		<typeAlias type="com.mycompany.webapp.dto.ThtidAndStartDateAndEndDate" alias="tsd"/>
 		
+		<!-- 상담 스케줄 -->
+		<typeAlias type="com.mycompany.webapp.dto.CounselingSchedule" alias="counselingSchedule"/>
+		<!-- AS 스케줄 -->
+		<typeAlias type="com.mycompany.webapp.dto.AsSchedule" alias="asSchedule"/>
 		
 		
 	</typeAliases>
