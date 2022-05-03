@@ -1,14 +1,14 @@
 package com.mycompany.webapp.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.CounselingScheduleDao;
-import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.CounselingSchedule;
-import com.mycompany.webapp.dto.Pager
+import com.mycompany.webapp.dto.Pager;
 
 import lombok.extern.log4j.Log4j2;
 
