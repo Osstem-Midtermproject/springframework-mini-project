@@ -8,10 +8,13 @@ import lombok.Data;
 @Data
 //상담스케줄
 public class CounselingSchedule {
+	int counNo;
 	int counScheId;
 	String counScheStartdate;
 	String counScheEnddate;
 	String counScheDln;
 	String counScheAddress;
 	String counScheContent;
+	
+	Hospital hospital;
 }

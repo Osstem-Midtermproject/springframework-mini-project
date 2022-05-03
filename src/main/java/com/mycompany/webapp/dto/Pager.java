@@ -26,6 +26,8 @@ public class Pager {
 	private String searchBar;
 	
 	private List<String> category;
+	
+	private List<String> consturctionCategory;
 
 	public Pager(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
 		this.rowsPerPage = rowsPerPage;

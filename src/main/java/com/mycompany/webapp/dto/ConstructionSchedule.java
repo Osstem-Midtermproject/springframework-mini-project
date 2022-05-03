@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class ConstructionSchedule {
-	
+	int consNo;
 	int consScheId;
 	String  consScheTeamId;
 	int  consScheContractId;
@@ -17,5 +17,7 @@ public class ConstructionSchedule {
 	String  consScheDln;
 	String  consScheAddress;
 	Hospital hospital;
+	
 	ConstructionCategory constructionCategory;
+	Team team;
 }

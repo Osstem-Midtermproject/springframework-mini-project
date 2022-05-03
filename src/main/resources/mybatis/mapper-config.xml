@@ -42,6 +42,8 @@
 		<typeAlias type="com.mycompany.webapp.dto.Design" alias="design"/>
 		<!-- 상담 -->
 		<typeAlias type="com.mycompany.webapp.dto.CounselingSchedule" alias="counselingSchedule"/>
+		<!-- AS 스케줄 -->
+		<typeAlias type="com.mycompany.webapp.dto.AsSchedule" alias="asSchedule"/>
 		
 		
 	</typeAliases>

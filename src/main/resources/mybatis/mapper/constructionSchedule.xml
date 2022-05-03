@@ -34,5 +34,49 @@
 	insert into constructionschedule values(#{consScheId},#{consScheTeamId},#{consScheContractId},to_date(#{consScheStartdate},'yyyy-mm-dd'),to_date(#{consScheEnddate},'yyyy-mm-dd'),#{consScheContent},#{consScheCategoryId},#{consScheHospitalName},#{consScheDln},#{consScheAddress})
 </insert>
 
-
+<resultMap id="selectConstructionScheduleResultMap"  type="constructionSchedule">
+			<result column="rnum" property="consNo"/>
+			<result column="cons_sche_enddate" property="consScheEnddate"/>
+			<result column="cons_sche_startdate"  property="consScheStartdate"/>
+			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
+			<result column="cons_sche_dln"  property="consScheDln"/>
+			<association property="constructionCategory" javaType="com.mycompany.webapp.dto.ConstructionCategory">	
+					<result column="cons_cate_type" property="consCateType"/>	
+			</association>
+			<association property="team" javaType="com.mycompany.webapp.dto.Team">	
+					<result column="tcategory" property="tcategory"/>	
+			</association>
+	</resultMap>
+	<select id="selectConstructionSchedule" parameterType="pager"  resultMap="selectConstructionScheduleResultMap">
+      select rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+          from (
+              select ROWNUM as rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+              from (
+              select cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+                    from constructionschedule 
+					INNER JOIN constructioncategory on cons_sche_categoryid = cons_cate_id 
+					INNER JOIN team on cons_sche_teamid = tid 
+			  where cons_sche_hospitalname like '%'|| #{searchBar} ||'%'
+			  and cons_cate_type in (				        
+				<foreach collection="consturctionCategory" item="item" index="index" separator=",">
+					#{item}
+				</foreach>
+			  )order by cons_sche_startdate
+          )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>
+   
+   <select id="selectConstructionScheduleNum" resultType="int" parameterType="pager">
+		select count(*) from constructionschedule 
+		INNER JOIN constructioncategory on cons_sche_categoryid = cons_cate_id 
+		INNER JOIN team on cons_sche_teamid = tid
+		where cons_sche_hospitalname like '%'|| #{searchBar} ||'%' 
+		and cons_cate_type in (				        
+			<foreach collection="consturctionCategory" item="item" index="index" separator=",">
+				#{item}
+			</foreach>
+		)
+   </select>
 </mapper>

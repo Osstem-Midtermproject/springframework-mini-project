@@ -61,11 +61,26 @@
               <i class="bi bi-calendar-week-fill"></i><span>Scheduler</span>
             </a>
           </li>
-          <li>
-            <a href="${pageContext.request.contextPath}/schedule/list">
-              <i class="bi bi-card-list"></i><span>List</span>
+          
+          <li class="nav-item">
+            <a href="#"  data-bs-target="#forms-list" data-bs-toggle="collapse" >
+              <i class="bi bi-calendar-week"></i><span>List</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+           	 <ul id="forms-list" class="nav-content collapse">
+            	 <li >
+            		<a href="${pageContext.request.contextPath}/schedule/counselingAndAsList">
+              			<span>-상담/AS</span>
+            		</a>
+          		</li>
+          		<li>
+            		<a href="${pageContext.request.contextPath}/schedule/constructionList">
+              		<span>-시공</span>
+            		</a>
+          		</li>
+            </ul>
           </li>
+          
+  
           <li>
             <a href="${pageContext.request.contextPath}/schedule/team">
               <i class="bi bi-collection"></i><span>Team</span>
