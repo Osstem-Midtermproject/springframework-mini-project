@@ -260,9 +260,16 @@ button:focus {
 			    	 }
 			
 			}).done(data => {
+				
+				
+				
+				
+				
+				ㄹㅇㄴㅇㄴ
 					console.log(data);
 					var imgTag = "<img";
 					imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + data + ".png'>";
+				ㅇㄹ
 				
 				console.log(imgTag);
 				//$("#go").html(data.totalFileNum);
