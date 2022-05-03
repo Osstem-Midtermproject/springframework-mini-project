@@ -44,9 +44,7 @@
 										    			<div>THIS WEEK: ${detailTeamInformationPage[0].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[0].tnowWork}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
-														<i class="bi bi-person-circle"></i> <i
-															class="bi bi-person-circle"></i> <img
-															src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+													
 														</div>
 										</div>
 									</div>
@@ -68,9 +66,7 @@
 										    			<div>THIS WEEK: ${detailTeamInformationPage[1].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[1].tnowWork}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
-														<i class="bi bi-person-circle"></i> <i
-															class="bi bi-person-circle"></i> <img
-															src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+														
 														</div>
 										</div>
 									</div>
@@ -92,9 +88,7 @@
 										    			<div>THIS WEEK: ${detailTeamInformationPage[2].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[2].tnowWork}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
-														<i class="bi bi-person-circle"></i> <i
-															class="bi bi-person-circle"></i> <img
-															src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+														
 														</div>
 										</div>
 									</div>
@@ -116,9 +110,7 @@
 										    			<div>THIS WEEK: ${detailTeamInformationPage[3].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[3].tnowWork}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
-														<i class="bi bi-person-circle"></i> <i
-															class="bi bi-person-circle"></i> <img
-															src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+														
 														</div>
 										</div>
 									</div>
@@ -141,9 +133,7 @@
 										    			<div>THIS WEEK: ${detailTeamInformationPage[4].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[4].tnowWork}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
-														<i class="bi bi-person-circle"></i> <i
-															class="bi bi-person-circle"></i> <img
-															src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+														
 														</div>
 										</div>
 									</div>
@@ -493,14 +483,11 @@
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>-SCORE</div>
-												<div>-구성원 목록(이름)</div>
-												<div>-MONTH</div>
-												<div>-이번 주 작업 예정 건수</div>
+												<div>-today: ${selectCounselingTeamInformation[0].counselingSchedule.ctodaywork}</div>
+												<div>-week: ${selectCounselingTeamInformation[0].counselingSchedule.cweekwork}</div>
+												<div>-month: ${selectCounselingTeamInformation[0].counselingSchedule.cmonthwork}</div>
 												<div class="img-wrapper d-flex align-items-center">
-													<i class="bi bi-person-circle"></i> <i
-														class="bi bi-person-circle"></i> <img
-														src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+												
 												</div>
 											</div>
 										</div>
@@ -520,9 +507,7 @@
 												<div>-MONTH</div>
 												<div>-이번 주 작업 예정 건수</div>
 												<div class="img-wrapper d-flex align-items-center">
-													<i class="bi bi-person-circle"></i> <i
-														class="bi bi-person-circle"></i> <img
-														src="${pageContext.request.contextPath}/resources/images/analysis_design_areaBest.jpg">
+												
 												</div>
 											</div>
 										</div>

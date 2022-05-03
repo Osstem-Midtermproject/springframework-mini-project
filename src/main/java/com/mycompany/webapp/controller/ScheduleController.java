@@ -84,22 +84,27 @@ public class ScheduleController {
 	
 	//동일한 정보를 가져오게 되므로 아래의 teamService와 동일한 코드를 지니게 된다. -jBC
 		@RequestMapping("/team")
-		public String team(Model model) {
+		public String team(Model model, Model modelCouncel) {
 			log.info("실행");
 			
 			//리스트의 형식으로 가져온다 
 			List<Team> detailTeamInformationPage = teamService.getTeamInformationSchedule();
+			List<Team> selectCounselingTeamInformation = teamService.selectCounselingTeamInformation();
 			
+			modelCouncel.addAttribute("selectCounselingTeamInformation", selectCounselingTeamInformation);
 			model.addAttribute("detailTeamInformationPage", detailTeamInformationPage);
 			log.info(detailTeamInformationPage);
 			log.info(model);
+			log.info(modelCouncel);
+			log.info(selectCounselingTeamInformation);
+			
 					
 			return "schedule/team";
 		}
 
-	//team page에서 해당 팀을 선택하면 해당 팅믜 화면으로 이동하기 위한 컨트롤러 이다. 파라미터는 팀 ID로 구별한다. 
+	//team page에서 해당 팀을 선택하면 해당 팅믜 화면으로 이동하기 위한 컨트롤러 이다. 파라미터는 팀 ID로 구별한다. - jbc
 	@GetMapping("/team/detail")
-	public String teamDetail(String detailTeamId2, Model model, HttpServletRequest request) {
+	public String teamDetail(String detailTeamId2, Model model1, HttpServletRequest request, Model model2) {
 		log.info("Location 실행");
 
 		//url주소의 파라미터를 가져온다. 여기서 가져오는 파라미터는 팀 구별 iD이며 파라미터 명은 tid이다.
@@ -107,11 +112,15 @@ public class ScheduleController {
 		log.info(detailTeamId);
 
 		//리스트의 형식으로 가져온다 
-		List<Team> detailTeamInformation = teamService.getTeamInformation(detailTeamId);
+		List<Team> detailTeamInformationSchedule = teamService.getTeamInformationDetailSchedule(detailTeamId);
+		List<Team>  detailTeamInformationTeamName = teamService.getTeamInformationDetailTeamName(detailTeamId);
 
-		model.addAttribute("detailTeamInformation", detailTeamInformation);
-		log.info(detailTeamInformation);
-		log.info(model);
+		model1.addAttribute("detailTeamInformationSchedule", detailTeamInformationSchedule);
+		model2.addAttribute("detailTeamInformationTeamName", detailTeamInformationTeamName);
+		
+		log.info(detailTeamInformationSchedule);
+		log.info(detailTeamInformationTeamName );
+		log.info(model1);
 		return "schedule/team_detail";
 	}
 

@@ -19,5 +19,6 @@ public class Team {
 	 String tnowWork; //팀 목록에 보여질 해당 팀의 현재 작업 진행 여부(작업 중 or 휴게)
 	 
 	 ConstructionSchedule constructionschedule; //시공 기간을 가져와서 디테일 페이지에 표시한다. - jbc
+	 CounselingSchedule counselingSchedule; // jbc
 	 
 }
