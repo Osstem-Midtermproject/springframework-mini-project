@@ -20,13 +20,9 @@
 
       <div class="pagetitle">
         <h1>Processing</h1>
-        
-            <c:forEach var="information" items="${detailTeamInformation}">
-                  <div>${information.tsales}</div>
-                  <div>dfaef</div>
-		   </c:forEach>
-		   <div>dfdf</div>
-		   
+               
+   		<div>${detailTeamInformation[0].tcategory}</div>
+
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
@@ -41,208 +37,268 @@
         <div class="team">
           <div class="row">
             <div class="col-sm-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title"></h5>
-                  
-                  <!-- Team Card -->
-              
-                  
-                   
-                  <div class="d-flex justify-content-between">
-                    <div class="card border" id = "Rl">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 17일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+              <div class="card" style="width: 80rem">
+					<div class="card-body justify-content-between">
+						<h5 class="card-title"> 일정 목록 </h5>
+					<div style="display:flex; justify-content: space-between; flex-direction:row; ">
+					
+						<div class="team-wrapper d-flex">
 
-                      
-                    
-         
-                      </div>
-                    </div><!-- End Tem Card -->
+							<div class="col-lg-2.1">
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem; "
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=1'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+										
+									<%-- 	<c:forEach var="information" items="${detailTeamInformation}"> --%>
+									    			<!-- 팀 SCORE -->
+									    			
+									    		<!-- 		<h5 class="card-title">전기 A팀</h5> -->
+										    			<div>${information.constructionschedule.consScheStartdate}</div>
+										    			<div>${information[0].constructionschedule.consScheEnddate}</div>
+										    			
+										    			<div>${information[0].constructionschedule.consScheContent}</div>
+									    			
+									    	
+									           		
+												<%-- </c:forEach> --%>
+											<h5 class="card-title">전기 A팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '1'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>THIS MONTH: ${information.tmonthWork}</div>
+										    			<div>THIS WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+												</c:forEach>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
 
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 18일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+								<!-- Team Card -->
+							
+								
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=2'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">전기 B팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '2'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
+								<!-- Team Card -->
+								
+								<!-- End Tem Card -->
 
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 19일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+							</div>
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                    
-                    
+							<div class="col-lg-2.1">
 
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 20일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=7'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">도배 A팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '7'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                     
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                    </div>
-                    
-                    <div class="d-flex justify-content-between">
-                    
-                    
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=8'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">도배 B팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '8'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 21일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+								<!-- End Tem Card -->
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                         
+								<!-- Team Card -->
+								
+							</div>
 
- 
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 22일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+							<div class="col-lg-2.1">
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                    <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">4월 23일</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=10'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">가구 A팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '10'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
 
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                        <hr>
-                        <h6>퍼펙트치과의원</h6>
-                        <div class="card-detail">
-                          내부 설비 인테리어
-                        </div>
-                   
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                    
-                      <div class="card border">
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h5 class="card-title">이동</h5>
-                          <div>
-                            <i class="bi bi-plus"></i>
-                            <i class="bi bi-x"></i>
-                          </div>
-                        </div>
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=11'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">가구 B팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '11'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
 
-                        <h6>날짜 변경</h6>
-                        <div class="card-detail">
-                          <   >
-                        </div>
-                   
-                        
-                      </div>
-                    </div><!-- End Tem Card -->
-                    
-                    
-                  </div>
-                  
-                </div>
-              </div>
+								<!-- Team Card -->
+								
+								<!-- End Tem Card -->
+
+							</div>
+
+							<div class="col-lg-2.1">
+
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=4'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">설비 A팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '4'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
+
+								<!-- Team Card -->
+								<div class="card border" style="width: 15rem;"
+									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=5'">
+									<div class="card-body d-flex flex-column">
+										<div class="d-flex align-items-center">
+											<h5 class="card-title">설비 B팀</h5>
+										</div>
+										<div>
+											<div class="display:flex; flex-direction:column;">
+												<c:forEach var="information" items="${detailTeamInformationPage}">
+									    			<!-- 팀 SCORE -->
+									    			<c:if test="${information.tid eq '5'}">
+										    			<div>SCORE: ${information.tscore}</div>
+										    			<div>MONTH: ${information.tmonthWork}</div>
+										    			<div>WEEK: ${information.tweekWork}</div>
+										    			<div>NOW: ${information.tnowWork}</div>
+									    			</c:if>
+									    			
+									           		
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Tem Card -->
+
+								<!-- Team Card -->
+								
+							</div>
+							</div>
+							
+								
+						</div>
+						</div>
+					
+				</div>
             </div>
           </div>
         </div>

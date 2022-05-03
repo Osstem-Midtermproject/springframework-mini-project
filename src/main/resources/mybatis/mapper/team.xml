@@ -17,23 +17,63 @@
 		<result column="ths" property="tscore" />
 		<result column="thd" property="tdate" />
 		<result column="tcategory" property="tcategory" />
+		<result column="tmonthWork" property="tmonthWork" />
+		<result column="tweekWork" property="tweekWork" />
+		<result column="tnowWork" property="tnowWork" />
 	</resultMap>
 	
+	<resultMap id="selectTeamInformationByTidDetail" type="team">
+		<result column="thn" property="thn" />
+		<result column="thtid" property="tid" />
+		<result column="tha" property="tsales" />
+		<result column="ths" property="tscore" />
+		<result column="thd" property="tdate" />
+		<result column="tcategory" property="tcategory" />
+		
+		<association property="constructionschedule" javaType="constructionschedule">
+			<result column = "CONS_SCHE_STARTDATE" property="consScheStartdate"/>
+			<result column = "CONS_SCHE_ENDDATE" property="consScheEnddate"/>
+			<result column = "CONS_SCHE_CONTENT" property="consScheContent"/>
+		</association>
+		
+	</resultMap>
 	
 	<!-- 파라미터의 tid와 일치하는 팀 정보에 대한 정보를 가져온다. -->
-	<select id="selectTeamInformation" parameterType="string" resultMap="selectTeamInformationByTid">
+	<select id="selectTeamInformation" parameterType="string" resultMap="selectTeamInformationByTidDetail">
 	
-		SELECT thn, thtid, tha, ths, thd
-		FROM teamhistory
-		WHERE thn = #{detailTeamId}
+		SELECT thn, thtid, tha, ths, thd, tcategory, CONS_SCHE_STARTDATE, CONS_SCHE_ENDDATE, CONS_SCHE_CONTENT
+		FROM teamhistory, team, constructionschedule
+		WHERE thtid = #{detailTeamId} AND thtid = tid AND CONS_SCHE_TEAMID = tid
 	
 	</select>
-
-
-
-
-
-
-
-
+	
+	<!-- 팀 스케쥴러에서 팀의 현재 작업 정보등을 보여주기 위한 명령어이다. - jbc -->
+	<select id="selectTeamInformationPage" parameterType="string" resultMap="selectTeamInformationByTid">
+	
+	<!-- 각각 이번달 작업 예정 건수, 이번 주 작업 예정건수, 현재 진행 여부에 대해서 일치하는 팀에 대한 정보를 가진다.  -->
+	<!-- 또한 사위점수대의 팀을 구하기 위해 정렬을 하였다.  -->
+		SELECT 
+    (SELECT count(*) from constructionschedule 
+     WHERE CONS_SCHE_STARTDATE BETWEEN TO_CHAR(SYSDATE, 'YY/MM/DD')
+            AND LAST_DAY(SYSDATE) AND THTID = CONS_SCHE_TEAMID ) as tmonthWork,
+    (SELECT count(*) from constructionschedule 
+     WHERE CONS_SCHE_STARTDATE BETWEEN TO_CHAR(SYSDATE, 'YY/MM/DD')
+            AND NEXT_DAY(SYSDATE, 1)) as tweekWork,
+    (SELECT 
+         CASE WHEN  count(*) >= 1 then '작업중'
+              WHEN  count(*) = 0 then '휴게중'
+         END
+     from constructionschedule 
+     WHERE TO_CHAR(SYSDATE, 'YY/MM/DD') BETWEEN CONS_SCHE_STARTDATE
+            AND CONS_SCHE_ENDDATE) as tnowWork,
+    (SELECT tcategory from team WHERE thtid = tid) as tcategory,
+     ROUND(AVG(ths),2) as ths,
+     THTID
+FROM constructionschedule, teamhistory, team
+WHERE THTID = TID
+GROUP BY THTID
+ORDER BY ths DESC
+    
+    </select> 
+	
 </mapper>

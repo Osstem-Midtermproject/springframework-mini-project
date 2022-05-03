@@ -16,4 +16,9 @@ public interface TeamDao {
 	
 	//팀의 카테고리 id를 기반으로 매출 등등의 정보를 가져온다
 	public List<Team> selectTeamInformation(String detailTeamId);
+	
+	//팀의 카테고리 id를 기반으로 점수, 날짜 등의 정보를 가져온다.- jbc
+	public List<Team> selectTeamInformationPage();
+	
+
 }

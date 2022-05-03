@@ -11,7 +11,7 @@
 			<h5 class="card-title">회원 관리</h5>
 
 			<!-- Table with hoverable rows -->
-
+<!-- 테스트 -->
 			<!-- 검색 및 검색 종류 -->
 			<div class="d-flex align-items-center ">
 				<div class="col d-flex justify-content-start">

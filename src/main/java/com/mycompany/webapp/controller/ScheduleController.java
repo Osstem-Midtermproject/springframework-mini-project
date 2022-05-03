@@ -92,6 +92,21 @@ public class ScheduleController {
 
 	@Resource
 	TeamService teamService;
+	
+	//동일한 정보를 가져오게 되므로 아래의 teamService와 동일한 코드를 지니게 된다. -jBC
+		@RequestMapping("/team")
+		public String team(Model model) {
+			log.info("실행");
+			
+			//리스트의 형식으로 가져온다 
+			List<Team> detailTeamInformationPage = teamService.getTeamInformationSchedule();
+			
+			model.addAttribute("detailTeamInformationPage", detailTeamInformationPage);
+			log.info(detailTeamInformationPage);
+			log.info(model);
+					
+			return "schedule/team";
+		}
 
 	//team page에서 해당 팀을 선택하면 해당 팅믜 화면으로 이동하기 위한 컨트롤러 이다. 파라미터는 팀 ID로 구별한다. 
 	@GetMapping("/team/detail")

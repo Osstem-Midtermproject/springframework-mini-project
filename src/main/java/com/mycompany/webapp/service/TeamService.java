@@ -31,5 +31,12 @@ public class TeamService {
 		return teamdao.selectTeamInformation(detailTeamId);
 					   
 	}
+	
+	//team 스케쥴 페이지에서 팀의 id를 통해 일자, 점수 등의 정보를 가져온다 - jbc
+	public List<Team> getTeamInformationSchedule() {
+		// TODO Auto-generated method stub
+		return teamdao.selectTeamInformationPage();
+					   
+	}
 
 }
