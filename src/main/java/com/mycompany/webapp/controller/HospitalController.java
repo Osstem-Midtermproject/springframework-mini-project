@@ -197,7 +197,7 @@ public class HospitalController {
 		return "hospital/history";
 	}
 
-   //지도 별, 위치 별 병원 목록 컨트롤 호출 
+   //지도 별, 위치 별 병원 목록 컨트롤 호출 -jbc
    @GetMapping("/location")
    public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
       log.info("Location 실행");
@@ -216,7 +216,7 @@ public class HospitalController {
       return "hospital/location";
    }
    
-   //지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 
+   //지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 - jbc
    @GetMapping("/location/detail")
    public String location2(String addressHospital, Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int locationPageNo) {
       log.info("Location 실행");
@@ -239,7 +239,7 @@ public class HospitalController {
       return "hospital/location";
    }
    
-   //로케이션 이미지 변경 ajax
+   //로케이션 이미지 변경 ajax -jbc
    	@PostMapping(value = "mapimage", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String changemap(String location, Model model,  HttpServletRequest request) {

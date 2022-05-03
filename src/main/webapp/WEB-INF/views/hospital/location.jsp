@@ -260,20 +260,16 @@ button:focus {
 			    	 }
 			
 			}).done(data => {
-				
-				
-				
-				
-				
-				ㄹㅇㄴㅇㄴ
 					console.log(data);
 					var imgTag = "<img";
-					imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + data + ".png'>";
-				ㅇㄹ
-				
-				console.log(imgTag);
+					imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + data + ".png' usemap='#Map' class='map-img' id='go'>";
+					
+					console.log(imgTag);
 				//$("#go").html(data.totalFileNum);
+				$(".locationmap."+data).focus();
 				$("#dl").html(imgTag);
+				
+			
 			
 			})
 		})
@@ -394,55 +390,55 @@ button:focus {
 						<!-- 키보드 초점을 받을 수 없는 div, span과 같은 요소도 초점을 받을 수 있도록 만들어 줍니다 -->
 
 						<tr>
-							<th tabindex="0" scope="col" class = "locationmap" id="1"
+							<th tabindex="0" scope="col" class = "locationmap 1" id="1"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=강원'" --%>
 								>강원</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="4" 
+							<th tabindex="0" scope="col" class = "locationmap 4" id="4" 
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=경기'" --%>
 								>경기</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="15"
+							<th tabindex="0" scope="col" class = "locationmap 15" id="15"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=경남'" --%>
 								>경남</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="7"
+							<th tabindex="0" scope="col" class = "locationmap 7" id="7"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=경북'" --%>
 								>경북</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="12"
+							<th tabindex="0" scope="col" class = "locationmap 12" id="12"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=광주'" --%>
 								>광주</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="5"
+							<th tabindex="0" scope="col" class = "locationmap 5" id="5"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=대구'" --%>
 								>대구</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="9"
+							<th tabindex="0" scope="col" class = "locationmap 9" id="9"
 							<%-- 	onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=대전'" --%>
 								>대전</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="14"
+							<th tabindex="0" scope="col" class = "locationmap 14" id="14"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=부산'" --%>
 								>부산</th>
 						</tr>
 						<tr>
-							<th tabindex="0" scope="col" class = "locationmap" id="2"
+							<th tabindex="0" scope="col" class = "locationmap 2" id="2"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=서울'" --%>
 								>서울</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="6"
+							<th tabindex="0" scope="col" class = "locationmap 6" id="6"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=울산'" --%>
 								>울산</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="3"
+							<th tabindex="0" scope="col" class = "locationmap 3" id="3"
 							<%-- 	onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=인천'" --%>
 								>인천</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="13"
+							<th tabindex="0" scope="col" class = "locationmap 13" id="13"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=전남'" --%>
 								>전남</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="11"
+							<th tabindex="0" scope="col" class = "locationmap 11" id="11"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=전북'" --%>
 								>전북</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="16"
+							<th tabindex="0" scope="col" class = "locationmap 16" id="16"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=제주'" --%>
 								>제주</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="10"
+							<th tabindex="0" scope="col" class = "locationmap 10" id="10"
 								<%-- onclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=충남'" --%>
 								>충남</th>
-							<th tabindex="0" scope="col" class = "locationmap" id="8"
-								o<%-- nclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=충북'" --%>
+							<th tabindex="0" scope="col" class = "locationmap 8" id="8"
+								<%-- nclick="location.href='${pageContext.request.contextPath}/hospital/location/detail?locationHaddress=충북'" --%>
 								>충북</th>
 						</tr>
 
