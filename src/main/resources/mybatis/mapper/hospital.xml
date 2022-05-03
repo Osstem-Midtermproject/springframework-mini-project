@@ -39,6 +39,8 @@
 			<result column="pdln" property="pdln" />
 			<result column="paddress" property="paddress" />
 			<result column="pimg" property="pimg" />
+			<result column="penddate" property="penddate" />
+			<result column="category" property="category" />
 		</association>
 	</resultMap>
 	
@@ -75,6 +77,7 @@
 			<result column="rd_refe_img" property="rdRefeImg" />
 			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
 			<result column="rd_sid" property="rdSid" />
+			<result column="rd_content" property="rdContent" />
 		</association>
 	</resultMap>
 	
@@ -125,12 +128,6 @@
 	
 	</select>
 	
-	
-
-	
-
-	
-	
 	<resultMap id="selectHospitalStateWithResultDetailsAndStateResultMap" type="hospital">
 		<result column="hname" property="hname" />
 		<result column="hpn" property="hpn" />
@@ -153,6 +150,7 @@
 			<result column="rd_refe_img" property="rdRefeImg" />
 			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
 			<result column="rd_sid" property="rdSid" />
+			<result column="rd_content" property="rdContent" />
 		</association>
 		<association property="state" javaType="state">
 			<result column="sid" property="sid" />
@@ -193,7 +191,7 @@
 	
 	<!-- 병원 테이블의 의사면허번호와 계약서의 의사면허번호 그리고 병원 테이블의 주소와 계약서의 주소를 join 하고 hdln의 값과 contIdentificationNumber 값을 넘겨 받음 -> 페이지 전환상의 문제가 있어서 실행 못함. 다시 생각해봐야 할듯-->
 	<select id="selectHospitalContDateByHdln" parameterType="string" resultMap="selectHospitalContractDateWithContractMap">
-		select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date
+		select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date, cont
 		from hospital, contract
 		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and rownum = 1
 	</select>
@@ -268,11 +266,10 @@
 	
 	<!-- 진행상황 -->
 	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
-		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg
+		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg, penddate, category
 		from progress, hospital
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
 		order by progress.pdate asc
 	</select>
-	
 	
 </mapper>

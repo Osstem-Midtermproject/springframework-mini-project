@@ -1,19 +1,17 @@
 package com.mycompany.webapp.dto;
 
-
-import java.sql.Date;
-
 import lombok.Data;
 
 //진행상황
 @Data
 public class Progress {
 	   private int pno;
-	   private Date pdate;         //날짜
-	   private String pdln;      //의사면허번호
-	   private String paddress;   //주소
-	   private String pcategory;   //진행카테고리
-	   private String pcontent;   //내용
+	   private String pdate;			//시작일자
+	   private String penddate;		//종료일자
+	   private String pdln;			//의사면허번호
+	   private String paddress;		//주소
+	   private String pcategory;	//진행카테고리
+	   private String pcontent;		//내용
 	   
 	   //이미지
 	   private String pimg;

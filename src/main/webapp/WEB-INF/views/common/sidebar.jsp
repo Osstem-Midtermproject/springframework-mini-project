@@ -100,11 +100,6 @@
             </a>
           </li>
           <li>
-            <a href="${pageContext.request.contextPath}/hospital/history">
-              <i class="bi bi-skip-backward"></i><span>History</span>
-            </a>
-          </li>
-          <li>
             <a href="${pageContext.request.contextPath}/hospital/location">
               <i class="bi bi-geo-alt"></i><span>Location</span>
             </a>

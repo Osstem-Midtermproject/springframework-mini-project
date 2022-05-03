@@ -75,17 +75,44 @@ public class HospitalController {
 		Hospital hospitalContDate = hospitalService.getHospitalContDate(hdln);
 		model.addAttribute("hospitalContDate", hospitalContDate);
 		log.info("계약일: " + hospitalContDate);
-
-		//추가요청 띄우기
-		/*List<Hospital> hospitalArContent = hospitalService.getHospitalArContent(hdln);
-		log.info("추가요청 띄우기" + hospitalArContent);
-		model.addAttribute("hospitalArContent", hospitalArContent);*/
+		
+		//병원 계약서보기
+		String contId = hospitalContDate.getContract().getContIdentificationNumber();
+		byte[] cont = hospitalContDate.getContract().getCont();
+		
+		log.info("/processing/detail/contId: " + contId);
+		log.info("/processing/detail/cont: " + cont);
+		
+		if (cont != null) {
+			Contract contractPdf = contractService.getContract(contId);
+			model.addAttribute("contractPdf", contractPdf);
+		} else {
+			model.addAttribute("contractPdf", "");
+		}
 		
 		//진행상황 띄우기
 		List<Hospital> hospitalProgresses = hospitalService.getHospitalProgress(hdln);
-	
 		log.info(hospitalProgresses);
-	
+		
+		boolean complete = false;
+		
+		for (int i=0; i<hospitalProgresses.size(); i++) {
+			if (hospitalProgresses.get(i).getProgress().getCategory().equals("시공")) {
+				
+				if (hospitalProgresses.get(i).getProgress().getPcategory().equals("1")) {
+					hospitalProgresses.get(i).getProgress().setPcategory("전기");
+				} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("2")) {
+					hospitalProgresses.get(i).getProgress().setPcategory("설비");
+				} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("3")) {
+					hospitalProgresses.get(i).getProgress().setPcategory("도배");
+				} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("4")) {
+					hospitalProgresses.get(i).getProgress().setPcategory("가구");
+				} else {
+					hospitalProgresses.get(i).getProgress().setPcategory("시공 완료");
+				}
+			}
+		}
+		
 		model.addAttribute("hospitalProgresses", hospitalProgresses);
 		log.info(model.getAttribute("hospitalProgresses"));
 
@@ -191,12 +218,6 @@ public class HospitalController {
 		return json;
 	}
 
-	@RequestMapping("/history")
-	public String history() {
-		log.info("실행");
-		return "hospital/history";
-	}
-
    //지도 별, 위치 별 병원 목록 컨트롤 호출 
    @GetMapping("/location")
    public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
@@ -285,10 +306,9 @@ public class HospitalController {
 
 	//계약서 보기 버튼 클릭하면 계약서 보여줌
 	@GetMapping("/contractFormPdfAdmin")
-	public String contractFormPdfAdmin(String fileNum, HttpSession session, HttpServletRequest request) {
-
-		Contract c = contractService.getContract(fileNum);
-		byte[] pdf = c.getCont();
+	public String contractFormPdfAdmin(String fileNum, HttpSession session, HttpServletRequest request, Model model) {
+		Contract contract = contractService.getContract(fileNum);
+		byte[] pdf = contract.getCont();
 
 		Encoder e = Base64.getEncoder();
 		byte[] encodedBytes = e.encode(pdf);
@@ -298,6 +318,4 @@ public class HospitalController {
 		request.setAttribute("pdfString", pdfString);
 		return "/element/contractFormPdf";
 	}
-	
-
 }

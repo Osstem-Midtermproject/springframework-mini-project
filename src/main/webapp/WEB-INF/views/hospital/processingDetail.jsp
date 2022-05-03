@@ -32,7 +32,12 @@
 				</h3>
 				<h2>${hospital.hname}</h2>
 				
-				<span>계약일: ${hospitalContDate.contract.contDate}</span>
+				<c:if test="${contractPdf != ''}">
+					<span>계약일: ${hospitalContDate.contract.contDate}</span>
+				</c:if>
+				<c:if test="${contractPdf == ''}">
+					<span></span>					
+				</c:if>
 			</div>
 		</div>
 		<div class="row">
@@ -58,7 +63,21 @@
 									<th scope="row">개업일</th>
 									<td>${hospital.hod}</td>
 									<th scope="row">계약서</th>
-									<td><a class='btn btn-sm btn-secondary' style='font-size: x-small;' href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
+									
+									<c:if test="${contractPdf != ''}">
+										<td><a class="btn btn-sm btn-secondary"
+											style="font-size: x-small;" href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
+									</c:if>
+									<%-- <c:if test="${contractPdf == ''}">
+										<td><a class="btn btn-sm btn-secondary disabled"
+											style="font-size: x-small;" href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
+									</c:if> --%>
+									
+									<c:if test="${contractPdf == ''}">
+										<td>계약내역이 없습니다.</td>
+									</c:if>
+									
+									
 								</tr>
 							</tbody>
 						</table>
@@ -107,7 +126,7 @@
 
 										<tr>
 											<th scope="row">문의내용</th>
-											<td colspan="3" style="width: 85%;">없음</td>
+											<td colspan="3" style="width: 85%;">${hospital.requestDetails.rdContent}</td>
 										</tr>
 
 										<!-- 추가요청이 들어올 때마다 추가 -->
@@ -176,12 +195,17 @@
 						<h5 class="card-title">Recent Activity</h5>
 						<div class="dashboard">
 							<div class="activity">
-							
 								<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
 			                  	  <div class="activity-item d-flex">
 			                  	    <div class="activite-label">${ hospitalProgress.progress.pdate}</div>
 			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory}</div>
+			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 시작</div>
+			                  	  </div>
+			                  	   
+			                  	  <div class="activity-item d-flex">
+			                  	    <div class="activite-label">${ hospitalProgress.progress.penddate}</div>
+			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 완료</div>
 			                      </div>
 			                    </c:forEach>
 							</div>
@@ -362,6 +386,8 @@
 			 
 		 })
 	    }
+	 
+	 console.log(${c.cont});
 	</script>
 
 

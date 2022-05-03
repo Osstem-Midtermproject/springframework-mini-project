@@ -168,8 +168,7 @@
 						<td id="hname">${progress.hospital.hname}</td>
 						<td id="hdirector">${progress.hospital.hdirector}</td>
 						<td id="hpn">${progress.hospital.hpn}</td>
-						<td id="pdate"><fmt:formatDate value="${progress.pdate}"
-								pattern="yyyy-MM-dd" /></td>
+						<td id="pdate">${progress.pdate}</td>
 						<td id="pcategory">${progress.pcategory}</td>
 					</tr>
 				</c:forEach>
