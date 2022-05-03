@@ -11,7 +11,6 @@ public class CounselingSchedule {
 	int counNo;
 	int counScheId;
 	String counScheStartdate;
-	String counScheEnddate;
 	String counScheDln;
 	String counScheAddress;
 	String counScheContent;

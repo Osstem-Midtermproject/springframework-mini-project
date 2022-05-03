@@ -9,13 +9,12 @@ import lombok.Data;
 @Data
 public class Progress {
 	   private int pno;
-	   private Date pdate;         //날짜
+	   private String pdate;         //날짜
 	   private String pdln;      //의사면허번호
 	   private String paddress;   //주소
 	   private String pcategory;   //진행카테고리
 	   private String pcontent;   //내용
-	   
-	   //이미지
+	   private String penddate;
 	   private String pimg;
 	   
 	   //카테고리 필요해서 추가함 (상담/계약/시공/AS)

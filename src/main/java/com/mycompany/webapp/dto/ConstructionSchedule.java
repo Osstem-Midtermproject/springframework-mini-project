@@ -8,7 +8,7 @@ public class ConstructionSchedule {
 	int consNo;
 	int consScheId;
 	String  consScheTeamId;
-	int  consScheContractId;
+	String  consScheContractId;
 	String  consScheStartdate;
 	String  consScheEnddate;
 	String  consScheContent;

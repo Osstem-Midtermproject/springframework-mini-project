@@ -8,6 +8,7 @@
 			<result column="cons_sche_enddate" property="consScheEnddate"/>
 			<result column="cons_sche_content"  property="consScheContent"/>
 			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
+			<result column="cons_sche_address" property="consScheAddress"/>
 			<association property="constructionCategory" javaType="com.mycompany.webapp.dto.ConstructionCategory">	
 					<result column="cons_cate_type" property="consCateType"/>	
 			</association>
@@ -16,7 +17,7 @@
 			</association>
 </resultMap>
 <select id="selectAll" resultMap="selectSchedule">
-		select c.cons_sche_id, c.cons_sche_startdate, c.cons_sche_enddate, c.cons_sche_content, c.cons_sche_hospitalname,  cc.cons_cate_type,h.hdirector
+		select c.cons_sche_id, c.cons_sche_startdate, c.cons_sche_enddate, c.cons_sche_content, c.cons_sche_hospitalname,c.cons_sche_address, cc.cons_cate_type,h.hdirector
 		from constructionschedule c, hospital h, constructioncategory cc
 		where c.cons_sche_dln=h.hdln and c.cons_sche_address=h.haddress and c.cons_sche_categoryid=cc.cons_cate_id
 </select>
@@ -25,6 +26,11 @@
 		update constructionschedule
 		set cons_sche_startdate=#{consScheStartdate},cons_sche_enddate=#{consScheEnddate}
 		where cons_sche_id=#{consScheId}
+</update>
+<update id="updateProgress"  parameterType="constructionSchedule" >
+		update progress
+		set pdate=#{consScheStartdate}, penddate=#{consScheEnddate}
+		where paddress=#{consScheAddress} and pdate=#{consScheCategoryId}
 </update>
 
 <insert id="insertSchedule" parameterType="constructionSchedule">
@@ -79,4 +85,16 @@
 			</foreach>
 		)
    </select>
+   
+   <resultMap id="selectCon"  type="contract">
+			<result column="cont_identification_number" property="contIdentificationNumber"/>
+			<result column="cont_dln" property="contDln"/>		
+	</resultMap>
+   <select id="selectConidDln" resultMap="selectCon" parameterType="string">
+   		select cont_identification_number,cont_dln
+		from contract
+		where cont_address=#{address}
+   </select>
+
+  
 </mapper>

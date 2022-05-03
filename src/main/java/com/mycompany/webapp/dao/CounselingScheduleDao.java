@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.Pager;
 
@@ -18,4 +19,9 @@ public interface CounselingScheduleDao {
 	
 	
 	void insertCounselingSchedule(CounselingSchedule counselingSchedule);
+	
+	List<CounselingSchedule> selectCountAll();
+	 public void updateSchedule(CounselingSchedule counselingSchedule);
+	 public void updateProgress(CounselingSchedule counselingSchedule);
+	
 }

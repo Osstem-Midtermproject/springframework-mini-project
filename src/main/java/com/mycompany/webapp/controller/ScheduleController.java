@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.AsSchedule;
 import com.mycompany.webapp.dto.ConstructionSchedule;
+import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Progress;
 import com.mycompany.webapp.dto.Team;
 import com.mycompany.webapp.service.AsScheduleService;
 import com.mycompany.webapp.service.CalendarService;
 import com.mycompany.webapp.service.ConstructionScheduleService;
 import com.mycompany.webapp.service.CounselingScheduleService;
 import com.mycompany.webapp.service.HospitalService;
+import com.mycompany.webapp.service.ProgressService;
 import com.mycompany.webapp.service.TeamService;
 
 import lombok.extern.log4j.Log4j2;
@@ -40,16 +43,19 @@ public class ScheduleController {
 	HospitalService hospitalService;
 
 	@Resource
-	ConstructionScheduleService consturctionScheduleService;
+	ConstructionScheduleService constructionScheduleService;
 
 	@Resource
 	CounselingScheduleService counselingScheduleService;
 	
 	@Resource
 	AsScheduleService asScheduleService;
+	
+	@Resource
+	ProgressService progressService;
 
 	@GetMapping("/calendar")
-	public String calendar(Model model,String id,String start,String end,String content) {
+	public String calendar(Model model,String id,String start,String end,String content,String estart,String address) {
 		List<ConstructionSchedule> cs=calendarService.getSchedule();
 		model.addAttribute("cs",cs);
 		if(id!=null) {
@@ -59,12 +65,88 @@ public class ScheduleController {
 			schedule.setConsScheStartdate(start);
 			schedule.setConsScheEnddate(end);
 			schedule.setConsScheContent(content);
+			schedule.setConsScheAddress(address);
+			schedule.setConsScheCategoryId(estart);
 			int row=calendarService.updateSchedule(schedule);
+			constructionScheduleService.setProgress(schedule);
+			log.info(schedule);
 
 		}
 
 
 		return "schedule/calendar";
+	}
+	@PostMapping(value="/calendarajax", produces="application/json; charset=UTF-8")
+	public void calendarajax(String teamId,String start,String end,String content,String categoryId,String hospitalName,String address) {
+		ConstructionSchedule schedule=new ConstructionSchedule();
+		Progress progress=new Progress();
+		Contract con =new Contract();
+		schedule.setConsScheTeamId(teamId);
+		schedule.setConsScheStartdate(start);
+		schedule.setConsScheEnddate(end);
+		schedule.setConsScheContent(content);
+		schedule.setConsScheCategoryId(categoryId);
+		schedule.setConsScheHospitalName(hospitalName);
+		schedule.setConsScheAddress(address);
+		con=constructionScheduleService.getConidDln(address);
+		schedule.setConsScheContractId(con.getContIdentificationNumber());
+		schedule.setConsScheDln(con.getContDln());
+		progress.setPdate(start);
+		progress.setPdln(con.getContDln());
+		progress.setPcategory(categoryId);
+		progress.setPaddress(address);
+		progress.setPcontent(content);
+		progress.setPenddate(end);
+		progress.setCategory("시공");
+		progressService.setProgress(progress);
+		constructionScheduleService.setConstructionSchedule(schedule);
+
+	}
+	@GetMapping("/consultcalendar")
+	public String consultcalendar(Model model,String id,String start,String content,String estart,String address) {
+		
+		List<CounselingSchedule> cs=counselingScheduleService.getCountAll();
+		log.info(cs);
+		model.addAttribute("cs",cs);
+		if(id!=null) {
+			CounselingSchedule schedule=new CounselingSchedule();
+			Contract con =new Contract();
+			con=constructionScheduleService.getConidDln(address);
+			schedule.setCounScheId(Integer.parseInt(id));
+			schedule.setCounScheStartdate(start);
+			schedule.setCounScheDln(con.getContDln());
+			schedule.setCounScheContent(content);
+			schedule.setCounScheAddress(address);
+			counselingScheduleService.updateSchedule(schedule);
+			counselingScheduleService.setProgress(schedule);
+			
+	}
+		
+		
+		return "schedule/consultcalendar";
+	}
+	@PostMapping(value="/consultcalendarajax", produces="application/json; charset=UTF-8")
+	public void consultcalendarajax(String start,String content,String hospitalName,String address) {
+		CounselingSchedule schedule=new CounselingSchedule();
+		Progress progress=new Progress();
+		Contract con =new Contract();
+		schedule.setCounScheStartdate(start);
+		schedule.setCounScheContent(content);
+		schedule.setCounScheAddress(address);
+		con=constructionScheduleService.getConidDln(address);
+		schedule.setCounScheDln(con.getContDln());
+		
+		progress.setPdate(start);
+		progress.setPdln(con.getContDln());
+		progress.setPcategory("상담");
+		progress.setPaddress(address);
+		progress.setPcontent(content);
+		progress.setPenddate(start);
+		progress.setCategory("상담");
+		log.info(progress);
+		progressService.setProgressConsult(progress);
+		counselingScheduleService.setSchedule(schedule);
+
 	}
 
 	@RequestMapping("/detailForm")
@@ -164,14 +246,14 @@ public class ScheduleController {
 		p.setConsturctionCategory(allData);
 		p.setSearchBar(searchBar);
 
-		int totalNum = consturctionScheduleService.getTotalNum(p);
+		int totalNum = constructionScheduleService.getTotalNum(p);
 		Pager pager = new Pager(10, 5, totalNum, pageNo);
 		pager.setConsturctionCategory(allData);
 		pager.setSearchBar(searchBar);
 
 		model.addAttribute("pager", pager);
 
-		List<ConstructionSchedule> constructionScheduleList = consturctionScheduleService.getConstructionSchedule(pager);
+		List<ConstructionSchedule> constructionScheduleList = constructionScheduleService.getConstructionSchedule(pager);
 		model.addAttribute("constructionScheduleList", constructionScheduleList);
 		log.info(model.getAttribute("constructionScheduleList"));
 

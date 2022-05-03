@@ -44,7 +44,7 @@
             </a>
            	 <ul id="forms-schedule" class="nav-content collapse">
             	 <li >
-            		<a href="${pageContext.request.contextPath}/schedule/calendar">
+            		<a href="${pageContext.request.contextPath}/schedule/consultcalendar">
               			<span>-상담/AS</span>
             		</a>
           		</li>

@@ -38,5 +38,13 @@ public class ProgressService {
 	public List<Progress> showProgressListByCheckBox(Pager pager) {
 		return progressDao.selectProgressListByCheckBox(pager);
 	}
+	public void setProgress(Progress progress) {
+		
+		progressDao.insertProgress(progress);
+	}
+	public void setProgressConsult(Progress progress) {
+		
+		progressDao.insertProgressconsult(progress);
+	}
 
 }

@@ -18,5 +18,9 @@ public interface ProgressDao {
    //체크박스로 해당 카테고리의 리스트 불러오기
    int countByCheckBox(HosptialAndCategory hac);
    List<Progress> selectProgressListByCheckBox(Pager pager);
+   
+   void insertProgress(Progress progress);
+   
+   void insertProgressconsult(Progress progress);
 }
 

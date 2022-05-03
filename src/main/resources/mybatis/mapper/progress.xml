@@ -64,4 +64,11 @@
 		where rnum &gt;= #{startRowNo}	
 	</select>
 	
+	<insert id="insertProgress"  parameterType="progress">
+		insert into progress values(to_date(#{pdate},'yyyy-mm-dd'),#{pdln},#{paddress},#{pcategory},#{pcontent},#{category},null,to_date(#{penddate},'yyyy-mm-dd'))
+	</insert>
+	<insert id="insertProgressconsult"  parameterType="progress">
+		insert into progress values(to_date(#{pdate},'yyyy-mm-dd HH24:MI:SS'),#{pdln},#{paddress},#{pcategory},#{pcontent},#{category},null,to_date(#{penddate},'yyyy-mm-dd HH24:MI:SS'))
+	</insert>
+	
 </mapper>

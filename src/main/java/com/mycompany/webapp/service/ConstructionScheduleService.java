@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.ConstructionScheduleDao;
 import com.mycompany.webapp.dto.ConstructionSchedule;
+import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Pager;
 
 import lombok.extern.log4j.Log4j2;
@@ -30,6 +31,14 @@ public class ConstructionScheduleService {
 	}
 	public List<ConstructionSchedule> getConstructionSchedule(Pager pager) {
 		return constructionScheduleDao.selectConstructionSchedule(pager);
+	}
+	public void setProgress(ConstructionSchedule constructionSchedule) {
+		
+		constructionScheduleDao.updateProgress(constructionSchedule);
+	}
+	public Contract getConidDln(String address) {
+		
+		return constructionScheduleDao.selectConidDln(address);
 	}
 	
 }
