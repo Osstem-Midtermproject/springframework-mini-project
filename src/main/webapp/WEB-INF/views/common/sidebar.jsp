@@ -68,102 +68,114 @@
 		</a></li>
 		<!-- End Management Nav -->
 	</ul>
-	<div class="container">
-		<div class="col-6">
-			<label><b>채팅방</b></label>
+<div id="chatcon" class="container">
+	<div class="col-6">
+		<label><b>채팅방</b></label>
+	</div>
+	<div>
+		<div id="msgArea" class="col">
+		
 		</div>
-		<div>
-			<div id="msgArea" class="col"></div>
-			<div class="col-6">
-				<div class="input-group mb-3">
-					<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-					</div>
-				</div>
+		<div class="col-6">
+		<div class="input-group mb-3"  style="width:250px;">
+			<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" >
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
 			</div>
 		</div>
-		<div class="col-6"></div>
+		
+		</div>
 	</div>
-		
+	<div class="col-6">
+	</div>
+</div>
+
+	
 <script type="text/javascript">
+function scrolldown(){
+	const msgArea = $('#msgArea'); 
+	msgArea.scrollTop(msgArea[0].scrollHeight);
 
-//전송 버튼 누르는 이벤트
-$("#button-send").on("click", function(e) {
-	sendMessage();
-	$('#msg').val('')
-});
-
-var sock = new SockJS("${pageContext.request.contextPath}/echo");
-console.log(sock);
-sock.onmessage = onMessage;
-sock.onclose = onClose;
-sock.onopen = onOpen;
-
-function sendMessage() {
-	sock.send("${userid}"+":"+$("#msg").val());
 }
-//서버에서 메시지를 받았을 때
-function onMessage(msg) {
-	
-	var data = msg.data;
-	console.log(data);
-	var sessionId = null; //데이터를 보낸 사람
-	var message = null;
-	
-	var arr = data.split(":");
-	
-	for(var i=0; i<arr.length; i++){
-		console.log('arr[' + i + ']: ' + arr[i]);
-	}
-	
-	var cur_session = "${userid}"; //현재 세션에 로그인 한 사람
-	 console.log("cur_session : " + cur_session);
-	 sessionId = arr[0];
-     message = arr[1];
+$(function(){
 
-     console.log("sessionID : " + sessionId);
-     console.log("cur_session : " + cur_session);
-	
-    //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-	if(sessionId == cur_session){
-		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-secondary'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
-		
-		$("#msgArea").append(str);
-	}
-	else{
-		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-warning'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
-		
-		$("#msgArea").append(str);
-	}
-	
-}
-//채팅창에서 나갔을 때
-function onClose(evt) {
-	
-	var user = '${userid}';
-	var str = user + " 님이 퇴장하셨습니다.";
-	
-	$("#msgArea").append(str);
-}
-//채팅창에 들어왔을 때
-function onOpen(evt) {
-	
-	var user = '${userid}';
-	var str = user + "님이 입장하셨습니다.";
-	
-	$("#msgArea").append(str);
-}
+    const username = "${userid}";
 
+    $("#disconn").on("click", (e) => {
+        disconnect();
+    })
+    
+    $("#button-send").on("click", (e) => {
+        send();
+    });
+
+    const websocket = new SockJS("${pageContext.request.contextPath}/echo");
+
+    websocket.onmessage = onMessage;
+    websocket.onopen = onOpen;
+    websocket.onclose = onClose;
+
+    function send(){
+
+        let msg = document.getElementById("msg");
+
+        console.log(username + ":" + msg.value);
+        websocket.send(username + ":" + msg.value);
+        msg.value = '';
+    }
+    
+    //채팅창에서 나갔을 때
+    function onClose(evt) {
+        var str = username + ": 님이 방을 나가셨습니다.";
+        websocket.send(str);
+    }
+    
+    //채팅창에 들어왔을 때
+    function onOpen(evt) {
+        var str = username + ": 님이 입장하셨습니다.";
+        websocket.send(str);
+    }
+
+    function onMessage(msg) {
+        var data = msg.data;
+        var sessionId = null;
+        //데이터를 보낸 사람
+        var message = null;
+        var arr = data.split(":");
+
+        for(var i=0; i<arr.length; i++){
+            console.log('arr[' + i + ']: ' + arr[i]);
+        }
+
+        var cur_session = username;
+
+        //현재 세션에 로그인 한 사람
+        console.log("cur_session : " + cur_session);
+        sessionId = arr[0];
+        message = arr[1];
+
+        console.log("sessionID : " + sessionId);
+        console.log("cur_session : " + cur_session);
+
+        //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+        if(sessionId == cur_session){
+            var str = "<div class='col-6'>";
+            str += "<div class='alert alert-secondary' style='width:230px;'>";
+            str += "<b>" + sessionId + " : " + message + "</b>";
+            str += "</div></div>";
+            $("#msgArea").append(str);
+            scrolldown();
+        }
+        else{
+            var str = "<div class='col-6'>";
+            str += "<div class='alert alert-warning' style='width:230px;'>";
+            str += "<b>" + sessionId + " : " + message + "</b>";
+            str += "</div></div>";
+            $("#msgArea").append(str);
+            scrolldown();
+        }
+    }
+    })
 </script>
-
 </aside>
 <!-- End Sidebar-->

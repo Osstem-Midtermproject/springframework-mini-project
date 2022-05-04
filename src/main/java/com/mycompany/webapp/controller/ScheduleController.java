@@ -138,7 +138,7 @@ public class ScheduleController {
 		
 		progress.setPdate(start);
 		progress.setPdln(con.getContDln());
-		progress.setPcategory("상담");
+		progress.setPcategory("5");
 		progress.setPaddress(address);
 		progress.setPcontent(content);
 		progress.setPenddate(start);

@@ -19,6 +19,7 @@
   scroll-behavior: smooth;
 }
 
+
 body {
   font-family: "Noto Sans KR", sans-serif;
   background: white;
@@ -800,5 +801,4 @@ img.ui-datepicker-trigger {
       input[id="btncheck3"]:checked + label {
         color: white;
       }
-
 
