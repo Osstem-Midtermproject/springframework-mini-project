@@ -87,8 +87,15 @@ public class HospitalService {
 	}
 	
 	//지역 병원 지역별로 출력
-	public List<Hospital> getLocationHospital2(String addfressHospital) {
-		log.info("tlfgod");
-		return hospitalDao.selectByLocation2(addfressHospital); 
+	public List<Hospital> getLocationHospital2(Pager pager) {
+		log.info(pager);
+		return hospitalDao.selectByLocation2(pager); 
 	}
+	
+	//지역 병원 지역별로 출력 - jbc
+		public int selectByLocationcount(String addfressHospital) {
+			log.info(addfressHospital);
+			return hospitalDao.selectByLocationcount(addfressHospital); 
+		}
+	
 }

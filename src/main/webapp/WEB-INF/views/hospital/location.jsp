@@ -107,7 +107,7 @@ button:focus {
       };
 		   
    	function kakaoMap(address, name){
-		
+		console.log("fdhskfsjnfn");
 		//카카오 지도 APi를 사용하여 주소를 검색하여 해당 주소의 위도와 경로르 받아온다. 
    		$.ajax({
  	  		url:'https://dapi.kakao.com/v2/local/search/address.json?query=' + address,
@@ -154,62 +154,6 @@ button:focus {
  		});
     };
     
-  //페이지 로드 시 자동으로 실행하는 데 파라미터 값을 읽어온다. 이 때 파라미터 값을 읽고 이미지를 불러 올 수 있게 if문으로 번호로 변경하였다. 
-	/* $(document).ready(function(){ 
-		const urlParams = new URL(location.href).searchParams;
-
-		//처음 페이지에서는 강원도가 나오도록한다.
-		const name = urlParams.get('locationHaddress');
-		if(name == null){
-			lo = '1';
-		}
-		
-		console.log(name);
-
-		if(name == '강원'){
-			lo = '1';
-		} else if(name == '서울'){
-			lo = '2';
-		} else if(name == '인천'){
-			lo = '3';
-		} else if(name == '경기'){
-			lo = '4';
-		} else if(name == '대구'){
-			lo = '5';
-		} else if(name == '울산'){
-			lo = '6';
-		} else if(name == '경북'){
-			lo = '7';
-		} else if(name == '충북'){
-			lo = '8';
-		} else if(name == '대전'){
-			lo = '9';
-		}else if(name == '충남'){
-			lo = '10';
-		}else if(name == '전북'){
-			lo = '11';
-		}else if(name == '광주'){
-			lo = '12';
-		}else if(name == '전남'){
-			lo = '13';
-		}else if(name == '부산'){
-			lo = '14';
-		}else if(name == '경남'){
-			lo = '15';
-		}else if(name == '제주'){
-			lo = '16';
-		} 
-		
-		 var name2 = "location" + lo;
-	     
-		 //하단의 지역구 테이블에도 선택 된 상태로 둔다.
-	        document.getElementById(name2).focus();
-	      
-		//이미지를 고정 및 전환한다.
-		$("#go").attr("src", "${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + lo +".png");
-
-	}); */
-
   	//이미지 클릭시 ajax로 이미지 변경
 	$(function(){
 		$('.locationmap').on("click",function(){
@@ -256,21 +200,58 @@ button:focus {
 			$.ajax({
 				url:"mapimage",
 				type:'post',
-			    data:{"location":location
-			    	 }
-			
+			    data:{"location":location, "locationKR":locationKR}
 			}).done(data => {
-					console.log(data);
+					console.log(location);
 					var imgTag = "<img";
-					imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + data + ".png' usemap='#Map' class='map-img' id='go'>";
+					imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + location + ".png' usemap='#Map' class='map-img' id='go'>";
 					
 					console.log(imgTag);
-				//$("#go").html(data.totalFileNum);
-				$(".locationmap."+data).focus();
-				$("#dl").html(imgTag);
+					//$("#go").html(data.totalFileNum);
+					$(".locationmap."+location).focus();
+					$("#dl").html(imgTag);
+					
+					// 가져온 리스트를 출력하는데 이상하게 each가 안 먹히므로 for로 대체한다.
+						 
+					var List = data.detailLocationList;
+					console.log(List);
+					
+					var listTag = "";
+					for(var i = 0; i < List.length; i++){
+						listTag += "<tr>";
+						listTag += "<td>" + List[i].hno + "</td>";
+						listTag += "<td>" + List[i].hname + "</td>";
+						listTag += "<td>" + List[i].haddress + "</td>";
+						listTag += "<td>" + List[i].hpn + "</td>";
+						
+						listTag += "<td><button type='button' class='btn btn-outline-primary'";
+						listTag += "onclick=\"location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
+						
+						listTag += "<td><button type='button' class='btn btn-outline-primary'";
+						listTag += "onclick=\"kakaoMap('"+  List[i].haddress  + "','"  + List[i].hname + "')\">지도</button></td>";
+						listTag += "</tr>";
+						
+					/* 	<button type="button" class="btn btn-outline-primary"
+							onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button> */
+						
+					}
+					$(".detailList").html(listTag);
+					
+					
+				/* 	<tr class="detailList">
+
+					<td>${location.hno}</td>
+					<td>${location.hname}</td>
+					<td>${location.haddress}</td>
+					<td>${location.hpn}</td>
+					<td><button type="button" class="btn btn-outline-primary"
+							onclick="location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=${location.hdln}'">내역보기</button></td>
+					<td><button type="button" class="btn btn-outline-primary"
+							onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button></td>
+
+				</tr> */
+					
 				
-			
-			
 			})
 		})
 	});
@@ -459,23 +440,10 @@ button:focus {
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="detailList">
 
-							<!--내역 보기 버튼 활성화 필요 -->
-							<c:forEach var="location" items="${locationHospital}">
-								<tr class="tak">
-
-									<td>${location.hno}</td>
-									<td>${location.hname}</td>
-									<td>${location.haddress}</td>
-									<td>${location.hpn}</td>
-									<td><button type="button" class="btn btn-outline-primary"
-											onclick="location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=${location.hdln}'">내역보기</button></td>
-									<td><button type="button" class="btn btn-outline-primary"
-											onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button></td>
-
-								</tr>
-							</c:forEach>
+							
+						
 						</tbody>
 					</table>
 

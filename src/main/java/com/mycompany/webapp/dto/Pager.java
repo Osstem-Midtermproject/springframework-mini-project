@@ -25,6 +25,8 @@ public class Pager {
 	
 	private String searchBar;
 	
+	private String locationHaddress; //로케이션에서 주소를 사용하여 쿼리 처리 - jbc
+	
 	private List<String> category;
 	
 	private List<String> consturctionCategory;

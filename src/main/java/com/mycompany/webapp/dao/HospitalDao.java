@@ -48,7 +48,13 @@ public interface HospitalDao {
 	public List<Hospital> selectByLocation(Pager pager);
 	
 	//병원 상세 지도 별(지역)에 맞는 병원 리스트 전체 출력
-	public List<Hospital> selectByLocation2(String addfressHospital );
+	public List<Hospital> selectByLocation2(Pager pager);
+	
+	//병원 상세 지도 별 페이저 처리- jbc
+	public int selectByLocationcount(String addfressHospital);
+	
+	
+	
 	
 	
 }

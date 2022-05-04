@@ -112,24 +112,32 @@
 	</select>
 	
 	<!-- 선택 지역별 출력 -->
-	<!-- 페이저 처리 해야댐 제길 -->
 	
-	<select id="selectByLocation2" parameterType="String" resultMap="selectHospitalWithLocation">
+	<select id="selectByLocation2" parameterType="pager" resultMap="selectHospitalWithLocation">		
+	
+	SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
+	FROM (
+		SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
+		FROM (
+			SELECT hname, haddress, hpn, hdln
+			FROM hospital
+			WHERE SUBSTR(haddress, 1, 2) = #{locationHaddress}
+			)
+		WHERE rownum &lt;= #{endRowNo}
+		)
+	WHERE rnum &gt;= #{startRowNo}
 		
-	
-              select ROWNUM as rnum, hname, haddress, hpn, hdln
-           
-                  FROM hospital 
-                  WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
-               
-	
 	</select>
 	
+	<!-- 지역 선택 병원 페이저 처리를 위한 개수 count - jbc -->
+	<select id="selectByLocationcount" parameterType="String" resultType="int">
 	
+		SELECT count(*)
+		FROM hospital
+		WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
 
-	
+	</select>
 
-	
 	
 	<resultMap id="selectHospitalStateWithResultDetailsAndStateResultMap" type="hospital">
 		<result column="hname" property="hname" />
