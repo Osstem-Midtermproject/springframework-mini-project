@@ -253,24 +253,28 @@ public class ScheduleController {
 	//schedule/counselingAndAsList : 상담 스케줄 리스트 불러오기
 	@PostMapping(value = "selectScheduleList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String selectScheduleList(String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String selectScheduleList(String searchBar, String sdate1, String edate1, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
+		p.setSdate(sdate1);
+		p.setEdate(edate1);
 		p.setSearchBar(searchBar);
 
 		int totalNum = counselingScheduleService.getCounselingScheduleTotalNum(p);
 		Pager pager = new Pager(5, 5, totalNum, pageNo);
+		pager.setSdate(sdate1);
+		pager.setEdate(edate1);
 		pager.setSearchBar(searchBar);
 
 		model.addAttribute("pager", pager);
 
-		List<CounselingSchedule> constructionScheduleList = counselingScheduleService.getCounselingSchedule(pager);
-		model.addAttribute("constructionScheduleList", constructionScheduleList);
-		log.info(model.getAttribute("constructionScheduleList"));
+		List<CounselingSchedule> counselingScheduleList = counselingScheduleService.getCounselingSchedule(pager);
+		model.addAttribute("counselingScheduleList", counselingScheduleList);
+		log.info(model.getAttribute("counselingScheduleList"));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("constructionScheduleList", constructionScheduleList);        
+		jsonObject.put("counselingScheduleList", counselingScheduleList);        
 		jsonObject.put("p", pager);
 		jsonObject.put("startPageNo",pager.getStartPageNo());
 		jsonObject.put("endPageNo",pager.getEndPageNo());
@@ -289,14 +293,18 @@ public class ScheduleController {
 	//schedule/counselingAndAsList : AS 스케줄 리스트 불러오기
 	@PostMapping(value = "selectAsScheduleList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String selectAsScheduleList(String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String selectAsScheduleList(String searchBar, String sdate1, String edate1, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
+		p.setSdate(sdate1);
+		p.setEdate(edate1);
 		p.setSearchBar(searchBar);
 
 		int totalNum = asScheduleService.getAsScheduleTotalNum(p);
 		Pager pager = new Pager(5, 5, totalNum, pageNo);
+		pager.setSdate(sdate1);
+		pager.setEdate(edate1);
 		pager.setSearchBar(searchBar);
 
 		model.addAttribute("pager", pager);
@@ -328,14 +336,20 @@ public class ScheduleController {
 	//schedule/notificationList : 알림 리스트 리스트 불러오기
 	@PostMapping(value = "notificationList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String notificationList(String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String notificationList(String searchBar, String sdate, String edate, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
+		p.setSdate(sdate);
+		p.setEdate(edate);
 		p.setSearchBar(searchBar);
 
 		int totalNum = requestDetailsService.getNotificationTotalNum(p);
+		log.info(totalNum);
 		Pager pager = new Pager(5, 5, totalNum, pageNo);
+		pager.setSdate(sdate);
+		pager.setEdate(edate);
+		log.info(pager.getEdate());
 		pager.setSearchBar(searchBar);
 
 		model.addAttribute("pager", pager);

@@ -21,5 +21,7 @@ public interface ConstructionScheduleDao {
 	public List<ConstructionSchedule> selectConstructionSchedule(Pager pager);
 
 	public List<ConstructionSchedule> selectTodayConstructionSchedule();
+
+	public List<ConstructionSchedule> selectTodayConstructionScheduleAll();
 	
 }

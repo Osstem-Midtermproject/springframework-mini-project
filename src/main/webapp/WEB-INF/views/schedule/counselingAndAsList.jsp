@@ -27,6 +27,7 @@
                 
                 <div class="d-flex justify-content-between">                  
                                    
+                    <!-- ----------------------- calendar --------------------------->
                     <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
                  
                  
@@ -80,7 +81,11 @@
                 <h5 class="card-title">Counseling & AS Schedule List</h5>
                 
                 <div class="d-flex justify-content-between">                  
-                    <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+                    <div class="col-sm-2 d-flex align-items-center">
+					  <input type="date" class="form-control" id="startdate1">
+					  <span style="margin: 0.2rem;">~</span>
+					  <input type="date" class="form-control" id="enddate1">
+					</div>
                   
                   	<!-- 검색 및 검색 종류 -->
 					<div class="search-bar">
@@ -141,6 +146,26 @@
 
 <script type="text/javascript">
 
+    //Notification List : 시작일과 종료일이 모두 선택되었을 때만 작동	
+	$('#enddate').change(function() {
+		let sdate = $("#startdate").val();
+		let edate = $("#enddate").val();
+		
+		if(sdate !== '' && edate !== ''){
+			notificationList(1);
+		}
+	});
+    
+    //Counseling & AS Schedule List : 시작일과 종료일이 모두 선택되었을 때만 작동	
+	$('#enddate1').change(function() {
+		let sdate1 = $("#startdate1").val();
+		let edate1 = $("#enddate1").val();
+		
+		if(sdate1 !== '' && edate1 !== ''){
+			selectScheduleList(1);
+		}
+	});
+	
 	//select box에서 상담이 선택되면 상담 스케줄 리스트를 보여주고, AS가 선택되면 AS 스케줄 리스트를 보여준다
 	$('#selectAsOrCounseling').change(function() {
 		if(this.value==2){
@@ -162,27 +187,43 @@
 	
 	//알림 리스트를 보여주는-------------------------------------------------------------------------
 	function notificationList(no) { 
-    	
-        let searchBar = $("#searchBar").val();
+		//시작일 종료일
+		let sdate = $("#startdate").val();
+		let edate = $("#enddate").val();
+		
+		//시작일과 종료일이 선택되지 않았다면 일괄적으로 이번 년도로 검색 
+		if(sdate === '' && edate === ''){
+			sdate='2022-01-01';
+			edate='2022-12-31';
+		}
+
+		//검색된 병원명 가져오기
+		let searchBar = $("#searchBar").val();
+		
         $.ajax({
         	url: 'notificationList',
             type: 'post',
-            data: {"searchBar": searchBar , "pageNo": no}
+            data: {"searchBar": searchBar , "sdate":sdate, "edate":edate, "pageNo": no}
         }).done(function (result){
-                    
-	        console.log(result);
-	        
+                    	        
 	       	var str="";
 	
 	        $.each(result.notificationList,function(index,list){
-	        	console.log(list.rdAddress);
-	        	var arr = new Array();
-	        	arr[0]=
 	        	
-				
-				str = str + "<tr><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td><td>"+ list.rdContent +
-	        	"</td><td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate+"</td><td>"+
-	        	list.rdCounDate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정하기</button></td><tr>";
+				var t = list.rdCounDate.substr(10,13);
+				var time1 = t.substr(0,3) + "시"
+	        	var content = list.rdContent;
+	        	
+	        	if(list.rdContent.length > 60){
+	        		content = list.rdContent.substr(0,61) + "...";
+		        	var s ="<td data-bs-toggle ='tooltip' data-bs-placement='top' title='" + list.rdContent + "'>"+ content + "</td>";
+	        		content += s;
+	        	}else{
+	        		content="<td>"+ list.rdContent + "</td>";
+	        	}
+	        	
+				str = str + "<tr><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+	        	list.rdCounDate.substr(0,10) + time1 +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정하기</button></td><tr>";
 	
 			})   
 	
@@ -232,27 +273,48 @@
 	
 	//상담 스케줄 리스트를 보여주는----------------------------------------------------------------------------- 
     function selectScheduleList(no) { 
-    	
+		
+		//시작일 종료일
+		let sdate1 = $("#startdate1").val();
+		let edate1 = $("#enddate1").val();
+		
+		//시작일과 종료일이 선택되지 않았다면 일괄적으로 이번 년도로 검색 
+		if(sdate1 === '' && edate1 === ''){
+			sdate1='2022-01-01';
+			edate1='2022-12-31';
+		}
+		
         let searchBar = $("#searchBar2").val();
         
         $.ajax({
         	url: 'selectScheduleList',
             type: 'post',
-            data: {"searchBar": searchBar , "pageNo": no}
+            data: {"searchBar": searchBar, "sdate1":sdate1, "edate1":edate1, "pageNo": no}
         }).done(function (result){
                     
         console.log(result);
         
        	var str="";
 
-        $.each(result.constructionScheduleList,function(index,list){
+        $.each(result.counselingScheduleList,function(index,list){
 
 			var date1 = list.counScheStartdate.substr(0, 10);
-			var time1 = list.counScheStartdate.substr(11,13);
+			var t = list.counScheStartdate.substr(10,13);
+			var time1 = t.substr(0,3) + "시"
+			
+        	var content1 = list.counScheContent;
+
+        	if(list.counScheContent.length > 50){
+        		content1 = list.counScheContent.substr(0,51) + "...";
+	        	var s ="<td data-bs-toggle ='tooltip' data-bs-placement='top' title='" + list.counScheContent + "'>"+ content1 + "</td>";
+        		content1 += s;
+        	}else{
+        		content1="<td>"+ list.counScheContent + "</td>";
+        	}
 			
 			str = str + "<tr><td>"+list.counNo+"</td><td>"+"상담"+
-        	"</td><td>"+list.counScheAddress+"</td><td>"+list.hospital.hname+
-        	"</td><td>"+list.counScheContent+"</td><td>"+date1+"</td><td>"+time1+"</td><tr>";
+        	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
+        	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
 
 		})   
 
@@ -260,12 +322,10 @@
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
-        
 	  	if(result.groupNo > 1){
 	  		var no = result.startPageNo-1;
 	  		str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
 	  	} 
-        
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
                 str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
@@ -273,12 +333,10 @@
                 str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
-        
     	if(result.groupNo < result.totalGroupNo){
       	  var num = result.endPageNo +1;
       	  str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
         }
-        
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         
@@ -290,23 +348,30 @@
 	//AS 스케줄 리스트를 보여주는
 	function selectAsScheduleList(no) { 
     	
+		//시작일 종료일
+		let sdate1 = $("#startdate1").val();
+		let edate1 = $("#enddate1").val();
+		
+		//시작일과 종료일이 선택되지 않았다면 일괄적으로 이번 년도로 검색 
+		if(sdate1 === '' && edate1 === ''){
+			sdate1='2022-01-01';
+			edate1='2022-12-31';
+		}
+		
         let searchBar = $("#searchBar2").val();
         $.ajax({
         	url: 'selectAsScheduleList',
             type: 'post',
-            data: {"searchBar": searchBar , "pageNo": no}
+            data: {"searchBar": searchBar, "sdate1":sdate1, "edate1":edate1, "pageNo": no}
         }).done(function (result){
-                    
-        console.log(result);
-        
+                            
        	var str="";
 
         $.each(result.asScheduleList,function(index,list){
         	
-
-			var date = list.asStartDate.substr(0, 10);
-		
-			var time = list.asStartDate.substr(11,13);
+			var date = list.asStartDate.substr(0, 10);	
+			var t = list.asStartDate.substr(10,13);
+			var time = t.substr(0,3) + "시"
 			
 			str = str + "<tr><td>"+list.asNo+"</td><td>"+"AS"+
         	"</td><td>"+list.hospital.hname+"</td><td>"+ list.asAddress +
@@ -318,12 +383,10 @@
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
-        
 	  	if(result.groupNo > 1){
 	  		var no = result.startPageNo-1;
 	  		str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
 	  	} 
-        
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
                 str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
@@ -331,12 +394,10 @@
                 str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
-        
     	if(result.groupNo < result.totalGroupNo){
       	  var num = result.endPageNo +1;
       	  str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
         }
-        
         str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         

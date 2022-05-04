@@ -85,10 +85,10 @@ public class UserController {
 				return "redirect:/dashboard";
 			}
 		}else if(dbUser.getResult() ==LoginResult.FAIL_MID) {
-			model.addAttribute("error", "아이디가 존재하지 않습니다");
+			model.addAttribute("error", "아이디를 확인하세요");
 			return "/user/login";
 		}else {
-			model.addAttribute("error", "패스워드가 틀립니다");
+			model.addAttribute("error", "패스워드를 확인하세요");
 			return "/user/login";
 		}
 	}

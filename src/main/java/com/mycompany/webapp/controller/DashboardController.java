@@ -99,4 +99,18 @@ public class DashboardController {
 		String json = jsonObject.toString();
 		return json;
 	}
+	
+	//dashboard - construction schedule : 전체보기 버튼 눌릴 때
+	@PostMapping(value = "allConstruction", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String allConstruction(Model model) {
+
+		List<ConstructionSchedule> constructionScheduleList = constructionScheduleService.getTodayConstructionScheduleAll();
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("constructionScheduleList", constructionScheduleList);
+
+		String json = jsonObject.toString();
+		return json;
+	}
 }

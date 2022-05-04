@@ -22,31 +22,33 @@
               from (
 					select hname, rd_content, rd_title, rd_applicationdate, rd_coun_date, rd_state, rd_dln, rd_address
 					from requestdetails INNER JOIN hospital on rd_dln=hdln and rd_address=haddress
-			  		where rd_state = 1 and hname like '%'|| #{searchBar} ||'%'
-			  		order by rd_applicationdate desc
+			  		where rd_state = 1 and hname like '%'|| #{searchBar} ||'%' 
+                    and TO_CHAR(rd_applicationdate,'yyyy-mm-dd') between #{sdate} and #{edate}
+			  		ORDER BY to_char(rd_applicationdate,'yyyymmdd HH24:MI:SS') desc
           	        )
           where rownum &lt;= #{endRowNo}
           )
-      where rnum &gt;= #{startRowNo}   
-   </select>
-   
+      where rnum &gt;= #{startRowNo}
+   </select>  
    <select id="selectNotificationTotalNum" resultType="int" parameterType="pager">
 		select count(*)
 		from requestdetails INNER JOIN hospital on rd_dln=hdln and rd_address=haddress		
 		where rd_state = 1 and hname like '%'|| #{searchBar} ||'%' 
+		and to_char(rd_applicationdate,'yyyy-mm-dd') between #{sdate} and #{edate}	
    </select>
-   
+  
+   <!-- 요청내역 상태 변경 -->
    <update id="updateRdstate" parameterType="string">
 		update requestdetails 
 		set rd_state = 0 where rd_dln = #{dln} 
    </update>
    
-   	<resultMap id="requestDetailsResultMap"  type="requestDetails">
+   <resultMap id="requestDetailsResultMap"  type="requestDetails">
 			<result column="rd_content" property="rdContent"/>
 			<result column="rd_coun_date"  property="rdCounDate"/>
 			<result column="rd_address"  property="rdAddress"/>
 			<result column="rd_dln"  property="rdDln"/>
-	</resultMap>
+   </resultMap>
    <select id="selectRD" parameterType="string" resultMap="requestDetailsResultMap">
    		select rd_dln, rd_address, rd_coun_date, rd_content 
 		from requestdetails where rd_dln = #{dln}
