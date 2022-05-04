@@ -53,7 +53,7 @@ public class DashboardController {
 		return "dashboard/dashboard";
 	}
 	
-	//schedule/constructionList : 체크박스가 클릭되거나 또는 서치박스의 검색 버튼이 눌릴 때 호출되는
+	//dashboard - new notification : 1초마다 반복
 	@PostMapping(value = "dashNotification", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String dashNotification(Model model) {
@@ -71,4 +71,32 @@ public class DashboardController {
 
 	}
 	
+	//dashboard - counseling schedule : 1초마다 반복
+	@PostMapping(value = "dashCounselingList", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String dashCounselingList(Model model) {
+
+		List<CounselingSchedule> counselingScheduleList = counselingScheduleService.getTodayCounselingSchedule();
+		model.addAttribute("counselingScheduleList", counselingScheduleList);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("counselingScheduleList", counselingScheduleList);
+
+		String json = jsonObject.toString();
+		return json;
+	}
+	
+	//dashboard - construction schedule : 1초마다 반복
+	@PostMapping(value = "dashConstructionList", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String dashConstructionList(Model model) {
+
+		List<ConstructionSchedule> constructionScheduleList = constructionScheduleService.getTodayConstructionSchedule();
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("constructionScheduleList", constructionScheduleList);
+
+		String json = jsonObject.toString();
+		return json;
+	}
 }

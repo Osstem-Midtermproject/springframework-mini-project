@@ -32,5 +32,10 @@ public class CounselingScheduleService {
 		return counselingScheduleDao.selectCounselingScheduleList(pager);
 	}
 
+	//dashboard - counseling schedule : 1초마다 반복ㅙ서 리스트 가져오기
+	public List<CounselingSchedule> getTodayCounselingSchedule() {
+		return counselingScheduleDao.selectTodayCounselingSchedule();
+	}
+
 	
 }

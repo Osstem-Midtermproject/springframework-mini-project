@@ -19,5 +19,7 @@ public interface ConstructionScheduleDao {
     //시공 스케쥴 리스트 페이저(검색 + 체크박스)
 	public int selectConstructionScheduleNum(Pager p);
 	public List<ConstructionSchedule> selectConstructionSchedule(Pager pager);
+
+	public List<ConstructionSchedule> selectTodayConstructionSchedule();
 	
 }

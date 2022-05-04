@@ -79,4 +79,21 @@
 			</foreach>
 		)
    </select>
+   
+   <!-- dashboard - construction schedule : 1초마다 반복 -->
+   <resultMap id="selectTodayConstructionScheduleResultMap"  type="constructionSchedule">
+			<result column="cons_sche_startdate" property="consScheStartdate"/>
+			<result column="cons_sche_enddate" property="consScheEnddate"/>
+			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
+			<association property="team" javaType="com.mycompany.webapp.dto.Team">	
+					<result column="tcategory" property="tcategory"/>	
+			</association>
+	</resultMap>
+	<select id="selectTodayConstructionSchedule" resultMap="selectTodayConstructionScheduleResultMap">
+		select cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, tcategory from constructionschedule
+		INNER JOIN team on cons_sche_teamid = tid
+		where TO_CHAR(SYSDATE,'yyyymmdd') BETWEEN TO_CHAR(cons_sche_startdate,'yyyymmdd') and TO_CHAR(cons_sche_enddate,'yyyymmdd')and rownum &lt; 5
+		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd') desc
+	</select>
+   
 </mapper>

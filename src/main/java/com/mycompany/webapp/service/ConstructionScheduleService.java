@@ -31,5 +31,9 @@ public class ConstructionScheduleService {
 	public List<ConstructionSchedule> getConstructionSchedule(Pager pager) {
 		return constructionScheduleDao.selectConstructionSchedule(pager);
 	}
+
+	public List<ConstructionSchedule> getTodayConstructionSchedule() {
+		return constructionScheduleDao.selectTodayConstructionSchedule();
+	}
 	
 }
