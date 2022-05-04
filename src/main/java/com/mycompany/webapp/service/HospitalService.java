@@ -1,16 +1,13 @@
 package com.mycompany.webapp.service;
-
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import com.mycompany.webapp.dao.HospitalDao;
 import com.mycompany.webapp.dto.AdditionalRequest;
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.RequestDetails;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -29,7 +26,6 @@ public class HospitalService {
 	public int getTotalHospitalNum() {
 		return hospitalDao.count();
 	}
-
 	/*public Hospital getHospital(String hdln) {
 		return hospitalDao.selectByHdln(hdln);
 	}*/
@@ -79,7 +75,10 @@ public class HospitalService {
 		hospitalDao.updateByArId(additionalRequest);
 	}
 
-	
+	public void updateState(RequestDetails newState) {
+		hospitalDao.updateByHdln(newState);
+	}
+
 	//지역 병원 목록 전체출력
 	public List<Hospital> getLocationHospital(Pager pager) {
 		log.info("tlfgod");
@@ -91,4 +90,5 @@ public class HospitalService {
 		log.info("tlfgod");
 		return hospitalDao.selectByLocation2(addfressHospital); 
 	}
+
 }

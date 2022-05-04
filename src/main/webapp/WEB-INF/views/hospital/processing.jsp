@@ -55,7 +55,10 @@
                         <th scope="row">1</th>
                         <td>${hospital.hname}</td>
                         <td>${hospital.hdirector}</td>
-                        <td>${hospital.progress.pdate}</td>
+                        <td>
+                        	<fmt:parseDate value="${hospital.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        	<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+                        </td>
                         <td>${hospital.hpn}</td>
                         <td>${hospital.progress.pcategory}</td>                        
                       <tr>
@@ -114,7 +117,10 @@
                         <td>상담</td>
                         <td>${hospital.hname}</td>
                         <td>${hospital.hdirector}</td>
-                        <td>${hospital.progress.pdate}</td>
+                        <td>
+                        	<fmt:parseDate value="${hospital.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        	<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+                        </td>
                         <td>${hospital.hpn}</td>
                         <td>${hospital.progress.pcategory}</td>                        
                       <tr>

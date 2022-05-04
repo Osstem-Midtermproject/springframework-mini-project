@@ -189,7 +189,6 @@
 		</association>
 	</resultMap>
 	
-	<!-- 병원 테이블의 의사면허번호와 계약서의 의사면허번호 그리고 병원 테이블의 주소와 계약서의 주소를 join 하고 hdln의 값과 contIdentificationNumber 값을 넘겨 받음 -> 페이지 전환상의 문제가 있어서 실행 못함. 다시 생각해봐야 할듯-->
 	<select id="selectHospitalContDateByHdln" parameterType="string" resultMap="selectHospitalContractDateWithContractMap">
 		select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date, cont
 		from hospital, contract
@@ -262,6 +261,11 @@
 	<update id="updateByArId" parameterType="additionalRequest">
 		UPDATE additionalRequest SET ar_content=#{arContent} WHERE ar_id=#{arId}
 	</update>
+	
+	<update id="updateByHdln" parameterType="requestDetails">
+		UPDATE requestDetails SET rd_sid=#{rdSid} WHERE rd_dln=#{rdDln} and rd_address=#{rdAddress} 
+	</update>
+	
 
 	
 	<!-- 진행상황 -->
@@ -272,5 +276,4 @@
 		order by progress.pdate asc
 	</select>
 	
-
 </mapper>

@@ -27,13 +27,16 @@
 					style="height: 100%; width: 100%;">
 			</div>
 			<div>
-				<h3>
-					<span class="badge bg-success">${hospitalState.state.skind}</span>
+				<h3 id="badge">
+					<span id="state" class="badge bg-success" style="cursor: pointer">${hospitalState.state.skind}</span>
 				</h3>
 				<h2>${hospital.hname}</h2>
 				
 				<c:if test="${contractPdf != ''}">
-					<span>계약일: ${hospitalContDate.contract.contDate}</span>
+					<span>계약일: 
+						<fmt:parseDate value="${hospitalContDate.contract.contDate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        <fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+					</span>
 				</c:if>
 				<c:if test="${contractPdf == ''}">
 					<span></span>					
@@ -109,7 +112,10 @@
 											<th scope="row">제목</th>
 											<td>${hospital.requestDetails.rdTitle}</td>
 											<th scope="row">신청일</th>
-											<td>${hospital.requestDetails.rdApplicationdate}</td>
+											<td>
+												<fmt:parseDate value="${hospital.requestDetails.rdApplicationdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        						<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+											</td>
 										</tr>
 										<tr>
 											<th scope="row">예산</th>
@@ -121,7 +127,10 @@
 											<th scope="row">디자인</th>
 											<td>${hospital.requestDetails.rdDesign}</td>
 											<th scope="row">상담일</th>
-											<td>${hospital.requestDetails.rdCounDate}</td>
+											<td>
+												<fmt:parseDate value="${hospital.requestDetails.rdCounDate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        						<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+											</td>
 										</tr>
 
 										<tr>
@@ -197,13 +206,19 @@
 							<div class="activity">
 								<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
 			                  	  <div class="activity-item d-flex">
-			                  	    <div class="activite-label">${ hospitalProgress.progress.pdate}</div>
+			                  	    <div class="activite-label">
+			                  	    	<fmt:parseDate value="${ hospitalProgress.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+			                  	    </div>
 			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
 			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 시작</div>
 			                  	  </div>
 			                  	   
 			                  	  <div class="activity-item d-flex">
-			                  	    <div class="activite-label">${ hospitalProgress.progress.penddate}</div>
+			                  	    <div class="activite-label">
+			                  	    	<fmt:parseDate value="${ hospitalProgress.progress.penddate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+			                  	    </div>
 			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
 			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 완료</div>
 			                      </div>
@@ -226,6 +241,7 @@
 
 
 <script>
+	  //입력 form
  	  $(function() {
 		  $("#dialog").dialog({
 			  autoOpen:false,
@@ -324,7 +340,6 @@
  	 $("#insertButton").on("click", function() {
 		  $("#dialog").dialog("open");
 	 });
-
 	 function insert(arContent, arContId) {  
       $.ajax({
         url:"arContentInsert",
@@ -339,7 +354,6 @@
    	   $("#additionalContent").val("");
 	   });
     }
-
 	 /* 항목별 삭제 버튼 */
 	 $(document).on("click",".arContentDeleteBtn", function(){
 		 var arId = $(this).attr("data-del");
@@ -385,9 +399,42 @@
 			 getContentList();
 			 
 		 })
-	    }
+    }
+	
+	/* 상태 변경 */
+	$(document).on("mousedown", "#state", function(e){
+		e.preventDefault();
+		
+	});
+	
+	function updateState(hdln, haddress) {
+		$.ajax({
+			url: "updateState",
+			type: "post",
+			data: {
+				hdln: hdln,
+				haddress: haddress,
+				state: "CONSCOMPLETE"
+			}
+		}).done((data) => {
+			console.log("updateState 실행 성공");
+			var badgeTag = "";
+			badgeTag += "<span id='state' class='badge bg-secondary' style='cursor: pointer'>";
+			badgeTag += "${hospitalState.state.skind}";
+			badgeTag += "</span>";
+			
+			$("#badge").html(badgeTag);
+		})
+	}
+	
+	$(document).on("dblclick", "#state", function(){
+		console.log("state double click event 실행");
+		
+		updateState("${hospital.hdln}", "${hospital.haddress}")
+	});
+	
+	
 	 
-	 console.log(${c.cont});
 	</script>
 
 
