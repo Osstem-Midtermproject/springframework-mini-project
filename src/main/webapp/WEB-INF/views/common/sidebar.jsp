@@ -64,6 +64,7 @@
          </ul></li>
       <!-- End Dentist Nav -->
 
+
       <li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/management"> <i class="bi bi-person-rolodex"></i><span>Management</span>
       </a></li>
       <!-- End Management Nav -->
@@ -90,12 +91,12 @@
    </div>
 </div>
 
-   
+ 
 <script type="text/javascript">
 function scrolldown(){
+
    const msgArea = $('#msgArea'); 
    msgArea.scrollTop(msgArea[0].scrollHeight);
-
 }
 $(function(){
 
