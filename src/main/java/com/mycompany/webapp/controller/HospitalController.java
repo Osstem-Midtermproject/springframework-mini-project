@@ -248,29 +248,40 @@ public class HospitalController {
       return "hospital/location";
    }
    
-   //지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 
-   @GetMapping("/location/detail")
-   public String location2(String addressHospital, Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int locationPageNo) {
-      log.info("Location 실행");
-      String locationHaddress = request.getParameter("locationHaddress");
-      log.info(locationHaddress);
-	  List<Hospital> locationHospital = hospitalService.getLocationHospital2(locationHaddress);
-      
-      //지역별 병원의 개수로 설정
-      int getTotalLocationNum = locationHospital.size();
-      
-		Pager locationPager = new Pager(5, 5, getTotalLocationNum, locationPageNo);
-		model.addAttribute("locationPager", locationPager);
-		log.info("page");
-      
-		model.addAttribute("locationHospital", locationHospital);
-		log.info(locationHospital);
-		log.info("test");
-		log.info(model);
+   //로케이션 이미지 변경 ajax -jbc
+   	@PostMapping(value = "mapimage", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String changemap(String location, String locationKR, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo) {
+		log.info(location);
+		log.info(locationKR);
+		String locationHaddress = locationKR;
 		
-      return "hospital/location";
-   }
-   
+		int totalLocationNum = hospitalService.selectByLocationcount(locationHaddress);
+		log.info(totalLocationNum);
+		
+		Pager pager = new Pager(5, 5, totalLocationNum, pageNo);
+		pager.setLocationHaddress(locationHaddress); //페이저 안에 현재 위치를 이용하여 쿼리문 처리 예정
+		model.addAttribute("locationHaddress", locationHaddress);
+		model.addAttribute("pager", pager);
+		
+		log.info("test");
+		
+		List<Hospital> detailLocationList = hospitalService.getLocationHospital2(pager);
+		model.addAttribute("detailLocationList", detailLocationList);
+		log.info(detailLocationList);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("detailLocationList", detailLocationList);        
+		jsonObject.put("startPageNo",pager.getStartPageNo());
+		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("pageNo",pager.getPageNo());
+		jsonObject.put("totalPageNo",pager.getTotalPageNo());
+		jsonObject.put("groupNo",pager.getGroupNo());
+		
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+   	}
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 초기에 보여질 전체 병원의 계약 기록 리스트
 	@RequestMapping("/contractHistory")
 	public String contractHistory(Model model, HttpSession session) {

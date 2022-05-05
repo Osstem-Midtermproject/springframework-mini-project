@@ -20,4 +20,5 @@ public class ConstructionSchedule {
 	
 	ConstructionCategory constructionCategory;
 	Team team;
+	
 }

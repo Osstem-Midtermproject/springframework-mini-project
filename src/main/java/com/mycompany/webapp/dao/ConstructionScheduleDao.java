@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
 
 @Mapper
