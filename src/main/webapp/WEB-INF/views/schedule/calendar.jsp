@@ -68,6 +68,7 @@
    			id: "${schedule.consScheId}",
         	title:  "${schedule.consScheHospitalName}",
         	start:  moment("${schedule.consScheStartdate}").format("YYYY-MM-DD"),
+        	
         	end:  moment("${schedule.consScheEnddate}").format("YYYY-MM-DD"),
         	extendedProps: {
         		content: "${schedule.consScheContent}",
@@ -135,7 +136,7 @@
               let title = info.event.title;
               let startday = moment(info.event.start).format("YYYY/MM/DD");
               let endday =
-              moment(info.event.end).format("YYYY/MM/DD") != "Invalid date" ? moment(info.event.end).format("YYYY/MM/") + (Number(moment(info.event.end).format("DD")) - 1).toString() : "";
+              moment(info.event.end).format("YYYY/MM/DD") != "Invalid date" ? moment(info.event.end).format("YYYY/MM/") + (Number(moment(info.event.end).format("DD"))-1).toString() : "";
               let content = info.event.extendedProps.content == true ? info.event.extendedProps.content : "";
 
               $(info.el).qtip({
@@ -174,13 +175,25 @@
             eventDrop: function (info) {
                let id=info.event.id;
                let start=moment(info.event.start).format("YYYY-MM-DD");
-               let end=moment(info.event.end).format("YYYY-MM-DD");
+               let end=moment(info.event.end).format("YYYY-MM-")+(Number(moment(info.event.end).format("DD")));
                let content=info.event.extendedProps.content;
                let address=info.event.extendedProps.address;
                let estart=info.event.extendedProps.estart;
                scheduleUpdate(id,start,end,content,estart,address);
                info.event.setExtendedProp("estart",moment(info.event.start).format("YYYY-MM-DD"))
              },
+            eventResize: function(info){
+            	 let id=info.event.id;
+                 let start=moment(info.event.start).format("YYYY-MM-DD");
+               
+                 let end=moment(info.event.end).format("YYYY-MM-")+(Number(moment(info.event.end).format("DD")));
+               
+                 let content=info.event.extendedProps.content;
+                 let address=info.event.extendedProps.address;
+                 let estart=info.event.extendedProps.estart;
+                 scheduleUpdate(id,start,end,content,estart,address);
+                 info.event.setExtendedProp("estart",moment(info.event.start).format("YYYY-MM-DD"))
+            },
             eventAdd: function (info) {},
             eventChange: function (info) {},
             eventRemove: function (obj) {},

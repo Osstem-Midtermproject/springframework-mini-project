@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.ContractDao;
 import com.mycompany.webapp.dto.Contract;
-import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.TeamHistory;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -71,5 +71,17 @@ public class ContractService {
 	public List<Contract> getThemaDesign(String dtt){
 	
 		return contractDao.selectThemaDesign(dtt);
+	}
+	public TeamHistory getToday(){
+		
+		return contractDao.selecttodayConSales();
+	}
+	public TeamHistory getYesterday(){
+		
+		return contractDao.selectyesterdayConSales();
+	}
+	public List<Contract> getMainDesign(){
+		
+		return contractDao.selectMainDesign();
 	}
 }

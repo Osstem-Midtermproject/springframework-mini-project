@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.TeamHistory;
 
 @Mapper
 public interface ContractDao {
@@ -35,4 +36,12 @@ public interface ContractDao {
 	void insertContract(Contract contract);
 	
 	List<Contract> selectThemaDesign(String dtt);
+	
+	TeamHistory  selectyesterdayConSales();
+	
+	TeamHistory  selecttodayConSales();
+	
+	List<Contract> selectMainDesign();
+	
+	
 }

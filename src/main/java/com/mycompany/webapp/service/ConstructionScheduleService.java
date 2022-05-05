@@ -32,9 +32,9 @@ public class ConstructionScheduleService {
 	public List<ConstructionSchedule> getConstructionSchedule(Pager pager) {
 		return constructionScheduleDao.selectConstructionSchedule(pager);
 	}
-	public void setProgress(ConstructionSchedule constructionSchedule) {
+	public int updateProgress(ConstructionSchedule constructionSchedule) {
 		
-		constructionScheduleDao.updateProgress(constructionSchedule);
+		return constructionScheduleDao.updateProgress(constructionSchedule);
 	}
 	public Contract getConidDln(String address) {
 		

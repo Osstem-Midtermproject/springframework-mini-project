@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
 import java.util.List;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.mycompany.webapp.service.TeamHistoryService;
 import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.RequestDetails;
@@ -40,14 +42,34 @@ public class DashboardController {
 	
 	@Resource
 	RequestDetailsService requestDetailsService;
+	
+	@Resource
+	TeamHistoryService teamHistoryService;
 
 	
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model,HttpSession session,HttpServletRequest request) {
-		String userid=(String)session.getAttribute("sessionUserId");
-		
-		
+		String userid=(String)session.getAttribute("sessionUserId");	
 		model.addAttribute("userid",userid);
+		DecimalFormat decFormat = new DecimalFormat("###,###");
+		TeamHistory today=contractService.getToday();
+		TeamHistory yesterday=contractService.getYesterday();
+		double salespercent=Math.round(((double)(today.getTha()-yesterday.getTha())/yesterday.getTha())*100);
+		long conpercent=today.getThn()-yesterday.getThn();
+		String todaysales=decFormat.format(today.getTha());
+		model.addAttribute("todaySales",todaysales);
+		model.addAttribute("todayCon",today.getThn());
+		model.addAttribute("salespercent",salespercent);
+		model.addAttribute("conpercent",conpercent);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy");
+		Date date=new Date();
+		List<TeamHistory> history=teamHistoryService.getTeamSales(sdf.format(date)+"-01-01",sdf.format(date)+"-12-31");
+		List<Long> yearSales=teamHistoryService.getYearSales();
+		List<Contract> designcon=contractService.getMainDesign();
+		log.info(history);
+		model.addAttribute("history",history);
+		model.addAttribute("designcon",designcon);
+		model.addAttribute("yearSales",yearSales);
 		///WEB-INF/views/dashboard/dashboard.jsp
 		return "dashboard/dashboard";
 	}

@@ -75,8 +75,7 @@ public class ScheduleController {
 			schedule.setConsScheContent(content);
 			schedule.setConsScheAddress(address);
 			schedule.setConsScheCategoryId(estart);
-			int row=calendarService.updateSchedule(schedule);
-			constructionScheduleService.setProgress(schedule);
+			calendarService.updateCalTransaction(schedule);
 			log.info(schedule);
 
 		}
@@ -96,18 +95,13 @@ public class ScheduleController {
 		schedule.setConsScheCategoryId(categoryId);
 		schedule.setConsScheHospitalName(hospitalName);
 		schedule.setConsScheAddress(address);
-		con=constructionScheduleService.getConidDln(address);
-		schedule.setConsScheContractId(con.getContIdentificationNumber());
-		schedule.setConsScheDln(con.getContDln());
 		progress.setPdate(start);
-		progress.setPdln(con.getContDln());
 		progress.setPcategory(categoryId);
 		progress.setPaddress(address);
 		progress.setPcontent(content);
 		progress.setPenddate(end);
 		progress.setCategory("시공");
-		progressService.setProgress(progress);
-		constructionScheduleService.setConstructionSchedule(schedule);
+		calendarService.insertCalTransaction(schedule,progress);
 
 	}
 	@GetMapping("/consultcalendar")
@@ -118,15 +112,12 @@ public class ScheduleController {
 		model.addAttribute("cs",cs);
 		if(id!=null) {
 			CounselingSchedule schedule=new CounselingSchedule();
-			Contract con =new Contract();
-			con=constructionScheduleService.getConidDln(address);
 			schedule.setCounScheId(Integer.parseInt(id));
-			schedule.setCounScheStartdate(start);
-			schedule.setCounScheDln(con.getContDln());
+			schedule.setCounScheStartdate(start);		
 			schedule.setCounScheContent(content);
 			schedule.setCounScheAddress(address);
-			counselingScheduleService.updateSchedule(schedule);
-			counselingScheduleService.setProgress(schedule);
+			calendarService.updateConCalTransaction(schedule);
+			
 			
 	}
 		
@@ -140,20 +131,16 @@ public class ScheduleController {
 		Contract con =new Contract();
 		schedule.setCounScheStartdate(start);
 		schedule.setCounScheContent(content);
-		schedule.setCounScheAddress(address);
-		con=constructionScheduleService.getConidDln(address);
-		schedule.setCounScheDln(con.getContDln());
-		
-		progress.setPdate(start);
-		progress.setPdln(con.getContDln());
+		schedule.setCounScheAddress(address);	
+		schedule.setCounScheDln(con.getContDln());		
+		progress.setPdate(start);	
 		progress.setPcategory("5");
 		progress.setPaddress(address);
 		progress.setPcontent(content);
 		progress.setPenddate(start);
 		progress.setCategory("상담");
 		log.info(progress);
-		progressService.setProgressConsult(progress);
-		counselingScheduleService.setSchedule(schedule);
+		calendarService.insertConCalTransaction(schedule,progress);
 
 	}
 

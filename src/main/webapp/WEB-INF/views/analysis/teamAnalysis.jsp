@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
-<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <main id="main" class="main">
    <div class="analysis_team">
@@ -447,8 +446,8 @@
                              responsive: true,
                              plugins: {
                                  datalabels: {
-                                      formatter: (value, paperingData) => {
-                                             const datapoints = paperingData.chart.data.datasets[0].data
+                                      formatter: (value, furnitureData) => {
+                                             const datapoints = furnitureData.chart.data.datasets[0].data
                                              const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
                                              const percentage = value / total * 100
                                              return percentage.toFixed(2) + "%";
