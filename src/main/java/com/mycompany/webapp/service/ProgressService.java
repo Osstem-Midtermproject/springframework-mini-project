@@ -29,12 +29,11 @@ public class ProgressService {
 		return progressDao.count(hdln, haddress);
 	}
 
-	//체크박스
+	//user : 체크박스
 	public int getTotalProgressNumByCheckBox(HosptialAndCategory hac) {
 		return progressDao.countByCheckBox(hac);
 	}
-
-	//체크박스
+	//user : 체크박스
 	public List<Progress> showProgressListByCheckBox(Pager pager) {
 		return progressDao.selectProgressListByCheckBox(pager);
 	}

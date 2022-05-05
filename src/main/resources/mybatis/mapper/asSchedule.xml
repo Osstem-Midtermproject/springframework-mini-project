@@ -12,14 +12,16 @@
 
 	</resultMap>
 	<select id="selectAsScheduleList" parameterType="pager"  resultMap="selectAsScheduleResultMap">
-      select rnum, hname, hname, haddress, as_content, as_startdate 
+      select rnum, hname, as_address, as_content, as_startdate 
           from (
-              select ROWNUM as rnum, hname, haddress, as_content, as_startdate 
+              select ROWNUM as rnum, hname, as_address, as_content, as_startdate 
               from (
-		      select hname, haddress, as_content, as_startdate 
+		      select hname, as_address, as_content, as_startdate 
 			  from asschedule INNER JOIN hospital on as_dln = hdln and as_address = haddress
 			  where hname like '%'|| #{searchBar} ||'%'
-			  order by as_startdate
+			  and TO_CHAR(as_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
+			  and TO_CHAR(as_startdate,'yyyy-mm-dd HH24:MI:SS') > TO_CHAR(SYSDATE,'yyyy-mm-dd HH24:MI:SS')
+			  order by to_char(as_startdate,'yyyymmdd HH24:MI:SS')
           )
           where rownum &lt;= #{endRowNo}
           )
@@ -30,5 +32,6 @@
 		select count(*) from asschedule 
 		INNER JOIN hospital on as_dln = hdln and as_address = haddress
 		where hname like '%'|| #{searchBar} ||'%' 
+		and TO_CHAR(as_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
    </select>
 </mapper>

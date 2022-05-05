@@ -300,6 +300,10 @@ public class HospitalController {
 		jsonObject.put("pageNo",pager.getPageNo());
 		jsonObject.put("totalPageNo",pager.getTotalPageNo());
 		jsonObject.put("groupNo",pager.getGroupNo());
+
+		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
+		jsonObject.put("endPageNo",pager.getEndPageNo());
+		
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;

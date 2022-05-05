@@ -11,4 +11,7 @@ public class HosptialAndCategory{
 	String hdln;
 	String haddress;
 	List<String> category;
+	
+	String sdate;
+	String edate;
 }

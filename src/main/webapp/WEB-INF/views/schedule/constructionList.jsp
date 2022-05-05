@@ -76,6 +76,7 @@
                     <tr>
                       <th scope="col">번호</th>
                       <th scope="col">병원명</th>
+                      <th scope="col">병원주소</th>
                       <th scope="col">시작일</th>
                       <th scope="col">종료일</th>
                       <th scope="col">카테고리</th>
@@ -117,13 +118,23 @@
     	
         var checkboxValues = [];
         
+        if(checkboxValues.length == 0){
+	        $("#constructionListTable").html(" ");
+	        
+	        var onePage = "<ul class='pagination justify-content-center'>";
+	        onePage += "<li class='page-item'><a class='page-link'><span>&laquo;</span></a></li>";
+	        onePage += "<li class='page-item'><a class='page-link'>1</a></li>";
+	        onePage += "<li class='page-item'><a class='page-link'><span>&raquo;</span></a></li><ul>";
+	        
+			$("#constructionListTablePager").html(onePage);
+        }
+        
         $("input[name='checkBox']:checked").each(function(i) {
             checkboxValues.push($(this).val());
         }); 
-    	
-        console.log(checkboxValues);
-        
+    	        
         var allData = { "checkArray": checkboxValues };
+        console.log(checkboxValues);
     	
         let searchBar = $("#searchBar").val();
         $.ajax({
@@ -131,36 +142,47 @@
             type: 'post',
             data: {"checkArray": checkboxValues, "searchBar": searchBar , "pageNo": no}
         }).done(function (result){
-                    
-        console.log(result);
+        	console.log(result);
         
-       	var str="";
+       		var str="";
 
-        $.each(result.constructionScheduleList,function(index,list){
+	        $.each(result.constructionScheduleList,function(index,list){
+	
+	        	var sdate = list.consScheStartdate.substr(0,10);
+	        	var edate = list.consScheEnddate.substr(0, 10);
+				str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
+	        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
+	        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
+	
+			})   
 
-        	console.log("y");
-			str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
-        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheStartdate+
-        	"</td><td>"+list.consScheEnddate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
-
-		})   
-
-		console.log(str);
-        $("#constructionListTable").html(str);
-                    	  
-        var str2 ="<ul class='pagination justify-content-center'>";
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(1)'><span>&laquo;</span></a></li>";
-        for(var i=result.startPageNo; i<=result.endPageNo; i++){
-            if(i != result.pageNo){
-                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(" +i + ")'>" +i +"</a></li>";
-            }else{
-                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectList(" +i + ")'>" +i +"</a></li>";
-            }
-        }
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
-        str2 = str2 + "</ul>";
-        
-		$("#constructionListTablePager").html(str2);
+	        $("#constructionListTable").html(str);
+	                    	  
+	        var str2 ="<ul class='pagination justify-content-center'>";
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(1)'><span>&laquo;</span></a></li>";
+	        
+		  	if(result.groupNo > 1){
+		  		var no = result.startPageNo-1;
+		  		str2 += "<li class='page-item'><a class='page-link' onclick='selectList("+ no +")'><span>&lsaquo;</span></a></li>";
+		  	}
+	        
+	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
+	            if(i != result.pageNo){
+	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+	            }else{
+	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+	            }
+	        }
+	        
+	    	if(result.groupNo < result.totalGroupNo){
+	      	  var num = result.endPageNo +1;
+	      	  str2 += "<li class='page-item'><a class='page-link' onclick='selectList(" + num + ")'><span>&rsaquo;</span></a></li>";
+	        }
+	        
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "</ul>";
+	        
+			$("#constructionListTablePager").html(str2);
 			
 		});
 	}

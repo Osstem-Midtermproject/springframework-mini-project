@@ -46,6 +46,7 @@
 			<result column="cons_sche_startdate"  property="consScheStartdate"/>
 			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
 			<result column="cons_sche_dln"  property="consScheDln"/>
+			<result column="cons_sche_address"  property="consScheAddress"/>			
 			<association property="constructionCategory" javaType="com.mycompany.webapp.dto.ConstructionCategory">	
 					<result column="cons_cate_type" property="consCateType"/>	
 			</association>
@@ -54,11 +55,11 @@
 			</association>
 	</resultMap>
 	<select id="selectConstructionSchedule" parameterType="pager"  resultMap="selectConstructionScheduleResultMap">
-      select rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+      select rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
           from (
-              select ROWNUM as rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+              select ROWNUM as rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
               from (
-              select cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+              select cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
                     from constructionschedule 
 					INNER JOIN constructioncategory on cons_sche_categoryid = cons_cate_id 
 					INNER JOIN team on cons_sche_teamid = tid 
@@ -67,7 +68,7 @@
 				<foreach collection="consturctionCategory" item="item" index="index" separator=",">
 					#{item}
 				</foreach>
-			  )order by cons_sche_startdate
+			  )order by cons_sche_startdate desc
           )
           where rownum &lt;= #{endRowNo}
           )
@@ -96,5 +97,26 @@
 		where cont_address=#{address}
    </select>
 
+   <!-- dashboard - construction schedule : 1초마다 반복 -->
+   <resultMap id="selectTodayConstructionScheduleResultMap"  type="constructionSchedule">
+			<result column="cons_sche_startdate" property="consScheStartdate"/>
+			<result column="cons_sche_enddate" property="consScheEnddate"/>
+			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
+			<association property="team" javaType="com.mycompany.webapp.dto.Team">	
+					<result column="tcategory" property="tcategory"/>	
+			</association>
+	</resultMap>
+	<select id="selectTodayConstructionSchedule" resultMap="selectTodayConstructionScheduleResultMap">
+		select cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, tcategory from constructionschedule
+		INNER JOIN team on cons_sche_teamid = tid
+		where TO_CHAR(SYSDATE,'yyyymmdd') BETWEEN TO_CHAR(cons_sche_startdate,'yyyymmdd') and TO_CHAR(cons_sche_enddate,'yyyymmdd')and rownum &lt; 5
+		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd') desc
+	</select>
+   	<select id="selectTodayConstructionScheduleAll" resultMap="selectTodayConstructionScheduleResultMap">
+		select cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, tcategory from constructionschedule
+		INNER JOIN team on cons_sche_teamid = tid
+		where TO_CHAR(SYSDATE,'yyyymmdd') BETWEEN TO_CHAR(cons_sche_startdate,'yyyymmdd') and TO_CHAR(cons_sche_enddate,'yyyymmdd')
+		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd') desc
+	</select>
   
 </mapper>

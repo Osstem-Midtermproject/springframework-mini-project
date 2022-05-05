@@ -7,6 +7,7 @@
 		<result column="rnum" property="pno" />
 		<result column="pdate" property="pdate" />
 		<result column="pcategory" property="pcategory" />
+		<result column="penddate" property="penddate" />
 		<association property="hospital" javaType="hospital">
 			<result column="hdln" property="hdln" />
 			<result column="hname" property="hname" />
@@ -15,11 +16,11 @@
 		</association>
 	</resultMap> 
 	<select id="selectProgressListByPager" parameterType="pager"  resultMap="selectProgressListByPagerResultMap">
-		select rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		select rnum, pdate, pcategory, hdln, hname, hdirector, hpn, penddate 
 		    from (
-		        select ROWNUM as rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		        select ROWNUM as rnum, pdate, pcategory, hdln, hname, hdirector, hpn, penddate 
 		        from (
-                    select pdate, pcategory, hdln, hname, hdirector, hpn from progress 
+                    select pdate, pcategory, hdln, hname, hdirector, hpn, penddate from progress 
                     INNER JOIN hospital on pdln = hdln and paddress = haddress 
                     where pdln=#{hdln} and paddress=#{haddress} order by pdate desc
 		        )
@@ -34,6 +35,7 @@
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hdln=#{param1} and haddress=#{param2}
 	</select>
 	
+	<!-- user : 체크박스 + 페이저 -->
 	<select id="countByCheckBox" parameterType="hac" resultType="int">
 		select count(*)
 		from progress, hospital
@@ -46,11 +48,11 @@
 	</select>
 	
 	<select id="selectProgressListByCheckBox" parameterType="pager"  resultMap="selectProgressListByPagerResultMap">
-		select rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		select rnum, pdate, pcategory, hdln, hname, hdirector, hpn, penddate
 		    from (
-		        select ROWNUM as rnum, pdate, pcategory, hdln, hname, hdirector, hpn 
+		        select ROWNUM as rnum, pdate, pcategory, hdln, hname, hdirector, hpn, penddate 
 		        from (
-                    select pdate, pcategory, hdln, hname, hdirector, hpn from progress 
+                    select pdate, pcategory, hdln, hname, hdirector, hpn, penddate from progress 
                     INNER JOIN hospital on pdln = hdln and paddress = haddress 
                     where pdln=#{hdln} and paddress=#{haddress} and category IN (
 				        <foreach collection="category" item="item" index="index" separator=",">

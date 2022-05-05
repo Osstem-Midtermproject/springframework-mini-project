@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 //요청내역
 public class RequestDetails {
-	
+	int rdNo;					//rownum
 	String rdDln; 				//의사면허번호
 	String rdAddress;			//주소
 	int rdState;				//상태(확정/불확정)
@@ -23,4 +23,5 @@ public class RequestDetails {
 	Date rdRequestConsPeriod;	//요청시공기간
 	String rdSid;				//진행상황
 	String rdContent;			//내용
+	Hospital hospital;
 }

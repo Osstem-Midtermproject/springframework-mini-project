@@ -41,7 +41,7 @@
                     <input type="id" class="form-control" name="userid" placeholder="아이디">
                     <input type="password" class="form-control" name="upassword" placeholder="비밀번호는 6자~20자">
                     
-                    <small style="color: red" id="idPasswordError">fff</small>
+                    <small style="color: red" id="idPasswordError">${error}</small>
             		
             		<button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
             </form>

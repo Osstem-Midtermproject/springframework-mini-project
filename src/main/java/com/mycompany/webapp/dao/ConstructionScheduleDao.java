@@ -23,5 +23,9 @@ public interface ConstructionScheduleDao {
 	public void updateProgress(ConstructionSchedule constructionSchedule);
 	
 	public Contract selectConidDln(String address);
+
+	public List<ConstructionSchedule> selectTodayConstructionSchedule();
+
+	public List<ConstructionSchedule> selectTodayConstructionScheduleAll();
 	
 }

@@ -25,6 +25,9 @@ public class Pager {
 	
 	private String searchBar;
 	
+	private String sdate;
+	private String edate;
+	
 	private List<String> category;
 	
 	private List<String> consturctionCategory;
