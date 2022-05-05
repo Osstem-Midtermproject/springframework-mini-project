@@ -1,9 +1,10 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.ConstructionSchedule;
-import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.RequestDetails;
 import com.mycompany.webapp.service.ConstructionScheduleService;
