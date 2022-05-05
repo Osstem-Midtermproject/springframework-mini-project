@@ -111,8 +111,7 @@
                       <th scope="col">순서</th>
                       <th scope="col">
                       	<select class="form-select border-0 bg-light" id="selectAsOrCounseling" style="font-weight: bold;">
-                          <option selected>구분</option>
-                          <option value="1">상담</option>
+                          <option selected value="1">상담</option>
                           <option value="2">AS</option>
                         </select>
                       </th>
@@ -162,7 +161,15 @@
 		let edate1 = $("#enddate1").val();
 		
 		if(sdate1 !== '' && edate1 !== ''){
-			selectScheduleList(1);
+			//1이면 상담 2이면 AS
+			var scheduleListStatus = $("#selectAsOrCounseling option:selected").val();
+			console.log(scheduleListStatus);
+
+			if(scheduleListStatus == 1){
+				selectScheduleList(1);
+			}else if(scheduleListStatus == 2){
+				selectAsScheduleList(1);
+			}
 		}
 	});
 	
