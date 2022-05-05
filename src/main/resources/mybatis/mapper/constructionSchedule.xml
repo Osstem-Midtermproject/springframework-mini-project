@@ -40,6 +40,7 @@
 			<result column="cons_sche_startdate"  property="consScheStartdate"/>
 			<result column="cons_sche_hospitalname"  property="consScheHospitalName"/>
 			<result column="cons_sche_dln"  property="consScheDln"/>
+			<result column="cons_sche_address"  property="consScheAddress"/>			
 			<association property="constructionCategory" javaType="com.mycompany.webapp.dto.ConstructionCategory">	
 					<result column="cons_cate_type" property="consCateType"/>	
 			</association>
@@ -48,11 +49,11 @@
 			</association>
 	</resultMap>
 	<select id="selectConstructionSchedule" parameterType="pager"  resultMap="selectConstructionScheduleResultMap">
-      select rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+      select rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
           from (
-              select ROWNUM as rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+              select ROWNUM as rnum, cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
               from (
-              select cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory
+              select cons_sche_hospitalname, cons_sche_startdate, cons_sche_enddate, cons_sche_dln, cons_cate_type, tcategory, cons_sche_address
                     from constructionschedule 
 					INNER JOIN constructioncategory on cons_sche_categoryid = cons_cate_id 
 					INNER JOIN team on cons_sche_teamid = tid 

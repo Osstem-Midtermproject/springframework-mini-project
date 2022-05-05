@@ -165,6 +165,8 @@ public class ScheduleController {
 	@PostMapping(value = "selectList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String selectList(@RequestParam(value = "checkArray[]") List<String> allData, String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+		log.info("실행");
+		
 		log.info(allData);
 		log.info(searchBar);
 
