@@ -1,9 +1,10 @@
 package com.mycompany.webapp.controller;
 
-import java.util.List;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,15 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.mycompany.webapp.service.TeamHistoryService;
+
 import com.mycompany.webapp.dto.ConstructionSchedule;
+import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.CounselingSchedule;
 import com.mycompany.webapp.dto.RequestDetails;
+import com.mycompany.webapp.dto.TeamHistory;
 import com.mycompany.webapp.service.ConstructionScheduleService;
 import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.CounselingScheduleService;
 import com.mycompany.webapp.service.HospitalService;
 import com.mycompany.webapp.service.RequestDetailsService;
+import com.mycompany.webapp.service.TeamHistoryService;
 
 import lombok.extern.log4j.Log4j2;
 
