@@ -93,9 +93,11 @@ public class HospitalService {
 	}
 	
 	//지역 병원 지역별로 출력 - jbc
-		public int selectByLocationcount(String addfressHospital) {
-			log.info(addfressHospital);
-			return hospitalDao.selectByLocationcount(addfressHospital); 
-		}
-	
+	public int selectByLocationcount(String addfressHospital) {
+		log.info(addfressHospital);
+		return hospitalDao.selectByLocationcount(addfressHospital); 
+	}
+
+
+
 }

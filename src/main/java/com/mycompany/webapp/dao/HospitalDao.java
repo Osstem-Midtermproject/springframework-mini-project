@@ -52,9 +52,5 @@ public interface HospitalDao {
 	
 	//병원 상세 지도 별 페이저 처리- jbc
 	public int selectByLocationcount(String addfressHospital);
-	
-	
-	
-	
-	
+
 }

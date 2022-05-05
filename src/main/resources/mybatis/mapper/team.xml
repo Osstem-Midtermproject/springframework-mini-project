@@ -20,6 +20,8 @@
 		<result column="tmonthWork" property="tmonthWork" />
 		<result column="tweekWork" property="tweekWork" />
 		<result column="tnowWork" property="tnowWork" />
+		<result column="sccount" property="sccount" />
+		
 	</resultMap>
 	
 	<resultMap id="selectTeamInformationByTidDetail" type="team">
@@ -68,7 +70,9 @@
             AND CONS_SCHE_ENDDATE AND THTID = CONS_SCHE_TEAMID) as tnowWork,
     (SELECT tcategory from team WHERE thtid = tid) as tcategory,
      ROUND(AVG(ths),2) as ths,
-     THTID
+     THTID,
+     (SELECT COUNT(*) from constructionschedule WHERE CONS_SCHE_STARTDATE &lt; TO_CHAR(SYSDATE, 'YY/MM/DD')
+             AND THTID = CONS_SCHE_TEAMID ) as sccount
 		FROM constructionschedule, teamhistory, team
 		WHERE THTID = TID
 		GROUP BY THTID
@@ -97,22 +101,6 @@
     
     </select> 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <!-- detail 페이지로 이동 시 보일 화면의 정보를 띄운다. - jbc -->
     <resultMap id="selectTeamInformationByTidDetailSchedule" type="team">
  
@@ -120,9 +108,10 @@
 			<result column = "cons_sche_startdate" property="consScheStartdate"/>
 			<result column = "cons_sche_enddate" property="consScheEnddate"/>
 			<result column = "cons_sche_hospitalname" property="consScheHospitalName"/>
+			<result column = "CONS_SCHE_CONTENT" property="consScheContent"/>
+			<result column = "CONS_SCHE_ADDRESS" property="consScheAddress"/>
 			<!-- 일정 버튼 클릭시 processing/detail?hdln=의 형식으로 이동하기 위해 받아온다. -->
 			<result column = "cons_sche_dln" property="consScheDln"/>
-			
 			
 			</association>
 			
@@ -131,7 +120,7 @@
 	<select id="selectTeamInformationByTidDetailSchedule" parameterType="string" resultMap="selectTeamInformationByTidDetailSchedule">
 	
 	<!-- 오늘 날짜보다 미래에 있는 (예정) 된 시공들의 스케쥴 정보들을 가져온다.   -->
-		select cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, cons_sche_dln
+		select cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, cons_sche_dln, CONS_SCHE_CONTENT, CONS_SCHE_ADDRESS
 			from constructioncategory, constructionschedule
 			where cons_sche_teamid = #{detailTeamId} AND cons_cate_id = cons_sche_categoryid AND 
 			    TO_CHAR(SYSDATE, 'YY/MM/DD') &lt;= CONS_SCHE_STARTDATE
@@ -150,6 +139,30 @@
 		FROM team
 		WHERE tid = #{detailTeamId}
     </select> 
+    
+    <!-- 버튼을 누르면 현재 버튼 값의 기간 만큼 일정들을 가져온다. ajax로 보여준다. - jbc -->
+    <resultMap id="selectTeamInformationDetailTeamduration" type="team">
+	    <association property="constructionschedule" javaType="constructionschedule">
+			<result column = "cons_sche_startdate" property="consScheStartdate"/>
+			<result column = "cons_sche_enddate" property="consScheEnddate"/>
+			<result column = "CONS_SCHE_CONTENT" property="consScheContent"/>
+			<result column = "cons_sche_hospitalname" property="consScheHospitalName"/>
+			<result column = "CONS_SCHE_ADDRESS" property="consScheAddress"/>
+			
+			<!-- 일정 버튼 클릭시 processing/detail?hdln=의 형식으로 이동하기 위해 받아온다. -->
+			<result column = "cons_sche_dln" property="consScheDln"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectdetailTeamInformationWith" parameterType="team" resultMap="selectTeamInformationDetailTeamduration">
+		SELECT cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, cons_sche_dln, CONS_SCHE_CONTENT, CONS_SCHE_ADDRESS
+		FROM constructioncategory, constructionschedule
+		WHERE cons_sche_teamid = #{tid} AND cons_cate_id = cons_sche_categoryid 
+			AND TO_CHAR(CONS_SCHE_STARTDATE, 'YY/MM/DD') BETWEEN TO_CHAR(SYSDATE,'YY/MM/DD') AND TO_CHAR(ADD_MONTHS(SYSDATE,#{duration}),'YY/MM')
+		ORDER BY CONS_SCHE_STARTDATE
+    </select> 
+    
+    
     
     
     

@@ -29,6 +29,9 @@ public interface TeamDao {
 	
 	//팀 스케쥴 페이지에 상담팀 정보 출력
 	public List<Team> selectCounselingTeamInformationc();
+
+	//팀 스케쥴 상세 페이지에서 해당 기간만큼 출력 - jbc
+	public List<Team> selectdetailTeamInformationWith(Team team);
 	
 
 }

@@ -63,4 +63,11 @@ public class TeamService {
 		}
 
 
+	//team 스케쥴 상세페이지에서 버튼을 누르면 해당 버튼의 기간 만큼 값을 출력한다. -jbc
+	public List<Team> getLocationHospitalWithDuration(Team team) {
+		// TODO Auto-generated method stub
+		return teamdao.selectdetailTeamInformationWith(team);
+	}
+
+
 }

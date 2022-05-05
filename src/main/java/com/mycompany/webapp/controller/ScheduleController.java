@@ -120,13 +120,55 @@ public class ScheduleController {
 		
 		log.info(detailTeamInformationSchedule);
 		log.info(detailTeamInformationTeamName );
+		log.info("tsetzz");
 		log.info(model1);
 		return "schedule/team_detail";
 	}
+	
+	//detail team 페이지에서 일정 기간별로 버튼 클릭 시 ajax 설정 - jbc
+   	@PostMapping(value = "/team/detailteam", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String detailteam(String duration, String tid, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+		log.info(duration);
+		
+		String detailTeamId = request.getParameter("tid");
+		log.info(detailTeamId);
+		
+		//팀에 현재 파라미터의 tid값을 저장한다. 
+		team.setTid(detailTeamId);
+		//팀 dto에 현재 기간을 한다. 
+		team.setDuration(duration);
+		model.addAttribute(team);
+		
+		log.info(team);
+		
+		List<Team> detailScheduleList = teamService.getLocationHospitalWithDuration(team);
+		model.addAttribute("detailScheduleList", detailScheduleList);
+		log.info(detailScheduleList);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("detailScheduleList", detailScheduleList);        
 
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+	}
+   	
+  //detail team 페이지에서 일정 기간별로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
+	@PostMapping(value = "/team/detailteamALL", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String detailteamALL(String tid, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+		List<Team> getTeamInformationDetailSchedule = teamService.getTeamInformationDetailSchedule(tid);
+		model.addAttribute("detailScheduleList", getTeamInformationDetailSchedule);
+		log.info(getTeamInformationDetailSchedule);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("detailScheduleList", getTeamInformationDetailSchedule);        
 
-
-
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+	}
 
 	@RequestMapping("/scheduler")
 	public String scheduler() {
@@ -299,7 +341,6 @@ public class ScheduleController {
 		model.addAttribute("pager", pager);
 
 		List<AsSchedule> asScheduleList = asScheduleService.getAsSchedule(pager);
-		
 		
 		model.addAttribute("asScheduleList", asScheduleList);
 		log.info(model.getAttribute("asScheduleList"));

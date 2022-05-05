@@ -17,8 +17,11 @@ public class Team {
 	 int tmonthWork; //팀 목록에 보여질 해당 팀의 이번달 작업 예정 건수 -jbc
 	 int tweekWork; //팀 목록에 보여질 해당 팀의 이번주 작업 예정 건수 - jbc
 	 String tnowWork; //팀 목록에 보여질 해당 팀의 현재 작업 진행 여부(작업 중 or 휴게)
+	 String duration; //버튼을 눌렀을 때 받아올 기간 - jbc
+	 int sccount; //이 팀의 모든 스케쥴 개수
 	 
 	 ConstructionSchedule constructionschedule; //시공 기간을 가져와서 디테일 페이지에 표시한다. - jbc
 	 CounselingSchedule counselingSchedule; // jbc
+	 
 	 
 }

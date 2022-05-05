@@ -43,6 +43,8 @@
 										    			<div>THIS MONTH: ${detailTeamInformationPage[0].tmonthWork}</div>
 										    			<div>THIS WEEK: ${detailTeamInformationPage[0].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[0].tnowWork}</div>
+										    			<div>COUNT: ${detailTeamInformationPage[0].sccount}</div>
+										    			
 										    			<div class="img-wrapper d-flex align-items-center">
 													
 														</div>
@@ -65,6 +67,8 @@
 										    			<div>THIS MONTH: ${detailTeamInformationPage[1].tmonthWork}</div>
 										    			<div>THIS WEEK: ${detailTeamInformationPage[1].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[1].tnowWork}</div>
+										    			<div>COUNT: ${detailTeamInformationPage[1].sccount}</div>
+										    			
 										    			<div class="img-wrapper d-flex align-items-center">
 														
 														</div>
@@ -87,6 +91,7 @@
 										    			<div>THIS MONTH: ${detailTeamInformationPage[2].tmonthWork}</div>
 										    			<div>THIS WEEK: ${detailTeamInformationPage[2].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[2].tnowWork}</div>
+										    			<div>COUNT: ${detailTeamInformationPage[2].sccount}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
 														
 														</div>
@@ -109,6 +114,7 @@
 										    			<div>THIS MONTH: ${detailTeamInformationPage[3].tmonthWork}</div>
 										    			<div>THIS WEEK: ${detailTeamInformationPage[3].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[3].tnowWork}</div>
+										    			<div>COUNT: ${detailTeamInformationPage[3].sccount}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
 														
 														</div>
@@ -132,6 +138,7 @@
 										    			<div>THIS MONTH: ${detailTeamInformationPage[4].tmonthWork}</div>
 										    			<div>THIS WEEK: ${detailTeamInformationPage[4].tweekWork}</div>
 										    			<div>NOW: ${detailTeamInformationPage[4].tnowWork}</div>
+										    			<div>COUNT: ${detailTeamInformationPage[4].sccount}</div>
 										    			<div class="img-wrapper d-flex align-items-center">
 														
 														</div>
@@ -169,6 +176,7 @@
 										    			<div>THIS MONTH: ${information.tmonthWork}</div>
 										    			<div>THIS WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -197,6 +205,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 												</c:forEach>
 											</div>
@@ -221,6 +230,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 												</c:forEach>
 											</div>
@@ -249,6 +259,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -275,6 +286,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -302,6 +314,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -330,6 +343,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -356,6 +370,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -382,6 +397,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -413,6 +429,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -439,6 +456,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -465,6 +483,7 @@
 										    			<div>MONTH: ${information.tmonthWork}</div>
 										    			<div>WEEK: ${information.tweekWork}</div>
 										    			<div>NOW: ${information.tnowWork}</div>
+										    			<div>COUNT: ${information.sccount}</div>
 									    			</c:if>
 									    			
 									           		
@@ -486,26 +505,7 @@
 												<div>-today: ${selectCounselingTeamInformation[0].counselingSchedule.ctodaywork}</div>
 												<div>-week: ${selectCounselingTeamInformation[0].counselingSchedule.cweekwork}</div>
 												<div>-month: ${selectCounselingTeamInformation[0].counselingSchedule.cmonthwork}</div>
-												<div class="img-wrapper d-flex align-items-center">
 												
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card border" style="width: 13rem;"
-									onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=14'">
-									<div class="card-body d-flex flex-column">
-										<div class="d-flex align-items-center">
-											<h5 class="card-title">AS</h5>
-										</div>
-										<div>
-											<div class="display:flex; flex-direction:column;">
-												<div>-SCORE</div>
-												<div>-구성원 목록(이름)</div>
-												<div>-MONTH</div>
-												<div>-이번 주 작업 예정 건수</div>
 												<div class="img-wrapper d-flex align-items-center">
 												
 												</div>
