@@ -35,6 +35,7 @@
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hdln=#{param1} and haddress=#{param2}
 	</select>
 	
+	<!-- user : 체크박스 + 페이저 -->
 	<select id="countByCheckBox" parameterType="hac" resultType="int">
 		select count(*)
 		from progress, hospital

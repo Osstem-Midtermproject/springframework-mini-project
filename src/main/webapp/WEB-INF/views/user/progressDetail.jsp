@@ -12,36 +12,26 @@
 	</div>
 	<div class="" style="width: 80%; margin: auto;">
 
-		<!-- 카테고리 선택하는 체크박스 -->
-		<div class="d-flex " style="margin-bottom: 1rem;">
-			<span class="" style="padding-right: 3rem; font-weight: 600;">카테고리</span>
-
-			<div class="" style="padding-right: 2rem;">
-				<input type="checkbox" id="categoryCheckbox1" name="checkBox" value="상담" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox1">상담</label>
-			</div>
-			<div class="" style="padding-right: 2rem;">
-				<input type="checkbox" id="categoryCheckbox2" name="checkBox" value="계약" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox2">계약</label>
-			</div>
-			<div class="" style="padding-right: 2rem;">
-				<input type="checkbox" id="categoryCheckbox3" name="checkBox" value="시공" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox3">시공</label>
-			</div>
-			<div class="" style="padding-right: 2rem;">
-				<input type="checkbox" id="categoryCheckbox4" name="checkBox" value="AS" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox4">AS</label>
+		<div class="d-flex"  style="margin-right: 10%;">
+			<!-- 카테고리 선택하는 체크박스 -->
+			<div class="col d-flex align-items-ceter" style="margin-bottom: 1rem;">
+				<span class="" style="padding-right: 3rem; font-weight: 600;">카테고리</span>
+	
+				<div class="" style="padding-right: 2rem;">
+					<input type="checkbox" id="categoryCheckbox1" name="checkBox" value="상담" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox1">상담</label>
+				</div>
+				<div class="" style="padding-right: 2rem;">
+					<input type="checkbox" id="categoryCheckbox2" name="checkBox" value="계약" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox2">계약</label>
+				</div>
+				<div class="" style="padding-right: 2rem;">
+					<input type="checkbox" id="categoryCheckbox3" name="checkBox" value="시공" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox3">시공</label>
+				</div>
+				<div class="" style="padding-right: 2rem;">
+					<input type="checkbox" id="categoryCheckbox4" name="checkBox" value="AS" onclick="checkBox()" checked="checked"> <label class="" for="categoryCheckbox4">AS</label>
+				</div>
 			</div>
 		</div>
-
-		<!-- 날짜 선택 -->
-		<form>
-			<div class="d-flex" style="margin-bottom: 1rem; font-weight: 600; font-size: 0.8rem;">
-				<div style="margin-right: 2rem;">
-					<label for="fromDate">시작일: </label> <input style="width: 6rem; height: 1rem;" class="text" name="fromDate" id="fromDate">
-				</div>
-				<div>
-					<label for="toDate">종료일: </label> <input style="width: 6rem; height: 1rem;" type="text" name="toDate" id="toDate">
-				</div>
-			</div>
-
-		</form>
+		
 
 		<!-- 리스트 -->
 		<table class="table table-hover" style="margin-bottom: 2rem; font-weight: 600; font-size: 0.8rem;">
@@ -68,20 +58,29 @@
 
 
 <script type="text/javascript">
-
+		
 		$(document).ready(function(){
 			checkBox(1);
 		});
                     
         function checkBox(no) { 
-        	console.log("s");
             var checkboxValues = [];
             
             $("input[name='checkBox']:checked").each(function(i) {
                 checkboxValues.push($(this).val());
             }); 
         	
-            console.log(checkboxValues);
+            
+            if(checkboxValues.length == 0){
+    	        $("#progressListBody").html(" ");
+    	        
+    	        var onePage = "<ul class='pagination justify-content-center'>";
+    	        onePage += "<li class='page-item'><a class='page-link'><span>&laquo;</span></a></li>";
+    	        onePage += "<li class='page-item'><a class='page-link'>1</a></li>";
+    	        onePage += "<li class='page-item'><a class='page-link'><span>&raquo;</span></a></li><ul>";
+    	        
+    			$("#progressListPager").html(onePage);
+            }
             
             var allData = { "checkArray": checkboxValues };      
             $.ajax({
@@ -123,15 +122,6 @@
 				    	c1="AS 시작";
 				    	c2="AS 완료";
 				    }
-        	    	
-        	    	var date1 = list.pdate;
-        	    	date1 = date1.substr(0,10);
-        	    	
-					var no1 = list.pno*2 -1;
-        	    	str = str + "<tr><td>"+no1+
-        	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
-        	        "</td><td>"+list.hospital.hpn+"</td><td>"+date1+"</td><td>"+c1+
-        	        "</td></tr>";
         	          
         	    	var date2 = list.penddate;
         	    	date2 = date2.substr(0,10);
@@ -140,6 +130,15 @@
         	    	str = str + "<tr><td>"+no2+
         	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
         	        "</td><td>"+list.hospital.hpn+"</td><td>"+date2+"</td><td>"+c2+
+        	        "</td></tr>";
+        	        
+        	    	var date1 = list.pdate;
+        	    	date1 = date1.substr(0,10);
+        	    	
+					var no1 = list.pno*2 -1;
+        	    	str = str + "<tr><td>"+no1+
+        	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
+        	        "</td><td>"+list.hospital.hpn+"</td><td>"+date1+"</td><td>"+c1+
         	        "</td></tr>";
         	    })
         	    
@@ -176,38 +175,5 @@
             });
 		}
 
-        $(function() {        
-        	// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
-            // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
-
-            //시작일.
-       		$('#fromDate').datepicker({
-            	showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)
-                buttonImage: "${pageContext.request.contextPath}/resources/images/calendar-check.svg", // 버튼 이미지
-                buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
-                dateFormat: "yy-mm-dd",             // 날짜의 형식
-                changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
-                onClose: function( selectedDate ) {    
-                	// 시작일(fromDate) datepicker가 닫힐때
-                    // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                    $("#toDate").datepicker( "option", "minDate", selectedDate );
-                }                
-            });
-
-            //종료일
-            $('#toDate').datepicker({
-            	showOn: "both", 
-                buttonImage: "${pageContext.request.contextPath}/resources/images/calendar-check.svg", 
-                buttonImageOnly : true,
-                dateFormat: "yy-mm-dd",
-                changeMonth: true,
-                //minDate: 0, // 오늘 이전 날짜 선택 불가
-                onClose: function( selectedDate ) {
-                	// 종료일(toDate) datepicker가 닫힐때
-                    // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                    $("#fromDate").datepicker( "option", "maxDate", selectedDate );
-                }                
-            });
-		});
 
 </script>

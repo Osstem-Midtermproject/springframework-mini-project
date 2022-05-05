@@ -134,7 +134,6 @@ public class UserController {
 	@PostMapping(value = "/checkBox", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String checkBox(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session, @RequestParam(value = "checkArray[]") List<String> allData) {
-		log.info("ddd");
 		
 		Users user = (Users)session.getAttribute("user");
 		Hospital hospital = user.getHospital();
@@ -145,8 +144,7 @@ public class UserController {
 		hac.setHdln(hdln);
 		hac.setHaddress(haddress);
 		hac.setCategory(allData);
-		log.info("allData: " + allData);  //[상담, 계약, 시공, AS]
-		
+				
 		int totalProgressNum = progressService.getTotalProgressNumByCheckBox(hac);
 		log.info(totalProgressNum);
 		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
@@ -160,7 +158,6 @@ public class UserController {
 
 		log.info(progressList.toString());
 		model.addAttribute("hospitalprogressList", progressList);
-		log.info(model.getAttribute("hospitalprogressList"));
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("hospitalprogressList", progressList);        
@@ -172,7 +169,6 @@ public class UserController {
 		jsonObject.put("groupNo",pager.getGroupNo());
 		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
 		jsonObject.put("endPageNo",pager.getEndPageNo());
-
 		
 		String json = jsonObject.toString();
 		log.info(json);
