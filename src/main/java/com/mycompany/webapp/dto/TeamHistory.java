@@ -6,7 +6,7 @@ import lombok.Data;
 public class TeamHistory {
 
    
-   int thn;
+   long thn;
    String thtid;
 
    long tha;

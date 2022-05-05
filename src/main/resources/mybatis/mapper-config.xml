@@ -33,7 +33,6 @@
 		<!-- 팀히스토리 -->
 		<typeAlias type="com.mycompany.webapp.dto.TeamHistory" alias="teamHistory"/>
 		<!-- 병원카테고리 -->
-		
 		<!-- HosptialAndCategory : 체크박스로 선택된 항목에 해당하는 리스트 뽑기 위해-->
 		<typeAlias type="com.mycompany.webapp.dto.HosptialAndCategory" alias="hac"/>
 		<!-- ThtidAndStartDateAndEndDate : 팀과 분기별로 매출 총액을 구하기 위해-->

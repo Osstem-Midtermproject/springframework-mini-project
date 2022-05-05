@@ -37,13 +37,13 @@ public class CounselingScheduleService {
 		
 		return counselingScheduleDao.selectCountAll();
 	}
-	public void setProgress(CounselingSchedule counselingSchedule) {
+	public int updateProgress(CounselingSchedule counselingSchedule) {
 		
-		counselingScheduleDao.updateProgress(counselingSchedule);
+		return counselingScheduleDao.updateProgress(counselingSchedule);
 	}
-	public void  updateSchedule(CounselingSchedule counselingSchedule) {
+	public int  updateSchedule(CounselingSchedule counselingSchedule) {
 		  
-		counselingScheduleDao.updateSchedule(counselingSchedule);
+		return counselingScheduleDao.updateSchedule(counselingSchedule);
 	  }
 	
 	

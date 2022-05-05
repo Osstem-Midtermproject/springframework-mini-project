@@ -138,6 +138,32 @@
 			group by d.dname
 			order by count(c.cont_design_identification) desc
    	</select>
-
+   	
+   	<resultMap id="consales" type="teamHistory">
+		<result column="count(cont_down_payment)"  property="thn"></result>
+		<result column="sum(cont_down_payment)" property="tha"></result>
+	</resultMap>	
+   	<select id="selecttodayConSales" resultMap="consales">
+   			select count(cont_down_payment),sum(cont_down_payment)
+			from contract 
+			where cont_date=to_date(sysdate)
+   	</select>
+  
+   	<select id="selectyesterdayConSales" resultMap="consales">
+   			select count(cont_down_payment),sum(cont_down_payment)
+			from contract 
+			where cont_date=to_date(sysdate-1)
+   	</select>
+   	
+	<resultMap id="mainDesign"  type="contract">
+		<result column="count(d.dtt)"  property="cno"></result>
+		<result column="dtt" property="contArea"></result>
+	</resultMap>
+	<select id="selectMainDesign" resultMap="mainDesign" >
+			select count(d.dtt),d.dtt
+			from contract c, design d
+			where c.cont_design_identification=d.did
+			group by d.dtt
+	</select>
    
 </mapper>

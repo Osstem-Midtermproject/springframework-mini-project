@@ -18,10 +18,10 @@ public interface CounselingScheduleDao {
 	List<CounselingSchedule> selectCounselingScheduleList(Pager pager);
 	
 	
-	void insertCounselingSchedule(CounselingSchedule counselingSchedule);
+	int insertCounselingSchedule(CounselingSchedule counselingSchedule);
 	
 	List<CounselingSchedule> selectCountAll();
-	 public void updateSchedule(CounselingSchedule counselingSchedule);
-	 public void updateProgress(CounselingSchedule counselingSchedule);
+	 public int updateSchedule(CounselingSchedule counselingSchedule);
+	 public int updateProgress(CounselingSchedule counselingSchedule);
 	
 }

@@ -93,7 +93,7 @@
    <select id="selectConidDln" resultMap="selectCon" parameterType="string">
    		select cont_identification_number,cont_dln
 		from contract
-		where cont_address=#{address}
+		where cont_address=#{address} and  rownum&lt;=1
    </select>
 
   
