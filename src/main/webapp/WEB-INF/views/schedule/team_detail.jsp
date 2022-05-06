@@ -187,17 +187,17 @@ $(function(){
 							
 								
 									<div>
-										<h5 class="card-title" style= "padding-right: 40px;">일정 목록 조회</h5>
+										<h5 class="card-title" style= "padding-right: 40px; margin-left:18px;">일정 목록 조회</h5>
 									</div>
 									<div>
 			
 										<style>
 											.btn{
-												width:70px;
+												width:80px;
 												height:30px;
 											
 												margin-left: 5px;
-												font-size:14px;
+												font-size:15px;
 												text-align: center;
 												line-height: 15px;
 												color: #f26522;
@@ -233,33 +233,38 @@ $(function(){
 											
 											.tg  {
 												border-collapse:collapse;border-spacing:0;
+												margin-bottom:30px;
 											}
 											
 											.tg td{
 												border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
 											  	overflow:hidden;padding:10px 5px;word-break:normal;
+											  
 											 }
 											 
 											.tg th{
 												border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
 											  	font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;
+											  	
 											 }
 											 
 											.tg .tg-fpkb{
-												border-color:#fe996b;text-align:left;vertical-align:top
+												border-color:#fe996b;text-align:left;vertical-align:top;
+												 	
 											 }
 											 
 											.tg .tg-i8w1{
-												background-color:#efefef;border-color:#fe996b;text-align:left;vertical-align:top
+												background-color:#efefef;border-color:#fe996b;text-align:left;vertical-align:top;
+												 
 											 }
 											
 
 					</style>
-<table class="tg">
+<table class="tg" style= "margin-left:18px;">
 <thead>
   <tr>
-    <th class="tg-i8w1">예정 시공 기간</th>
-    <th class="tg-fpkb">
+    <th class="tg-i8w1" style = "line-height: 40px;" >예정 시공 기간</th>
+    <th class="tg-fpkb" style = "line-height: 40px;">
     
     
     		<!-- 날짜까지 계산 할 때 는 해당월이 제외되므로 1개월 더 큰 값을 더해준다. -->
@@ -273,10 +278,10 @@ $(function(){
 </thead>
 <tbody>
   <tr>
-    <td class="tg-i8w1">월별 조회</td>
+    <td class="tg-i8w1" style = "line-height: 40px;">월별 조회</td>
     <td class="tg-fpkb">
-    	<select class="form-select" style="margin-bottom: 1.5rem; margin:5px; " >
-											<option selected>월별 선택</option>
+    	<select class="form-select" style="margin-bottom: 1.5rem; margin:5px; float:left;" >
+											<option selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월별 선택&nbsp;&nbsp;&nbsp;</option>
 											<option value="01" class = "che">1월</option>
 											<option value="02"class = "che">2월</option>
 											<option value="03" class = "che">3월</option>
@@ -290,7 +295,15 @@ $(function(){
 											<option value="11" class = "che">11월</option>
 											<option value="12" class = "che">12월</option>
 										</select>
-										<%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+										
+										<!--달력 -->
+										<div class=" d-flex align-items-center" ">
+										  <input type="date" class="form-control" id="startdate"
+										  		style="width:130px; height:32.5px; margin-top:5px; font-size:16px; margin-left:26px;" >
+										  <span style="margin: 0.2rem;">~</span>
+										  <input type="date" class="form-control" id="enddate"
+										  		style="width:130px; height:32.5px; margin-top:5px; font-size:16px;">
+										</div>
 										
 										<script>
 											$('#enddate').change(function() {

@@ -164,7 +164,7 @@
     
     
     
-     <!-- 버튼을 누르면 현재 버튼 값의 기간 만큼 일정들을 가져온다. ajax로 보여준다. - jbc -->
+     <!-- 선택한 달의 일정이 다노안ㄷ.  ajax로 보여준다. - jbc -->
     <resultMap id="selectTeamInformationDetailTeamMonth" type="team">
 	    <association property="constructionschedule" javaType="constructionschedule">
 			<result column = "cons_sche_startdate" property="consScheStartdate"/>
