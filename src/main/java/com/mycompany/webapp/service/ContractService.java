@@ -84,4 +84,12 @@ public class ContractService {
 		
 		return contractDao.selectMainDesign();
 	}
+
+	//페이저
+	public int getSalesListTotalNum(Pager p) {
+		return contractDao.selectSalesListTotalNum(p);
+	}
+	public List<Contract> getSalesList(Pager pager) {
+		return contractDao.selectSalesList(pager);
+	}
 }

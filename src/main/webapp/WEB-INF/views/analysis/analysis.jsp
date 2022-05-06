@@ -59,7 +59,10 @@
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">Details</h5>
-				<table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+
+				<%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+
+				<table class="table table-dashboard mb-0 table-borderless fs--1 border-200" style="margin-top: 1rem;">
 					<thead class="bg-light">
 						<tr class="text-900">
 							<th>월</th>
@@ -85,13 +88,15 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				
+				<div id="salesListPager">
+				
+				</div>
 			</div>
 		</div>
 	</div>
 </main>
 
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
 <script>
 
 const allSales=[];//월별 연매출
@@ -234,6 +239,81 @@ $(function ()
    
   
       const yearChart = new Chart(document.getElementById("myChart3"), yearConfig);
+      
+    //데이트피커 + 페이저 추가
+    //시작일과 종료일이 모두 선택되었을 때만 작동	
+	$('#enddate').change(function() {
+		let sdate = $("#startdate").val();
+		let edate = $("#enddate").val();
+		
+		if(sdate !== '' && edate !== ''){
+			salesList(1);
+		}
+	});
+      
+	$(document).ready(function(){
+		salesList(1);
+	});
+	
+	//알림 리스트를 보여주는-------------------------------------------------------------------------
+	function salesList(no) { 
+		//시작일 종료일
+		let sdate = $("#startdate").val();
+		let edate = $("#enddate").val();
+		
+		//시작일과 종료일이 선택되지 않았다면 일괄적으로 이번 년도로 검색 
+		if(sdate === '' && edate === ''){
+			sdate='2022-01-01';
+			edate='2022-12-31';
+		}
+		
+        $.ajax({
+        	url: 'salesList',
+            type: 'post',
+            data: {"sdate":sdate, "edate":edate, "pageNo": no}
+        }).done(function (result){
+               
+        	console.log(result);
+        	
+	       	var str="";
+	
+	        $.each(result.salesList,function(index,list){
+	        	
+	        	str += "<tr class='border-bottom border-200'><td class='fw-semi-bold'>" + list.contDate + "</td>"
+				str = str + "<td>"+list.contAdditionalAmount+"</td><td>" + list.contDownPayment + "</td><tr>";
+	
+			})   
+	
+	        $("#contbody").html(str);
+	                    	  
+	        var str2 ="<ul class='pagination justify-content-center'>";
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList(1)'><span>&laquo;</span></a></li>"; 
+	         
+    	  	if(result.groupNo > 1){
+    	  		var no = result.startPageNo-1;
+    	  		str2 += "<li class='page-item'><a class='page-link' onclick='salesList("+ no +")'><span>&lsaquo;</span></a></li>";
+    	  	}
+	        
+	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
+	            if(i != result.pageNo){
+	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList(" +i + ")'>" +i +"</a></li>";
+	            }else{
+	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='salesList(" +i + ")'>" +i +"</a></li>";
+	            }
+	        }
+
+	    	if(result.groupNo < result.totalGroupNo){
+	        	var num = result.endPageNo +1;
+	        	str2 += "<li class='page-item'><a class='page-link' onclick='salesList(" + num + ")'><span>&rsaquo;</span></a></li>";
+			}
+	        
+	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "</ul>";
+	        
+			$("#salesListPager").html(str2);
+				
+		});
+	}
    
 </script>
 

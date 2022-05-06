@@ -13,9 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.RequestDetails;
 import com.mycompany.webapp.dto.TeamHistory;
 import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.TeamHistoryService;
@@ -37,16 +40,18 @@ public class AnalysisController {
 	@RequestMapping("/analysis")
 	public String analysis(Model model) {
 
-		log.info("실행");
+
 		List<Contract> contract=contractService.getContracts();
 
 		List<Long> yearSales=teamHistoryService.getYearSales();
 		model.addAttribute("contract",contract);
 		model.addAttribute("yearSales",yearSales);
 		log.info(yearSales);
+		
 		///WEB-INF/views/analysis/analysis.jsp
 		return "analysis/analysis";
 	}
+	
 	@PostMapping(value="/yearajax", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String yearAnalysisajax(String sdate,String edate) {
@@ -149,5 +154,47 @@ public class AnalysisController {
 		return json;
 
 	}
+	
+	//sales 리스트 페이저
+		@PostMapping(value = "salesList", produces = "application/json; charset=UTF-8")
+		@ResponseBody
+		public String salesList(String sdate, String edate, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+
+			//-----------------------------------------------------------
+			Pager p = new Pager(5, 5, 5, 5);
+			p.setSdate(sdate);
+			p.setEdate(edate);
+
+			int totalNum = contractService.getSalesListTotalNum(p);
+			log.info(totalNum);
+			
+			Pager pager = new Pager(5, 5, totalNum, pageNo);
+			pager.setSdate(sdate);
+			pager.setEdate(edate);
+
+			model.addAttribute("pager", pager);
+
+			List<Contract> salesList = contractService.getSalesList(pager);
+			log.info(salesList);
+			
+			model.addAttribute("salesList", salesList);
+			log.info(model.getAttribute("salesList"));
+
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("salesList", salesList);        
+			jsonObject.put("p", pager);
+			jsonObject.put("startPageNo",pager.getStartPageNo());
+			jsonObject.put("endPageNo",pager.getEndPageNo());
+			jsonObject.put("pageNo",pager.getPageNo());
+			jsonObject.put("totalPageNo",pager.getTotalPageNo());
+			jsonObject.put("groupNo",pager.getGroupNo());
+			jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
+			jsonObject.put("endPageNo",pager.getEndPageNo());
+
+			String json = jsonObject.toString();
+			log.info(json);
+			return json;
+
+		}
 	
 }

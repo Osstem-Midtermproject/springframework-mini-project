@@ -43,5 +43,9 @@ public interface ContractDao {
 	
 	List<Contract> selectMainDesign();
 	
+	//페이저
+	List<Contract> selectSalesList(Pager pager);
+	int selectSalesListTotalNum(Pager p);
+	
 	
 }
