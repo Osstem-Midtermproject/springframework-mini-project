@@ -165,5 +165,33 @@
 			where c.cont_design_identification=d.did
 			group by d.dtt
 	</select>
+	
+	<!-- sales pager -->
+	<resultMap id="selectSalesListResultMap" type="contract">
+      <result column="cont_date" property="contDate" />
+      <result column="cont_down_payment" property="contDownPayment" />
+      <result column="cont_additional_amount" property="contAdditionalAmount" />
+	</resultMap>
+	
+	<select id="selectSalesList" parameterType="pager" resultMap="selectSalesListResultMap">
+      select rnum, cont_date,cont_down_payment,cont_additional_amount
+          from (
+              select ROWNUM as rnum, cont_date,cont_down_payment,cont_additional_amount
+              from (
+                  select cont_date,cont_down_payment,cont_additional_amount
+                  from contract
+                  where TO_CHAR(cont_date,'yyyy-mm-dd') between #{sdate} and #{edate}
+                  ORDER BY to_char(cont_date,'yyyymmdd')
+          	        )
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}
+	</select>
+	
+	<select id="selectSalesListTotalNum" parameterType="pager" resultType="int">
+		  select count(*)
+	      from contract
+          where TO_CHAR(cont_date,'yyyy-mm-dd') between #{sdate} and #{edate}
+	</select>
    
 </mapper>
