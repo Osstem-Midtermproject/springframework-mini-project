@@ -186,5 +186,27 @@
 		ORDER BY CONS_SCHE_STARTDATE
     </select> 
     
+        <!-- 달력과 달력 사이의 값들이다. . - jbc -->
+    <resultMap id="selectTeamInformationDetailTeamday" type="team">
+	    <association property="constructionschedule" javaType="constructionschedule">
+			<result column = "cons_sche_startdate" property="consScheStartdate"/>
+			<result column = "cons_sche_enddate" property="consScheEnddate"/>
+			<result column = "CONS_SCHE_CONTENT" property="consScheContent"/>
+			<result column = "cons_sche_hospitalname" property="consScheHospitalName"/>
+			<result column = "CONS_SCHE_ADDRESS" property="consScheAddress"/>
+			
+			<!-- 일정 버튼 클릭시 processing/detail?hdln=의 형식으로 이동하기 위해 받아온다. -->
+			<result column = "cons_sche_dln" property="consScheDln"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectdetailTeamInformationWithdaytoday" parameterType="team" resultMap="selectTeamInformationDetailTeamday">
+		SELECT cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, cons_sche_dln, CONS_SCHE_CONTENT, CONS_SCHE_ADDRESS
+		FROM constructioncategory, constructionschedule
+		WHERE cons_sche_teamid = #{tid} AND cons_cate_id = cons_sche_categoryid 
+			AND TO_CHAR(CONS_SCHE_STARTDATE, 'YYYY-MM-DD') BETWEEN #{sdate} AND #{edate}
+		ORDER BY CONS_SCHE_STARTDATE
+    </select> 
+    
 
 </mapper>

@@ -278,6 +278,36 @@ public class ScheduleController {
 			log.info(json);
 			return json;
 		}
+	
+	//달력에서 날짜 두가지 선택하면 그 사이의 값들이 나온다.  - jbc
+	@PostMapping(value = "/team/detaidaytoday", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String detaildaytoday(String sdate, String edate, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+		log.info("일투일");
+		
+		String detailTeamId = request.getParameter("tid");
+		log.info(detailTeamId);
+		
+		//팀에 현재 파라미터의 tid값을 저장한다. 
+		team.setTid(detailTeamId);
+		//팀 dto에 현재 기간을 한다. 
+		team.setSdate(sdate);
+		team.setEdate(edate);
+		model.addAttribute(team);
+		
+		log.info(team);
+		
+		List<Team> detailScheduleList = teamService.getLocationHospitalWithdaytoday(team);
+		model.addAttribute("detailScheduleList", detailScheduleList);
+		log.info(detailScheduleList);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("detailScheduleList", detailScheduleList);        
+
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+	}
 
 	@RequestMapping("/scheduler")
 	public String scheduler() {

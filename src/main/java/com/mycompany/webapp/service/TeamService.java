@@ -70,12 +70,18 @@ public class TeamService {
 	}
 	
 	//team 스케쥴 상세페이지에서 버튼을 누르면 해당 버튼의 기간 만큼 값을 출력한다. -jbc
-		public List<Team> getLocationHospitalWithMonth(Team team) {
-			// TODO Auto-generated method stub
-			log.info("시랭");
-			return teamdao.selectdetailTeamInformationWithMonth
-(team);
+	public List<Team> getLocationHospitalWithMonth(Team team) {
+		// TODO Auto-generated method stub
+		log.info("시랭");
+	return teamdao.selectdetailTeamInformationWithMonth(team);
 		}
+	
+		//team 스케쥴 상세페이지에서 버튼을 누르면 해당 버튼의 기간 만큼 값을 출력한다. -jbc
+	public List<Team> getLocationHospitalWithdaytoday(Team team) {
+		// TODO Auto-generated method stub
+		log.info("시랭");
+	return teamdao.selectdetailTeamInformationWithdaytoday(team);
+	}
 	
 	
 
