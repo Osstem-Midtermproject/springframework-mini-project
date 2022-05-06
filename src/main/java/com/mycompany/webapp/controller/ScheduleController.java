@@ -246,6 +246,38 @@ public class ScheduleController {
 		log.info(json);
 		return json;
 	}
+	
+	
+	
+	//detail team 페이지에서 월로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
+		@PostMapping(value = "/team/detailteammonth", produces = "application/json; charset=UTF-8")
+		@ResponseBody
+		public String detailteammonth(String tid, String month, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+			log.info(month);
+			log.info("월");
+			
+			String detailTeamId = request.getParameter("tid");
+			log.info(detailTeamId);
+			
+			//팀에 현재 파라미터의 tid값을 저장한다. 
+			team.setTid(detailTeamId);
+			//팀 dto에 현재 기간을 한다. 
+			team.setMonth(month);
+			model.addAttribute(team);
+			
+			log.info(team);
+			
+			List<Team> detailScheduleList = teamService.getLocationHospitalWithMonth(team);
+			model.addAttribute("detailScheduleList", detailScheduleList);
+			log.info(detailScheduleList);
+			
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("detailScheduleList", detailScheduleList);        
+
+			String json = jsonObject.toString();
+			log.info(json);
+			return json;
+		}
 
 	@RequestMapping("/scheduler")
 	public String scheduler() {

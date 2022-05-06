@@ -45,11 +45,11 @@ button:focus {
 	background-color: orange;
 	color: white;
 	border: white;
-	box-shadow: 0 0 0 0.25rem rgba(216, 13, 13, 0.5);
+	box-shadow: 0 0 0 0.1rem rgba(216, 13, 13, 0.5);
 }
 
 .btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
-	box-shadow: 0 0 0 0.25rem rgba(240, 114, 11, 0.87);
+	box-shadow: 0 0 0 0.1rem rgba(240, 114, 11, 0.87);
 }
 
 .page-link:focus {

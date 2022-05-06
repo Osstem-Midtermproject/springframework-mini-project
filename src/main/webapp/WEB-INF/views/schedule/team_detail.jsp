@@ -9,9 +9,12 @@
 
 
 <style>
-.card border {
-	width: 180px;
-}
+	.card border {
+		width: 180px;
+	}
+
+	
+									
 </style>
 
 <script type="text/javascript">
@@ -38,6 +41,7 @@ $(function(){
 	    var tid = getParameters('tid');
 
 		let duration = $(this).attr('id');
+		
 		
 		$.ajax({
 			url:"detailteam",
@@ -111,6 +115,48 @@ $(function(){
 	})
 });
 
+/* 선택한 달로 이동하여 보여준다. */
+$(function(){
+	$('.form-select').change(function(){
+		//chkParam();	
+		console.log("dfk");
+	    
+	    var tid = getParameters('tid');
+		var month = $('.form-select option:selected').val();
+		console.log(month);
+		
+		$.ajax({
+			url:"detailteammonth",
+			type:'post',
+		    data:{month,tid}
+		}).done(data => {
+				console.log(data);
+				
+				// 가져온 리스트를 출력하는데 이상하게 each가 안 먹히므로 for로 대체한다.
+					 
+				var List = data.detailScheduleList;
+				console.log(List);
+				//console.log(List[0].constructionschedule.consScheDln.substr(1,2) );
+				
+				var listTag = "";
+				for(var i = 0; i < List.length; i++){
+					listTag += "<div class='card border' style='width: 15rem;";
+					listTag += "onclick=\"location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=" + List[i].constructionschedule.consScheDln + "'\">";
+					listTag += "<div class=\"card-body d-flex flex-column\"> <div class=\"d-flex align-items-center\"></div><div><div class=\"display:flex; flex-direction:column;\">";
+					listTag += "<h5 class=\"card-title\">" + List[i].constructionschedule.consScheHospitalName + "</h5>";
+					listTag += "<div>시작 예정일: " + List[i].constructionschedule.consScheStartdate.substring(0,10) + "</div>";
+					listTag += "<div>종료 예정일: " + List[i].constructionschedule.consScheEnddate.substring(0,10) + "</div>";
+					listTag += "<div>내용: " + List[i].constructionschedule.consScheContent + "</div>";
+					listTag += "<div>주소: " + List[i].constructionschedule.consScheAddress + "</div>";
+					listTag += "</div> </div> </div> </div>"
+					
+				}
+				$(".team-wrapper.d-flex").html(listTag);
+			
+		})
+	})
+});
+
 </script>
 
 <main id="main" class="main">
@@ -138,14 +184,63 @@ $(function(){
 					<div class="col-sm-12">
 						<div class="card" style="width: 71rem; display:flex;  flex-flow : wrap;" >
 							<div class="card-body justify-content-between">
-								<div style = "display:flex">
-								<h5 class="card-title">일정 목록</h5>
-								
-								<!-- 날짜까지 계산 할 때 는 해당월이 제외되므로 1개월 더 큰 값을 더해준다. -->
-								<button type="button" class="btn btn-outline-primary ALL" id="10">전체</button>
-								<button type="button" class="btn btn-outline-primary" id="1">이번 달</button>
-								<button type="button" class="btn btn-outline-primary" id="4">3개월</button>
-								<button type="button" class="btn btn-outline-primary" id="7">6개월</button>
+							
+								<div style = "display:flex; ">
+									<h5 class="card-title" style= "padding-right: 40px;">일정 목록</h5>
+									
+									<style>
+										.btn{
+											width:70px;
+											height:30px;
+											margin-top:20px;
+											margin-right: 10px;
+											font-size:14px;
+											text-align: center;
+											line-height: 15px;
+											color: #f26522;
+											border-color: orange;
+											
+										}
+										.btn:hover {
+											color: #fff;
+											background-color: orange;
+											border-color: orange;
+										}
+										
+										but:focus {
+											background-color: orange;
+											color: white;
+											border: white;
+											box-shadow: 0 0 0 0.25rem rgba(216, 13, 13, 0.5);
+										}
+										
+										.btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
+											box-shadow: 0 0 0 0.1rem rgba(240, 114, 11, 0.87);
+										}
+										
+										
+									</style>
+									<!-- 날짜까지 계산 할 때 는 해당월이 제외되므로 1개월 더 큰 값을 더해준다. -->
+									<button type="button" class="btn btn-outline-primary ALL" >전체</button>
+									<button type="button" class="btn btn-outline-primary" id="2">1개월</button>
+									<button type="button" class="btn btn-outline-primary" id="4">3개월</button>
+									<button type="button" class="btn btn-outline-primary" id="7">6개월</button>
+									<button type="button" class="btn btn-outline-primary" id="10">9개월</button>
+									<select class="form-select border-1" style="font-weight: 500; margin-bottom: 1.5rem;">
+										<option selected>월별 선택</option>
+										<option value="01" class = "che">1월</option>
+										<option value="02"class = "che">2월</option>
+										<option value="03" class = "che">3월</option>
+										<option value="04" class = "che">4월</option>
+										<option value="05" class = "che">5월</option>
+										<option value="06" class = "che">6월</option>
+										<option value="07" class = "che">7월</option>
+										<option value="08" class = "che">8월</option>
+										<option value="09" class = "che">9월</option>
+										<option value="10" class = "che">10월</option>
+										<option value="11" class = "che">11월</option>
+										<option value="12" class = "che">12월</option>
+									</select>
 								
 								
 								</div>
