@@ -100,17 +100,8 @@ public class HospitalService {
 	}
 	
 	//진행상황 이미지 가져오기
-	public List<ProgressImg> getProgressImg(ProgressImg progressImg) {
-		log.info(hospitalDao.selectProgressImgByHdln(progressImg));
-		return hospitalDao.selectProgressImgByHdln(progressImg);
-	}
-
 	public List<Progress> getProgress(ProgressImg progressImg) {
-		return hospitalDao.selectProgressByHdln2(progressImg);
-	}
-
-	public List<Hospital> getHospital2(ProgressImg progressImg) {
-		return hospitalDao.selectHospitalByHdln2(progressImg);
+		return hospitalDao.selectProgressImgByHdln(progressImg);
 	}
 	
 	//이미지 작성
@@ -121,5 +112,15 @@ public class HospitalService {
 	//이미지 리스트 불러오기
 	public List<ProgressImg> getImgs(String pimgDln, String pimgAddress) {
 		return null;
+	}
+
+	//pimgId로 progressImg 컬럼 가져오기
+	public Progress getProgressImg(int pimgId) {
+		return hospitalDao.selectProgressImgByPimgId(pimgId);
+	}
+	
+	//pimgId로 img 사진 삭제
+	public void removePimgId(int pimgId) {
+		hospitalDao.deleteByPimgId(pimgId);
 	}
 }

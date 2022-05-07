@@ -65,27 +65,27 @@ public class HospitalController {
 
 	@GetMapping("/processing/detail")
 	public String processingDetail(String hdln, String arContent, Model model) {
-		//병원정보
+		/*병원정보*/
 		Hospital hospital = hospitalService.getHospital(hdln);
 		model.addAttribute("hospital", hospital);
 		log.info(hospital);
 
-		//병원 진행 상태
+		/*병원 진행 상태*/
 		Hospital hospitalState = hospitalService.getHospitalState(hdln);
 		model.addAttribute("hospitalState", hospitalState);
 		log.info(hospitalState);
 
-		//현재상태 가져오기 (상담/시공) 
+		/*현재상태 가져오기 (상담/시공)*/
 		Progress progressCategory = hospitalService.getProgressCategory(hdln);
 		model.addAttribute("progressCategory", progressCategory);
 		log.info(progressCategory);
 
-		//병원 계약일
+		/*병원 계약일*/
 		Hospital hospitalContDate = hospitalService.getHospitalContDate(hdln);
 		model.addAttribute("hospitalContDate", hospitalContDate);
 		log.info("계약일: " + hospitalContDate);
 
-		//병원 계약서보기
+		/*병원 계약서보기*/
 		String contId = hospitalContDate.getContract().getContIdentificationNumber();
 		byte[] cont = hospitalContDate.getContract().getCont();
 
@@ -99,7 +99,7 @@ public class HospitalController {
 			model.addAttribute("contractPdf", "");
 		}
 
-		//진행상황 띄우기
+		/*진행상황 띄우기*/
 		List<Hospital> hospitalProgresses = hospitalService.getHospitalProgress(hdln);
 		log.info(hospitalProgresses);
 
@@ -115,7 +115,6 @@ public class HospitalController {
 			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("0")) {
 				hospitalProgresses.get(i).getProgress().setPcategory("시공 완료");
 			}
-
 		}
 
 		model.addAttribute("hospitalProgresses", hospitalProgresses);
@@ -123,7 +122,34 @@ public class HospitalController {
 		return "hospital/processingDetail";
 
 	}
+	
+	/*현재상태 추가 (시공완료)*/
+	@PostMapping(value = "processing/updateCategory", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String updateState(String hdln, String haddress, String pcategory, String category, Model model) {
+		log.info("실행");
+		log.info(hdln);
+		log.info(haddress);
+		log.info(pcategory);
+		log.info(category);
 
+		Progress newCateory = new Progress();
+
+		newCateory.setPdln(hdln);
+		newCateory.setPaddress(haddress);
+		newCateory.setPcategory(pcategory);
+		newCateory.setCategory(category);
+
+		hospitalService.insertCategory(newCateory);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("category", category);
+		String json = jsonObject.toString();
+
+		return json;
+	}
+
+	/*추가요청*/
 	//모든 추가요청을 ajax로 불러오기
 	@PostMapping(value = "processing/arContentList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -221,168 +247,73 @@ public class HospitalController {
 		return json;
 	}
 
-	//현재상태 추가 (시공완료)
-	@PostMapping(value = "processing/updateCategory", produces = "application/json; charset=UTF-8")
+	/*진행상황 img 가져오기*/
+	//url을 hdln과 haddress(pk가 아님)가 아닌 imgId로 지정하여 파일을 찾기 위해서 ajax로 pimgId를 찾아서 json으로 return 
+	@RequestMapping(value = "processing/progressImgList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String updateState(String hdln, String haddress, String pcategory, String category, Model model) {
-		log.info("실행");
-		log.info(hdln);
-		log.info(haddress);
-		log.info(pcategory);
-		log.info(category);
+	public String progressImgList(String hdln, String haddress, Model model) throws Exception {
+		ProgressImg progressImg = new ProgressImg();
+		progressImg.setPimgDln(hdln);
+		progressImg.setPimgAddress(haddress);
 
-		Progress newCateory = new Progress();
+		List<Progress> progressImgList = hospitalService.getProgress(progressImg);
+		model.addAttribute("progressImgList", progressImgList);
 
-		newCateory.setPdln(hdln);
-		newCateory.setPaddress(haddress);
-		newCateory.setPcategory(pcategory);
-		newCateory.setCategory(category);
+		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
+		log.info("progress로 프로그레스 이미지 가져오기" + progressImgList.size());
 
-		hospitalService.insertCategory(newCateory);
+		if (progressImgList.size() > 0) {
+			for (int i = 0; i < progressImgList.size(); i++) {
+				HashMap<String, Object> hm = new HashMap<String, Object>();
+				hm.put("pimgId", progressImgList.get(i).getProgressImg().getPimgId());
+				hm.put("pimgContent", progressImgList.get(i).getProgressImg().getPimgContent());
+				hm.put("pimgCategory", progressImgList.get(i).getProgressImg().getPimgCategory());
+				hm.put("pimgOname", progressImgList.get(i).getProgressImg().getPimgOname());
+				hm.put("pimgSname", progressImgList.get(i).getProgressImg().getPimgSname());
+				hm.put("pimgType", progressImgList.get(i).getProgressImg().getPimgType());
+				hm.put("pimgDate", progressImgList.get(i).getProgressImg().getPimgDate());
+				hm.put("pimgRegistrationDate", progressImgList.get(i).getProgressImg().getPimgRegistrationDate());
 
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("category", category);
-		String json = jsonObject.toString();
+				hmlist.add(hm);
+			}
+		}
+		JSONArray jsonArray = new JSONArray(hmlist);
+		String json = jsonArray.toString();
+		log.info(json);
 
 		return json;
 	}
 
-	//진행상황 img 가져오기
-	/*@PostMapping(value="processing/progressImgList", produces="application/json; charset=UTF-8")
+	//pimgId로 이미지를 찾아서 response로 return 한다 
+	@RequestMapping(value = "/processing/fileList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String progressImgList(String hdln, String haddress, Model model, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
-		ProgressImg progressImg = new ProgressImg();
-		progressImg.setPimgDln(hdln);
-		progressImg.setPimgAddress(haddress);
-			
-		List<Progress> progressImgList = hospitalService.getProgress(progressImg);
+	public void fileList(int pimgId, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
+		log.info("progressImg 테이블의 pimgId로 찾아내기: ");
+		Progress progressImg = hospitalService.getProgressImg(pimgId);
+		log.info(progressImg);
 		
-		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
-		log.info("rogress로 프로그레스 이미지 가져오기" + progressImgList.size()); 
-		
-		if(progressImgList.size() > 0) {
-		    for(int i=0; i<progressImgList.size(); i++) {
-		        HashMap<String, Object> hm = new HashMap<String, Object>();
-		        hm.put("pimgId", progressImgList.get(i).getProgressImg().getPimgId());
-		        hm.put("pimgContent", progressImgList.get(i).getProgressImg().getPimgContent());
-		        hm.put("pimgCategory", progressImgList.get(i).getProgressImg().getPimgCategory());
-		        hm.put("pimgOname", progressImgList.get(i).getProgressImg().getPimgOname());
-		        hm.put("pimgSname", progressImgList.get(i).getProgressImg().getPimgSname());
-		        hm.put("pimgType", progressImgList.get(i).getProgressImg().getPimgType());
-		        
-		        hmlist.add(hm);
-		    }
-		    
-		    for(int i=0; i<progressImgList.size(); i++) { 
-		    	String contentType = progressImgList.get(i).getProgressImg().getPimgType();
-		    	String originalFilename = progressImgList.get(i).getProgressImg().getPimgOname();
-		    	String saveFilename = progressImgList.get(i).getProgressImg().getPimgSname();
-		    	
-		    	response.setContentType(contentType);
-		    	
-		    	if(userAgent.contains("Trident") || userAgent.contains("MSIE")) {
-					//IE 브라우저일 경우
-					originalFilename = URLEncoder.encode(originalFilename, "UTF-8");
-				} else {
-					//크롬, 엣지, 사파리일 경우
-					originalFilename = new String(originalFilename.getBytes("UTF-8"), "ISO-8859-1");
-				}
-				response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFilename + "\"");
-				File file = new File("C:/Temp/mid/" + saveFilename);
-				if (file.exists()) {
-					FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
-				}
-		    }
-		}
-		
-		log.info(hmlist);
-		
-		JSONArray jsonArray = new JSONArray(hmlist);        
-		String json = jsonArray.toString();
-		log.info(json);
-		
-		return json;
-	}*/
-	
-	@RequestMapping("/processing/fileList")
-	public void progressImgList(String hdln, String haddress, Map<String, Object> model, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
-		log.info("이미지 띄우기: ");
-		
-		ProgressImg progressImg = new ProgressImg();
-		progressImg.setPimgDln(hdln);
-		progressImg.setPimgAddress(haddress);
-			
-		List<Progress> progressImgList = hospitalService.getProgress(progressImg);
-		
-		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
-		
-		if(progressImgList.size() > 0) {
-		    for(int i=0; i<progressImgList.size(); i++) {
-		        HashMap<String, Object> hm = new HashMap<String, Object>();
-		        hm.put("pimgId", progressImgList.get(i).getProgressImg().getPimgId());
-		        hm.put("pimgContent", progressImgList.get(i).getProgressImg().getPimgContent());
-		        hm.put("pimgCategory", progressImgList.get(i).getProgressImg().getPimgCategory());
-		        hm.put("pimgOname", progressImgList.get(i).getProgressImg().getPimgOname());
-		        hm.put("pimgSname", progressImgList.get(i).getProgressImg().getPimgSname());
-		        hm.put("pimgType", progressImgList.get(i).getProgressImg().getPimgType());
-		        hm.put("pimgDln", hdln);
-		        hm.put("pimgAddress", haddress);
-		        
-		        hmlist.add(hm);
-		    }
-		}
-		
-		
-		response.setContentType("application/json; charset=UTF-8");
-		/*String fileDir = "C:/Temp/mid";
-		File file = new File(fileDir);
-		String[] fileList = file.list();
-		*/
-		
-		/*for (int i=0; i<progressImgList.size(); i++) {
-			File file = new File("C:/Temp/mid/" + progressImgList.get(i).getProgressImg().getPimgSname());
-			log.info(file);
-			if(file.exists()) {
-				FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
-				response.setContentType("application/json; charset=UTF-8");
-			}
-		}*/
-		/*String contentType = progressImgList.get(0).getProgressImg().getPimgType();
-		String originalFilename = progressImgList.get(0).getProgressImg().getPimgOname();
-		String saveFilename = progressImgList.get(0).getProgressImg().getPimgSname();
-		log.info(contentType);
+		String contentType = progressImg.getProgressImg().getPimgType();
+		String originalFilename = progressImg.getProgressImg().getPimgOname();
+		String saveFilename = progressImg.getProgressImg().getPimgSname();
 		
 		response.setContentType(contentType);
 		
-		if(userAgent.contains("Trident") || userAgent.contains("MSIE")) {
-			//IE 브라우저일 경우
+		if(userAgent.contains("Trident") || userAgent.contains("MSIE")) { //인터넷 익스플로러 11 || 10 이하
 			originalFilename = URLEncoder.encode(originalFilename, "UTF-8");
 		} else {
-			//크롬, 엣지, 사파리일 경우
-			originalFilename = new String(originalFilename.getBytes("UTF-8"), "ISO-8859-1");
+			originalFilename = new String(originalFilename.getBytes("UTF-8"), "ISO-8859-1"); //직접 바이트 배열을 얻어내고, 얻어낸 것을 다시 ISO-8859-1로 표현한다
 		}
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFilename + "\"");
 		
 		File file = new File("C:/Temp/mid/" + saveFilename);
-		log.info(file);
 		if(file.exists()) {
 			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
-		
-		}*/
-		
-		JSONArray jsonArray = new JSONArray(hmlist);
-		String json = jsonArray.toString();
-		log.info(json);
-		
-		PrintWriter pw = response.getWriter();
-		pw.println(json);
-		pw.flush();
-		pw.close();
-		//return json;
+		}
 	}
 	
+
 	//파일 업로드 ajax
-	@PostMapping(value="processing/fileupload", produces="application/json; charset=UTF-8")
+	@PostMapping(value = "processing/fileupload", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String fileupload(ProgressImg progressImg) throws Exception {
 		log.info("실행");
@@ -391,43 +322,46 @@ public class HospitalController {
 		log.info(progressImg.getPimgContent());
 		log.info(progressImg.getPimgDate());
 		log.info(progressImg.getPimgHospitalName());
-		
+
 		for (MultipartFile multipartFile : progressImg.getPimgAttach()) {
 			log.info(multipartFile.getOriginalFilename());
 			log.info(multipartFile.getContentType());
-			
-			if(!progressImg.getPimgAttach().isEmpty()) {
+
+			if (!progressImg.getPimgAttach().isEmpty()) {
 				progressImg.setPimgOname(multipartFile.getOriginalFilename());
 				progressImg.setPimgType(multipartFile.getContentType());
-				progressImg.setPimgSname(
-						new Date().getTime() + "_" + progressImg.getPimgHospitalName() + "_" +
-						progressImg.getPimgCategory() + "_" +
-						multipartFile.getOriginalFilename());
+				progressImg.setPimgSname(new Date().getTime() + "_" + progressImg.getPimgHospitalName() + "_"
+						+ progressImg.getPimgCategory() + "_" + multipartFile.getOriginalFilename());
 				File file = new File("C:/Temp/mid/" + progressImg.getPimgSname());
 				multipartFile.transferTo(file);
-				
+
 				log.info(progressImg);
 				hospitalService.writeImg(progressImg);
 			}
 		}
 		log.info("실행");
-		
-		
-		//받은 파일을 서버 파일 시스템에 저장할 때
+
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
-		
+
 		return json;
 	}
 	
-	//파일 이미지 띄우기
-	/*@RequestMapping("/filedownload") 
-	public void filedownload(String pimgDln, String pimgAddress, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
-		List<ProgressImg> progressImgList = hospitalService.getImgs(pimgDln, pimgAddress);
-		log.info(progressImgList);
-		
-	}*/
+	//파일 delete
+	@PostMapping(value = "processing/progressImgDeleteBtn", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String progressImgDelet(int pimgId, Model model) {
+		hospitalService.removePimgId(pimgId);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		log.info(json);
+
+		return json;
+
+	}
 
 	//지도 별, 위치 별 병원 목록 컨트롤 호출 
 	@GetMapping("/location")

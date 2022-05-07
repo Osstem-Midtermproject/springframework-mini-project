@@ -20,4 +20,5 @@ public class ProgressImg {
 	private Date pimgDate;				//날짜
 	private List<MultipartFile> pimgAttach;	//img 파일
 	private String pimgHospitalName;	//병원이름
+	private Date pimgRegistrationDate;	//사진 등록일
 }

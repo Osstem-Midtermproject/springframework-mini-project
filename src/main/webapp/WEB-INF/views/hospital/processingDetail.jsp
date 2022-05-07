@@ -175,15 +175,11 @@
 							</div>
 							<div class="tab-pane fade show active" id="bordered-past">
 								<div class="progressList col-8" style="margin: 0 auto">
+									<div id="progressImgWrapper">
+	               					</div>
 									<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
 										<c:if test="${hospitalProgress.progress.pcontent != null}">
-											<div class="progressImg">
-			               						<!-- <img src="" alt="" style="height: 100%; width: 100%;" > -->
-			               						<div id="imgbox">
-			               						
-			               						</div>
-			               					</div>
-						                	<h6 class="text-center" style="padding: 15px 0 15px 0; margin: 0;">${hospitalProgress.progress.pcontent}</h6>
+						                	<%-- <h6 class="text-center" style="padding: 15px 0 15px 0; margin: 0;">${hospitalProgress.progress.pcontent}</h6> --%>
 					                	</c:if>
 				                    </c:forEach>
 					            </div>
@@ -473,6 +469,9 @@
 	/* 이미지 업로드 */	
 	$("#imgInsertButton").on("click", function() {
 		  $("#dialogImgForm").dialog("open");
+		  $("#pimgContent").val("");
+		  $('#pimgCategory').val('시공종류').prop("selected",true);
+		  $("#pimgAttach").val("");
 	  });
 	
 	var progress=[];
@@ -545,69 +544,87 @@
 			enctype: 'multipart/form-data'
 		}).done((data) => {
 			console.log(data);
+			$("#progressImgWrapper").html("");
+			getProgressImg();
 		}).fail(function() {
 			alert("해당 시공은 진행하지 않았습니다.");
 		});
 	};
 	
 	/* 진행상황 img 를 ajax로 불러오기 */
-	/* 이미지 목록 불러오기 */
-	$(function() {
-			$.ajax({
-				url: "fileList",
-				data:{
-		        	 hdln: "${hospital.hdln}",
-		        	 haddress: "${hospital.haddress}"
-		    	 }/* , processData: false */
-			}).done(data => {
-				console.log(data);
-				
-				
-				for (var d of data) {
-					console.log(d.pimgDln);
-					console.log(d.pimgAddress);
-					var imgTag = "<img src='/processing/fileList?hdln=";
-					imgTag += "${hospital.hdln}";
-					imgTag += "&haddress=";
-					imgTag += "${hospital.haddress}";
-					imgTag += "'/>"
-					
-					$("#imgbox").append(imgTag);
-				}
-			});
-		})
-		
-		
-	function filedownload(fileNo) {
-		$("#downloadImg").attr("src", "filedownload?fileNo=" + fileNo);
-	}
-	
-	/* $(function(){
-		filedownload(1);
+	$(function(){
 		getProgressImg();
- 	}); */
-	
+ 	});
 	
 	function getProgressImg() {
- 		$.ajax({
-	         url:"progressImgList",
-	    	 type:'post',
-	         data:{
+		$.ajax({
+			url: "progressImgList",
+			data:{
 	        	 hdln: "${hospital.hdln}",
-	        	 haddress: "${hospital.haddress}"
+	        	 haddress: "${hospital.haddress}",
 	    	 }
-	    }).done((data) => {
-	    	console.log(data);
-	    	
-	    	/* for (d of data) {
-	    		$("#downloadImg").attr("src", "progressImgList?pimgId=" + fileNo);
-	    		console.log(d);
-	    	} */
-   		})
+		}).done(data => {
+			console.log(data);
+			
+			/* var dataArray = [];
+			for (var i=0; i<data.length; i++) {
+				dataArray.push({imgId : data[i].pimgId})
+			}
+			console.log(dataArray);
+			
+			getImg(dataArray); */
+			
+			if (data.length > 0) {
+				for (var i=0; i<data.length; i++) {
+					console.log(data[i].pimgId);
+					getImg(data[i].pimgId);
+				}
+			} else {
+				var imgTag = "<div>등록된 이미지가 없습니다.</div>";
+				$("#progressImgWrapper").append(imgTag);
+			}
+		});
 	};
 	
-	 
+	function getImg(pimgId) {
+		$.ajax({
+			url: "fileList",
+			data: {
+				pimgId: pimgId
+			},
+			async: false, /* for loop로 ajax 호출시 순서가 뒤바뀌는 경우가 있음 이를 해결해주기 위해서 동기로 바꿈 */
+		}).done((data) => {
+			var imgTag = "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;'>";
+			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
+			imgTag += pimgId;
+			imgTag += "'/>";
+			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn' data-del=";
+			imgTag += pimgId;
+			imgTag += "> 삭제 </a></div>";
+		
+			$("#progressImgWrapper").append(imgTag);
+			
+		});
+	};
 	
+	/* 이미지 항목별 삭제 버튼 */
+	 $(document).on("click",".progressImgDeleteBtn", function(){
+		 var pimgId = $(this).attr("data-del");
+		 
+		 $.ajax({
+			 url:"progressImgDeleteBtn",
+			 type:'post',
+	         data:{
+	        	 pimgId:pimgId
+	         }
+		 }).done((data) => {
+			console.log("delete 성공");
+			$("#progressImgWrapper").html("");
+			getProgressImg();
+		 });
+	 });
+	
+
 	</script>
 
 

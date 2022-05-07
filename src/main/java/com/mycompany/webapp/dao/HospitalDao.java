@@ -59,12 +59,16 @@ public interface HospitalDao {
 	public List<Hospital> selectByLocation2(String addfressHospital );
 	
 	//진행상황 이미지 가져오기
-	public List<ProgressImg> selectProgressImgByHdln(ProgressImg progressImg);
-	public List<Progress> selectProgressByHdln2(ProgressImg progressImg);
-	public List<Hospital> selectHospitalByHdln2(ProgressImg progressImg);
+	public List<Progress> selectProgressImgByHdln(ProgressImg progressImg);
 	
 	//이미지 추가
 	public void insertImg(ProgressImg progressImg);
+	
+	//pimgId로 progressImg 컬럼 가져오기
+	public Progress selectProgressImgByPimgId(int pimgId);
+	
+	//pimgId로 img 사진 삭제
+	public void deleteByPimgId(int pimgId);
 
 
 
