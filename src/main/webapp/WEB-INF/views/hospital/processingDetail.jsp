@@ -28,7 +28,13 @@
 			</div>
 			<div>
 				<h3 id="badge">
-					<span id="state" class="badge bg-success" style="cursor: pointer">${hospitalState.state.skind}</span>
+					<c:if test="${progressCategory.category != '완료'}">
+						<span id="state" class="badge bg-success" style="cursor: pointer">${progressCategory.category}중</span>
+					</c:if>
+					
+					<c:if test="${progressCategory.category == '완료'}">
+						<span id="state" class="badge bg-secondary" style="cursor: pointer">${progressCategory.category}</span>
+					</c:if>
 				</h3>
 				<h2>${hospital.hname}</h2>
 				
@@ -71,21 +77,15 @@
 										<td><a class="btn btn-sm btn-secondary"
 											style="font-size: x-small;" href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
 									</c:if>
-									<%-- <c:if test="${contractPdf == ''}">
-										<td><a class="btn btn-sm btn-secondary disabled"
-											style="font-size: x-small;" href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum=${hospitalContDate.contract.contIdentificationNumber}'>계약서 보기</a></td>
-									</c:if> --%>
 									
 									<c:if test="${contractPdf == ''}">
 										<td>계약내역이 없습니다.</td>
 									</c:if>
 									
-									
 								</tr>
 							</tbody>
 						</table>
 						<!-- End Tables without borders -->
-
 					</div>
 				</div>
 
@@ -95,17 +95,17 @@
 						<ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab"
 							role="tablist">
 							<li class="nav-item">
-								<button class="nav-link active" id="present-tab"
+								<button class="nav-link" id="present-tab"
 									data-bs-toggle="tab" data-bs-target="#bordered-present"
 									type="button">요청내역</button>
 							</li>
 							<li class="nav-item">
-								<button class="nav-link" id="past-tab" data-bs-toggle="tab"
+								<button class="nav-link active" id="past-tab" data-bs-toggle="tab"
 									data-bs-target="#bordered-past" type="button">시공상황</button>
 							</li>
 						</ul>
 						<div class="tab-content pt-2" id="borderedTabContent">
-							<div class="tab-pane fade show active" id="bordered-present">
+							<div class="tab-pane fade" id="bordered-present">
 								<table class="table table-borderless">
 									<tbody>
 										<tr>
@@ -143,16 +143,11 @@
 										    <th scope="row">추가요청</th>
 											<td colspan="3" style="width: 85%;">
 												<div id="additionalRequest">
-													<%-- <c:forEach var="hospitalArContent" items="${hospitalArContent}">
-														<div id="additionalArContent" class="d-inline">${hospitalArContent.additionalRequest.arContent}</div>
-														<a href='javascript:;' class="arContentDeleteBtn" data-del=${hospitalArContent.additionalRequest.arId}>삭제</a>
-														<br>
-													</c:forEach> --%>
 												</div>
 											</td>
 										</tr>
 									</tbody>
-
+									
 									<div id="dialog">
 										<div id="form-div">
 											<form>
@@ -174,28 +169,55 @@
 											</form>
 										</div>
 									</div>
-
+									
 								</table>
 								<button id="insertButton">추가</button>
 							</div>
-							<div class="tab-pane fade" id="bordered-past">
+							<div class="tab-pane fade show active" id="bordered-past">
 								<div class="progressList col-8" style="margin: 0 auto">
 									<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
 										<c:if test="${hospitalProgress.progress.pcontent != null}">
-											<div class="progressImg" style="height: 400px">
-			               						<img src="${hospitalProgress.progress.pimg}" alt="" style="height: 100%; width: 100%;" >
+											<div class="progressImg">
+			               						<!-- <img src="" alt="" style="height: 100%; width: 100%;" > -->
+			               						<div id="imgbox">
+			               						
+			               						</div>
 			               					</div>
 						                	<h6 class="text-center" style="padding: 15px 0 15px 0; margin: 0;">${hospitalProgress.progress.pcontent}</h6>
 					                	</c:if>
 				                    </c:forEach>
 					            </div>
+					            
+					            <div id="dialogImgForm">
+									<div id="form-div">
+										<form>
+											<div class="form-group mt-2 mb-4">
+												<div>
+													<select class="form-select border-1" id="pimgCategory" style="font-weight: 100; margin-bottom: 1.5rem;">
+														<option selected>시공종류</option>
+														<option value="1">전기</option>
+														<option value="2">설비</option>
+														<option value="3">도배</option>
+														<option value="4">가구</option>
+													</select>
+												</div>
+											
+												<label for="content">내용</label>
+												<input type="text" class="form-control" id="pimgContent" style="height: 140px" />
+												<div class="form-group">
+												    <label for="pimgattach">Example file input</label>
+												    <input type="file" class="form-control-file" id="pimgAttach" name="pimgattach" multiple>
+											  	</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<button id="imgInsertButton">진행상황 추가</button>
 							</div>
 						</div>
 						<!-- End Bordered Tabs -->
 					</div>
 				</div>
-
-
 			</div>
 
 			<div class="col-lg-4">
@@ -205,23 +227,36 @@
 						<div class="dashboard">
 							<div class="activity">
 								<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
-			                  	  <div class="activity-item d-flex">
-			                  	    <div class="activite-label">
-			                  	    	<fmt:parseDate value="${ hospitalProgress.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
-                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
-			                  	    </div>
-			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 시작</div>
-			                  	  </div>
-			                  	   
-			                  	  <div class="activity-item d-flex">
-			                  	    <div class="activite-label">
-			                  	    	<fmt:parseDate value="${ hospitalProgress.progress.penddate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
-                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
-			                  	    </div>
-			                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-			                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 완료</div>
-			                      </div>
+									<c:if test="${hospitalProgress.progress.category != '완료'}">
+				                  	  <div class="activity-item d-flex">
+				                  	    <div class="activite-label">
+				                  	    	<fmt:parseDate value="${ hospitalProgress.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+	                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+				                  	    </div>
+				                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+				                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 시작</div>
+				                  	  </div>
+				                  	   
+				                  	  <div class="activity-item d-flex">
+				                  	    <div class="activite-label">
+				                  	    	<fmt:parseDate value="${ hospitalProgress.progress.penddate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+	                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+				                  	    </div>
+				                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+				                  	    <div class="activity-content">${hospitalProgress.progress.pcategory} 완료</div>
+				                      </div>
+									</c:if>
+									
+									<c:if test="${hospitalProgress.progress.category == '완료'}">
+										<div class="activity-item d-flex">
+					                  	    <div class="activite-label">
+					                  	    	<fmt:parseDate value="${ hospitalProgress.progress.pdate}" var="parseDateValue" pattern="yyyy-MM-dd"/>
+		                        				<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/>
+					                  	    </div>
+					                  	    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+					                  	    <div class="activity-content">${hospitalProgress.progress.pcategory}</div>
+				                  		</div>
+									</c:if>
 			                    </c:forEach>
 							</div>
 						</div>
@@ -340,6 +375,7 @@
  	 $("#insertButton").on("click", function() {
 		  $("#dialog").dialog("open");
 	 });
+ 	
 	 function insert(arContent, arContId) {  
       $.ajax({
         url:"arContentInsert",
@@ -407,34 +443,171 @@
 		
 	});
 	
-	function updateState(hdln, haddress) {
+	$(document).on("dblclick", "#state", function(){
+		console.log("state double click event 실행");
+		
+		updateCategory("${hospital.hdln}", "${hospital.haddress}")
+	});	
+	
+	function updateCategory(hdln, haddress) {
 		$.ajax({
-			url: "updateState",
+			url: "updateCategory",
 			type: "post",
 			data: {
 				hdln: hdln,
 				haddress: haddress,
-				state: "CONSCOMPLETE"
+				pcategory: "0",
+				category: "완료"
 			}
 		}).done((data) => {
-			console.log("updateState 실행 성공");
+			console.log("updateCategory 실행 성공");
 			var badgeTag = "";
 			badgeTag += "<span id='state' class='badge bg-secondary' style='cursor: pointer'>";
-			badgeTag += "${hospitalState.state.skind}";
+			badgeTag += data.category;
 			badgeTag += "</span>";
 			
 			$("#badge").html(badgeTag);
 		})
 	}
 	
-	$(document).on("dblclick", "#state", function(){
-		console.log("state double click event 실행");
-		
-		updateState("${hospital.hdln}", "${hospital.haddress}")
-	});
+	/* 이미지 업로드 */	
+	$("#imgInsertButton").on("click", function() {
+		  $("#dialogImgForm").dialog("open");
+	  });
 	
+	var progress=[];
+	<c:forEach var="hp" items="${hospitalProgresses}">
+		progress.push({category: "${hp.progress.pcategory}", date: "${hp.progress.pdate}"});
+	</c:forEach>
+	
+	console.log(progress);
+
+	//이미지 입력 form
+	  $(function() {
+		  $("#dialogImgForm").dialog({
+			  autoOpen:false,
+			  modal:true,
+			  resizable: false,
+			  
+			  buttons: {
+				  "확인": function() {
+					  upload();
+					  $(this).dialog("close");
+				  }, "취소": function() {
+					  $(this).dialog("close");
+				  }
+			  }
+		  })
+	  });
+	
+	function upload() {
+		var category = $("#pimgCategory option:selected").text();
+		console.log(category);
+		var content = $("#pimgContent").val();
+		var attach = [];
+		var date;
+		
+		for (var i=0; i<$("#pimgAttach")[0].files.length; i++) {
+			attach.push($("#pimgAttach")[0].files[i]);
+		}
+		
+		for (var i=0; i<progress.length; i++) {
+			  if (progress[i].category == category) {
+				  date = progress[i].date;
+			  }
+		 }
+		
+		date = moment(date).format("YYYY-MM-DD")
+		console.log(category);
+		console.log(content);
+		console.log(attach);
+		console.log(date);
+		
+		var formData = new FormData();
+		formData.append("pimgDln", "${hospital.hdln}");
+		formData.append("pimgAddress", "${hospital.haddress}");
+		formData.append("pimgCategory", category);
+		formData.append("pimgContent", content);
+		formData.append("pimgDate", date);
+		formData.append("pimgHospitalName", "${hospital.hname}");
+		
+		for (var i=0; i<$("#pimgAttach")[0].files.length; i++) {
+			formData.append("pimgAttach", $("#pimgAttach")[0].files[i]);
+		}
+		
+		$.ajax({
+			url: "fileupload",
+			method: "post",
+			data: formData,
+			cache: false,
+			processData: false,
+			contentType: false,
+			enctype: 'multipart/form-data'
+		}).done((data) => {
+			console.log(data);
+		}).fail(function() {
+			alert("해당 시공은 진행하지 않았습니다.");
+		});
+	};
+	
+	/* 진행상황 img 를 ajax로 불러오기 */
+	/* 이미지 목록 불러오기 */
+	$(function() {
+			$.ajax({
+				url: "fileList",
+				data:{
+		        	 hdln: "${hospital.hdln}",
+		        	 haddress: "${hospital.haddress}"
+		    	 }/* , processData: false */
+			}).done(data => {
+				console.log(data);
+				
+				
+				for (var d of data) {
+					console.log(d.pimgDln);
+					console.log(d.pimgAddress);
+					var imgTag = "<img src='/processing/fileList?hdln=";
+					imgTag += "${hospital.hdln}";
+					imgTag += "&haddress=";
+					imgTag += "${hospital.haddress}";
+					imgTag += "'/>"
+					
+					$("#imgbox").append(imgTag);
+				}
+			});
+		})
+		
+		
+	function filedownload(fileNo) {
+		$("#downloadImg").attr("src", "filedownload?fileNo=" + fileNo);
+	}
+	
+	/* $(function(){
+		filedownload(1);
+		getProgressImg();
+ 	}); */
+	
+	
+	function getProgressImg() {
+ 		$.ajax({
+	         url:"progressImgList",
+	    	 type:'post',
+	         data:{
+	        	 hdln: "${hospital.hdln}",
+	        	 haddress: "${hospital.haddress}"
+	    	 }
+	    }).done((data) => {
+	    	console.log(data);
+	    	
+	    	/* for (d of data) {
+	    		$("#downloadImg").attr("src", "progressImgList?pimgId=" + fileNo);
+	    		console.log(d);
+	    	} */
+   		})
+	};
 	
 	 
+	
 	</script>
 
 

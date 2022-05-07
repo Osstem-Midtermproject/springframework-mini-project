@@ -44,6 +44,9 @@
 		<typeAlias type="com.mycompany.webapp.dto.CounselingSchedule" alias="counselingSchedule"/>
 		<!-- AS 스케줄 -->
 		<typeAlias type="com.mycompany.webapp.dto.AsSchedule" alias="asSchedule"/>
+		<!-- 진행상황 이미지 -->
+		<typeAlias type="com.mycompany.webapp.dto.ProgressImg" alias="progressImg"/>
+		
 		
 		
 	</typeAliases>

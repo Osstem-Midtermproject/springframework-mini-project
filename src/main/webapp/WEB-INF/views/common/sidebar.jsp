@@ -55,8 +55,6 @@
          <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li><a href="${pageContext.request.contextPath}/hospital/processing"> <i class="bi bi-clock-history"></i><span>시공 내역 Processing</span>
             </a></li>
-            <li><a href="${pageContext.request.contextPath}/hospital/history"> <i class="bi bi-skip-backward"></i><span>History</span>
-            </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/location"> <i class="bi bi-geo-alt"></i><span>Location</span>
             </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/contractHistory"> <i class="bi bi-envelope-paper"></i><span>Contract</span>

@@ -22,5 +22,7 @@ public class Progress {
 	   //연관 관계에 있는 객체(Association)
 	   //병원
 	   private Hospital hospital;
-
+	   //진행상황 이미지
+	   private ProgressImg progressImg;
+	   
 }

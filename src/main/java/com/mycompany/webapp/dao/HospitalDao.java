@@ -1,11 +1,14 @@
 package com.mycompany.webapp.dao;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import com.mycompany.webapp.dto.AdditionalRequest;
-import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Progress;
+import com.mycompany.webapp.dto.ProgressImg;
 import com.mycompany.webapp.dto.RequestDetails;
 
 @Mapper
@@ -29,12 +32,18 @@ public interface HospitalDao {
 	//계약서 식별 번호로 추가요청 리스트 띄우기 
 	public List<Hospital> selectHospitalArContentByContId(String contId);
 	
-	//추가요청 내용 추가
-	public int insert(AdditionalRequest additionalRequest);
-	
 	//진행상황 띄우기
 	public List<Hospital> selectProgressByHdln(String hdln);
 	
+	//현재상태 가져오기 (상담/시공)
+	public Progress selectProgressByHdlnForState(String hdln);
+	
+	//현재상태 추가 (시공완료)
+	public int insertCategory(Progress newCateory);
+	
+	//추가요청 내용 추가
+	public int insert(AdditionalRequest additionalRequest);
+
 	//추가요청 내용 삭제
 	public int deleteByArId(int arId);
 	
@@ -48,6 +57,14 @@ public interface HospitalDao {
 
 	//병원 상세 지도 별(지역)에 맞는 병원 리스트 전체 출력
 	public List<Hospital> selectByLocation2(String addfressHospital );
+	
+	//진행상황 이미지 가져오기
+	public List<ProgressImg> selectProgressImgByHdln(ProgressImg progressImg);
+	public List<Progress> selectProgressByHdln2(ProgressImg progressImg);
+	public List<Hospital> selectHospitalByHdln2(ProgressImg progressImg);
+	
+	//이미지 추가
+	public void insertImg(ProgressImg progressImg);
 
 
 

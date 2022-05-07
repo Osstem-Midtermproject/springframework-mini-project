@@ -32,4 +32,7 @@ public class Hospital {
 	private Contract contract;
 	//추가요청
 	private AdditionalRequest additionalRequest;
+	//추가요청 이미지
+	private ProgressImg progressImg;
+	
 }

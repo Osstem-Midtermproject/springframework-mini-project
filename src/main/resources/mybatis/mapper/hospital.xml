@@ -262,12 +262,6 @@
 		UPDATE additionalRequest SET ar_content=#{arContent} WHERE ar_id=#{arId}
 	</update>
 	
-	<update id="updateByHdln" parameterType="requestDetails">
-		UPDATE requestDetails SET rd_sid=#{rdSid} WHERE rd_dln=#{rdDln} and rd_address=#{rdAddress} 
-	</update>
-	
-
-	
 	<!-- 진행상황 -->
 	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
 		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg, penddate, category
@@ -275,5 +269,108 @@
 		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
 		order by progress.pdate asc
 	</select>
+	
+	<!-- 현재상태 가져오기 (상담/시공) -->
+	<select id="selectProgressByHdlnForState" parameterType="string" resultType="progress">
+		select *
+		from progress
+		where pdln=#{hdln} and rownum = 1
+		order by pdate desc
+	</select>
+	
+	<!-- 현재상태 추가 (시공완료) -->
+	<insert id="insertCategory" parameterType="progress">
+		INSERT INTO progress (pdate, pdln, paddress, pcategory, pcontent, category, pimg, penddate)
+		VALUES(SYSDATE, #{pdln}, #{paddress}, #{pcategory}, null, #{category}, null, SYSDATE)
+	</insert>
+
+	<!-- 진행상황 이미지 가져오기 -->	
+	<resultMap id="selectProgressImgWithProgressResultMap" type="progress">
+		<result column="pdate" property="pdate" />
+		<result column="pcontent" property="pcontent" />
+		<result column="pcategory" property="pcategory" />
+		<result column="pdln" property="pdln" />
+		<result column="paddress" property="paddress" />
+		<result column="pimg" property="pimg" />
+		<result column="penddate" property="penddate" />
+		<result column="category" property="category" />
+		<association property="progressImg" javaType="progressImg">
+			<result column="pimg_id" property="pimgId" />
+			<result column="pimg_dln" property="pimgDln" />
+			<result column="pimg_oname" property="pimgOname" />
+			<result column="pimg_sname" property="pimgSname" />
+			<result column="pimg_type" property="pimgType" />
+			<result column="pimg_content" property="pimgContent" />
+			<result column="pimg_category" property="pimgCategory" />
+			<result column="pimg_address" property="pimgAddress" />
+			<result column="pimg_date" property="pimgDate" />
+		</association>
+	</resultMap>
+	
+	<select id="selectProgressByHdln2" parameterType="progressImg" resultMap="selectProgressImgWithProgressResultMap">
+		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date
+		  from progress
+		 inner join progressimg
+		    on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
+		 where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress} <!-- and progressimg.pimg_date='2022-05-09' -->
+	</select>
+	
+	
+	<resultMap id="selectProgressImgWithProgressResultMap2" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="progress" javaType="progress">
+			<result column="pdate" property="pdate" />
+			<result column="pcontent" property="pcontent" />
+			<result column="pcategory" property="pcategory" />
+			<result column="pdln" property="pdln" />
+			<result column="paddress" property="paddress" />
+			<result column="pimg" property="pimg" />
+			<result column="penddate" property="penddate" />
+			<result column="category" property="category" />
+		</association>
+		<association property="progressImg" javaType="progressImg">
+			<result column="pimg_id" property="pimgId" />
+			<result column="pimg_dln" property="pimgDln" />
+			<result column="pimg_oname" property="pimgOname" />
+			<result column="pimg_sname" property="pimgSname" />
+			<result column="pimg_type" property="pimgType" />
+			<result column="pimg_content" property="pimgContent" />
+			<result column="pimg_category" property="pimgCategory" />
+			<result column="pimg_address" property="pimgAddress" />
+			<result column="pimg_date" property="pimgDate" />
+		</association>
+	</resultMap>
+	
+	<select id="selectHospitalByHdln2" parameterType="progressImg" resultMap="selectProgressImgWithProgressResultMap2">
+		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date
+		  from hospital
+		 inner join progress
+		    on hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
+		 inner join progressimg
+		    on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
+		 where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress}
+	</select>
+	
+	<select id="selectProgressImgByHdln" parameterType="progressImg" resultType="progressImg">
+		select *
+		from progressimg
+		where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress}
+	</select>
+	
+	<!-- 이미지 추가 -->
+	<insert id="insertImg" parameterType="progressImg">
+		<selectKey keyProperty="pimgId" resultType="int" order="BEFORE">
+			select seq_pimgid.nextval from dual
+		</selectKey>
+		
+		INSERT INTO progressimg (pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_category, pimg_content, pimg_address, pimg_date)
+		VALUES(#{pimgId}, #{pimgDln}, #{pimgOname}, #{pimgSname}, #{pimgType}, #{pimgCategory}, #{pimgContent}, #{pimgAddress}, #{pimgDate})
+	</insert>	
 	
 </mapper>
