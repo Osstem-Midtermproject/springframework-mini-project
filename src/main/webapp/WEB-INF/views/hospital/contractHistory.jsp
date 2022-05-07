@@ -7,18 +7,25 @@
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">계약 기록</h5>
-
-			<!-- Table with hoverable rows -->
-
 			<section >
 				<div class="col-xs-3" style="display: flex; flex-flow: row; justify-content: center;">
 					<c:forEach items="${topContractList}" var="top" varStatus="status">
-						<div class="card" style="width: 300px; height: 250px; margin-left: 2rem; margin-right: 2rem;">
-							<div class="card-body" id="recentContract1">
-								<h5 class="card-title">${top.hospital.hname}<h6>${top.hospital.hdirector}</h6></h5>
-								<span>${top.contDownPayment}</span><br>
-								<span><fmt:formatDate value="${top.contDate}" pattern="yyyy-MM-dd"/></span><br>
-								<img alt="1" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
+						<div class="card" style="width: 350px; height: 250px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem">
+							<div class="card-body " id="recentContract1">
+								<div class="row" style="margin-bottom: 1rem">
+									<h5 class="card-title">${top.hospital.hname}</h5>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										<br>
+										<h5>${top.hospital.hdirector}</h5>
+										<span>${top.contDownPayment}</span><br>
+										<span><fmt:formatDate value="${top.contDate}" pattern="yyyy-MM-dd"/></span>								
+									</div>
+									<div class="col-6">
+										<img alt="1" src="${pageContext.request.contextPath}/resources/images/contract.png" width="100rem">
+									</div>
+								</div>
 							</div>
 						</div>
 					</c:forEach> 
@@ -108,12 +115,15 @@
                     	        
                     	if(list.contStatus==1){
                     		str += "<td>계약완료</td>";
-                    	    str += "<td><a class='btn btn-sm btn-secondary' style='font-size: x-small;' href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum="+list.contIdentificationNumber+"'>계약서 보기</a></td>";                   
                     	}else{
                     	    str += "<td>계약파기</td>";
-                    	    str += "<td><a class='btn btn-sm btn-secondary disabled' style='font-size: x-small;'>계약서 보기</a></td>";
                     	}
 
+                    	if(list.cont != null){
+                    	    str += "<td><a class='btn btn-sm btn-secondary' style='font-size: x-small;' href='${pageContext.request.contextPath}/hospital/contractFormPdfAdmin?fileNum="+list.contIdentificationNumber+"'>계약서 보기</a></td>";                   
+                    	}else{
+                    	    str += "<td><a class='btn btn-sm btn-secondary disabled' style='font-size: x-small;'>계약서 보기</a></td>";     		
+                    	}
                     	str += "</tr>";
 
                    	})
