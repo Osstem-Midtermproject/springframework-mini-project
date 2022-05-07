@@ -172,7 +172,6 @@
       <result column="cont_down_payment" property="contDownPayment" />
       <result column="cont_additional_amount" property="contAdditionalAmount" />
 	</resultMap>
-	
 	<select id="selectSalesList" parameterType="pager" resultMap="selectSalesListResultMap">
       select rnum, cont_date,cont_down_payment,cont_additional_amount
           from (
@@ -194,4 +193,21 @@
           where TO_CHAR(cont_date,'yyyy-mm-dd') between #{sdate} and #{edate}
 	</select>
    
+   	<select id="selectThemaRank" resultType="design">
+   		select dtt from contract 
+		INNER JOIN design ON contract.cont_design_identification = did
+		GROUP BY dtt
+		ORDER BY count(*) desc
+   	</select>
+   	
+   	<resultMap id="selectDimgDnameResultMap"  type="contract">
+   		<result column="dimg" property="contArea"></result>
+		<result column="dname"  property="contDln"></result>
+		<result column="dimg" property="contAddress"></result>
+	</resultMap>
+   	<select id="selectDimgDname" resultMap="selectDimgDnameResultMap" parameterType="string">
+		select dname, dimg, dtt from contract 	
+		RIGHT OUTER JOIN design ON contract.cont_design_identification = did where dtt= #{dtt}
+		GROUP BY dname, dimg, dtt ORDER BY count(*) desc
+   	</select>
 </mapper>

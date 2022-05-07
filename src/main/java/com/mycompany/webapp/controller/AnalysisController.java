@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.RequestDetails;
 import com.mycompany.webapp.dto.TeamHistory;
@@ -100,6 +101,56 @@ public class AnalysisController {
 		model.addAttribute("design",design);
 		log.info(dcon);
 		log.info(design);
+		
+		//JY
+		List<Design> themaRank = contractService.getThemaRank();
+		
+		for(Design d : themaRank) {
+			if(d.getDtt().equals("Black")) {
+				d.setDimg("https://post-phinf.pstatic.net/MjAxNzExMzBfNDcg/MDAxNTExOTcwMjI1NzQy.DqVDPuPg7AkkMasMJUerKBuMLFC2uFK6sWxA659lB2kg.GNop0sT1-cALOkenw9Y4kstVuZqluAFVRtfS0RjqBHQg.JPEG/1.jpg?type=w1200");
+			}else if(d.getDtt().equals("Pastel")) {
+				d.setDimg("http://www.치과인테리어.kr/data/editor/2202/thumb-cb3f87e5695c4f7c27128ea948b33d04_1643875801_85_1200x732.jpg");
+			}else if(d.getDtt().equals("Wood")) {
+				d.setDimg("http://www.치과인테리어.kr/data/editor/2111/thumb-43c2f14f363a92e5701979d63e5bab40_1636945435_55_1200x800.jpg");
+			}else if(d.getDtt().equals("White")) {
+				d.setDimg("http://www.치과인테리어.kr/data/editor/2204/thumb-a672b7de567deec375ff9185d981604c_1650501948_48_1200x800.jpg");
+			}else if(d.getDtt().equals("Blue")) {
+				d.setDimg("https://t1.daumcdn.net/cfile/blog/99E78E33599A499D33");
+			}else {
+				d.setDimg("http://www.xn--vb0bq4v9ljvwbn1oxre.kr/data/editor/2111/thumb-efad1ae88d268a6f32a5f0b45e5f4421_1637719979_95_1200x800.jpg");
+			}
+		}
+		
+		List<Contract> whiteImgList = contractService.getDimgDname("White");
+		model.addAttribute("White",whiteImgList);
+		log.info("whiteImgList: " + whiteImgList);
+
+		List<Contract> blackImgList = contractService.getDimgDname("Black");
+		model.addAttribute("Black",blackImgList);
+		log.info("blackImgList: " + blackImgList);
+
+		
+		List<Contract> pastelImgList = contractService.getDimgDname("Pastel");
+		model.addAttribute("Pastel",pastelImgList);
+
+		List<Contract> woodImgList = contractService.getDimgDname("Wood");
+		model.addAttribute("Wood",woodImgList);
+		
+		List<Contract> blueImgList = contractService.getDimgDname("Blue");
+		model.addAttribute("Blue",blueImgList);
+		log.info("blueImgList: " + blueImgList);
+
+		List<Contract> grayImgList = contractService.getDimgDname("Gray");
+		model.addAttribute("Gray",grayImgList);
+		
+		
+
+		
+		log.info("JY: " + themaRank);
+		model.addAttribute("themaRank",themaRank);
+		
+		
+		
 		///WEB-INF/views/analysis/design.jsp
 		return "analysis/design";
 	}

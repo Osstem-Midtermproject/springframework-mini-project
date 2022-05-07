@@ -92,7 +92,7 @@
 				<div class="card">
 					<div class="card-body pt-3">
 						<!-- Bordered Tabs -->
-						<ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab"
+						<ul class="nav nav-tabs nav-tabs-bordered justify-content-center" id="borderedTab"
 							role="tablist">
 							<li class="nav-item">
 								<button class="nav-link active" id="present-tab"
