@@ -10,7 +10,7 @@
 			<section >
 				<div class="col-xs-3" style="display: flex; flex-flow: row; justify-content: center;">
 					<c:forEach items="${topContractList}" var="top" varStatus="status">
-						<div class="card" style="width: 350px; height: 250px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem">
+						<div class="card" onclick="location.href='processing/detail?hdln=${top.hospital.hdln}'" style="width: 350px; height: 250px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem">
 							<div class="card-body " id="recentContract1">
 								<div class="row" style="margin-bottom: 1rem">
 									<h5 class="card-title">${top.hospital.hname}</h5>
@@ -109,7 +109,7 @@
 	                    	$("#recentContract3").html(firstStr);                			
                 		} */
 
-                        str = str + "<tr><td>"+list.cno+
+                        str = str + "<tr onclick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.cno+
                     	"</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
                     	"</td><td>"+list.contDate+"</td><td>"+list.contDownPayment+"</td>";
                     	        
