@@ -15,16 +15,17 @@
 			<result column="coun_sche_address"  property="counScheAddress"/>
 			<result column="coun_sche_content"  property="counScheContent"/>
 			<association property="hospital" javaType="hospital">	
-					<result column="hname" property="hname"/>	
+					<result column="hname" property="hname"/>
+					<result column="hdln" property="hdln"/>	
 			</association>
 
 	</resultMap>
 	<select id="selectCounselingScheduleList" parameterType="pager"  resultMap="selectCounselingScheduleResultMap">
-      select rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+      select rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln
           from (
-              select ROWNUM as rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+              select ROWNUM as rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln 
               from (
-			      select hname, coun_sche_address, coun_sche_content, coun_sche_startdate 
+			      select hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln  
 				  from counselingschedule INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 				  where hname like '%'|| #{searchBar} ||'%'
 				  and TO_CHAR(coun_sche_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
