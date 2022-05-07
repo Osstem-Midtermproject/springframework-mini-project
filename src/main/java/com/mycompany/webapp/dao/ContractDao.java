@@ -53,6 +53,10 @@ public interface ContractDao {
 	
 	
 	List<Contract> selectDimgDname(String dtt);
+	
+	//디자인 테마별 지난달과 이번달 계약건수
+	int selectCountThisMonth(String dtt);
+	Integer selectCountLastMonth(String dtt, String date);
 
 	
 }

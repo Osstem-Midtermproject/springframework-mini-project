@@ -134,9 +134,9 @@
    	<select id="selectThemaDesign" parameterType="string" resultMap="thema">
    			select count(c.cont_design_identification),d.dname
 			from contract c,design d
-			where d.dtt=#{dtt} and c.cont_design_identification=d.did
+			where d.dtt=#{dtt} and c.cont_design_identification(+)=d.did
 			group by d.dname
-			order by count(c.cont_design_identification) desc
+			order by count(c.cont_design_identification) desc, dname
    	</select>
    	
    	<resultMap id="consales" type="teamHistory">
@@ -210,4 +210,21 @@
 		RIGHT OUTER JOIN design ON contract.cont_design_identification = did where dtt= #{dtt}
 		GROUP BY dname, dimg, dtt ORDER BY count(*) desc
    	</select>
+   	
+   	<!-- 디자인 테마별 지난달과 이번달 계약건수 -->
+   	<select id="selectCountThisMonth" resultType="int" parameterType="string">
+   		select count(*) from contract 
+   		right outer join design on contract.cont_design_identification = did 
+		where dtt = #{dtt}
+		and TO_CHAR(cont_date,'yyyymm') = TO_CHAR(SYSDATE,'yyyymm') 
+		GROUP BY dtt
+   	</select>
+   	<select id="selectCountLastMonth" resultType="integer" parameterType="string">
+		select count(*) from contract 
+   		right outer join design on contract.cont_design_identification = did 
+		where dtt = #{param1}
+		and TO_CHAR(cont_date,'yyyymm') = #{param2}
+		GROUP BY dtt
+   	</select>
+   	
 </mapper>

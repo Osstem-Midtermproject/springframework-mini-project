@@ -103,4 +103,12 @@ public class ContractService {
 		return contractDao.selectDimgDname(dtt);
 	}
 
+	//디자인 테마별 지난달과 이번달 계약건수
+	public int getCountThisMonth(String dtt) {
+		return contractDao.selectCountThisMonth(dtt);
+	}
+	public Integer getCountLastMonth(String dtt, String date) {
+		return contractDao.selectCountLastMonth(dtt, date);
+	}
+
 }

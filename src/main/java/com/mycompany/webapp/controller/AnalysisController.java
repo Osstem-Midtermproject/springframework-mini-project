@@ -1,6 +1,8 @@
 package com.mycompany.webapp.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.RequestDetails;
 import com.mycompany.webapp.dto.TeamHistory;
 import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.TeamHistoryService;
@@ -105,30 +106,73 @@ public class AnalysisController {
 		//JY
 		List<Design> themaRank = contractService.getThemaRank();
 		
+		Date nowDate = new Date(); 
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+		String date = simpleDateFormat.format(nowDate);
+		int month = nowDate.getMonth();
+		String m = String.valueOf(month);
+		if(m.length()==1) {
+			m = 0 + m;
+		}
+		date += m;
+		
 		for(Design d : themaRank) {
 			if(d.getDtt().equals("Black")) {
 				d.setDimg("https://post-phinf.pstatic.net/MjAxNzExMzBfNDcg/MDAxNTExOTcwMjI1NzQy.DqVDPuPg7AkkMasMJUerKBuMLFC2uFK6sWxA659lB2kg.GNop0sT1-cALOkenw9Y4kstVuZqluAFVRtfS0RjqBHQg.JPEG/1.jpg?type=w1200");
+				int t = contractService.getCountThisMonth("Black");
+				int l = 0;
+				if(contractService.getCountLastMonth("Black", date)!=null) {
+					l = contractService.getCountLastMonth("Black", date);
+				}
+				d.setCount(t-l);
 			}else if(d.getDtt().equals("Pastel")) {
 				d.setDimg("http://www.치과인테리어.kr/data/editor/2202/thumb-cb3f87e5695c4f7c27128ea948b33d04_1643875801_85_1200x732.jpg");
+				int t = contractService.getCountThisMonth("Pastel");
+				int l = 0;
+				if(contractService.getCountLastMonth("Pastel", date)!=null) {
+					l = contractService.getCountLastMonth("Pastel", date);
+				}
+				d.setCount(t-l);
 			}else if(d.getDtt().equals("Wood")) {
 				d.setDimg("http://www.치과인테리어.kr/data/editor/2111/thumb-43c2f14f363a92e5701979d63e5bab40_1636945435_55_1200x800.jpg");
+				int t = contractService.getCountThisMonth("Wood");
+				int l = 0;
+				if(contractService.getCountLastMonth("Wood", date)!=null) {
+					l = contractService.getCountLastMonth("Wood", date);
+				}
+				d.setCount(t-l);
 			}else if(d.getDtt().equals("White")) {
 				d.setDimg("http://www.치과인테리어.kr/data/editor/2204/thumb-a672b7de567deec375ff9185d981604c_1650501948_48_1200x800.jpg");
+				int t = contractService.getCountThisMonth("White");
+				int l = 0;
+				if(contractService.getCountLastMonth("White", date)!=null) {
+					l = contractService.getCountLastMonth("White", date);
+				}
+				d.setCount(t-l);
 			}else if(d.getDtt().equals("Blue")) {
 				d.setDimg("https://t1.daumcdn.net/cfile/blog/99E78E33599A499D33");
+				int t = contractService.getCountThisMonth("Blue");
+				int l = 0;
+				if(contractService.getCountLastMonth("Blue", date)!=null) {
+					l = contractService.getCountLastMonth("Blue", date);
+				}
+				d.setCount(t-l);
 			}else {
 				d.setDimg("http://www.xn--vb0bq4v9ljvwbn1oxre.kr/data/editor/2111/thumb-efad1ae88d268a6f32a5f0b45e5f4421_1637719979_95_1200x800.jpg");
+				int t = contractService.getCountThisMonth("Gray");
+				int l = 0;
+				if(contractService.getCountLastMonth("Gray", date)!=null) {
+					l = contractService.getCountLastMonth("Gray", date);
+				}
+				d.setCount(t-l);
 			}
 		}
 		
 		List<Contract> whiteImgList = contractService.getDimgDname("White");
 		model.addAttribute("White",whiteImgList);
-		log.info("whiteImgList: " + whiteImgList);
 
 		List<Contract> blackImgList = contractService.getDimgDname("Black");
 		model.addAttribute("Black",blackImgList);
-		log.info("blackImgList: " + blackImgList);
-
 		
 		List<Contract> pastelImgList = contractService.getDimgDname("Pastel");
 		model.addAttribute("Pastel",pastelImgList);
@@ -138,13 +182,9 @@ public class AnalysisController {
 		
 		List<Contract> blueImgList = contractService.getDimgDname("Blue");
 		model.addAttribute("Blue",blueImgList);
-		log.info("blueImgList: " + blueImgList);
 
 		List<Contract> grayImgList = contractService.getDimgDname("Gray");
 		model.addAttribute("Gray",grayImgList);
-		
-		
-
 		
 		log.info("JY: " + themaRank);
 		model.addAttribute("themaRank",themaRank);
@@ -171,8 +211,8 @@ public class AnalysisController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		jsonObject.put("designlist",designlist);
-		jsonObject.put("cnt", cnt);
-		jsonObject.put("thema", thema);
+		jsonObject.put("cnt", cnt);//
+		jsonObject.put("thema", thema);//
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;

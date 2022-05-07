@@ -24,41 +24,105 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">1</span> 
 							<img id="${themaRank[0].dtt}"  src="${themaRank[0].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[0].dtt}</span>
+							
+							<c:if test="${themaRank[0].count > 0}">
+								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[0].dtt}</span>
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[0].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[0].count < 0}">
+								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[0].dtt}</span>
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[0].count}</span>							
+								</div>
+							</c:if>
 						</div>
 
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">2</span> 
-							<img id="${themaRank[1].dtt}"  src="${themaRank[1].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> <span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>
+							<img id="${themaRank[1].dtt}"  src="${themaRank[1].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
+							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>
+							<c:if test="${themaRank[1].count > 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[1].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[1].count < 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[1].count}</span>							
+								</div>
+							</c:if>
 						</div>
 
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">3</span> 
 							<img id="${themaRank[2].dtt}" src="${themaRank[2].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
+							<c:if test="${themaRank[2].count > 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[2].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[2].count < 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[2].count}</span>							
+								</div>
+							</c:if>
 						</div>
 
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">4</span> 
 							<img id="${themaRank[3].dtt}"  src="${themaRank[3].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
+							<c:if test="${themaRank[3].count > 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[3].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[3].count < 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[3].count}</span>							
+								</div>
+							</c:if>
 						</div>
 
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">5</span> 
 							<img id="${themaRank[4].dtt}"  src="${themaRank[4].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
+							<c:if test="${themaRank[4].count > 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[4].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[4].count < 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[4].count}</span>							
+								</div>
+							</c:if>
 						</div>
 
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">6</span> 
 							<img id="${themaRank[5].dtt}"  src="${themaRank[5].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
+							<c:if test="${themaRank[5].count > 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[5].count}</span>							
+								</div>
+							</c:if>
+							<c:if test="${themaRank[5].count < 0}">
+								<div class="text-center">
+									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[5].count}</span>							
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
@@ -79,235 +143,342 @@
 						<c:forTokens var="dtt" items="Black,Blue,Gray,Pastel,White,Wood" delims=",">
 							<c:if test="${dtt == 'Black'}">
 								<div class="tab-pane fade show active" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Black}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsBlack" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${Black}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Black}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${Black}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  </div>
+									</section>				
 								</div>
 							</c:if>
 							
 							<c:if test="${dtt == 'Blue'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Blue}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsBlue" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${Blue}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Blue}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${Blue}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  
+									  </div>
+									</section>		
 								</div>
 							</c:if>
 							
 							<c:if test="${dtt == 'Gray'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Gray}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsGray" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${Gray}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Gray}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${Gray}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  
+									  </div>
+									</section>
 								</div>
 							</c:if>
 							
 							<c:if test="${dtt == 'Pastel'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Pastel}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsPastel" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${Pastel}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Pastel}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${Pastel}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  
+									  </div>
+									</section>
 								</div>
 							</c:if>
 							
 							<c:if test="${dtt == 'White'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${White}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsWhite" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${White}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${White}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${White}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  
+									  </div>
+									</section>
 								</div>
 							</c:if>
 							
 							<c:if test="${dtt == 'Wood'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Wood}" varStatus="status" begin="0" end="3">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+									<section class="pt-5 pb-5">
+									  <div class="container">
+									  	<div id="carouselExampleCaptionsWood" class="carousel slide" data-bs-ride="carousel">
+										  <div class="carousel-indicators">
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										  </div>
+										  <div class="carousel-inner">
+										    <div class="carousel-item active">	   
+												<div class="row">
+													<c:forEach var="i" items="${Wood}" varStatus="status" begin="0" end="3">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
-												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>
-									<div class="d-flex justify-content-between">
-										<c:forEach var="i" items="${Wood}" varStatus="status" begin="4" end="7">
-											<!-- card -->
-											<div class="col-lg-3">
-												<div class="card card border info-card revenue-card">
-													<div class="card-body">
-														<div class="d-flex align-items-center flex-column">
-															<img src="${i.contAddress}" alt="" style="width: 300px; height: 200px; border-radius: 1rem; margin-top: 1rem"><br>
-											 				<span>${i.contDln}</span>
+											  		</c:forEach>
+												</div>	
+										    </div>
+										    
+										    <div class="carousel-item">
+										      	<div class="row">
+													<c:forEach var="i" items="${Wood}" varStatus="status" begin="4" end="7">
+											  			<div class="col-md-3 mb-3">
+															<div class="card">
+																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
+																<div class="card-body">
+																	<h4 class="card-title">${i.contDln}</h4>
+																	<p class="card-text">모던 화이트</p>
+																</div>
+															</div>
 														</div>
-													</div>
-							
+											  		</c:forEach>													
 												</div>
-											</div>
-											<!-- End Revenue Card -->
-										</c:forEach>
-									</div>					
+										    </div>
+										  </div>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide="prev">
+										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Previous</span>
+										  </button>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide="next">
+										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										    <span class="visually-hidden">Next</span>
+										  </button>
+										</div>
+									  
+									  </div>
+									</section>
 								</div>
 							</c:if>
 						</c:forTokens>
@@ -330,6 +501,7 @@
 
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<div class="card">
@@ -341,11 +513,13 @@
 		</div>
 	</div>
 	<!-- End Page Title -->
+
+
 </main>
 <script>
 $(function(){
-	$("#White").hover(function(){
-		
+	
+	$("#White").hover(function(){	
 		$.ajax({
             url:"designajax",
             type:'post',
@@ -595,7 +769,12 @@ $(function(){
             		        const datapoints = yearData.chart.data.datasets[0].data
             		        const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
             		        const percentage = value / total * 100
-            		        return percentage.toFixed(2) + "%";
+            		        if(percentage==0){
+            		        	return "";
+            		        }else{
+            		        	return percentage.toFixed(2) + "%";	
+            		        }
+            		        
             		  },
                   },
               legend: {
