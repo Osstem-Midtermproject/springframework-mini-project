@@ -155,9 +155,12 @@
 						</h5>
 						<div class="activity dropdown d-flex justify-content-center align-items-center" style="padding-bottom: 15px;">
 							<div class="alarm align-items-center justify-content-center">
-								<span id="notificationTitle"></span><br> <span>상담신청</span>
+								<span id="notificationTitle">${requestDetailsList[0].hospital.hname}</span><br> 
+								<span>상담신청</span>
 							</div>
-							<a class="text-center icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> <span class="badge bg-danger badge-number align-text-top" id="notificationNo"></span>
+							<a class="text-center icon position-relative" href="#" data-bs-toggle="dropdown">
+								<i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> 
+								<span class="position-absolute top-50 start-100 translate-middle badge bg-danger badge-number" id="notificationNo"></span>
 							</a>
 							<!-- End Notification Icon -->
 

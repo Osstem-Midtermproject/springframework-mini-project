@@ -74,6 +74,10 @@ public class DashboardController {
 		model.addAttribute("history",history);
 		model.addAttribute("designcon",designcon);
 		model.addAttribute("yearSales",yearSales);
+		
+		List<RequestDetails> requestDetailsList = requestDetailsService.getrequestDetailsList();
+		model.addAttribute("requestDetailsList", requestDetailsList);
+		
 		///WEB-INF/views/dashboard/dashboard.jsp
 		return "dashboard/dashboard";
 	}
