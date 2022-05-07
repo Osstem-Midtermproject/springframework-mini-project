@@ -131,10 +131,10 @@
 						<div class="nav nav-tabs nav-tabs-bordered justify-content-center" id="nav-tab" role="tablist">
 							<c:forTokens var="dtt" items="Black,Blue,Gray,Pastel,White,Wood" delims=",">
 								<c:if test="${dtt == 'Black'}">
-									<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="true" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
+									<button class="nav-link active" onclick="black()" data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="true" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
 								</c:if>
 								<c:if test="${dtt != 'Black'}">
-									<button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="false" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
+									<button class="nav-link" onclick='${dtt}()'data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="false" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
 								</c:if>
 							</c:forTokens>
 						</div>
@@ -517,6 +517,85 @@
 
 </main>
 <script>
+
+function White(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"White"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
+function Wood(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"Wood"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
+function Gray(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"Gray"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
+function black(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"Black"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
+function Blue(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"Blue"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
+function Pastel(){
+	$.ajax({
+        url:"designajax",
+        type:'post',
+       data:{"design":"Pastel"}
+      }).done((data)=>{
+    	  themaChart.data.labels=data.thema;
+    	  themaChart.data.datasets[0].data=data.cnt;
+    	  themaChart.update();
+    		        	  
+      });
+}
+
 $(function(){
 	
 	$("#White").hover(function(){	
