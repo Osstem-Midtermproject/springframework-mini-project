@@ -33,5 +33,11 @@ public interface TeamDao {
 	//팀 스케쥴 상세 페이지에서 해당 기간만큼 출력 - jbc
 	public List<Team> selectdetailTeamInformationWith(Team team);
 	
+	//팀 스케쥴 상세 페이지에서 해당 월 일정 출력 - jbc
+	public List<Team> selectdetailTeamInformationWithMonth(Team team);
+	
+	//팀 스케쥴 상세 페이지에서 해당 월 일정 출력 - jbc
+	public List<Team> selectdetailTeamInformationWithdaytoday(Team team);
+	
 
 }
