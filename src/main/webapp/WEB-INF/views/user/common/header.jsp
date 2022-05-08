@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인스템</title>
+    <title>오스템인테리어</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -21,19 +21,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userInfromation.css">
-
   	
     <style>
         input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
         input[type="checkbox"]:checked { background: #bcbcbc; } 
-
-
     </style>
 </head>
 
+<!-- 
+
+219, 239, 250
+178, 204, 241
+185, 210, 251
+156, 193, 245
+59, 71, 121
+
+ -->
 <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
+    <header id="header" class="fixed-top shadow d-flex align-items-center bg-white" style="">
+    	<div class="container-fluid d-flex align-items-center">
+    		<div class="logo me-auto my-2">
+				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="120rem" class="img-fluid"></a>
+	    	</div>
+    	</div>
+    </header>
+    <%-- <header id="header" class="fixed-top bg-white px-4">
         <div class="container-fluid d-flex align-items-center">
             <!-- navbar -->
             <nav id="navbar" class="navbar navbar-expand-sm navbar-light row flex-grow-1" >
@@ -74,4 +87,4 @@
                 <a href="${pageContext.request.contextPath}/user/userInformation" class="row pl-5 pt-4"><i class="bi bi-person-circle"></i></a>
             </nav>
         </div>
-    </header>
+    </header> --%>
