@@ -20,6 +20,7 @@
 }
 a{
 	color:black;
+	text-decoration-line: none;
 }
 body {
   font-family: "Noto Sans KR", sans-serif;
