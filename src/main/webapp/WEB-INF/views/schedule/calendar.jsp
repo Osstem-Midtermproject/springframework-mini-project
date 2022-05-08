@@ -12,12 +12,13 @@
 				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" /> <input type="text" value="" placeholder="종료시간" id="time2" required size="8" maxlength="5" />
 			</div>
 			<div>
+				
 				<select class="form-select border-1" id="category" style="font-weight: 100; margin-bottom: 1.5rem;">
 					<option selected>시공종류</option>
 					<option value="1">전기</option>
-					<option value="2">벽지</option>
-					<option value="3">인테리어</option>
-					<option value="4">설비</option>
+					<option value="2">설비</option>
+					<option value="3">도배</option>
+					<option value="4">가구</option>
 				</select>
 				<select class="form-select border-1"   id="team"  style="font-weight: 100; margin-bottom: 1.5rem;">
 					<option selected>팀</option>
@@ -26,9 +27,10 @@
 					<option value="3">C팀</option>
 				</select>
 			</div>
-			<div class="form-group mt-2 mb-4">
-				<label for="utitle">내용</label> <input type="utitle" class="form-control" id="datecontent" style="height: 140px" />
-			</div>
+			 <div class="mb-3">
+            <label for="utitle" class="col-form-label">Message:</label>
+            <textarea type="utitle" class="form-control" id="datecontent"></textarea>
+          </div>
 		</form>
 	</div>
 </div>
@@ -36,14 +38,25 @@
 	<div class="d-flex flex-column">
 		<div class="card">
 			<div class="card-body">
-				<div style="margin-left: auto">
-					<div id="sidecontainer" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-						<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" /> <label id="select1" class="btn" for="btncheck1" onclick="save()">전기</label> <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" /> <label id="select2" class="btn" for="btncheck2" onclick="save()">벽지</label> <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" /> <label id="select3" class="btn" for="btncheck3" onclick="save()">인테리어</label> <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" /> <label id="select4" class="btn" for="btncheck4" onclick="save()">설비</label>
-					</div>
-				</div>
-				<div class="mt-4" id="calendar-container">
-					<div id="calendar"></div>
-				</div>
+			<h5 class="card-title">시공 스케줄</h5>
+				 <div class="mt-4 d-flex flex-row align-items-center justify-content-center" id="calendar-container">
+              
+                <div id="sidecontainer" class="d-flex btn-group flex-column" role="group" style="margin-bottom: auto; margin-top:64px;"aria-label="Basic checkbox toggle button group">
+                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                  <label id="select1" class="btn" for="btncheck1" onclick="showelec()">전기</label>
+
+                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+                  <label id="select2" class="btn" for="btncheck2" onclick="showequip()">설비</label>
+
+                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+                  <label id="select3" class="btn" for="btncheck3" onclick="showpaper()">도배</label>
+
+                  <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" />
+                  <label id="select4" class="btn" for="btncheck4" onclick="showfurniture()">가구</label>
+                </div>
+              
+              <div id="calendar" style="width: 80%"></div>
+            </div>
 			</div>
 		</div>
 	</div>
@@ -66,17 +79,18 @@
     <c:forEach var="schedule" items="${cs}">
    		scheduleEvent.push({
    			id: "${schedule.consScheId}",
-        	title:  "${schedule.consScheHospitalName}",
+        	title:"${schedule.consScheHospitalName}",
         	start:  moment("${schedule.consScheStartdate}").format("YYYY-MM-DD"),
-        	
         	end:  moment("${schedule.consScheEnddate}").format("YYYY-MM-DD"),
         	extendedProps: {
+        		teamid: "${schedule.consScheTeamId}",
         		content: "${schedule.consScheContent}",
         		category:"${schedule.constructionCategory.consCateType}",
         		address:"${schedule.consScheAddress}",
         		estart:moment("${schedule.consScheStartdate}").format("YYYY-MM-DD")
           	},
-  		});		
+  		});	
+   		
 	</c:forEach>
     
       var id = 0;
@@ -167,10 +181,22 @@
                 },
               });
               id++;
-              if (info.event.groupId === "벽지") {
+              if (info.event.extendedProps.category === "전기") {
                 
-                $(info.el).css("background-color", "#FFB6C1");
+                $(info.el).css("background-color", "#eca1e9");
               }
+              else if (info.event.extendedProps.category === "벽지") {
+                  
+                  $(info.el).css("background-color", "#9ec9f1");
+                }
+              else if (info.event.extendedProps.category === "가구") {
+                  
+                  $(info.el).css("background-color", "#e4ec73");
+                }
+              else if (info.event.extendedProps.category === "설비") {
+                  
+                  $(info.el).css("background-color", "#e4ec73");
+                }
             },
             eventDrop: function (info) {
                let id=info.event.id;
@@ -198,7 +224,7 @@
             eventChange: function (info) {},
             eventRemove: function (obj) {},
             eventClick: function (info) {
-             
+              console.log(info.event);
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
                 var btnOpt = {
@@ -211,8 +237,8 @@
                     info.event.setExtendedProp("endTime", $("#time2").val());
                     $(this).dialog("close");
                   },
-                  삭제: function () {
-                    info.event.remove();
+                  취소: function () {
+                   
                     $(this).dialog("close");
                   },
                 };
@@ -226,17 +252,19 @@
                     info.event.setExtendedProp("content", $("#datecontent").val());
                     $(this).dialog("close");
                   },
-                  삭제: function () {
-                    info.event.remove();
+                  취소: function () {
+                   
                     $(this).dialog("close");
                   },
                 };
               }
 
               $("#datetitle").val(info.event.title);
+              $("#addresstitle").val(info.event.extendedProps.address);
               $("#datecontent").val(info.event.extendedProps.content);
               $("#time1").val(info.event.extendedProps.startTime);
               $("#time2").val(info.event.extendedProps.endTime);
+              console.log(info.event.extendedProps.teamid);            
               var dOpt = diaLogOpt;
               dOpt.buttons = btnOpt;
               $("#dialog").dialog(dOpt);
@@ -312,14 +340,100 @@
           calendar.render();
         });
       })();
-      function save() {
-       
+      function showelec() {
+    	  $(function () {
+              let calEvents = calendar.getEvents();
+              if ($("#btncheck1")[0].checked ===true) {
+                for (e of calEvents) {
+                  if (e.extendedProps.category === "전기") {
+                    console.log(1);
+                    e.setProp("display", "none");
+                  }
+                }
+              } else {
+                for (e of calEvents) {
+                  console.log(e);
+                  if (e.extendedProps.category === "전기") {
+                    e.setProp("display", "block");
+                  }
+                }
+              }
+    	  });
+        
       }
-     
+     function showequip(){
+    	 $(function () {
+    	let calEvents = calendar.getEvents();
+    	 if ($("#btncheck2")[0].checked === true) {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "설비") {
+                 console.log(1);
+                 e.setProp("display", "none");
+               }
+             }
+           } else {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "설비") {
+                 console.log(1);
+                 e.setProp("display", "block");
+               }
+             }
+           }
+    	 });
+     }
+     function showpaper(){
+    	 $(function () {
+    		 let calEvents = calendar.getEvents();
+    	 if ($("#btncheck3")[0].checked === true) {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "도배") {
+                 console.log(1);
+                 e.setProp("display", "none");
+               }
+             }
+           } else {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "도배") {
+                 console.log(1);
+                 e.setProp("display", "block");
+               }
+             }
+           }
+    	 });
+     }
+     function showfurniture(){
+    	 $(function () {
+    		 let calEvents = calendar.getEvents();
+    	 if ($("#btncheck3")[0].checked === true) {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "가구") {
+                 console.log(1);
+                 e.setProp("display", "none");
+               }
+             }
+           } else {
+             for (e of calEvents) {
+               if (e.extendedProps.category === "가구") {
+                 console.log(1);
+                 e.setProp("display", "block");
+               }
+             }
+           }
+       });
+     }
       $(function () {
     	 
     	  for (e of scheduleEvent) {
-    		 
+    		  if(Number(e.extendedProps.teamid)%3==1){
+    			  e.title=e.title+" A팀";
+    			  
+    		  }else if(Number(e.extendedProps.teamid)%3==2){
+    			  e.title=e.title+" B팀";
+    			  
+    		  }else{
+    			  e.title=e.title+" C팀";
+    			  
+    		  }
               calendar.addEvent(e);
            }
       });

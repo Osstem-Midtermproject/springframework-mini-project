@@ -13,16 +13,41 @@
 
 <title>Osstem Interior Admin</title>
 <style>
-#chatcon{
-	position: fixed;
-	bottom: 0;
-	width: 280px;
-	height: 550px;
+#chatcon {
+	width: 18rem;
 }
+
 #msgArea {
-	height: 400px;
-	
-	overflow:auto;
+	height: 25rem;
+	overflow: auto;
+}
+
+.ui-dialog {
+	padding: 0px!important;
+}
+
+.ui-widget.ui-widget-content {
+	border: none!important;
+	border-radius: 10px!important;
+}
+
+.ui-dialog-buttonset button {
+	border: none !important;
+	border-radius: 5px!important;
+	background-color: #9ec9f1!important;
+}
+
+.ui-dialog-titlebar-close {
+	display: none !important;
+}
+
+.ui-corner-all {
+	border-radius: 3px!important;
+}
+
+.ui-dialog-titlebar {
+	background-color: #9ec9f1!important;
+	color: white !important;
 }
 </style>
 
@@ -42,12 +67,119 @@
 
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
-				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <span class="">${user.uname}님</span> <i class="bi-person-circle p-3"></i>
+				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown"> <span class="">${user.uname}님</span> <i class="bi-person-circle p-3"></i>
 				</a>
-				<!-- End Profile Iamge Icon --></li>
+					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
+						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
+							<label><b>카카오톡</b></label>
+						</div>
+						<div>
+							<div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
+							<div class="col-6"></div>
+							<div class="input-group">
+								<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" />
+								<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+							</div>
+
+							<div class="col-6"></div>
+						</div>
+						<!-- End Profile Iamge Icon -->
+					</div></li>
 				<!-- End Profile Nav -->
 			</ul>
 		</nav>
 		<!-- End Icons Navigation -->
 	</header>
 	<!-- End Header -->
+	<script>
+function scrolldown(){
+
+   const msgArea = $('#msgArea'); 
+   msgArea.scrollTop(msgArea[0].scrollHeight);
+}
+$(function(){
+
+    const username = "${userid}";
+
+    $("#disconn").on("click", (e) => {
+        disconnect();
+    })
+    
+    $("#button-send").on("click", (e) => {
+        send();
+    });
+
+    const websocket = new SockJS("${pageContext.request.contextPath}/echo");
+
+    websocket.onmessage = onMessage;
+    websocket.onopen = onOpen;
+    websocket.onclose = onClose;
+
+    function send(){
+
+        let msg = document.getElementById("msg");
+
+        console.log(username + ":" + msg.value);
+        websocket.send(username + ":" + msg.value);
+        msg.value = '';
+    }
+    
+    //채팅창에서 나갔을 때
+    function onClose(evt) {
+        var str = username + ": 님이 방을 나가셨습니다.";
+        websocket.send(str);
+    }
+    
+    //채팅창에 들어왔을 때
+    function onOpen(evt) {
+        var str = username + ": 님이 입장하셨습니다.";
+        websocket.send(str);
+    }
+
+    function onMessage(msg) {
+        var data = msg.data;
+        var sessionId = null;
+        //데이터를 보낸 사람
+        var message = null;
+        var arr = data.split(":");
+
+        for(var i=0; i<arr.length; i++){
+            console.log('arr[' + i + ']: ' + arr[i]);
+        }
+
+        var cur_session = username;
+
+        //현재 세션에 로그인 한 사람
+        console.log("cur_session : " + cur_session);
+        sessionId = arr[0];
+        message = arr[1];
+
+        console.log("sessionID : " + sessionId);
+        console.log("cur_session : " + cur_session);
+
+        //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+        if(sessionId == cur_session){
+            var str = "<div class='col-6'>";
+            str += "<div class='alert alert-warning' style='width:230px;'>";
+            str += "<b>" + sessionId + " : " + message + "</b>";
+            str += "</div></div>";
+            $("#msgArea").append(str);
+            scrolldown();
+        }
+        else{
+            var str = "<div class='col-6'>";
+            str += "<div class='alert ' style='width:230px; margin-left: 40px;background-color:#fff;'>";
+            str += "<b>" + sessionId + " : " + message + "</b>";
+            str += "</div></div>";
+            $("#msgArea").append(str);
+            scrolldown();
+        }
+    }
+    })
+    $('.dropdown-menu').click(function(e) {
+
+         e.stopPropagation();
+   });
+
+
+</script>

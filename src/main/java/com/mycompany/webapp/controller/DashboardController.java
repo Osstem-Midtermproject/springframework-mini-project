@@ -54,14 +54,15 @@ public class DashboardController {
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model,HttpSession session,HttpServletRequest request) {
 		String userid=(String)session.getAttribute("sessionUserId");	
+		log.info("Client IP: " + request.getRemoteAddr());
 		model.addAttribute("userid",userid);
 		DecimalFormat decFormat = new DecimalFormat("###,###");
 		TeamHistory today=contractService.getToday();
 		TeamHistory yesterday=contractService.getYesterday();
 		double salespercent=Math.round(((double)(today.getTha()-yesterday.getTha())/yesterday.getTha())*100);
 		long conpercent=today.getThn()-yesterday.getThn();
-		String todaysales=decFormat.format(today.getTha());
-		model.addAttribute("todaySales",todaysales);
+		//String todaysales=decFormat.format(today.getTha());
+		model.addAttribute("todaySales",today.getTha());
 		model.addAttribute("todayCon",today.getThn());
 		model.addAttribute("salespercent",salespercent);
 		model.addAttribute("conpercent",conpercent);

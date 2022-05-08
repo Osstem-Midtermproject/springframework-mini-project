@@ -11,9 +11,10 @@
 			<div id="timebox" style="display: none">
 				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" /> <input type="text" value="" placeholder="종료시간" id="time2" required size="8" maxlength="5" />
 			</div>
-			<div class="form-group mt-2 mb-4">
-				<label for="utitle">내용</label> <input type="utitle" class="form-control" id="datecontent" style="height: 140px" />
-			</div>
+			 <div class="mb-3">
+            <label for="utitle" class="col-form-label">Message:</label>
+            <textarea type="utitle" class="form-control" id="datecontent"></textarea>
+          </div>
 		</form>
 	</div>
 </div>
@@ -21,8 +22,9 @@
 	<div class="d-flex flex-column">
 		<div class="card">
 			<div class="card-body">
-				<div class="mt-4" id="calendar-container">
-					<div id="calendar"></div>
+			<h5 class="card-title">상담 스케줄</h5>
+				<div class="mt-4 d-flex flex-column align-items-center" id="calendar-container">
+					<div id="calendar" style="width: 80%"></div>
 				</div>
 			</div>
 		</div>

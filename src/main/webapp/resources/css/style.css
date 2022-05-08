@@ -29,10 +29,6 @@ body {
 input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
 input[type="checkbox"]:checked { background: #bcbcbc; } 
 
-a {
-  color: rgba(242, 101, 34);
-  text-decoration: none;
-}
 
 a:hover {
   color: rgb(255, 81, 0);
@@ -67,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: bold;
-  color: rgba(147, 147, 138);
+  color: rgb(219, 239, 250);
 }
 
 /*--------------------------------------------------------------
@@ -152,6 +148,20 @@ h1, h2, h3, h4, h5, h6 {
     width: 13px;
     height: 13px;
     background: #fff;
+    position: absolute;
+    top: -7px;
+    right: 20px;
+    transform: rotate(45deg);
+    border-top: 1px solid #eaedf1;
+    border-left: 1px solid #eaedf1;
+  }
+}
+@media (min-width: 768px) {
+  .dropdown-menu-arrow-custom::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    background:  rgb(106, 178, 236);
     position: absolute;
     top: -7px;
     right: 20px;
@@ -281,7 +291,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav-tabs-bordered .nav-link:hover, .nav-tabs-bordered .nav-link:focus {
   /* color: #4154f1; */
-  color: rgb(242, 101, 34);
+  color: rgb(219, 239, 250);
   font-size: 20px;
   font-weight: 600;
 }
@@ -289,7 +299,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   /* color: #4154f1;
   border-bottom: 2px solid #4154f1; */
-  color: rgba(242, 101, 34);
+  color: rgb(219, 239, 250);
   border-bottom: 2px solid rgb(242, 101, 34);
   font-size: 20px;
   font-weight: 600;
@@ -381,7 +391,7 @@ h1, h2, h3, h4, h5, h6 {
   scrollbar-width: thin;
   scrollbar-color: #f5d4c0 transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: rgb(234, 234, 234);
+  background-color: rgb(219, 239, 250);
 }
 @media (max-width: 1199px) {
   .sidebar {
@@ -766,32 +776,30 @@ img.ui-datepicker-trigger {
         padding-bottom: 0.2rem;
         width: 1rem;
       }
-      div.ui-dialog-titlebar {
-        background-color: rgb(238, 115, 14);
-      }
-      div.fc-event-title-container {
-        background-color: rgb(238, 115, 14);
-      }
-      .ui-timepicker {
+
+   .ui-timepicker {
         position: inherit;
         z-index: 10001;
         font-size: 12px;
         width: 6px;
         text-align: start;
-      }
- #select1 {
+ }
+#select1 {
         border-color: #dacdcd;
         background-color: #9ec9f1;
       }
-
-      #select2 {
+#select2 {
         border-color: #dacdcd;
         background-color: #eca1e9;
-      }
-      #select3 {
+ }
+#select3 {
         border-color: #dacdcd;
         background-color: #e4ec73;
-      }
+}
+#select4 {
+        border-color: #dacdcd;
+        background-color: #9ec9f1;
+  }
       input[id="btncheck1"]:checked + label {
         color: white;
       }
@@ -801,4 +809,9 @@ img.ui-datepicker-trigger {
       input[id="btncheck3"]:checked + label {
         color: white;
       }
+       input[id="btncheck4"]:checked + label {
+        color: white;
+      }
 
+
+     

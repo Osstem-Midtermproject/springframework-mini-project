@@ -44,8 +44,8 @@
 												<i class="bi bi-cash-coin"></i>
 											</div>
 											<div class="ps-3">
-												<h6>$${todaySales}</h6>
-												<span class="text-danger small pt-1 fw-bold">${salespercent}%</span><span id="salesspan" class="text-muted small pt-2 ps-1"></span>
+												<h6 id="todaySale"></h6>
+												<span id="salesper"class="text-danger small pt-1 fw-bold"></span><span id="salesspan" class="text-muted small pt-2 ps-1"></span>
 											</div>
 										</div>
 									</div>
@@ -78,8 +78,8 @@
 												<i class="bi bi-people-fill"></i>
 											</div>
 											<div class="ps-3">
-												<h6>${todayCon}</h6>
-												<span class="text-danger small pt-1 fw-bold">${conpercent}</span> <span id="conspan" class="text-muted small pt-2 ps-1"></span>
+												<h6 id="todayCon"></h6>
+												<span id="conpercent"class="text-danger small pt-1 fw-bold"></span> <span id="conspan" class="text-muted small pt-2 ps-1"></span>
 											</div>
 										</div>
 									</div>
@@ -132,7 +132,7 @@
 								<h5 class="card-title">Analysis</h5>
 
 								<!-- Line Chart -->
-								<canvas id="yearChart"></canvas>
+								<div id="reportsChart"></div>
 								
 
 								<!-- End Line Chart -->
@@ -419,6 +419,58 @@
                    
                   
                       const yearChart = new Chart(document.getElementById("yearChart"), yearConfig);
+                      document.addEventListener("DOMContentLoaded", () => {
+                          new ApexCharts(document.querySelector("#reportsChart"), {
+                            series: [
+                              {
+                                name: "Sales",
+                                data: allSales,
+                              },
+                              {
+                                  name: "Contract",
+                                  data: [101, 302, 405, 302, 304, 502, 401, 407, 404, 501, 600, 602],
+                                },
+                              
+                              
+                            ],
+                            chart: {
+                              height: 350,
+                              type: "area",
+                              toolbar: {
+                                show: false,
+                              },
+                              
+                            },
+                            markers: {
+                              size: 4,
+                            },
+                            colors: ["rgb(147, 147, 138)", "#f26522"],
+                            fill: {
+                              type: "gradient",
+                              gradient: {
+                                shadeIntensity: 1,
+                                opacityFrom: 0.3,
+                                opacityTo: 0.4,
+                                stops: [0, 90, 100],
+                              },
+                            },
+                            dataLabels: {
+                              enabled: false,
+                            },
+                            stroke: {
+                              curve: "smooth",
+                              width: 2,
+                            },
+                            xaxis: {
+                              categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                            },
+                            tooltip: {
+                              x: {
+                                format: "yyyy-MM",
+                              },
+                            },
+                          }).render();
+                        });
 	$(function() {
 		notificationTimer = setInterval( function () {
 			//----------------------------------------------------------------------------------
@@ -494,6 +546,71 @@
 				$("#constructionTable").html(str);	
 			});
 		}, 1000); 
+	});
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	$(function(){
+		$({ val : 0 }).animate({ val : Number("${todaySales}") }, {
+			  duration: 1500,
+			  step: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#todaySale").text("$"+num);
+			  },
+			  complete: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#todaySale").text("$"+num);
+			  }
+		
+		});
+		$({ val : 0 }).animate({ val : Number("${salespercent}") }, {
+			  duration: 1000,
+			  step: function() {
+			    var num = numberWithCommas(this.val.toFixed(1));
+			    $("#salesper").text(num+"%");
+			  },
+			  complete: function() {
+			    var num = numberWithCommas(this.val.toFixed(1));
+			    $("#salesper").text(num+"%");
+			  }
+		
+		});
+		$({ val : 0 }).animate({ val : Number("${salespercent}") }, {
+			  duration: 1000,
+			  step: function() {
+			    var num = numberWithCommas(this.val.toFixed(1));
+			    $("#salesper").text(num+"%");
+			  },
+			  complete: function() {
+			    var num = numberWithCommas(this.val.toFixed(1));
+			    $("#salesper").text(num+"%");
+			  }
+		
+		});
+		$({ val : 0 }).animate({ val : Number("${todayCon}") }, {
+			  duration: 500,
+			  step: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#todayCon").text(num);
+			  },
+			  complete: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#todayCon").text(num);
+			  }
+		
+		});
+		$({ val : 0 }).animate({ val : Number("${conpercent}") }, {
+			  duration: 500,
+			  step: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#conpercent").text(num);
+			  },
+			  complete: function() {
+			    var num = numberWithCommas(Math.floor(this.val));
+			    $("#conpercent").text(num);
+			  }
+		
+		});
 	});
 	
  </script>

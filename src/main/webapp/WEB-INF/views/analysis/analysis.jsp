@@ -24,9 +24,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<p style="font-weight: 600; font-size: large; text-align: center; margin-bottom: 0.3rem;">Year</p>
-								<select class="form-select border-1" style="font-weight: 500; margin-bottom: 1.5rem;">
-									<option selected>Select year</option>
-									<option value="1">2022</option>
+								<select class="form-select border-1" style="font-weight: 500; margin-bottom: 1.5rem;">									
+									<option value="1" selected>2022</option>
 									<option value="2">2021</option>
 									<option value="3">2020</option>
 									<option value="4">2019</option>
