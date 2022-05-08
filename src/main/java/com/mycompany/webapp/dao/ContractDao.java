@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.TeamHistory;
 
@@ -47,5 +48,15 @@ public interface ContractDao {
 	List<Contract> selectSalesList(Pager pager);
 	int selectSalesListTotalNum(Pager p);
 	
+	//테마 랭킹
+	List<Design> selectThemaRank();
+	
+	
+	List<Contract> selectDimgDname(String dtt);
+	
+	//디자인 테마별 지난달과 이번달 계약건수
+	int selectCountThisMonth(String dtt);
+	Integer selectCountLastMonth(String dtt, String date);
+
 	
 }

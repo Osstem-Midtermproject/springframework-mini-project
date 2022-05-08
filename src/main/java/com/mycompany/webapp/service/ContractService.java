@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.ContractDao;
 import com.mycompany.webapp.dto.Contract;
+import com.mycompany.webapp.dto.Design;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.TeamHistory;
 
@@ -92,4 +93,22 @@ public class ContractService {
 	public List<Contract> getSalesList(Pager pager) {
 		return contractDao.selectSalesList(pager);
 	}
+
+	//테마 랭킹
+	public List<Design> getThemaRank() {
+		return contractDao.selectThemaRank();
+	}
+	
+	public 	List<Contract> getDimgDname(String dtt){
+		return contractDao.selectDimgDname(dtt);
+	}
+
+	//디자인 테마별 지난달과 이번달 계약건수
+	public int getCountThisMonth(String dtt) {
+		return contractDao.selectCountThisMonth(dtt);
+	}
+	public Integer getCountLastMonth(String dtt, String date) {
+		return contractDao.selectCountLastMonth(dtt, date);
+	}
+
 }

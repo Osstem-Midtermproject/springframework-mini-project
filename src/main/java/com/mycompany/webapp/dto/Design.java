@@ -1,6 +1,7 @@
 package com.mycompany.webapp.dto;
 
 import java.sql.Blob;
+import java.util.List;
 
 import lombok.Data;
 
@@ -12,5 +13,10 @@ public class Design {
 	private String dname; //디자인 이름
 	private String dimg; //해당 디자인의 이미지
 	private String dtt; //디자인의 타입(화이트, 블랙, 우드, 기타 등)
+
+	//디자인별 지난달 대비 이번달 계약건수
+	private int countThisMonth;
+	private int countLastMonth;
+	private int count;
 	
 }

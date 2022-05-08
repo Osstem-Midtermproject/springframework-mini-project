@@ -25,7 +25,7 @@
               <div class="card-body">
                 <h5 class="card-title">Notification List</h5>
                 
-                <div class="d-flex justify-content-between">                  
+                <div class="d-flex justify-content-between">                
                                    
                     <!-- ----------------------- calendar --------------------------->
                     <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
@@ -217,19 +217,20 @@
 	
 	        $.each(result.notificationList,function(index,list){
 	        	
+	        	console.log(list);
 				var t = list.rdCounDate.substr(10,13);
 				var time1 = t.substr(0,3) + "시"
 	        	var content = list.rdContent;
 	        	
 	        	if(list.rdContent.length > 60){
 	        		content = list.rdContent.substr(0,61) + "...";
-		        	var s ="<td data-bs-toggle ='tooltip' data-bs-placement='top' title='" + list.rdContent + "'>"+ content + "</td>";
+		        	var s ="<td data-bs-toggle='tooltip' data-bs-placement='bottom' title='" + list.rdContent + "'>"+ content + "</td>";
 	        		content += s;
 	        	}else{
 	        		content="<td>"+ list.rdContent + "</td>";
 	        	}
 	        	
-				str = str + "<tr><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+				str = str + "<tr onClick = location.href='processing/detail?hdln="+list.rdDln +"'><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
 	        	list.rdCounDate.substr(0,10) + time1 +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정하기</button></td><tr>";
 	
 			})   
@@ -319,7 +320,7 @@
         		content1="<td>"+ list.counScheContent + "</td>";
         	}
 			
-			str = str + "<tr><td>"+list.counNo+"</td><td>"+"상담"+
+			str = str + "<tr onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
         	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
         	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
 

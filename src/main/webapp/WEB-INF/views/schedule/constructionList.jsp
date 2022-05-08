@@ -54,8 +54,7 @@
                  
 					<!-- 검색 및 검색 종류 -->
 					<div class="search-bar">
-						<div class="search-form d-flex align-items-center" method="POST"
-							action="#">
+						<div class="search-form d-flex align-items-center" method="POST">
 							<div class="col-xs-4">
 								<div class="invalid-feedback">Please select a valid state.</div>
 							</div>
@@ -118,6 +117,10 @@
     	
         var checkboxValues = [];
         
+        $("input[name='checkBox']:checked").each(function() {
+            checkboxValues.push($(this).val());
+        }); 
+        
         if(checkboxValues.length == 0){
 	        $("#constructionListTable").html(" ");
 	        
@@ -128,15 +131,9 @@
 	        
 			$("#constructionListTablePager").html(onePage);
         }
-        
-        $("input[name='checkBox']:checked").each(function(i) {
-            checkboxValues.push($(this).val());
-        }); 
     	        
-        var allData = { "checkArray": checkboxValues };
-        console.log(checkboxValues);
-    	
         let searchBar = $("#searchBar").val();
+       
         $.ajax({
         	url: 'selectList',
             type: 'post',
@@ -147,13 +144,27 @@
        		var str="";
 
 	        $.each(result.constructionScheduleList,function(index,list){
-	
+	        	var today = new Date();
+
+	        	var year = today.getFullYear();
+	        	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	        	var day = ('0' + today.getDate()).slice(-2);
+
+	        	var dateString = year + '-' + month  + '-' + day;
+	        	
 	        	var sdate = list.consScheStartdate.substr(0,10);
 	        	var edate = list.consScheEnddate.substr(0, 10);
-				str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
-	        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
-	        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
-	
+	        	
+	        	if(dateString>edate){
+	        		str = str + "<tr class='text-muted' onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
+		        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
+		        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
+	        	}else{
+					str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
+		        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
+		        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
+	        	}
+	        	
 			})   
 
 	        $("#constructionListTable").html(str);
