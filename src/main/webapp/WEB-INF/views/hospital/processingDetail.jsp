@@ -479,7 +479,6 @@
 	</c:forEach>
 	
 	console.log(progress);
-
 	//이미지 입력 form
 	  $(function() {
 		  $("#dialogImgForm").dialog({
@@ -661,7 +660,6 @@
 		 });
 	 });
 	
-
 	</script>
 
 

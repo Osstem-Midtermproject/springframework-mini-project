@@ -4,7 +4,7 @@
 
    <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/dashboard"> <i class="bi bi-grid"></i><span>대쉬보드</span>
+      <li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/dashboard"> <i class="bi bi-grid"></i><span>대시보드</span>
       </a></li>
       <!-- End Dashboard Nav -->
 
@@ -33,7 +33,7 @@
                </ul></li>
 
 
-            <li class="nav-item"><a href="#" data-bs-target="#forms-list" data-bs-toggle="collapse"> <i class="bi bi-calendar-week"></i><span>목록</span><i class="bi bi-chevron-down ms-auto"></i>
+            <li class="nav-item"><a href="#" data-bs-target="#forms-list" data-bs-toggle="collapse"> <i class="bi bi-calendar-week"></i><span>리스트</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
                <ul id="forms-list" class="nav-content collapse">
                   <li><a href="${pageContext.request.contextPath}/schedule/counselingAndAsList"> <span>-상담/AS</span>
@@ -51,6 +51,8 @@
       <li class="nav-item"><a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-plus-circle"></i><span>병원</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
          <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+         	<li><a href="${pageContext.request.contextPath}/hospital/processing"> <i class="bi bi-clock-history"></i><span>진행상황(디테일)</span>
+            </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/location"> <i class="bi bi-geo-alt"></i><span>위치정보</span>
             </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/contractHistory"> <i class="bi bi-envelope-paper"></i><span>계약</span>

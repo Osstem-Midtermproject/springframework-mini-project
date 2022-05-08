@@ -409,7 +409,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1200px) {
   #main, #footer {
-    margin-left: 300px;
+    margin-left: 280px;
   }
 }
 @media (max-width: 1199px) {
@@ -449,8 +449,8 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   color: rgba(255, 255, 255);
   transition: 0.3;
   background: rgb(32, 54, 68);
