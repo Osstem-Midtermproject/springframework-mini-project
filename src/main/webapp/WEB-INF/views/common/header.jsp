@@ -50,6 +50,9 @@
 	background-color: #9ec9f1!important;
 	color: white !important;
 }
+.fc-col-header{
+	color:black !important;
+}
 </style>
 
 <%@ include file="/WEB-INF/views/common/src.jsp"%>
