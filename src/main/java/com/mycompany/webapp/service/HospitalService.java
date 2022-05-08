@@ -1,13 +1,16 @@
 package com.mycompany.webapp.service;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.mycompany.webapp.dao.HospitalDao;
 import com.mycompany.webapp.dto.AdditionalRequest;
-import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.RequestDetails;
+import com.mycompany.webapp.dto.Progress;
+import com.mycompany.webapp.dto.ProgressImg;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -51,7 +54,6 @@ public class HospitalService {
 	
 	//contId로 계약서의 추가요청 찾기
 	public List<Hospital> getHospitalArContentByContId(String contId) {
-		log.info(hospitalDao.selectHospitalArContentByContId(contId));
 		return hospitalDao.selectHospitalArContentByContId(contId);
 	}
 	
@@ -74,11 +76,17 @@ public class HospitalService {
 	public void updateArContent(AdditionalRequest additionalRequest) {
 		hospitalDao.updateByArId(additionalRequest);
 	}
-
-	public void updateState(RequestDetails newState) {
-		hospitalDao.updateByHdln(newState);
+	
+	//현재상태 가져오기 (상담/시공)
+	public Progress getProgressCategory(String hdln) {
+		return hospitalDao.selectProgressByHdlnForState(hdln);
 	}
-
+	
+	//현재상태 추가 (시공완료)
+	public void insertCategory(Progress newCateory) {
+		hospitalDao.insertCategory(newCateory);
+	}
+	
 	//지역 병원 목록 전체출력
 	public List<Hospital> getLocationHospital(Pager pager) {
 		log.info("tlfgod");
@@ -96,6 +104,31 @@ public class HospitalService {
 	public int selectByLocationcount(String addfressHospital) {
 		log.info(addfressHospital);
 		return hospitalDao.selectByLocationcount(addfressHospital); 
+	}
+	
+	//진행상황 이미지 가져오기
+	public List<Progress> getProgress(ProgressImg progressImg) {
+		return hospitalDao.selectProgressImgByHdln(progressImg);
+	}
+	
+	//이미지 작성
+	public void writeImg(ProgressImg progressImg) {
+		hospitalDao.insertImg(progressImg);
+	}
+	
+	//이미지 리스트 불러오기
+	public List<ProgressImg> getImgs(String pimgDln, String pimgAddress) {
+		return null;
+	}
+
+	//pimgId로 progressImg 컬럼 가져오기
+	public Progress getProgressImg(int pimgId) {
+		return hospitalDao.selectProgressImgByPimgId(pimgId);
+	}
+	
+	//pimgId로 img 사진 삭제
+	public void removePimgId(int pimgId) {
+		hospitalDao.deleteByPimgId(pimgId);
 	}
 
 }
