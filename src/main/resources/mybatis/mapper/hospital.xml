@@ -323,15 +323,16 @@
 		</association>
 	</resultMap>
 	
+	<!-- pimgDln 과 pimgAddress로 progressImg 테이블 내용 전부 가져오기 -->
 	<select id="selectProgressImgByHdln" parameterType="progressImg" resultMap="selectProgressImgWithProgressResultMap">
-		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date
+		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date, pcategory
 		  from progress
 		 inner join progressimg
 		    on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
 		 where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress} <!-- and progressimg.pimg_date='2022-05-09' -->
 		 order by pimg_registration_date, pimg_id
 	</select>
-	
+
 	<!-- 이미지 추가 -->
 	<insert id="insertImg" parameterType="progressImg">
 		<selectKey keyProperty="pimgId" resultType="int" order="BEFORE">

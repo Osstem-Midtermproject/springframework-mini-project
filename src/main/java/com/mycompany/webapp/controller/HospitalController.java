@@ -323,12 +323,38 @@ public class HospitalController {
 		log.info(progressImg.getPimgContent());
 		log.info(progressImg.getPimgDate());
 		log.info(progressImg.getPimgHospitalName());
+		
+		List<Hospital> hospitalProgresses = hospitalService.getHospitalProgress(progressImg.getPimgDln());
+		
+		boolean progressImgCategoryCheck = false;
+		for (int i=0; i<hospitalProgresses.size(); i++) {
+			if (hospitalProgresses.get(i).getProgress().getPcategory().equals("1")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("전기");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("2")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("설비");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("3")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("도배");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("4")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("가구");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("0")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("시공 완료");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("5")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("상담");
+			}
+			
+			log.info(hospitalProgresses.get(i).getProgress().getPcategory());
+			if(hospitalProgresses.get(i).getProgress().getPcategory().equals(progressImg.getPimgCategory())) {
+				progressImgCategoryCheck = true;
+			}
+		}
+		
+		log.info(progressImgCategoryCheck);
 
 		for (MultipartFile multipartFile : progressImg.getPimgAttach()) {
 			log.info(multipartFile.getOriginalFilename());
 			log.info(multipartFile.getContentType());
-
-			if (!progressImg.getPimgAttach().isEmpty()) {
+			
+			if (!progressImg.getPimgAttach().isEmpty() && progressImgCategoryCheck) {
 				progressImg.setPimgOname(multipartFile.getOriginalFilename());
 				progressImg.setPimgType(multipartFile.getContentType());
 				progressImg.setPimgSname(new Date().getTime() + "_" + progressImg.getPimgHospitalName() + "_"
@@ -343,7 +369,11 @@ public class HospitalController {
 		log.info("실행");
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
+		if (progressImgCategoryCheck == true) {
+			jsonObject.put("result", "success");
+		} else {
+			jsonObject.put("result", "fail");
+		}
 		String json = jsonObject.toString();
 
 		return json;
