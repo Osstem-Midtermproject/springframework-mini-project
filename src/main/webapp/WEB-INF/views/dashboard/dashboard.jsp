@@ -436,6 +436,19 @@
                               
                               
                             ],
+                            yaxis: [
+                                {
+                                  title: {
+                                    text: "Sales"
+                                  },
+                                },
+                                {
+                                  opposite: true,
+                                  title: {
+                                    text: "Contract"
+                                  }
+                                }
+                              ],
                             chart: {
                               height: 350,
                               type: "area",
@@ -447,7 +460,7 @@
                             markers: {
                               size: 4,
                             },
-                            colors: ["rgb(147, 147, 138)", "#f26522"],
+                            colors: ["#444444", "rgb(198, 171, 124)"],
                             fill: {
                               type: "gradient",
                               gradient: {
