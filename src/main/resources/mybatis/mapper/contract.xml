@@ -205,14 +205,18 @@
    	</select>
    	
    	<resultMap id="selectDimgDnameResultMap"  type="contract">
+   		<result column="rownum" property="cno"></result>
    		<result column="dimg" property="contArea"></result>
 		<result column="dname"  property="contDln"></result>
 		<result column="dimg" property="contAddress"></result>
 	</resultMap>
    	<select id="selectDimgDname" resultMap="selectDimgDnameResultMap" parameterType="string">
-		select dname, dimg, dtt from contract 	
-		RIGHT OUTER JOIN design ON contract.cont_design_identification = did where dtt= #{dtt}
-		GROUP BY dname, dimg, dtt ORDER BY count(*) desc
+		select rownum, dname, dimg, dtt 
+		    from(
+				select dname, dimg, dtt from contract 	
+				RIGHT OUTER JOIN design ON contract.cont_design_identification = did where dtt= #{dtt}
+				GROUP BY dname, dimg, dtt ORDER BY count(*) desc, dname
+		        )
    	</select>
    	
    	<!-- 디자인 테마별 지난달과 이번달 계약건수 -->

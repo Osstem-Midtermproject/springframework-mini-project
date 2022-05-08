@@ -25,7 +25,7 @@
               <div class="card-body">
                 <h5 class="card-title">Notification List</h5>
                 
-                <div class="d-flex justify-content-between">                  
+                <div class="d-flex justify-content-between">                
                                    
                     <!-- ----------------------- calendar --------------------------->
                     <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
@@ -224,7 +224,7 @@
 	        	
 	        	if(list.rdContent.length > 60){
 	        		content = list.rdContent.substr(0,61) + "...";
-		        	var s ="<td data-bs-toggle ='tooltip' data-bs-placement='top' title='" + list.rdContent + "'>"+ content + "</td>";
+		        	var s ="<td data-bs-toggle='tooltip' data-bs-placement='bottom' title='" + list.rdContent + "'>"+ content + "</td>";
 	        		content += s;
 	        	}else{
 	        		content="<td>"+ list.rdContent + "</td>";

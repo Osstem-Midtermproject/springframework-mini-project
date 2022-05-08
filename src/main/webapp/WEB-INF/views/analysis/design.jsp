@@ -42,14 +42,15 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">2</span> 
 							<img id="${themaRank[1].dtt}"  src="${themaRank[1].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>
 							<c:if test="${themaRank[1].count > 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>	
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[1].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[1].count < 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[1].count}</span>							
 								</div>
 							</c:if>
@@ -58,14 +59,15 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">3</span> 
 							<img id="${themaRank[2].dtt}" src="${themaRank[2].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
 							<c:if test="${themaRank[2].count > 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[2].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[2].count < 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[2].count}</span>							
 								</div>
 							</c:if>
@@ -74,14 +76,15 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">4</span> 
 							<img id="${themaRank[3].dtt}"  src="${themaRank[3].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
 							<c:if test="${themaRank[3].count > 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[3].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[3].count < 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[3].count}</span>							
 								</div>
 							</c:if>
@@ -90,14 +93,15 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">5</span> 
 							<img id="${themaRank[4].dtt}"  src="${themaRank[4].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
 							<c:if test="${themaRank[4].count > 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[4].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[4].count < 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[4].count}</span>							
 								</div>
 							</c:if>
@@ -106,14 +110,15 @@
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">6</span> 
 							<img id="${themaRank[5].dtt}"  src="${themaRank[5].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
-							<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
 							<c:if test="${themaRank[5].count > 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[5].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[5].count < 0}">
 								<div class="text-center">
+									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[5].count}</span>							
 								</div>
 							</c:if>
@@ -159,7 +164,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Black </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -175,7 +185,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Black </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -215,7 +230,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Blue </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -231,7 +251,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Blue </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -272,7 +297,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Gray </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -288,7 +318,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Gray </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -329,7 +364,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Pastel </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -345,7 +385,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Pastel </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -386,7 +431,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">White </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -402,7 +452,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">White </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -443,7 +498,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Wood </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -459,7 +519,12 @@
 																<img class="rounded" src="${i.contAddress}" style="width: 100%; height: 200px;">
 																<div class="card-body">
 																	<h4 class="card-title">${i.contDln}</h4>
-																	<p class="card-text">모던 화이트</p>
+																	<div class="card-text">
+																		<span style="font-size: 1.3rem; font-weight: 500">Wood </span>
+																		<span>테마 인기</span>
+																		<span style="font-size: 1.3rem; font-weight: 500"> ${i.cno}위 </span>
+																		<span>디자인</span>
+																	</div>
 																</div>
 															</div>
 														</div>
