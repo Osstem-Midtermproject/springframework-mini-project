@@ -13,31 +13,19 @@
 		<div class="row">
 
 			<!-- Left side columns -->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<!-- 첫번째줄 -->
 				<div class="row">
-					<div class="col-xxl-4  col-md-5">
+					<div class="col-4">
 						<!-- 매출액/계약건수 -->
 						<div class="row d-flex flex-column">
 							<!-- 매출액 -->
 							<!-- Sales Card -->
 							<div>
 								<div class="card info-card sales-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
-									<div class="filter">
-										<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-											<li class="dropdown-header text-start">
-												<h6>Filter</h6>
-											</li>
-											<li><a class="dropdown-item" href="#">Today</a></li>
-											<li><a class="dropdown-item" href="#">This Month</a></li>
-											<li><a class="dropdown-item" href="#">This Year</a></li>
-										</ul>
-									</div>
-
 									<div class="card-body">
 										<h5 class="card-title">
-											Sales <span>| Today</span>
+											매출 <span>| Today</span>
 										</h5>
 										<div class="d-flex align-items-center">
 											<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -57,21 +45,9 @@
 							<!-- Revenue Card -->
 							<div>
 								<div class="card info-card contract-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
-									<div class="filter">
-										<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-											<li class="dropdown-header text-start">
-												<h6>Filter</h6>
-											</li>
-											<li><a class="dropdown-item" href="#">Today</a></li>
-											<li><a class="dropdown-item" href="#">This Month</a></li>
-											<li><a class="dropdown-item" href="#">This Year</a></li>
-										</ul>
-									</div>
-
 									<div class="card-body">
 										<h5 class="card-title">
-											Contract <span>| Today</span>
+											계약건수 <span>| Today</span>
 										</h5>
 										<div class="d-flex align-items-center">
 											<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -88,38 +64,31 @@
 							<!-- End Contract Card -->
 						</div>
 					</div>
-
-					<div class="col-xxl-8 col-md-7 d-flex flex-row">
-						<!-- 분기별 디자인 매출액 -->
-						<div class="col-6">
-							<div class="card">
-								<div class="card-body pb-0">
-									<h5 class="card-title">
-										Department<span>| Quarterly</span>
-									</h5>
-									<div>
-										<canvas id="teamChart" style="min-height: 34vh; min-width: 16vw"></canvas>
-									</div>
-
+					
+					<!-- 부서별 매출액 -->
+					<div class="col-4">
+						<div class="card">
+							<div class="card-body pb-0">
+								<h5 class="card-title">
+									Department<span>| Quarterly</span>
+								</h5>
+								<div>
+									<canvas id="teamChart" style="min-height: 34vh; min-width: 16vw"></canvas>
 								</div>
 							</div>
-							<!-- End Website Traffic -->
 						</div>
-
-						<div class="col-6">
-							<div class="card">
-								<div class="card-body pb-0">
-									<h5 class="card-title">
-										Design<span>| Quarterly</span>
-									</h5>
-									<div>
-										<canvas id="designChart" style="min-height: 34vh; min-width: 16vw"></canvas>
-									</div>
-
-
+					</div>
+					<!-- 분기별 디자인 매출액 -->					
+					<div class="col-4">
+						<div class="card">
+							<div class="card-body pb-0">
+								<h5 class="card-title">
+									Design<span>| Quarterly</span>
+								</h5>
+								<div>
+									<canvas id="designChart" style="min-height: 34vh; min-width: 16vw"></canvas>
 								</div>
 							</div>
-							<!-- End Website Traffic -->
 						</div>
 					</div>
 				</div>
@@ -145,7 +114,7 @@
 			<!-- End Left side columns -->
 
 			<!-- Right side columns -->
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 
 				<!-- --------------------------------- Notification--------------------------------- -->
 				<div class="card">
