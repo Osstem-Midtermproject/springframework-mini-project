@@ -4,7 +4,7 @@
 
    <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/dashboard"> <i class="bi bi-grid"></i><span>대쉬보드</span>
+      <li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/dashboard"> <i class="bi bi-grid"></i><span>대시보드</span>
       </a></li>
       <!-- End Dashboard Nav -->
 
@@ -33,7 +33,7 @@
                </ul></li>
 
 
-            <li class="nav-item"><a href="#" data-bs-target="#forms-list" data-bs-toggle="collapse"> <i class="bi bi-calendar-week"></i><span>목록</span><i class="bi bi-chevron-down ms-auto"></i>
+            <li class="nav-item"><a href="#" data-bs-target="#forms-list" data-bs-toggle="collapse"> <i class="bi bi-calendar-week"></i><span>리스트</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
                <ul id="forms-list" class="nav-content collapse">
                   <li><a href="${pageContext.request.contextPath}/schedule/counselingAndAsList"> <span>-상담/AS</span>

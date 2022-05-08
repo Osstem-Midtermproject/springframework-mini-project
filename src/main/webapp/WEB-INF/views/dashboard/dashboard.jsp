@@ -5,7 +5,13 @@
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>Dashboard</h1>
+		<h1>대시보드</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">홈</li>
+				<li class="breadcrumb-item active">대시보드</li>
+			</ol>
+		</nav>
 	</div>
 	<!-- End Page Title -->
 
@@ -67,8 +73,8 @@
 					
 					<!-- 부서별 매출액 -->
 					<div class="col-4">
-						<div class="card">
-							<div class="card-body pb-0">
+						<div class="card" style="height: 95%;">
+							<div class="card-body">
 								<h5 class="card-title">
 									Department<span>| Quarterly</span>
 								</h5>
@@ -80,8 +86,8 @@
 					</div>
 					<!-- 분기별 디자인 매출액 -->					
 					<div class="col-4">
-						<div class="card">
-							<div class="card-body pb-0">
+						<div class="card" style="height: 95%;">
+							<div class="card-body">
 								<h5 class="card-title">
 									Design<span>| Quarterly</span>
 								</h5>
