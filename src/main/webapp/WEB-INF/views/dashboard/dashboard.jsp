@@ -33,7 +33,7 @@
 											</div>
 											<div class="ps-3">
 												<h6 id="todaySale"></h6>
-												<span id="salesper"class="text-danger small pt-1 fw-bold"></span><span id="salesspan" class="text-muted small pt-2 ps-1"></span>
+												<span id="salesper"class="small pt-1 fw-bold"></span><span id="salesspan" class="text-muted small pt-2 ps-1"></span>
 											</div>
 										</div>
 									</div>
@@ -55,7 +55,7 @@
 											</div>
 											<div class="ps-3">
 												<h6 id="todayCon"></h6>
-												<span id="conpercent"class="text-danger small pt-1 fw-bold"></span> <span id="conspan" class="text-muted small pt-2 ps-1"></span>
+												<span id="conpercent"class=" small pt-1 fw-bold"></span> <span id="conspan" class="text-muted small pt-2 ps-1"></span>
 											</div>
 										</div>
 									</div>
@@ -235,16 +235,19 @@
 	
   $(function(){
 	 
-		if("${todaySales}"[0]!="-"){
+		if("${salespercent}"[0]!="-"){
 			$("#salesspan").text("increase");
-			
+			$("#salesper").css("color","red");
 		} else{
 			$("#salesspan").text("decrease");
+			$("#salesper").css("color","blue");
 		}
-		if("${todayCon}"[0]!="-"){
+		if("${conpercent}"[0]!="-"){
 			$("#conspan").text("increase");
+			$("#salesper").css("color","red");
 		}else{
 			$("#conspan").text("decrease");
+			$("#conpercent").css("color","blue");
 		}
   
   })
