@@ -14,7 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -382,7 +381,7 @@ public class HospitalController {
 		return "hospital/location";
 	}
 
-	//지역 선택시 파라미터 값 처리를 위한 호출  --- //아 시발 페이징 처리 안함. 큰일 났음 
+	//지역 선택시 파라미터 값 처리를 위한 호출
 	@GetMapping("/location/detail")
 	public String location2(String addressHospital, Model model, HttpServletRequest request,
 			@RequestParam(defaultValue = "1") int locationPageNo) {
