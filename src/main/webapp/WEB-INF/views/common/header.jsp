@@ -35,6 +35,7 @@
 	border: none !important;
 	border-radius: 5px!important;
 	background-color: #9ec9f1!important;
+	color:white;
 }
 
 .ui-dialog-titlebar-close {

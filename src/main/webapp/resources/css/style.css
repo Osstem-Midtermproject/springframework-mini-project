@@ -30,10 +30,7 @@ input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appear
 input[type="checkbox"]:checked { background: #bcbcbc; } 
 
 
-a:hover {
-  color: rgb(255, 81, 0);
-  text-decoration: none;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Noto Sans KR", sans-serif;
@@ -63,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: bold;
-  color: rgb(219, 239, 250);
+  color: rgb(32, 54, 68);
 }
 
 /*--------------------------------------------------------------
@@ -88,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
 }
 .back-to-top:hover {
-  background: rgb(247, 80, 3);
+  background: rgb(198, 171, 124);
   color: #fff;
 }
 .back-to-top.active {
@@ -139,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
 }
 .dropdown-menu .dropdown-item:hover {
-  background-color: rgb(249, 157, 114);
+  background-color: rgb(198, 171, 124);;
 }
 
 @media (min-width: 768px) {
@@ -247,7 +244,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0 15px 0;
   font-size: 20px;
   font-weight: 600;
-  color: #f26522;
+  color: rgb(32, 54, 68);
   font-family: "Noto Sans KR", sans-serif;
 }
 .card-title span {
@@ -291,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav-tabs-bordered .nav-link:hover, .nav-tabs-bordered .nav-link:focus {
   /* color: #4154f1; */
-  color: rgb(219, 239, 250);
+  color: rgb(198, 171, 124);
   font-size: 20px;
   font-weight: 600;
 }
@@ -299,8 +296,8 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   /* color: #4154f1;
   border-bottom: 2px solid #4154f1; */
-  color: rgb(219, 239, 250);
-  border-bottom: 2px solid rgb(242, 101, 34);
+  color: rgb(32, 54, 68);
+  border-bottom: 2px solid rgb(32, 54, 68);
   font-size: 20px;
   font-weight: 600;
 }
@@ -332,8 +329,9 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
-  padding-left: 20px;
+
+  padding-left: 20px;;
+  background-color: rgba(32, 54,68);   
   /* Toggle Sidebar Button */
   /* Search Bar */
 }
@@ -341,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: rgba(242, 101, 34);
+  color: rgba(255,255,255);;
 }
 
 /*--------------------------------------------------------------
@@ -372,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bi-person-circle:hover {
-  color: rgba(242, 101, 34);
+  color: rgb(198, 171, 124)
 }
 
 /*--------------------------------------------------------------
@@ -391,7 +389,7 @@ h1, h2, h3, h4, h5, h6 {
   scrollbar-width: thin;
   scrollbar-color: #f5d4c0 transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: rgb(219, 239, 250);
+  background-color: rgb(32, 54, 68);
 }
 @media (max-width: 1199px) {
   .sidebar {
@@ -401,10 +399,10 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar::-webkit-scrollbar {
   width: 5px;
   height: 8px;
-  background-color: rgb(201, 200, 200);
+  background-color: rgb(32, 54, 68);
 }
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: rgb(201, 200, 200);
+  background-color:  rgb(32, 54, 68);
 }
 
 @media (min-width: 1200px) {
@@ -437,12 +435,12 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
 }
 .sidebar-nav .nav-item {
-  background-color: rgb(201, 200, 200);
+  background-color: rgb(32, 54, 68);
 }
 .sidebar-nav .nav-heading {
   font-size: 11px;
   text-transform: uppercase;
-  color: rgb(201, 200, 200);
+  color:  rgb(32, 54, 68);
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -451,29 +449,29 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: rgba(242, 101, 34);
+  color: rgba(255, 255, 255);
   transition: 0.3;
-  background: rgb(201, 200, 200);
+  background: rgb(32, 54, 68);
   padding: 10px 15px;
 }
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: rgba(242, 101, 34);
+  color: rgba(255, 255, 255);
 }
 .sidebar-nav .nav-link.collapsed {
-  color: rgb(246, 89, 16);
-  background: rgb(234, 234, 234);
+  color: rgb(255,255,255);
+  background:rgb(32, 54, 68);;
 }
 .sidebar-nav .nav-link.collapsed i {
-  color: rgb(249, 157, 114);
+  color: rgb(255,255,255);
 }
 .sidebar-nav .nav-link:hover {
-  color: rgba(242, 101, 34);
-  background: rgb(189, 188, 188);
+  color:rgba(255, 255, 255);
+  background: rgb(43 71 90 / 86%)
 }
 .sidebar-nav .nav-link:hover i {
-  color: rgb(252, 140, 89);
+  color:rgba(255, 255, 255);;
 }
 .sidebar-nav .nav-link .bi-chevron-down {
   margin-right: 0;
@@ -492,7 +490,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(242, 101, 34);
+  color: rgba(255, 255, 255);
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
@@ -504,11 +502,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
 }
 .sidebar-nav .nav-content a:hover, .sidebar-nav .nav-content a.active {
-  color: rgba(242, 101, 34);
-  background-color:  rgb(189, 188, 188);
+  color: rgb(198, 171, 124);
+  background-color:  rgb(43 71 90 / 86%)
 }
 .sidebar-nav .nav-content a.active i {
-  background-color: rgba(242, 101, 34);
+  background-color:  rgb(32, 54, 68);
 }
 
 /*--------------------------------------------------------------
@@ -536,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #919191;
 }
 .notifications .notification-item:hover {
-  background-color: rgb(255, 187, 156);
+  background-color:rgb(43 71 90 / 86%)
 }
 
 /* Filter dropdown */
@@ -553,7 +551,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
 }
 .dashboard .filter .icon:hover, .dashboard .filter .icon:focus {
-  color: rgba(242, 101, 34);
+  color: rgb(255, 255, 255);;
 }
 .dashboard .filter .dropdown-header {
   padding: 8px 15px;
@@ -571,7 +569,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 15px;
 }
 .dashboard .filter .dropdown-item:hover {
-  background-color: rgb(255, 187, 156);
+  background-color: rgb(43 71 90 / 86%)
 }
 
 /* Info Cards */

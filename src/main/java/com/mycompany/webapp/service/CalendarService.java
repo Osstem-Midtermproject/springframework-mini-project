@@ -42,12 +42,12 @@ public class CalendarService {
 	 public void  updateCalTransaction(ConstructionSchedule schedule)  {
 		 int row=constructionScheduleDao.updateSchedule(schedule);	
 		 if(row==0) {
-			 throw new SqlUpdateException();
+			
 		 }
 		 int row2= constructionScheduleDao.updateProgress(schedule);
 		
 		  if(row2==0) {
-			  throw new SqlUpdateException();
+			
 		  }
 		  log.info(row);
 		  log.info(row2);
@@ -57,35 +57,35 @@ public class CalendarService {
 			  
 		 Contract con=constructionScheduleDao.selectConidDln(schedule.getConsScheAddress());
 		 if(con==null) {
-			 throw new SqlSelectException();
+			 
 		 }
 		 schedule.setConsScheContractId(con.getContIdentificationNumber());
 		 schedule.setConsScheDln(con.getContDln());
 		 progress.setPdln(con.getContDln());
 		 int row=constructionScheduleDao.insertSchedule(schedule);
 		 if(row==0) {
-			 throw new SqlInsertException();
+			 
 		 }
 		 int row2=progressDao.insertProgress(progress);
 		 if(row2==0) {
-			 throw new SqlInsertException();
+			
 		 }
 	  }
 	 @Transactional 
 	 public void  updateConCalTransaction(CounselingSchedule schedule)  {
 		 Contract con=constructionScheduleDao.selectConidDln(schedule.getCounScheAddress());
 		 if(con==null) {
-			 throw new SqlSelectException();
+			
 		 }
 		 schedule.setCounScheDln(con.getContDln());
 		 int row=counselingScheduleDao.updateSchedule(schedule);
 		 if(row==0) {
-			 throw new SqlUpdateException();
+			
 		 }
 		 int row2= counselingScheduleDao.updateProgress(schedule);
 		
 		  if(row2==0) {
-			 throw new SqlUpdateException();
+		
 			  
 		  }
 		  log.info(row);
@@ -97,17 +97,17 @@ public class CalendarService {
 			  
 		 Contract con=constructionScheduleDao.selectConidDln(schedule.getCounScheAddress());
 		 if(con==null) {
-			 throw new SqlSelectException();
+			
 		 }
 		 schedule.setCounScheDln(con.getContDln());
 		 progress.setPdln(con.getContDln());
 		 int row= counselingScheduleDao.insertCounselingSchedule(schedule);
 		 if(row==0) {
-			 throw new SqlInsertException();
+			
 		 }
 		 int row2=progressDao.insertProgressconsult(progress);
 		 if(row2==0) {
-			 throw new SqlInsertException();
+			
 		 }
 	  }
 	

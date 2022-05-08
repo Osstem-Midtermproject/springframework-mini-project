@@ -14,28 +14,33 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class Ch10ExceptionHandler {
 	
-	@ExceptionHandler(NullPointerException.class)
-	public void handleNullPointerException(NullPointerException e) {
-		log.info("실행"+e.getMessage());
-		
-	}
-	@ExceptionHandler(ClassCastException.class)
-	public void handleClassCastException(ClassCastException e) {
-		log.info("실행"+e.getMessage());
-		
-	}
-	
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)//에러 상태코드 500으로 변경
-	public void handleException(Exception e) {
-		log.info("실행"+e.getMessage());
-		
-	}
-	@ExceptionHandler(NoHandlerFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)//에러 상태코드 404로 변경 
-	public void NoHandlerFoundException(NoHandlerFoundException e) {
-		log.info("실행"+e.getMessage());
-		
-	}
+	/*
+	 * @ExceptionHandler(NullPointerException.class) public void
+	 * handleNullPointerException(NullPointerException e) {
+	 * log.info("실행"+e.getMessage());
+	 * 
+	 * }
+	 * 
+	 * @ExceptionHandler(ClassCastException.class) public void
+	 * handleClassCastException(ClassCastException e) {
+	 * log.info("실행"+e.getMessage());
+	 * 
+	 * }
+	 * 
+	 * @ExceptionHandler(Exception.class)
+	 * 
+	 * @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)//에러 상태코드 500으로 변경 public
+	 * void handleException(Exception e) { log.info("실행"+e.getMessage());
+	 * 
+	 * }
+	 * 
+	 * @ExceptionHandler(NoHandlerFoundException.class)
+	 * 
+	 * @ResponseStatus(HttpStatus.NOT_FOUND)//에러 상태코드 404로 변경 public void
+	 * NoHandlerFoundException(NoHandlerFoundException e) {
+	 * log.info("실행"+e.getMessage());
+	 * 
+	 * }
+	 */
 
 }

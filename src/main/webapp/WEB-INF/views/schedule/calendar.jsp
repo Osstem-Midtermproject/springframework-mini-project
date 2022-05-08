@@ -12,19 +12,37 @@
 				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" /> <input type="text" value="" placeholder="종료시간" id="time2" required size="8" maxlength="5" />
 			</div>
 			<div>
-				
-				<select class="form-select border-1" id="category" style="font-weight: 100; margin-bottom: 1.5rem;">
-					<option selected>시공종류</option>
+				<label for="utitle">시공종류</label> 
+				<select class="form-select border-1" id="category" style="font-weight: 100; margin-bottom: 1.5rem;">			
 					<option value="1">전기</option>
 					<option value="2">설비</option>
 					<option value="3">도배</option>
 					<option value="4">가구</option>
 				</select>
-				<select class="form-select border-1"   id="team"  style="font-weight: 100; margin-bottom: 1.5rem;">
+				<label for="utitle">팀</label> 
+				<select class="form-select border-1"   id="team1"  style="font-weight: 100; margin-bottom: 1.5rem; display:none">
 					<option selected>팀</option>
 					<option value="1">A팀</option>
 					<option value="2">B팀</option>
 					<option value="3">C팀</option>
+				</select>
+				<select class="form-select border-1"   id="team2"  style="font-weight: 100; margin-bottom: 1.5rem; display:none">
+					<option selected>팀</option>
+					<option value="4">A팀</option>
+					<option value="5">B팀</option>
+					<option value="6">C팀</option>
+				</select>
+				<select class="form-select border-1"   id="team3"  style="font-weight: 100; margin-bottom: 1.5rem; display:none">
+					<option selected>팀</option>
+					<option value="7">A팀</option>
+					<option value="8">B팀</option>
+					<option value="9">C팀</option>
+				</select>
+				<select class="form-select border-1"   id="team4"  style="font-weight: 100; margin-bottom: 1.5rem; display:none">
+					<option selected>팀</option>
+					<option value="10">A팀</option>
+					<option value="11">B팀</option>
+					<option value="12">C팀</option>
 				</select>
 			</div>
 			 <div class="mb-3">
@@ -181,22 +199,7 @@
                 },
               });
               id++;
-              if (info.event.extendedProps.category === "전기") {
-                
-                $(info.el).css("background-color", "#eca1e9");
-              }
-              else if (info.event.extendedProps.category === "벽지") {
-                  
-                  $(info.el).css("background-color", "#9ec9f1");
-                }
-              else if (info.event.extendedProps.category === "가구") {
-                  
-                  $(info.el).css("background-color", "#e4ec73");
-                }
-              else if (info.event.extendedProps.category === "설비") {
-                  
-                  $(info.el).css("background-color", "#e4ec73");
-                }
+           	  setcolor(info);
             },
             eventDrop: function (info) {
                let id=info.event.id;
@@ -227,8 +230,10 @@
               console.log(info.event);
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
+           
                 var btnOpt = {
                   저장: function () {
+                	disappear();
                     $(`#qtitle${info.event.id}`).text($("#datetitle").val());
                     $(`#qcontent${info.event.id}`).text($("#datecontent").val());
                     info.event.setProp("title", $("#datetitle").val());
@@ -238,14 +243,16 @@
                     $(this).dialog("close");
                   },
                   취소: function () {
-                   
+                	  disappear();
                     $(this).dialog("close");
                   },
                 };
               } else {
+            	
                 $("#timebox").css("display", "none");
                 var btnOpt = {
                   저장: function () {
+                	disappear();
                     $(`#qtitle${info.event.id}`).text($("#datetitle").val());
                     $(`#qcontent${info.event.id}`).text($("#datecontent").val());
                     info.event.setProp("title", $("#datetitle").val());
@@ -253,7 +260,7 @@
                     $(this).dialog("close");
                   },
                   취소: function () {
-                   
+                	disappear();
                     $(this).dialog("close");
                   },
                 };
@@ -263,8 +270,11 @@
               $("#addresstitle").val(info.event.extendedProps.address);
               $("#datecontent").val(info.event.extendedProps.content);
               $("#time1").val(info.event.extendedProps.startTime);
-              $("#time2").val(info.event.extendedProps.endTime);
-              console.log(info.event.extendedProps.teamid);            
+              $("#time2").val(info.event.extendedProps.endTime);   
+              $("#category").val(Math.ceil(Number(info.event.extendedProps.teamid)/3)).prop("selected", true);
+              var tid="team"+Math.ceil(Number(info.event.extendedProps.teamid)/3);
+              $("#"+tid).val(info.event.extendedProps.teamid).prop("selected", true);
+              $("#"+tid).css('display', 'block');
               var dOpt = diaLogOpt;
               dOpt.buttons = btnOpt;
               $("#dialog").dialog(dOpt);
@@ -272,6 +282,7 @@
             },
             select: function (arg) {
               // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+              
               let check = Number(moment(arg.end).format("DD")) - Number(moment(arg.start).format("DD"));
               if (check === 1) {
                 $("#timebox").css("display", "block");
@@ -300,8 +311,11 @@
                 $("#timebox").css("display", "none");
                 var btnOpt = {
                   저장: function () {
-                    id++;
-                    scheduleInsert($("#team option:selected").val(),moment(arg.start).format("YYYY-MM-DD"),moment(arg.end).format("YYYY-MM-DD"),$("#datecontent").val(),$("#category option:selected").val(),$("#datetitle").val(),$("#addresstitle").val());
+                    id++;                   
+                    disappear();
+                    var tid="team"+$("#category option:selected").val(); 
+                   
+                    scheduleInsert($("#"+tid+" option:selected").val(),moment(arg.start).format("YYYY-MM-DD"),moment(arg.end).format("YYYY-MM-DD"),$("#datecontent").val(),$("#category option:selected").val(),$("#datetitle").val(),$("#addresstitle").val());
                     calendar.addEvent({
                       id: id,
                       title: $("#datetitle").val(),
@@ -316,9 +330,11 @@
                         estart:moment(arg.start).format("YYYY-MM-DD")
                       },
                     });
+                    
                     $(this).dialog("close");
                   },
                   취소: function () {
+                	disappear();
                     $(this).dialog("close");
                   },
                 };
@@ -326,7 +342,13 @@
               $("#time1").val("");
               $("#time2").val("");
               $("#datetitle").val("");
+              $("#addresstitle").val("");
               $("#datecontent").val("");
+              $("#category").val("");
+              $("#team1").val("");
+              $("#team2").val("");
+              $("#team3").val("");
+              $("#team4").val("");
               var dOpt = diaLogOpt;
               dOpt.buttons = btnOpt;
               $("#dialog").dialog(dOpt);
@@ -404,7 +426,7 @@
      function showfurniture(){
     	 $(function () {
     		 let calEvents = calendar.getEvents();
-    	 if ($("#btncheck3")[0].checked === true) {
+    	 if ($("#btncheck4")[0].checked === true) {
              for (e of calEvents) {
                if (e.extendedProps.category === "가구") {
                  console.log(1);
@@ -469,6 +491,53 @@
             	
             });
       }
+      
+      $('#category').change(function() {
+      	if(this.value==1){
+    	  	$('#team1').css('display', 'block');
+		 }else{
+			 $('#team1').css('display', 'none');
+		 }
+      	if(this.value==2){
+      		$('#team2').css('display', 'block');
+      	}else{
+			 $('#team2').css('display', 'none');
+		 }
+      	if(this.value==3){
+      		$('#team3').css('display', 'block');
+      	}else{
+			 $('#team3').css('display', 'none');
+		 }
+      	if(this.value==4){
+      		$('#team4').css('display', 'block');
+      	}else{
+			 $("#team4").css('display', 'none');
+		 }
+   });
+     function disappear(){
+    	   $('#team1').css('display', 'none');
+           $('#team2').css('display', 'none');
+           $('#team3').css('display', 'none');
+           $('#team4').css('display', 'none');
+     }
+     function setcolor(info){
+    	  if (info.event.extendedProps.category === "전기") {
+              
+              $(info.el).css("background-color", "#eca1e9");
+            }
+            else if (info.event.extendedProps.category === "벽지") {
+                
+                $(info.el).css("background-color", "#9ec9f1");
+              }
+            else if (info.event.extendedProps.category === "가구") {
+                
+                $(info.el).css("background-color", "#e4ec73");
+              }
+            else if (info.event.extendedProps.category === "설비") {
+                
+                $(info.el).css("background-color", "#e4ec73");
+              }
+     }
     </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
