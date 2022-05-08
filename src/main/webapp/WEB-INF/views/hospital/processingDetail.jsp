@@ -95,17 +95,17 @@
 						<ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab"
 							role="tablist">
 							<li class="nav-item">
-								<button class="nav-link" id="present-tab"
+								<button class="nav-link active" id="present-tab"
 									data-bs-toggle="tab" data-bs-target="#bordered-present"
 									type="button">요청내역</button>
 							</li>
 							<li class="nav-item">
-								<button class="nav-link active" id="past-tab" data-bs-toggle="tab"
+								<button class="nav-link" id="past-tab" data-bs-toggle="tab"
 									data-bs-target="#bordered-past" type="button">시공상황</button>
 							</li>
 						</ul>
 						<div class="tab-content pt-2" id="borderedTabContent">
-							<div class="tab-pane fade" id="bordered-present">
+							<div class="tab-pane fade show active" id="bordered-present">
 								<table class="table table-borderless">
 									<tbody>
 										<tr>
@@ -173,7 +173,7 @@
 								</table>
 								<button id="insertButton">추가</button>
 							</div>
-							<div class="tab-pane fade show active" id="bordered-past">
+							<div class="tab-pane fade" id="bordered-past">
 								<div class="progressList col-8" style="margin: 0 auto">
 									<div id="progressImgWrapper">
 	               					</div>
@@ -514,7 +514,7 @@
 			  if (progress[i].category == category) {
 				  date = progress[i].date;
 			  }
-		 }
+		}
 		
 		date = moment(date).format("YYYY-MM-DD")
 		console.log(category);
@@ -556,16 +556,18 @@
 		getProgressImg();
  	});
 	
+	var imgInfo;
 	function getProgressImg() {
 		$.ajax({
 			url: "progressImgList",
 			data:{
 	        	 hdln: "${hospital.hdln}",
 	        	 haddress: "${hospital.haddress}",
-	    	 }
+	    	 },
+	    	 
 		}).done(data => {
-			console.log(data);
-			
+			/* console.log(data); */
+			imgInfo = data;
 			/* var dataArray = [];
 			for (var i=0; i<data.length; i++) {
 				dataArray.push({imgId : data[i].pimgId})
@@ -575,6 +577,9 @@
 			getImg(dataArray); */
 			
 			if (data.length > 0) {
+				/* var imgTag = "<span><a class='btn btn-info btn-sm ml-2' id='allDownload'>전체 다운로드</a></span>";
+				$("#progressImgWrapper").append(imgTag); */
+				
 				for (var i=0; i<data.length; i++) {
 					console.log(data[i].pimgId);
 					getImg(data[i].pimgId);
@@ -586,6 +591,7 @@
 		});
 	};
 	
+	
 	function getImg(pimgId) {
 		$.ajax({
 			url: "fileList",
@@ -594,6 +600,22 @@
 			},
 			async: false, /* for loop로 ajax 호출시 순서가 뒤바뀌는 경우가 있음 이를 해결해주기 위해서 동기로 바꿈 */
 		}).done((data) => {
+			for (var i=0; i<imgInfo.length; i++) {
+				var pimgCategory;
+				var pimgContent;
+				var pimgDate;
+				var pimgOname;
+				var pimgRegistrationDate;
+				
+				if (imgInfo[i].pimgId == pimgId) {
+					pimgCategory = imgInfo[i].pimgCategory;
+					pimgContent = imgInfo[i].pimgContent
+					pimgDate = imgInfo[i].pimgDate;
+					pimgOname = imgInfo[i].pimgOname;
+					pimgRegistrationDate = imgInfo[i].pimgRegistrationDate
+				}
+			}
+			
 			var imgTag = "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;'>";
 			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
 			imgTag += pimgId;
@@ -601,9 +623,16 @@
 			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn' data-del=";
 			imgTag += pimgId;
 			imgTag += "> 삭제 </a></div>";
+			imgTag += "<span><a href='fileList?pimgId=";
+			imgTag += pimgId; 
+			imgTag += "' class='download btn btn-info btn-sm ml-2'>다운로드</a></span>";
+			imgTag += "<div>" + pimgCategory + "</div>";
+			imgTag += "<div>" + pimgContent + "</div>";
+			imgTag += "<div>" + pimgDate + "</div>";
+			imgTag += "<div>" + pimgOname + "</div>";
+			imgTag += "<div>" + pimgRegistrationDate + "</div>";
 		
 			$("#progressImgWrapper").append(imgTag);
-			
 		});
 	};
 	

@@ -2,7 +2,6 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -10,12 +9,12 @@ import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,7 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,6 +112,8 @@ public class HospitalController {
 				hospitalProgresses.get(i).getProgress().setPcategory("가구");
 			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("0")) {
 				hospitalProgresses.get(i).getProgress().setPcategory("시공 완료");
+			} else if (hospitalProgresses.get(i).getProgress().getPcategory().equals("5")) {
+				hospitalProgresses.get(i).getProgress().setPcategory("상담");
 			}
 		}
 
@@ -287,10 +287,13 @@ public class HospitalController {
 	//pimgId로 이미지를 찾아서 response로 return 한다 
 	@RequestMapping(value = "/processing/fileList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public void fileList(int pimgId, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
+	public void fileList(int pimgId, Model model, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
 		log.info("progressImg 테이블의 pimgId로 찾아내기: ");
 		Progress progressImg = hospitalService.getProgressImg(pimgId);
 		log.info(progressImg);
+		
+		model.addAttribute("progressImg", progressImg);
+		log.info(model);
 		
 		String contentType = progressImg.getProgressImg().getPimgType();
 		String originalFilename = progressImg.getProgressImg().getPimgOname();
@@ -311,7 +314,6 @@ public class HospitalController {
 		}
 	}
 	
-
 	//파일 업로드 ajax
 	@PostMapping(value = "processing/fileupload", produces = "application/json; charset=UTF-8")
 	@ResponseBody
