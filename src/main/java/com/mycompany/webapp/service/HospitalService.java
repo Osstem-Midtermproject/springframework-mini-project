@@ -130,5 +130,4 @@ public class HospitalService {
 	public void removePimgId(int pimgId) {
 		hospitalDao.deleteByPimgId(pimgId);
 	}
-
 }

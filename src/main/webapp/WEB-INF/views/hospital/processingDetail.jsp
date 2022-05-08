@@ -3,7 +3,6 @@
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
 
 <main id="main" class="main">
-
 	<div class="pagetitle">
 		<h1>Processing</h1>
 
@@ -544,11 +543,15 @@
 			enctype: 'multipart/form-data'
 		}).done((data) => {
 			console.log(data);
-			$("#progressImgWrapper").html("");
-			getProgressImg();
-		}).fail(function() {
-			alert("해당 시공은 진행하지 않았습니다.");
-		});
+			console.log(data.result);
+			
+			if (data.result == 'success') {
+				$("#progressImgWrapper").html("");
+				getProgressImg();
+			} else {
+				alert("해당 시공은 진행하지 않았습니다.");
+			}
+		})
 	};
 	
 	/* 진행상황 img 를 ajax로 불러오기 */
@@ -609,10 +612,11 @@
 				
 				if (imgInfo[i].pimgId == pimgId) {
 					pimgCategory = imgInfo[i].pimgCategory;
-					pimgContent = imgInfo[i].pimgContent
+					pimgContent = imgInfo[i].pimgContent;
 					pimgDate = imgInfo[i].pimgDate;
 					pimgOname = imgInfo[i].pimgOname;
 					pimgRegistrationDate = imgInfo[i].pimgRegistrationDate
+					
 				}
 			}
 			
@@ -627,7 +631,11 @@
 			imgTag += pimgId; 
 			imgTag += "' class='download btn btn-info btn-sm ml-2'>다운로드</a></span>";
 			imgTag += "<div>" + pimgCategory + "</div>";
-			imgTag += "<div>" + pimgContent + "</div>";
+			
+			if (pimgContent != null) {
+				imgTag += "<div>" + pimgContent + "</div>";
+			}
+			
 			imgTag += "<div>" + pimgDate + "</div>";
 			imgTag += "<div>" + pimgOname + "</div>";
 			imgTag += "<div>" + pimgRegistrationDate + "</div>";
