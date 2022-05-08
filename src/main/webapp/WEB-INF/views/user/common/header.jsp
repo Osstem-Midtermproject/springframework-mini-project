@@ -38,16 +38,8 @@
 
  -->
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top shadow d-flex align-items-center bg-white" style="">
-    	<div class="container-fluid d-flex align-items-center">
-    		<div class="logo me-auto my-2">
-				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="120rem" class="img-fluid"></a>
-	    	</div>
-    	</div>
-    </header>
-    <%-- <header id="header" class="fixed-top bg-white px-4">
-        <div class="container-fluid d-flex align-items-center">
+<header id="header" class="fixed-top bg-white px-4">
+        <div class="container-fluid d-flex align-items-center shadow">
             <!-- navbar -->
             <nav id="navbar" class="navbar navbar-expand-sm navbar-light row flex-grow-1" >
                 <a class="row" href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="120rem"></a>
@@ -87,4 +79,18 @@
                 <a href="${pageContext.request.contextPath}/user/userInformation" class="row pl-5 pt-4"><i class="bi bi-person-circle"></i></a>
             </nav>
         </div>
-    </header> --%>
+    </header>
+
+
+    <%-- 
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top shadow d-flex align-items-center bg-white" style="">
+    	<div class="container-fluid d-flex align-items-center">
+    		<div class="logo me-auto my-2">
+				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="120rem" class="img-fluid"></a>
+	    	</div>
+    	</div>
+    </header>
+    
+     --%>
