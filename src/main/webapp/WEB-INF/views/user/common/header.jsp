@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오스템인테리어</title>
+    <title>인스템</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -21,28 +21,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userInfromation.css">
-    
-    
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   	
     <style>
         input[type="checkbox"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 2px solid #bcbcbc; border-radius: 4px; cursor: pointer; height: 16px; outline: 0; width: 16px; } 
         input[type="checkbox"]:checked { background: #bcbcbc; } 
 
-        img.ui-datepicker-trigger {
-                margin-left:0.5rem; vertical-align:middle; cursor:pointer;
-                padding-bottom: 0.2rem;
-                width: 1rem;
-        }
+
     </style>
 </head>
 
 <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top bg-white px-4">
+    <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container-fluid d-flex align-items-center">
             <!-- navbar -->
             <nav id="navbar" class="navbar navbar-expand-sm navbar-light row flex-grow-1" >
