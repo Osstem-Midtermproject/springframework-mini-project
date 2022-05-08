@@ -51,6 +51,8 @@
       <li class="nav-item"><a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-plus-circle"></i><span>병원</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
          <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+         	<li><a href="${pageContext.request.contextPath}/hospital/processing"> <i class="bi bi-clock-history"></i><span>진행상황(디테일)</span>
+            </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/location"> <i class="bi bi-geo-alt"></i><span>위치정보</span>
             </a></li>
             <li><a href="${pageContext.request.contextPath}/hospital/contractHistory"> <i class="bi bi-envelope-paper"></i><span>계약</span>
