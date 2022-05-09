@@ -613,31 +613,33 @@
 					pimgCategory = imgInfo[i].pimgCategory;
 					pimgContent = imgInfo[i].pimgContent;
 					pimgDate = imgInfo[i].pimgDate;
-					pimgOname = imgInfo[i].pimgOname;
+					pimgOname = (imgInfo[i].pimgOname.split('.jpg', 1));
 					pimgRegistrationDate = imgInfo[i].pimgRegistrationDate
 					
 				}
 			}
 			
-			var imgTag = "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;' class='d-flex align-items-end'>";
+			var imgTag = "<div id='imgLayout' class='d-flex flex-column'>";
+			imgTag += "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;' class='d-flex align-items-end'>";
 			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
 			imgTag += pimgId;
 			imgTag += "'/>";
 			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' data-del=";
 			imgTag += pimgId;
 			imgTag += "></a></div>";
+			imgTag += "<div>시공 : " + pimgCategory + "</div>";
+			
+			if (pimgContent != null) {
+				imgTag += "<div>내용 : " + pimgContent + "</div>";
+			}
+			
+			imgTag += "<div>카테고리 : " + pimgDate + "</div>";
+			imgTag += "<div>사진명 : " + pimgOname + "</div>";
+			imgTag += "<div>등록일 :" + pimgRegistrationDate + "</div>";
+			imgTag += "</div>";
 			imgTag += "<span><a href='fileList?pimgId=";
 			imgTag += pimgId; 
 			imgTag += "' class='download btn btn-info btn-sm ml-2'>다운로드</a></span>";
-			imgTag += "<div>" + pimgCategory + "</div>";
-			
-			if (pimgContent != null) {
-				imgTag += "<div>" + pimgContent + "</div>";
-			}
-			
-			imgTag += "<div>" + pimgDate + "</div>";
-			imgTag += "<div>" + pimgOname + "</div>";
-			imgTag += "<div>" + pimgRegistrationDate + "</div>";
 		
 			$("#progressImgWrapper").append(imgTag);
 		});
