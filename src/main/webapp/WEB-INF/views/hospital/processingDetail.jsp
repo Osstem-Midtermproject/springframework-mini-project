@@ -338,7 +338,7 @@
 	    	    	html += ">";
 	    	    	html += data[i].arContent;
 	    	    	html += "</div>";
-	    	    	html += "<span>";
+	    	    	html += "<span class='px-2' style='color: #7a7b7c; font-size: 0.9rem';>";
 	    	    	html += data[i].arDate;
 	    	    	html += "</span>";
 	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
@@ -619,13 +619,13 @@
 				}
 			}
 			
-			var imgTag = "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;'>";
+			var imgTag = "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;' class='d-flex align-items-end'>";
 			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
 			imgTag += pimgId;
 			imgTag += "'/>";
-			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn' data-del=";
+			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' data-del=";
 			imgTag += pimgId;
-			imgTag += "> 삭제 </a></div>";
+			imgTag += "></a></div>";
 			imgTag += "<span><a href='fileList?pimgId=";
 			imgTag += pimgId; 
 			imgTag += "' class='download btn btn-info btn-sm ml-2'>다운로드</a></span>";

@@ -7,7 +7,7 @@
 	<div class="pagetitle">
 		<h1>대시보드</h1>
 		<nav>
-			<ol class="breadcrumb">
+			<ol class="breadcrumb pb-0">
 				<li class="breadcrumb-item">홈</li>
 				<li class="breadcrumb-item active">대시보드</li>
 			</ol>
@@ -76,7 +76,7 @@
 						<div class="card" style="height: 95%;">
 							<div class="card-body">
 								<h5 class="card-title">
-									Department<span>| Quarterly</span>
+									부서 <span>| Quarterly</span>
 								</h5>
 								<div>
 									<canvas id="teamChart" style="min-height: 34vh; min-width: 16vw"></canvas>
@@ -89,7 +89,7 @@
 						<div class="card" style="height: 95%;">
 							<div class="card-body">
 								<h5 class="card-title">
-									Design<span>| Quarterly</span>
+									디자인 <span>| Quarterly</span>
 								</h5>
 								<div>
 									<canvas id="designChart" style="min-height: 34vh; min-width: 16vw"></canvas>
@@ -104,7 +104,7 @@
 					<div class="col-12">
 						<div class="card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
 							<div class="card-body">
-								<h5 class="card-title">Analysis</h5>
+								<h5 class="card-title">매출&계약건수</h5>
 
 								<!-- Line Chart -->
 								<div id="reportsChart"></div>
@@ -126,7 +126,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">
-							New Notification <span> | Today</span>
+							새소식 <span> | Today</span>
 						</h5>
 						<div class="activity dropdown d-flex justify-content-center align-items-center" style="padding-bottom: 15px;">
 							<div class="alarm align-items-center justify-content-center">
@@ -155,17 +155,18 @@
 				<!-- -------------------------------- 상담 Schedule List --------------------------------- -->
 				<div class="col-12">
 					<div class="card top-selling overflow-auto">
-						<div class="card-body pb-0">
-							<h5 class="card-title">
-								Counseling Schedule <span> | Today</span>
-								<a class="icon" href="${pageContext.request.contextPath}/schedule/counselingAndAsList"><i class="bi bi-three-dots"></i></a>
+						<div class="card-body">
+							<h5 class="card-title d-flex align-items-end justify-content-between">
+								<div>상담 스케줄 <span> | Today</span></div>
+								<div><a class="icon" href="${pageContext.request.contextPath}/schedule/counselingAndAsList"><i class="bi bi-three-dots"></i></a></div>
+								
 							</h5>
 							<table class="table table-borderless">
 								<thead>
 									<tr>
-										<th scope="col">Dental name</th>
-										<th scope="col">Date</th>
-										<th scope="col">Time</th>
+										<th scope="col">병원</th>
+										<th scope="col">날짜</th>
+										<th scope="col">시간</th>
 									</tr>
 								</thead>
 								
@@ -184,17 +185,17 @@
 					<div class="card top-selling overflow-auto">
 
 						<div class="card-body pb-0">
-							<h5 class="card-title">
-								Construction Schedule <span> | Today</span>
-								<a class="icon" href="${pageContext.request.contextPath}/schedule/counselingAndAsList" ><i class="bi bi-three-dots"></i></a>
+							<h5 class="card-title d-flex align-items-end justify-content-between">
+								<div>시공 스케줄 <span> | Today</span></div>
+								<div><a class="icon" href="${pageContext.request.contextPath}/schedule/counselingAndAsList" ><i class="bi bi-three-dots"></i></a></div>
 							</h5>
 							<table class="table table-borderless">
 								<thead>
 									<tr>
-										<th scope="col">Dental name</th>
-										<th scope="col">Start Date</th>
-										<th scope="col">End Date</th>
-										<th scope="col">Category</th>
+										<th scope="col">병원</th>
+										<th scope="col">시작일</th>
+										<th scope="col">종료일</th>
+										<th scope="col">부서</th>
 									</tr>
 								</thead>
 								

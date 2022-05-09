@@ -20,7 +20,7 @@
          </ul></li>
       <!-- End Analysis Nav -->
 
-      <li class="nav-item"><a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-calendar-check"></i><span>스케쥴</span><i class="bi bi-chevron-down ms-auto"></i>
+      <li class="nav-item"><a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-calendar-check"></i><span>스케줄</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li class="nav-item"><a href="#" data-bs-target="#forms-schedule" data-bs-toggle="collapse"> <i class="bi bi-calendar-week"></i><span>캘린더</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -43,7 +43,7 @@
                </ul></li>
 
 
-            <li><a href="${pageContext.request.contextPath}/schedule/team"> <i class="bi bi-collection"></i><span>팀</span>
+            <li><a href="${pageContext.request.contextPath}/schedule/team"> <i class="bi bi-collection"></i><span>부서</span>
             </a></li>
          </ul></li>
       <!-- End Schedule Nav -->
