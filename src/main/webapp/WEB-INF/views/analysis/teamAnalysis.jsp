@@ -4,18 +4,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <main id="main" class="main">
    <div class="analysis_team">
-      <div class="d-flex flex-row">
-         <div class="pagetitle">
-            <h1>Team</h1>
-            <nav>
-               <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Home</li>
-                  <li class="breadcrumb-item">Analysis</li>
-                  <li class="breadcrumb-item active">Team</li>
-               </ol>
-            </nav>
-         </div>
-      </div>
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>부서</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">분석통계</li>
+					<li class="breadcrumb-item active">부서</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
       <div class="d-flex flex-row">
          <div class="card col-3">
             <div class="card-body">

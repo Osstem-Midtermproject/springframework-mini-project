@@ -21,9 +21,6 @@ public interface HospitalDao {
 	public Hospital selectByHdln(String hdln);
 	public Hospital selectHospitalDetailByHdln(String hdln);
 	
-	//hdln으로 진행상태 확인하기
-	public Hospital selectHospitalStateByHdln(String hdln);
-	
 	//hdln과 contIdentificationNumber 으로 계약일 가져오기
 	public Hospital selectHospitalContDateByHdln(String hdln);
 	

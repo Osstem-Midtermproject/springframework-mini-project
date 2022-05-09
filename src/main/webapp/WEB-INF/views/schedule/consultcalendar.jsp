@@ -19,14 +19,22 @@
 	</div>
 </div>
 <main id="main" class="main">
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>스케줄</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">캘린더</li>
+					<li class="breadcrumb-item active">상담/AS</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+		
 	<div class="d-flex flex-column">
-		<div class="card">
-			<div class="card-body">
-			<h5 class="card-title">상담 스케줄</h5>
-				<div class="mt-4 d-flex flex-column align-items-center" id="calendar-container">
-					<div id="calendar" style="width: 80%"></div>
-				</div>
-			</div>
+		<div class="mt-4 d-flex flex-column align-items-center " id="calendar-container" style="padding: 20px 0 15px 0; margin-bottom: 0.5rem;">
+			<div id="calendar" style="width: 80%"></div>
 		</div>
 	</div>
 </main>

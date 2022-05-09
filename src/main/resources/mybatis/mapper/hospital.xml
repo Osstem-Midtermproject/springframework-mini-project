@@ -76,7 +76,6 @@
 			<result column="rd_space" property="rdSpace" />
 			<result column="rd_refe_img" property="rdRefeImg" />
 			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
-			<result column="rd_sid" property="rdSid" />
 			<result column="rd_content" property="rdContent" />
 		</association>
 	</resultMap>
@@ -140,43 +139,6 @@
 		FROM hospital
 		WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
 
-	</select>
-
-	
-	<resultMap id="selectHospitalStateWithResultDetailsAndStateResultMap" type="hospital">
-		<result column="hname" property="hname" />
-		<result column="hpn" property="hpn" />
-		<result column="hdln" property="hdln" />
-		<result column="hdirector" property="hdirector" />
-		<result column="hod" property="hod" />
-		<result column="hemail" property="hemail" />
-		<result column="haddress" property="haddress" />
-		<association property="requestDetails" javaType="requestDetails">
-			<result column="rd_dln" property="rdDln" />
-			<result column="rd_address" property="rdAddress" />
-			<result column="rd_state" property="rdState" />
-			<result column="rd_applicationdate" property="rdApplicationdate" />
-			<result column="rd_title" property="rdTitle" />
-			<result column="rd_budget" property="rdBudget" />
-			<result column="rd_floor" property="rdFloor" />
-			<result column="rd_design" property="rdDesign" />
-			<result column="rd_coun_date" property="rdCounDate" />
-			<result column="rd_space" property="rdSpace" />
-			<result column="rd_refe_img" property="rdRefeImg" />
-			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
-			<result column="rd_sid" property="rdSid" />
-			<result column="rd_content" property="rdContent" />
-		</association>
-		<association property="state" javaType="state">
-			<result column="sid" property="sid" />
-			<result column="skind" property="skind" />
-		</association>
-	</resultMap>
-	
-	<select id="selectHospitalStateByHdln" parameterType="string" resultMap="selectHospitalStateWithResultDetailsAndStateResultMap">
-		select sid, skind
-		from hospital, requestdetails, state
-		where hospital.hdln = REQUESTDETAILS.rd_dln and hospital.haddress = REQUESTDETAILS.rd_address and hospital.hdln=#{hdln} and REQUESTDETAILS.rd_sid = state.sid
 	</select>
 	
 	<resultMap id="selectHospitalContractDateWithContractMap" type="hospital">

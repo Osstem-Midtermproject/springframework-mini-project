@@ -5,37 +5,20 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main id="main" class="main">
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>회원관리</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item active">회원관리</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
 
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">회원 관리</h5>
-
-			<!-- Table with hoverable rows -->
-<!-- 테스트 -->
-			<!-- 검색 및 검색 종류 -->
-			<div class="d-flex align-items-center ">
-				<div class="col d-flex justify-content-start">
-					<select class="form-select border-1"
-						style="font-weight: bold; width: 10rem; margin-bottom: 1rem;">
-						<option selected>전체</option>
-						<option value="1">병원</option>
-						<option value="2">전화</option>
-					</select>
-
-
-					<div class="search-bar">
-						<form class="search-form d-flex align-items-center" method="POST"
-							action="#">
-							<input type="text" name="query" placeholder="Search"
-								title="Enter search keyword">
-							<button type="button" class="btn btn-outline-warning ">
-								<i class="bi bi-search"></i>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-
+	<div class="card" style="padding: 20px 0 15px 0; margin-bottom: 0.5rem;">
+		<div class="card-body" style="padding-top: 20px;">
 			<table class="table table-hover">
 				<thead>
 					<tr>

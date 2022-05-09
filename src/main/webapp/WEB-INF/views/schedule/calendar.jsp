@@ -53,30 +53,36 @@
 	</div>
 </div>
 <main id="main" class="main">
-	<div class="d-flex flex-column">
-		<div class="card">
-			<div class="card-body">
-			<h5 class="card-title">시공 스케줄</h5>
-				 <div class="mt-4 d-flex flex-row align-items-center justify-content-center" id="calendar-container">
-              
-                <div id="sidecontainer" class="d-flex btn-group flex-column" role="group" style="margin-bottom: auto; margin-top:64px;"aria-label="Basic checkbox toggle button group">
-                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
-                  <label id="select1" class="btn" for="btncheck1" onclick="showelec()">전기</label>
-
-                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
-                  <label id="select2" class="btn" for="btncheck2" onclick="showequip()">설비</label>
-
-                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
-                  <label id="select3" class="btn" for="btncheck3" onclick="showpaper()">도배</label>
-
-                  <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" />
-                  <label id="select4" class="btn" for="btncheck4" onclick="showfurniture()">가구</label>
-                </div>
-              
-              <div id="calendar" style="width: 80%"></div>
-            </div>
-			</div>
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>스케줄</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">캘린더</li>
+					<li class="breadcrumb-item active">시공</li>
+				</ol>
+			</nav>
 		</div>
+	</div>
+
+	<div class="d-flex flex-column">
+		<div class="mt-4 d-flex flex-row align-items-center justify-content-center" id="calendar-container">
+	       <div id="sidecontainer" class="d-flex btn-group flex-column" role="group" style="margin-bottom: auto; margin-top:64px;"aria-label="Basic checkbox toggle button group">
+		         <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+		         <label id="select1" class="btn" for="btncheck1" onclick="showelec()">전기</label>
+		
+		         <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+		         <label id="select2" class="btn" for="btncheck2" onclick="showequip()">설비</label>
+		
+		         <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+		         <label id="select3" class="btn" for="btncheck3" onclick="showpaper()">도배</label>
+		
+		         <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" />
+		         <label id="select4" class="btn" for="btncheck4" onclick="showfurniture()">가구</label>
+	       </div>
+	       <div id="calendar" style="width: 80%"></div>
+       </div>
 	</div>
 </main>
 <script>

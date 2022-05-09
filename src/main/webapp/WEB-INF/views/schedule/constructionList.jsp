@@ -5,18 +5,19 @@
 <main id="main" class="main">
     <div class="dentist_processing">
 
-      <div class="pagetitle">
-        <h1>Construction Schedule List</h1>
- 
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">Schedule</li>
-            <li class="breadcrumb-item">List</li>
-            <li class="breadcrumb-item active">Construction</li>
-          </ol>
-        </nav>
-
-      </div><!-- End Page Title -->
+ 	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>시공</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">스케줄</li>
+					<li class="breadcrumb-item">리스트</li>
+					<li class="breadcrumb-item active">시공</li>
+				</ol>
+			</nav>
+		</div>
+	</div><!-- End Page Title -->
 
       <section class="section">
         <div class="row">

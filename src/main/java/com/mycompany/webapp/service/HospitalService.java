@@ -38,11 +38,6 @@ public class HospitalService {
 		return hospitalDao.selectHospitalDetailByHdln(hdln);
 	}
 	
-	//hdln으로 진행상태 확인하기
-	public Hospital getHospitalState(String hdln) {
-		return hospitalDao.selectHospitalStateByHdln(hdln);
-	}
-	
 	public Hospital getHospitalContDate(String hdln) {
 		return hospitalDao.selectHospitalContDateByHdln(hdln);
 	}

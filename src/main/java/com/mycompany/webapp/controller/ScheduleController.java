@@ -52,23 +52,24 @@ public class ScheduleController {
 
 	@Resource
 	CounselingScheduleService counselingScheduleService;
-	
+
 	@Resource
 	AsScheduleService asScheduleService;
-	
+
 	@Resource
 	ProgressService progressService;
-	
-	@Resource 
+
+	@Resource
 	RequestDetailsService requestDetailsService;
 
 	@GetMapping("/calendar")
-	public String calendar(Model model,String id,String start,String end,String content,String estart,String address) {
-		List<ConstructionSchedule> cs=calendarService.getSchedule();
-		model.addAttribute("cs",cs);
-		if(id!=null) {
+	public String calendar(Model model, String id, String start, String end, String content, String estart,
+			String address) {
+		List<ConstructionSchedule> cs = calendarService.getSchedule();
+		model.addAttribute("cs", cs);
+		if (id != null) {
 			log.info(id);
-			ConstructionSchedule schedule=new ConstructionSchedule();
+			ConstructionSchedule schedule = new ConstructionSchedule();
 			schedule.setConsScheId(Integer.parseInt(id));
 			schedule.setConsScheStartdate(start);
 			schedule.setConsScheEnddate(end);
@@ -80,14 +81,15 @@ public class ScheduleController {
 
 		}
 
-
 		return "schedule/calendar";
 	}
-	@PostMapping(value="/calendarajax", produces="application/json; charset=UTF-8")
-	public void calendarajax(String teamId,String start,String end,String content,String categoryId,String hospitalName,String address) {
-		ConstructionSchedule schedule=new ConstructionSchedule();
-		Progress progress=new Progress();
-		Contract con =new Contract();
+
+	@PostMapping(value = "/calendarajax", produces = "application/json; charset=UTF-8")
+	public void calendarajax(String teamId, String start, String end, String content, String categoryId,
+			String hospitalName, String address) {
+		ConstructionSchedule schedule = new ConstructionSchedule();
+		Progress progress = new Progress();
+		Contract con = new Contract();
 		schedule.setConsScheTeamId(teamId);
 		schedule.setConsScheStartdate(start);
 		schedule.setConsScheEnddate(end);
@@ -101,46 +103,46 @@ public class ScheduleController {
 		progress.setPcontent(content);
 		progress.setPenddate(end);
 		progress.setCategory("시공");
-		calendarService.insertCalTransaction(schedule,progress);
+		calendarService.insertCalTransaction(schedule, progress);
 
 	}
+
 	@GetMapping("/consultcalendar")
-	public String consultcalendar(Model model,String id,String start,String content,String estart,String address) {
-		
-		List<CounselingSchedule> cs=counselingScheduleService.getCountAll();
+	public String consultcalendar(Model model, String id, String start, String content, String estart, String address) {
+
+		List<CounselingSchedule> cs = counselingScheduleService.getCountAll();
 		log.info(cs);
-		model.addAttribute("cs",cs);
-		if(id!=null) {
-			CounselingSchedule schedule=new CounselingSchedule();
+		model.addAttribute("cs", cs);
+		if (id != null) {
+			CounselingSchedule schedule = new CounselingSchedule();
 			schedule.setCounScheId(Integer.parseInt(id));
-			schedule.setCounScheStartdate(start);		
+			schedule.setCounScheStartdate(start);
 			schedule.setCounScheContent(content);
 			schedule.setCounScheAddress(address);
 			calendarService.updateConCalTransaction(schedule);
-			
-			
-	}
-		
-		
+
+		}
+
 		return "schedule/consultcalendar";
 	}
-	@PostMapping(value="/consultcalendarajax", produces="application/json; charset=UTF-8")
-	public void consultcalendarajax(String start,String content,String hospitalName,String address) {
-		CounselingSchedule schedule=new CounselingSchedule();
-		Progress progress=new Progress();
-		Contract con =new Contract();
+
+	@PostMapping(value = "/consultcalendarajax", produces = "application/json; charset=UTF-8")
+	public void consultcalendarajax(String start, String content, String hospitalName, String address) {
+		CounselingSchedule schedule = new CounselingSchedule();
+		Progress progress = new Progress();
+		Contract con = new Contract();
 		schedule.setCounScheStartdate(start);
 		schedule.setCounScheContent(content);
-		schedule.setCounScheAddress(address);	
-		schedule.setCounScheDln(con.getContDln());		
-		progress.setPdate(start);	
+		schedule.setCounScheAddress(address);
+		schedule.setCounScheDln(con.getContDln());
+		progress.setPdate(start);
 		progress.setPcategory("5");
 		progress.setPaddress(address);
 		progress.setPcontent(content);
 		progress.setPenddate(start);
 		progress.setCategory("상담");
 		log.info(progress);
-		calendarService.insertConCalTransaction(schedule,progress);
+		calendarService.insertConCalTransaction(schedule, progress);
 
 	}
 
@@ -158,26 +160,25 @@ public class ScheduleController {
 
 	@Resource
 	TeamService teamService;
-	
+
 	//동일한 정보를 가져오게 되므로 아래의 teamService와 동일한 코드를 지니게 된다. -jBC
-		@RequestMapping("/team")
-		public String team(Model model, Model modelCouncel) {
-			log.info("실행");
-			
-			//리스트의 형식으로 가져온다 
-			List<Team> detailTeamInformationPage = teamService.getTeamInformationSchedule();
-			List<Team> selectCounselingTeamInformation = teamService.selectCounselingTeamInformation();
-			
-			modelCouncel.addAttribute("selectCounselingTeamInformation", selectCounselingTeamInformation);
-			model.addAttribute("detailTeamInformationPage", detailTeamInformationPage);
-			log.info(detailTeamInformationPage);
-			log.info(model);
-			log.info(modelCouncel);
-			log.info(selectCounselingTeamInformation);
-			
-					
-			return "schedule/team";
-		}
+	@RequestMapping("/team")
+	public String team(Model model, Model modelCouncel) {
+		log.info("실행");
+
+		//리스트의 형식으로 가져온다 
+		List<Team> detailTeamInformationPage = teamService.getTeamInformationSchedule();
+		List<Team> selectCounselingTeamInformation = teamService.selectCounselingTeamInformation();
+
+		modelCouncel.addAttribute("selectCounselingTeamInformation", selectCounselingTeamInformation);
+		model.addAttribute("detailTeamInformationPage", detailTeamInformationPage);
+		log.info(detailTeamInformationPage);
+		log.info(model);
+		log.info(modelCouncel);
+		log.info(selectCounselingTeamInformation);
+
+		return "schedule/team";
+	}
 
 	//team page에서 해당 팀을 선택하면 해당 팅믜 화면으로 이동하기 위한 컨트롤러 이다. 파라미터는 팀 ID로 구별한다. - jbc
 	@GetMapping("/team/detail")
@@ -190,119 +191,121 @@ public class ScheduleController {
 
 		//리스트의 형식으로 가져온다 
 		List<Team> detailTeamInformationSchedule = teamService.getTeamInformationDetailSchedule(detailTeamId);
-		List<Team>  detailTeamInformationTeamName = teamService.getTeamInformationDetailTeamName(detailTeamId);
+		List<Team> detailTeamInformationTeamName = teamService.getTeamInformationDetailTeamName(detailTeamId);
 
 		model1.addAttribute("detailTeamInformationSchedule", detailTeamInformationSchedule);
 		model2.addAttribute("detailTeamInformationTeamName", detailTeamInformationTeamName);
-		
+
 		log.info(detailTeamInformationSchedule);
-		log.info(detailTeamInformationTeamName );
+		log.info(detailTeamInformationTeamName);
 		log.info("tsetzz");
 		log.info(model1);
 		return "schedule/team_detail";
 	}
-	
+
 	//detail team 페이지에서 일정 기간별로 버튼 클릭 시 ajax 설정 - jbc
-   	@PostMapping(value = "/team/detailteam", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/team/detailteam", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String detailteam(String duration, String tid, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+	public String detailteam(String duration, String tid, Model model, HttpServletRequest request,
+			@RequestParam(defaultValue = "1") int pageNo, Team team) {
 		log.info(duration);
-		
+
 		String detailTeamId = request.getParameter("tid");
 		log.info(detailTeamId);
-		
+
 		//팀에 현재 파라미터의 tid값을 저장한다. 
 		team.setTid(detailTeamId);
 		//팀 dto에 현재 기간을 한다. 
 		team.setDuration(duration);
 		model.addAttribute(team);
-		
+
 		log.info(team);
-		
+
 		List<Team> detailScheduleList = teamService.getLocationHospitalWithDuration(team);
 		model.addAttribute("detailScheduleList", detailScheduleList);
 		log.info(detailScheduleList);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("detailScheduleList", detailScheduleList);        
+		jsonObject.put("detailScheduleList", detailScheduleList);
 
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;
 	}
-   	
-  //detail team 페이지에서 일정 기간별로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
+
+	//detail team 페이지에서 일정 기간별로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
 	@PostMapping(value = "/team/detailteamALL", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String detailteamALL(String tid, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+	public String detailteamALL(String tid, Model model, HttpServletRequest request,
+			@RequestParam(defaultValue = "1") int pageNo, Team team) {
 		List<Team> getTeamInformationDetailSchedule = teamService.getTeamInformationDetailSchedule(tid);
 		model.addAttribute("detailScheduleList", getTeamInformationDetailSchedule);
 		log.info(getTeamInformationDetailSchedule);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("detailScheduleList", getTeamInformationDetailSchedule);        
+		jsonObject.put("detailScheduleList", getTeamInformationDetailSchedule);
 
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;
 	}
-	
-	
-	
-	//detail team 페이지에서 월로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
-		@PostMapping(value = "/team/detailteammonth", produces = "application/json; charset=UTF-8")
-		@ResponseBody
-		public String detailteammonth(String tid, String month, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
-			log.info(month);
-			log.info("월");
-			
-			String detailTeamId = request.getParameter("tid");
-			log.info(detailTeamId);
-			
-			//팀에 현재 파라미터의 tid값을 저장한다. 
-			team.setTid(detailTeamId);
-			//팀 dto에 현재 기간을 한다. 
-			team.setMonth(month);
-			model.addAttribute(team);
-			
-			log.info(team);
-			
-			List<Team> detailScheduleList = teamService.getLocationHospitalWithMonth(team);
-			model.addAttribute("detailScheduleList", detailScheduleList);
-			log.info(detailScheduleList);
-			
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("detailScheduleList", detailScheduleList);        
 
-			String json = jsonObject.toString();
-			log.info(json);
-			return json;
-		}
-	
+	//detail team 페이지에서 월로 버튼 클릭 시 전체 일정 출력 ajax 설정 - jbc
+	@PostMapping(value = "/team/detailteammonth", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String detailteammonth(String tid, String month, Model model, HttpServletRequest request,
+			@RequestParam(defaultValue = "1") int pageNo, Team team) {
+		log.info(month);
+		log.info("월");
+
+		String detailTeamId = request.getParameter("tid");
+		log.info(detailTeamId);
+
+		//팀에 현재 파라미터의 tid값을 저장한다. 
+		team.setTid(detailTeamId);
+		//팀 dto에 현재 기간을 한다. 
+		team.setMonth(month);
+		model.addAttribute(team);
+
+		log.info(team);
+
+		List<Team> detailScheduleList = teamService.getLocationHospitalWithMonth(team);
+		model.addAttribute("detailScheduleList", detailScheduleList);
+		log.info(detailScheduleList);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("detailScheduleList", detailScheduleList);
+
+		String json = jsonObject.toString();
+		log.info(json);
+		return json;
+	}
+
 	//달력에서 날짜 두가지 선택하면 그 사이의 값들이 나온다.  - jbc
 	@PostMapping(value = "/team/detaidaytoday", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String detaildaytoday(String sdate, String edate, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo, Team team) {
+	public String detaildaytoday(String sdate, String edate, Model model, HttpServletRequest request,
+			@RequestParam(defaultValue = "1") int pageNo, Team team) {
 		log.info("일투일");
-		
+
 		String detailTeamId = request.getParameter("tid");
 		log.info(detailTeamId);
-		
+
 		//팀에 현재 파라미터의 tid값을 저장한다. 
 		team.setTid(detailTeamId);
 		//팀 dto에 현재 기간을 한다. 
 		team.setSdate(sdate);
 		team.setEdate(edate);
 		model.addAttribute(team);
-		
+
 		log.info(team);
-		
+
 		List<Team> detailScheduleList = teamService.getLocationHospitalWithdaytoday(team);
 		model.addAttribute("detailScheduleList", detailScheduleList);
 		log.info(detailScheduleList);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("detailScheduleList", detailScheduleList);        
+		jsonObject.put("detailScheduleList", detailScheduleList);
 
 		String json = jsonObject.toString();
 		log.info(json);
@@ -314,13 +317,13 @@ public class ScheduleController {
 
 		return "schedule/scheduler";
 	}
+
 	@GetMapping("/elec")
-	public void elec(String category,Model model) {
+	public void elec(String category, Model model) {
 		log.info(category);
-		model.addAttribute("category",category);
+		model.addAttribute("category", category);
 
 	}
-
 
 	//상담 & AS 스케줄 리스트 페이지
 	@GetMapping("/counselingAndAsList")
@@ -346,9 +349,10 @@ public class ScheduleController {
 	//schedule/constructionList : 체크박스가 클릭되거나 또는 서치박스의 검색 버튼이 눌릴 때 호출되는
 	@PostMapping(value = "selectList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String selectList(@RequestParam(value = "checkArray[]") List<String> allData, String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String selectList(@RequestParam(value = "checkArray[]") List<String> allData, String searchBar,
+			@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info("실행");
-		
+
 		log.info(allData);
 		log.info(searchBar);
 
@@ -363,20 +367,21 @@ public class ScheduleController {
 
 		model.addAttribute("pager", pager);
 
-		List<ConstructionSchedule> constructionScheduleList = constructionScheduleService.getConstructionSchedule(pager);
+		List<ConstructionSchedule> constructionScheduleList = constructionScheduleService
+				.getConstructionSchedule(pager);
 		model.addAttribute("constructionScheduleList", constructionScheduleList);
 		log.info(model.getAttribute("constructionScheduleList"));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("constructionScheduleList", constructionScheduleList);        
+		jsonObject.put("constructionScheduleList", constructionScheduleList);
 		jsonObject.put("p", pager);
-		jsonObject.put("startPageNo",pager.getStartPageNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
-		jsonObject.put("pageNo",pager.getPageNo());
-		jsonObject.put("totalPageNo",pager.getTotalPageNo());
-		jsonObject.put("groupNo",pager.getGroupNo());
-		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("startPageNo", pager.getStartPageNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
+		jsonObject.put("pageNo", pager.getPageNo());
+		jsonObject.put("totalPageNo", pager.getTotalPageNo());
+		jsonObject.put("groupNo", pager.getGroupNo());
+		jsonObject.put("totalGroupNo", pager.getTotalGroupNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
 
 		String json = jsonObject.toString();
 		log.info(json);
@@ -384,60 +389,11 @@ public class ScheduleController {
 
 	}
 
-	//병원 세부 페이지로 넘어가는
-	@GetMapping("/processing/detail")
-	public String processingDetail(String hdln, String arContent, Model model) {
-		//병원정보
-		Hospital hospital = hospitalService.getHospital(hdln);
-		model.addAttribute("hospital", hospital);
-		log.info(hospital);
-
-		//병원 진행 상태
-		Hospital hospitalState = hospitalService.getHospitalState(hdln);
-		model.addAttribute("hospitalState", hospitalState);
-		log.info(hospitalState);
-
-		//병원 계약일
-		Hospital hospitalContDate = hospitalService.getHospitalContDate(hdln);
-		model.addAttribute("hospitalContDate", hospitalContDate);
-		log.info("계약일: " + hospitalContDate);
-
-		//추가요청 띄우기
-		List<Hospital> hospitalArContent = hospitalService.getHospitalArContent(hdln);
-		log.info("추가요청 띄우기" + hospitalArContent);
-		model.addAttribute("hospitalArContent", hospitalArContent);
-
-		String arContId = hospitalContDate.getContract().getContIdentificationNumber();
-		List<Hospital> newHospitalArContentDiff = hospitalService.getHospitalArContentByContId(hospitalService.getHospitalContDate(hdln).getContract().getContIdentificationNumber());
-		log.info("1번 계약서의 추가요청: " + newHospitalArContentDiff.size());
-
-
-		//추가요청 insert
-		/*AdditionalRequest additionalRequests = new AdditionalRequest();
-
-		additionalRequests.setArContent(arContent);
-		additionalRequests.setArContId(arContId);
-
-		log.info(additionalRequests);
-
-		//추가요청시 값이 있다면 insert문 실행
-		if (arContent != null) {
-			log.info("arContId : " + arContId);
-			hospitalService.writeContent(additionalRequests);
-		} */
-
-		//진행상황 띄우기
-		List<Hospital> hospitalProgresses = hospitalService.getHospitalProgress(hdln);
-		model.addAttribute("hospitalProgresses", hospitalProgresses);
-		log.info(model.getAttribute("hospitalProgresses"));
-
-		return "hospital/processingDetail";
-	}
-
 	//schedule/counselingAndAsList : 상담 스케줄 리스트 불러오기
 	@PostMapping(value = "selectScheduleList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String selectScheduleList(String searchBar, String sdate1, String edate1, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String selectScheduleList(String searchBar, String sdate1, String edate1,
+			@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
@@ -458,15 +414,15 @@ public class ScheduleController {
 		log.info(model.getAttribute("counselingScheduleList"));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("counselingScheduleList", counselingScheduleList);        
+		jsonObject.put("counselingScheduleList", counselingScheduleList);
 		jsonObject.put("p", pager);
-		jsonObject.put("startPageNo",pager.getStartPageNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
-		jsonObject.put("pageNo",pager.getPageNo());
-		jsonObject.put("totalPageNo",pager.getTotalPageNo());
-		jsonObject.put("groupNo",pager.getGroupNo());
-		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("startPageNo", pager.getStartPageNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
+		jsonObject.put("pageNo", pager.getPageNo());
+		jsonObject.put("totalPageNo", pager.getTotalPageNo());
+		jsonObject.put("groupNo", pager.getGroupNo());
+		jsonObject.put("totalGroupNo", pager.getTotalGroupNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
 
 		String json = jsonObject.toString();
 		log.info(json);
@@ -477,7 +433,8 @@ public class ScheduleController {
 	//schedule/counselingAndAsList : AS 스케줄 리스트 불러오기
 	@PostMapping(value = "selectAsScheduleList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String selectAsScheduleList(String searchBar, String sdate1, String edate1, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String selectAsScheduleList(String searchBar, String sdate1, String edate1,
+			@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
@@ -494,32 +451,32 @@ public class ScheduleController {
 		model.addAttribute("pager", pager);
 
 		List<AsSchedule> asScheduleList = asScheduleService.getAsSchedule(pager);
-		
+
 		model.addAttribute("asScheduleList", asScheduleList);
 		log.info(model.getAttribute("asScheduleList"));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("asScheduleList", asScheduleList);        
+		jsonObject.put("asScheduleList", asScheduleList);
 		jsonObject.put("p", pager);
-		jsonObject.put("startPageNo",pager.getStartPageNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
-		jsonObject.put("pageNo",pager.getPageNo());
-		jsonObject.put("totalPageNo",pager.getTotalPageNo());
-		jsonObject.put("groupNo",pager.getGroupNo());
-		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("startPageNo", pager.getStartPageNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
+		jsonObject.put("pageNo", pager.getPageNo());
+		jsonObject.put("totalPageNo", pager.getTotalPageNo());
+		jsonObject.put("groupNo", pager.getGroupNo());
+		jsonObject.put("totalGroupNo", pager.getTotalGroupNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
 
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;
 
 	}
-	
-	
+
 	//schedule/notificationList : 알림 리스트 리스트 불러오기
 	@PostMapping(value = "notificationList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String notificationList(String searchBar, String sdate, String edate, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String notificationList(String searchBar, String sdate, String edate,
+			@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		log.info(searchBar);
 
 		Pager p = new Pager(5, 5, 5, 5);
@@ -538,50 +495,47 @@ public class ScheduleController {
 		model.addAttribute("pager", pager);
 
 		List<RequestDetails> notificationList = requestDetailsService.getNotificationList(pager);
-		
-		
+
 		model.addAttribute("notificationList", notificationList);
 		log.info(model.getAttribute("notificationList"));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("notificationList", notificationList);        
+		jsonObject.put("notificationList", notificationList);
 		jsonObject.put("p", pager);
-		jsonObject.put("startPageNo",pager.getStartPageNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
-		jsonObject.put("pageNo",pager.getPageNo());
-		jsonObject.put("totalPageNo",pager.getTotalPageNo());
-		jsonObject.put("groupNo",pager.getGroupNo());
-		jsonObject.put("totalGroupNo",pager.getTotalGroupNo());
-		jsonObject.put("endPageNo",pager.getEndPageNo());
+		jsonObject.put("startPageNo", pager.getStartPageNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
+		jsonObject.put("pageNo", pager.getPageNo());
+		jsonObject.put("totalPageNo", pager.getTotalPageNo());
+		jsonObject.put("groupNo", pager.getGroupNo());
+		jsonObject.put("totalGroupNo", pager.getTotalGroupNo());
+		jsonObject.put("endPageNo", pager.getEndPageNo());
 
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;
 
 	}
-	
+
 	//schedule/notificationList - 확정하기 버튼 눌릴 때 : 요청 내역 테이블의 상태를 확정(0)으로 updates
-		@PostMapping(value = "/confirmation", produces = "application/json; charset=UTF-8")
-		@ResponseBody
-		public void confirmation(String dln, Model model) {
+	@PostMapping(value = "/confirmation", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public void confirmation(String dln, Model model) {
 
-			//RequestDetails rd = (RequestDetails)list;
-			log.info(dln);
-			requestDetailsService.updateRequestDetails(dln);
+		//RequestDetails rd = (RequestDetails)list;
+		log.info(dln);
+		requestDetailsService.updateRequestDetails(dln);
 
-			RequestDetails rd = requestDetailsService.getRD(dln);
-			log.info(rd.getRdCounDate());
+		RequestDetails rd = requestDetailsService.getRD(dln);
+		log.info(rd.getRdCounDate());
 
-			CounselingSchedule cs = new CounselingSchedule();
-			cs.setCounScheDln(rd.getRdDln());
-			cs.setCounScheAddress(rd.getRdAddress());
-			cs.setCounScheStartdate(rd.getRdCounDate());
-			cs.setCounScheContent(rd.getRdContent());
-			
-			counselingScheduleService.setSchedule(cs);
-			
+		CounselingSchedule cs = new CounselingSchedule();
+		cs.setCounScheDln(rd.getRdDln());
+		cs.setCounScheAddress(rd.getRdAddress());
+		cs.setCounScheStartdate(rd.getRdCounDate());
+		cs.setCounScheContent(rd.getRdContent());
 
-		}
-		
-	
+		counselingScheduleService.setSchedule(cs);
+
+	}
+
 }

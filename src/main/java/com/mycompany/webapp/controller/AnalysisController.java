@@ -39,7 +39,7 @@ public class AnalysisController {
 	TeamHistoryService teamHistoryService;
 
 
-	@RequestMapping("/analysis")
+	@RequestMapping("/sales")
 	public String analysis(Model model) {
 
 
