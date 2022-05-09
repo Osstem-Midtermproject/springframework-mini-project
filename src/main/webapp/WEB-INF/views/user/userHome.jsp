@@ -2,9 +2,123 @@
 
 <%@ include file="/WEB-INF/views/user/common/header.jsp"%>
 
+<style>
 
-  <!-- 내용 -->   
-    <div class="">
+	html{
+		scroll-behavior: smooth;
+	}
+
+	#hero {
+	  width: 100%;
+	  height: 32rem;
+	  background: url("${pageContext.request.contextPath}/resources/images/userBg3.png") 0 center / 200% repeat-x;
+	  position: relative;
+	  animation: movebg 10s ease infinite;
+	  
+	}
+	
+	@keyframes movebg{
+	  	0%	{background-position: 0 center;}
+	  	50%	{background-position: 100% center;}
+	  	100% {background-position: 200% center;}
+	}
+	
+	#hero:before {
+	  content: "";
+	  background: rgba(32, 54, 68, 0.5);
+	  position: absolute;
+	  bottom: 0;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	}
+	
+	#hero .hero-container {
+	  position: absolute;
+	  bottom: 0;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  display: flex;
+	  padding-top: 80px;
+	  padding-right : 5rem;
+	  justify-content: center;
+	  align-items: end;
+	  flex-direction: column;
+	  text-align: center;
+	}
+	
+	#hero h1 {
+	  margin: 0 0 10px 0;
+	  font-size: 48px;
+	  font-weight: 300;
+	  line-height: 56px;
+	  color: #fff;
+	}
+	
+	#hero h2 {
+	  color: #eee;
+	  margin-bottom: 50px;
+	  font-size: 20px;
+	  font-weight: 300;
+	}
+	
+	#hero .btn-get-started {
+	  font-family: "Lato", sans-serif;
+	  font-weight: 400;
+	  font-size: 16px;
+	  letter-spacing: 1px;
+	  display: inline-block;
+	  padding: 8px 28px 10px 28px;
+	  border-radius: 50px;
+	  transition: 0.5s;
+	  border: 1px solid #fff;
+	  color: white;
+	}
+	
+	#hero .btn-get-started:hover {
+	  background: #fff;
+	  color: rgb(32, 54, 68);
+	  border: 1px solid #70b9b0;
+	}
+	
+	@media (min-width: 1024px) {
+	  #hero {
+	    background-attachment: fixed;
+	  }
+	}
+	
+	@media (max-width: 768px) {
+	  #hero h1 {
+	    font-size: 28px;
+	    line-height: 36px;
+	  }
+	  
+	  #hero h2 {
+	    font-size: 18px;
+	    line-height: 24px;
+	    margin-bottom: 30px;
+	  }
+	}
+</style>
+
+
+    
+  <!-- #hero -->
+  <section id="hero">
+  <div class="row">
+    <div class="hero-container">
+    	<div class="col-4">
+	      <h1>Welcome to INSSTEM</h1>
+	      <h2>성공개원을 위한 파트너 인스템이 디자인하면 다릅니다. INSSTEM에서 전문가와 맞춤상담 하세요.</h2>
+	      <a href="#introduction" class="btn-get-started scrollto">Get Started</a>    	
+    	</div>
+    </div>
+  </div>
+  </section>
+  
+  
+    <div class="" id="introduction" style="margin-top: 12rem">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -25,7 +139,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="G_slider">
             <tbody>
@@ -209,7 +322,9 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> 
+
+
 
     <footer style="" >
         <div class="container-fluid " style="width: 100%; min-height: 22vh; background-color: #3d3d3d;">
