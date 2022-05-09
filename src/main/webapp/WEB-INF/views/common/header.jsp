@@ -78,7 +78,7 @@
 				</a>
 					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
 						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
-							<label><b>카카오톡</b></label>
+							<label><b>채팅방</b></label>
 						</div>
 						<div>
 							<div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
@@ -106,7 +106,7 @@ function scrolldown(){
 }
 $(function(){
 
-    const username = "${userid}";
+    const username = "${user.uname}";
 
     $("#disconn").on("click", (e) => {
         disconnect();

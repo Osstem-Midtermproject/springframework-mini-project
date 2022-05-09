@@ -111,6 +111,7 @@ public class ScheduleController {
 		log.info(cs);
 		model.addAttribute("cs",cs);
 		if(id!=null) {
+			log.info(address,  id, start, content, estart, address);
 			CounselingSchedule schedule=new CounselingSchedule();
 			schedule.setCounScheId(Integer.parseInt(id));
 			schedule.setCounScheStartdate(start);		

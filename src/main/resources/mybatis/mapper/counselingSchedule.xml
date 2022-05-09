@@ -61,13 +61,13 @@
 	</select>
 	<update id="updateSchedule"  parameterType="counselingSchedule" >
 		update counselingschedule
-		set coun_sche_startdate=#{counScheStartdate}
+		set coun_sche_startdate=to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI')
 		where coun_sche_id=#{counScheId}
 </update>
 <update id="updateProgress"  parameterType="counselingSchedule" >
 		update progress
-		set pdate=#{counScheStartdate}, penddate=#{counScheStartdate}
-		where paddress=#{counScheAddress} and pdate=#{counScheStartdate}
+		set pdate=to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI'), penddate=to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI')
+		where paddress=#{counScheAddress} and pdate=to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI')
 </update>
 
    <!-- dashboard - counseling schedule : 1초마다 반복ㅙ서 리스트 가져오기 -->

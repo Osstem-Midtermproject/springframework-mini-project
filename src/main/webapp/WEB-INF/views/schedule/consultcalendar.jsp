@@ -9,7 +9,7 @@
 				 <label for="utitle">주소</label> <input type="utitle" class="form-control" id="addresstitle" />
 			</div>
 			<div id="timebox" style="display: none">
-				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" /> <input type="text" value="" placeholder="종료시간" id="time2" required size="8" maxlength="5" />
+				<label for="fromDate">시간 : </label> <input type="text" value="" placeholder="시작시간" id="time1" required size="8" maxlength="5" />
 			</div>
 			 <div class="mb-3">
             <label for="utitle" class="col-form-label">Message:</label>
@@ -41,6 +41,7 @@
    			title:"${schedule.hospital.hname}",
         	start:  moment("${schedule.counScheStartdate}").format("YYYY-MM-DDTHH:mm"),
         	extendedProps: {
+        		startTime:moment("${schedule.counScheStartdate}").format("HH:mm"),
         		content: "${schedule.counScheContent}",
         		address:"${schedule.counScheAddress}",
         		estart:moment("${schedule.counScheStartdate}").format("YYYY-MM-DD")
@@ -67,13 +68,7 @@
           dropdown: true,
           scrollbar: true,
         });
-        $("#time2").timepicker({
-          timeFormat: "HH:mm",
-          interval: 30,
-          dynamic: false,
-          dropdown: true,
-          scrollbar: true,
-        });
+       
       });
 
       (function () {
@@ -144,7 +139,7 @@
             },
             eventDrop: function (info) {
                let id=info.event.id;
-               let start=moment(info.event.start).format("YYYY-MM-DD");        
+               let start=moment(info.event.start).format("YYYY-MM-DD HH:mm");        
                let content=info.event.extendedProps.content;
                let address=info.event.extendedProps.address;
                let estart=info.event.extendedProps.estart;
@@ -155,21 +150,31 @@
             eventChange: function (info) {},
             eventRemove: function (obj) {},
             eventClick: function (info) {
-             
+            	
+                 info.event.setExtendedProp("estart",moment(info.event.start).format("YYYY-MM-DD"))
               if (!info.event.end) {
                 $("#timebox").css("display", "block");
                 var btnOpt = {
                   저장: function () {
+                	   	
                     $(`#qtitle${info.event.id}`).text($("#datetitle").val());
                     $(`#qcontent${info.event.id}`).text($("#datecontent").val());
+                    info.event.setStart(moment(info.event.start).format("YYYY-MM-DDT")+  $("#time1").val());
                     info.event.setProp("title", $("#datetitle").val());
                     info.event.setExtendedProp("content", $("#datecontent").val());
                     info.event.setExtendedProp("startTime", $("time1").val());
                     info.event.setExtendedProp("endTime", $("#time2").val());
+                    let id=info.event.id;
+                    let start=moment(info.event.start).format("YYYY-MM-DD HH:mm");        
+                    let content=info.event.extendedProps.content;
+                    let address=info.event.extendedProps.address;
+                    let estart=info.event.extendedProps.estart;
+                  
+                    scheduleUpdate(id,start,content,estart,address);
                     $(this).dialog("close");
                   },
-                  삭제: function () {
-                    info.event.remove();
+                  취소: function () {
+                   
                     $(this).dialog("close");
                   },
                 };
@@ -183,17 +188,19 @@
                     info.event.setExtendedProp("content", $("#datecontent").val());
                     $(this).dialog("close");
                   },
-                  삭제: function () {
-                    info.event.remove();
+                  취소: function () {
+                 
                     $(this).dialog("close");
                   },
                 };
               }
-
-              $("#datetitle").val(info.event.title);
+              $("#addresstitle").val(info.event.extendedProps.address);
               $("#datecontent").val(info.event.extendedProps.content);
               $("#time1").val(info.event.extendedProps.startTime);
-              $("#time2").val(info.event.extendedProps.endTime);
+              
+              $("#datetitle").val(info.event.title);
+             
+        
               var dOpt = diaLogOpt;
               dOpt.buttons = btnOpt;
               $("#dialog").dialog(dOpt);
@@ -256,6 +263,7 @@
               $("#time2").val("");
               $("#datetitle").val("");
               $("#datecontent").val("");
+              $("#addresstitle").val("");
               var dOpt = diaLogOpt;
               dOpt.buttons = btnOpt;
               $("#dialog").dialog(dOpt);
