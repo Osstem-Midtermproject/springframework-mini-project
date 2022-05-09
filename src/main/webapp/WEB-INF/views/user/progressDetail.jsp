@@ -6,10 +6,11 @@
 
 <%@ include file="/WEB-INF/views/user/common/userPageHeader.jsp"%>
 
-<div class="row align-items-center mx-5 px-4">
-	<div class="text-center" style="width: 100%; border-bottom: solid #f26522; margin-bottom: 2rem;">
-		<span style="font-weight: 600; font-size: 1.5rem; color: #f26522;">진행 내역 확인</span>
-	</div>
+<div class="container pt-2">
+	<div class="row align-items-center">
+		<div class="text-center" style="width: 100%; border-bottom: solid rgb(32, 54, 68); margin-bottom: 2rem; padding-bottom: 1rem;">
+			<span style="font-weight: 600; font-size: 1.7rem; color: rgb(32, 54, 68); margin-bottom: 1rem; padding-bottom: 1rem;">진행 내역 확인</span>
+		</div>
 	<div class="" style="width: 80%; margin: auto;">
 
 		<div class="d-flex"  style="margin-right: 10%;">
@@ -112,7 +113,7 @@
 				    }else if(list.pcategory=="4"){
 				    	c1="가구 시작";
 				    	c2="가구 완료";
-				    }else if(list.pcategory=="상담"){
+				    }else if(list.pcategory=="5"){
 				    	c1="상담 시작";
 				    	c2="상담 완료";
 				    }else if(list.pcategory=="계약"){
@@ -126,7 +127,7 @@
         	    	var date2 = list.penddate;
         	    	date2 = date2.substr(0,10);
         	    	
-					var no2 = list.pno*2;
+					var no2 = list.pno*2-1;
         	    	str = str + "<tr><td>"+no2+
         	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
         	        "</td><td>"+list.hospital.hpn+"</td><td>"+date2+"</td><td>"+c2+
@@ -135,7 +136,7 @@
         	    	var date1 = list.pdate;
         	    	date1 = date1.substr(0,10);
         	    	
-					var no1 = list.pno*2 -1;
+					var no1 = list.pno*2;
         	    	str = str + "<tr><td>"+no1+
         	        "</td><td>"+list.hospital.hname+"</td><td>"+list.hospital.hdirector+
         	        "</td><td>"+list.hospital.hpn+"</td><td>"+date1+"</td><td>"+c1+
