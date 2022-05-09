@@ -2,15 +2,7 @@ body {
     padding-top: 5em;   
 }
 
-.bi-person-circle {
-    font-size: 2rem;
-    line-height: 2rem;
-    color: rgb(145, 145, 145);
-}
 
-.bi-person-circle:hover {
-    color: rgba(242, 101, 34);
-}
 
 ul {
     text-align: center;
