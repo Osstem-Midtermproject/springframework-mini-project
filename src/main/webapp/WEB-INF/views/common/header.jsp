@@ -74,8 +74,14 @@
 
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
-				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown"> <span class="">${user.uname}님</span> <i class="bi-person-circle p-3"></i>
-				</a>
+				<li class="nav-item dropdown pe-3">
+				<span  style="color:white; ">${user.uname}님</span>
+				<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
+								
+								<i class="bi bi-bell-fill bi-person-circle" style="font-size: 3rem;"></i> 
+								
+								<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
+							</a>
 					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
 						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
 							<label><b>채팅방</b></label>
@@ -99,6 +105,7 @@
 	</header>
 	<!-- End Header -->
 	<script>
+var cnt=0;
 function scrolldown(){
 
    const msgArea = $('#msgArea'); 
@@ -113,7 +120,10 @@ $(function(){
     })
     
     $("#button-send").on("click", (e) => {
+    	
         send();
+      
+        //css show
     });
 
     const websocket = new SockJS("${pageContext.request.contextPath}/echo");
@@ -123,7 +133,7 @@ $(function(){
     websocket.onclose = onClose;
 
     function send(){
-
+		
         let msg = document.getElementById("msg");
 
         console.log(username + ":" + msg.value);
@@ -153,7 +163,7 @@ $(function(){
         for(var i=0; i<arr.length; i++){
             console.log('arr[' + i + ']: ' + arr[i]);
         }
-
+       
         var cur_session = username;
 
         //현재 세션에 로그인 한 사람
@@ -177,6 +187,9 @@ $(function(){
             scrolldown();
         }
         else{
+        	$("#messageNo").css("display","block");
+        	cnt++;
+            $("#messageNo").text(cnt);
             var str = "<div class='col-6'>";
             str += "<div class='alert ' style='width:230px; margin-left: 40px;background-color:#fff;'>";
             str += "<b>" + sessionId + " : " + message + "</b>";
@@ -190,6 +203,10 @@ $(function(){
 
          e.stopPropagation();
    });
-
+   function messageClick(){
+	   cnt=0;
+	   $("#messageNo").css("display","none");
+	   //css,hide
+   }	
 
 </script>

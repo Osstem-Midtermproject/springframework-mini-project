@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.mycompany.webapp.dto.ConstructionSchedule;
 import com.mycompany.webapp.dto.Contract;
@@ -54,7 +55,8 @@ public class DashboardController {
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model,HttpSession session,HttpServletRequest request) {
 		String userid=(String)session.getAttribute("sessionUserId");	
-		log.info("Client IP: " + request.getRemoteAddr());
+	
+		
 		model.addAttribute("userid",userid);
 		DecimalFormat decFormat = new DecimalFormat("###,###");
 		TeamHistory today=contractService.getToday();

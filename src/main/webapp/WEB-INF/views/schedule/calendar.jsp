@@ -119,7 +119,7 @@
         resizable: true, //크기 조절 못하게
         width: "500",
         height: "500",
-        show: { effect: "slideDown", duration: 350, /* SPECIF ARGUMENT */ times: 3 },
+        show: { effect: "slideDown", duration: 100, /* SPECIF ARGUMENT */ times: 2 },
       };
 
       $(function () {

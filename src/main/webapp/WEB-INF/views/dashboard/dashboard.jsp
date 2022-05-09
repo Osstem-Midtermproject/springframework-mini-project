@@ -133,7 +133,7 @@
 								<span id="notificationTitle">${requestDetailsList[0].hospital.hname}</span><br> 
 								<span>상담신청</span>
 							</div>
-							<a class="text-center icon position-relative" href="#" data-bs-toggle="dropdown">
+							<a class="text-center icon position-relative " href="#" data-bs-toggle="dropdown">
 								<i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> 
 								<span class="position-absolute top-50 start-100 translate-middle badge bg-danger badge-number" id="notificationNo"></span>
 							</a>
@@ -316,12 +316,12 @@
                                         {
                                           label: designlabel,
                                           backgroundColor: [
-                                        	  "rgba(255, 99, 132, 0.2)",
-                                              "rgba(120, 100, 200, 0.2)",
+                                        	  "rgb(32, 54, 68)",
+                                              "#212529",
                                               "rgba(2000, 200, 132, 0.2)",
-                                              "rgba(200, 2000, 132, 0.2)",
-                                              "rgba(200, 200, 2002, 0.2)",
-                                              "rgba(200, 10, 132, 0.2)",
+                                              "#df9974",
+                                              "#8d8581",
+                                              "rgba(255, 99, 132, 0.2)",
                                           ],
                                           data: designdata,
                                           fill: false,
@@ -528,7 +528,7 @@
 	        	url: 'dashConstructionList',
 	            type: 'post',
 	        }).done(function (result){
-				console.log(result);
+				
 				var str ="";
 
 		        $.each(result.constructionScheduleList,function(index,list){

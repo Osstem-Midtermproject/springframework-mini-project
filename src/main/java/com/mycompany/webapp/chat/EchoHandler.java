@@ -24,8 +24,11 @@ public class EchoHandler extends TextWebSocketHandler {
         log.info("payload : " + payload);
         String user_name= searchUserName(session);
         for(WebSocketSession sess: list) {
+        	log.info("message"+message);
             sess.sendMessage(message);
+            log.info("sess"+ sess);
         }
+        log.info("list"+list);
     }
 
     /* Client가 접속 시 호출되는 메서드 */
