@@ -11,7 +11,7 @@
 		<div class="text-center" style="width: 100%; border-bottom: solid rgb(32, 54, 68); margin-bottom: 2rem; padding-bottom: 1rem;">
 			<span style="font-weight: 600; font-size: 1.7rem; color: rgb(32, 54, 68); margin-bottom: 1rem; padding-bottom: 1rem;">회원정보 및 병원정보 확인</span>
 		</div>
-		<div class="" style="width: 60%; margin: auto; font-size: smaller;">
+		<div class="" style="width: 80%; margin: auto; font-size: smaller;">
 			<div class="d-flex flex-column ">
 				<div class="col-12">
 					<table class="table m-0">
@@ -22,7 +22,7 @@
 				</div>
 				<div class="d-flex align-items-center">
 					<div class="col-4">
-						<img src="https://cdn-icons-png.flaticon.com/512/2456/2456349.png" width="100%">
+						<img src="https://cdn-icons-png.flaticon.com/512/2456/2456349.png" width="85%">
 					</div>
 					<div class="col-8">
 						<table class="table table-hover">
@@ -75,17 +75,17 @@
 				passwordTd.innerText = str;
 			</script>
 
-			<div class="d-flex flex-column ">
+			<div class="d-flex flex-column">
 				<div class="col-12">
-					<table class="table m-0">
+					<table class="table">
 						<thead class="thead-light">
 							<th colspan="3" style="font-size: medium;">병원 정보</th>
 						</thead>
 					</table>
 				</div>
 				<div class="d-flex align-items-center">
-					<div class="col-4">
-						<img src="https://cdn-icons-png.flaticon.com/512/1907/1907396.png" width="90%">
+					<div class="col-4 mr-0">
+						<img src="https://cdn-icons-png.flaticon.com/512/1907/1907396.png" width="70%" >
 					</div>
 					<div class="col-8">
 						<table class="table table-hover">
@@ -116,8 +116,8 @@
 			</div>
 		</div>
 	</div>
+<%@ include file="/WEB-INF/views/user/common/footer.jsp"%>
 </div>
 
 
 
-<%@ include file="/WEB-INF/views/user/common/footer.jsp"%>

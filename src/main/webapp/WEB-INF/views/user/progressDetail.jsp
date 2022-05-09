@@ -56,7 +56,7 @@
 </div>
 
 <%@ include file="/WEB-INF/views/user/common/footer.jsp"%>
-
+</div>
 
 <script type="text/javascript">
 		

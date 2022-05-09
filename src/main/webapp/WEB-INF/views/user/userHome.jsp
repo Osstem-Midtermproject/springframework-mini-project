@@ -155,13 +155,24 @@
    
 
 
-    <div id="bottom" style="" >
-        <div class=" " style="width: 100%; min-height: 22vh; background-color: rgb(32, 54, 68);">
-            <div class="row justify-content-center pt-4">
-                
+    <footer id="bottom" style="background-color: rgb(32, 54, 68); padding-top: 2.5rem; padding-bottom: 2.5rem;">
+        <div class="container-fluid " style="width: 100%; background-color: rgb(32, 54, 68);">
+            <div class="d-flex justify-content-center align-items-center" style="color: white;">
+	            <div class="d-flex justify-content-center align-items-center mr-4">
+	                <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="150rem">
+	            </div>
+	            <div class="d-flex flex-column justify-content-start align-items-start text-align-start ">
+	            	<div>
+		                <span style="font-weight: 600">인테리어사업본부 대표전화</span>
+		                <span> TEL:070-4394-7494(상담가능시간:평일 09:00~20:00)</span>
+	            	</div>
+	                <span>오스템임플란트 주식회사 대표이사:엄태관 | 서울시 강서구 마곡중앙12로 3 오스템임플란트(주)</span>
+	                <span style="font-weight: 600">COPYRIGHT © 김강윤 전병천 김혜현 이주영</span>
+	            </div>
             </div>
+            
         </div>
-    </div>
+    </footer>
 </body>
 
 </html>
