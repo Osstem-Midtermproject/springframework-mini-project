@@ -41,12 +41,23 @@
 	.bi-person-circle {
 	    font-size: 2rem;
 	    line-height: 2rem;
-	    color: rgb(145, 145, 145);
+	    color: black;
 	}
 	
 	.bi-person-circle:hover {
 	    color: rgb(198, 171, 124);
 	}
+	
+	.bg-custom .nav-link {
+    	color: black !important;
+	}
+	
+	.bg-custom .nav-item.active .nav-link,
+	.bg-custom .nav-item:focus .nav-link,
+	.bg-custom .nav-item:hover .nav-link {
+    color: rgb(32, 54, 68);
+}
+	
 </style>
 </head>
 
@@ -68,7 +79,7 @@
 			<div class="logo me-auto my-2">
 				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/logo.png" width="110rem"></a>
 			</div>
-			<nav id="navbar" class="navbar navbar-expand-sm navbar-light row flex-grow-1">
+			<nav id="navbar" class="navbar navbar-expand-sm navbar-white row flex-grow-1 bg-custom">
 				<div class="collapse navbar-collapse vw-80 justify-content-end" id="collapsibleNavbar">
 					<ul class="navbar-nav" style="font-size: large;">
 						<li class="nav-item dropdown pr-4 pt-4"><a class="nav-link dropdown-toggle font-weight-bolder display-" href="#" data-toggle="dropdown">오스템인테리어</a>

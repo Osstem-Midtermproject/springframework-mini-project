@@ -10,7 +10,7 @@
 
 	#hero {
 	  width: 100%;
-	  height: 32rem;
+	  height: 80vh;
 	  background: url("${pageContext.request.contextPath}/resources/images/userBg3.png") 0 center / 200% repeat-x;
 	  position: relative;
 	  animation: movebg 10s ease infinite;
@@ -51,9 +51,17 @@
 	#hero h1 {
 	  margin: 0 0 10px 0;
 	  font-size: 48px;
-	  font-weight: 300;
+	  font-weight: 400;
 	  line-height: 56px;
-	  color: #fff;
+	  color: rgb(198, 171, 124);
+	}
+	
+	#introduction h1{
+	  margin: 0 0 10px 0;
+	  font-size: 48px;
+	  font-weight: 400;
+	  line-height: 56px;
+	  color: rgb(32, 54, 68);
 	}
 	
 	#hero h2 {
@@ -117,8 +125,18 @@
   </div>
   </section>
   
+  <section id="introduction" class="d-flex" style="padding-top: 25vh; align-items: center; justify-content: center;">
+  <div class="row">
+    <div class="col">
+		<h1>성공적인 인테리어를 위한 모든 것이 한 곳에</h1>
+	    <h2>성공개원을 위한 파트너 인스템이 디자인하면 다릅니다. INSSTEM에서 전문가와 맞춤상담 하세요.</h2>
+	    	
+    </div>
+  </div>
+  </section>
   
-    <div class="" id="introduction" style="margin-top: 12rem">
+  
+    <div class="" id="" style="padding-top: 25vh">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">

@@ -36,14 +36,16 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
        <div>
-           <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" style="height: 100%; width: 100%;"></a></div>
+           <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/logo.png" style="height: 100%; width: 100%;"></a></div>
             <form style="margin-bottom: 1rem;" method="post" action="login">
                     <input type="id" class="form-control" name="userid" placeholder="아이디">
                     <input type="password" class="form-control" name="upassword" placeholder="비밀번호는 6자~20자">
+                    <div class="my-auto" style="height: 3rem; display: flex; align-items: center; justify-content: center;">
+                    	<small style="color: red; text-align: center;" id="idPasswordError">${error}</small>
+                    </div>
                     
-                    <small style="color: red" id="idPasswordError">${error}</small>
             		
-            		<button type="submit" class="btn" style="background-color: rgba(242, 101, 34); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
+            		<button type="submit" class="btn" style="background-color: rgb(32, 54, 68); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
             </form>
             <div class="find justify-content-center align-items-center" style="text-align: center";>
                 <a href="#">아이디찾기</a>
