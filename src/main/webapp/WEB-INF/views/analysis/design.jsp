@@ -4,15 +4,17 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <main id="main" class="main">
 	<div class="analysis_design">
-		<div class="pagetitle">
-			<h1>Design</h1>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Home</li>
-					<li class="breadcrumb-item">Analysis</li>
-					<li class="breadcrumb-item active">Design</li>
-				</ol>
-			</nav>
+		<div class="d-flex">
+			<div class="pagetitle d-flex align-items-end">
+				<h1>디자인</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">홈</li>
+						<li class="breadcrumb-item">분석통계</li>
+						<li class="breadcrumb-item active">디자인</li>
+					</ol>
+				</nav>
+			</div>
 		</div>
 	</div>
 	<div class="row">

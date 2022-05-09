@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.HospitalDao">
-   
-   <select id="selectByPager" parameterType="pager"  resultMap="selectHospitalWithProgressResultMap">
-      select rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
-          from (
-              select ROWNUM as rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
-              from (
-                  SELECT hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
-                  FROM hospital, progress
-                  where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
-              )
-          where rownum &lt;= #{endRowNo}
-          )
-      where rnum &gt;= #{startRowNo}
-      
-   </select>
-   
-   <select id="count" resultType="int">
-      select count(*)
-      from progress, hospital
-      where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
-   </select>
-   
-   <resultMap id="selectHospitalWithProgressResultMap" type="hospital">
-      <result column="rnum" property="hno" />
-      <result column="hname" property="hname" />
-      <result column="hpn" property="hpn" />
-      <result column="hdln" property="hdln" />
-      <result column="hdirector" property="hdirector" />
-      <result column="hod" property="hod" />
-      <result column="hemail" property="hemail" />
-      <result column="haddress" property="haddress" />
-      <association property="progress" javaType="progress">
-         <result column="pdate" property="pdate" />
-         <result column="pcontent" property="pcontent" />
-         <result column="pcategory" property="pcategory" />
-         <result column="pdln" property="pdln" />
-         <result column="paddress" property="paddress" />
-         <result column="pimg" property="pimg" />
-         <result column="penddate" property="penddate" />
-         <result column="category" property="category" />
-      </association>
-   </resultMap>
-   
-   
-   <select id="selectByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
-      select * 
-      from 
-         (select *
-         from progress, hospital
-         where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
-         order by progress.pdate desc)
-         where rownum = 1
-   </select>
-   
-   <resultMap id="selectHospitalDetailWithResultDetailsResultMap" type="hospital">
-      <result column="hname" property="hname" />
-      <result column="hpn" property="hpn" />
-      <result column="hdln" property="hdln" />
-      <result column="hdirector" property="hdirector" />
-      <result column="hod" property="hod" />
-      <result column="hemail" property="hemail" />
-      <result column="haddress" property="haddress" />
-      <association property="requestDetails" javaType="requestDetails">
-         <result column="rd_dln" property="rdDln" />
-         <result column="rd_address" property="rdAddress" />
-         <result column="rd_state" property="rdState" />
-         <result column="rd_applicationdate" property="rdApplicationdate" />
-         <result column="rd_title" property="rdTitle" />
-         <result column="rd_budget" property="rdBudget" />
-         <result column="rd_floor" property="rdFloor" />
-         <result column="rd_design" property="rdDesign" />
-         <result column="rd_coun_date" property="rdCounDate" />
-         <result column="rd_space" property="rdSpace" />
-         <result column="rd_refe_img" property="rdRefeImg" />
-         <result column="rd_request_cons_period" property="rdRequestConsPeriod" />
-         <result column="rd_content" property="rdContent" />
-      </association>
-   </resultMap>
-   
-   <select id="selectHospitalDetailByHdln" parameterType="string" resultMap="selectHospitalDetailWithResultDetailsResultMap">
-      select *
-      from hospital, requestdetails
-      where hospital.hdln = REQUESTDETAILS.rd_dln and hospital.haddress = REQUESTDETAILS.rd_address and hospital.hdln=#{hdln}
-   </select>
-   
-   <resultMap id="selectHospitalWithLocation" type="hospital">
-      <result column="rnum" property="hno" />
-      <result column="hname" property="hname" />
-      <result column="hpn" property="hpn" />
-      <result column="hdln" property="hdln" />
-      <result column="haddress" property="haddress" />
-   </resultMap>
-   
-   <!-- 전체 지역별 출력 -->
-   <select id="selectByLocation" parameterType="pager" resultMap="selectHospitalWithLocation">
-      
-      
-      select rnum, hname, haddress, hpn, hdln
+	
+	<select id="selectByPager" parameterType="pager"  resultMap="selectHospitalWithProgressResultMap">
+		select rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		    from (
+		        select ROWNUM as rnum, hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		        from (
+		            SELECT hname, pdate, pcontent, hpn, pcategory, pdln, paddress, hdln, hdirector, hod, hemail, haddress
+		            FROM hospital, progress
+		            where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
+		        )
+		    where rownum &lt;= #{endRowNo}
+		    )
+		where rnum &gt;= #{startRowNo}
+		
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*)
+		from progress, hospital
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress
+	</select>
+	
+	<resultMap id="selectHospitalWithProgressResultMap" type="hospital">
+		<result column="rnum" property="hno" />
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="progress" javaType="progress">
+			<result column="pdate" property="pdate" />
+			<result column="pcontent" property="pcontent" />
+			<result column="pcategory" property="pcategory" />
+			<result column="pdln" property="pdln" />
+			<result column="paddress" property="paddress" />
+			<result column="pimg" property="pimg" />
+			<result column="penddate" property="penddate" />
+			<result column="category" property="category" />
+		</association>
+	</resultMap>
+	
+	
+	<select id="selectByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
+		select * 
+		from 
+			(select *
+			from progress, hospital
+			where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
+			order by progress.pdate desc)
+			where rownum = 1
+	</select>
+	
+	<resultMap id="selectHospitalDetailWithResultDetailsResultMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="requestDetails" javaType="requestDetails">
+			<result column="rd_dln" property="rdDln" />
+			<result column="rd_address" property="rdAddress" />
+			<result column="rd_state" property="rdState" />
+			<result column="rd_applicationdate" property="rdApplicationdate" />
+			<result column="rd_title" property="rdTitle" />
+			<result column="rd_budget" property="rdBudget" />
+			<result column="rd_floor" property="rdFloor" />
+			<result column="rd_design" property="rdDesign" />
+			<result column="rd_coun_date" property="rdCounDate" />
+			<result column="rd_space" property="rdSpace" />
+			<result column="rd_refe_img" property="rdRefeImg" />
+			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
+			<result column="rd_content" property="rdContent" />
+		</association>
+	</resultMap>
+	
+	<select id="selectHospitalDetailByHdln" parameterType="string" resultMap="selectHospitalDetailWithResultDetailsResultMap">
+		select *
+		from hospital, requestdetails
+		where hospital.hdln = REQUESTDETAILS.rd_dln and hospital.haddress = REQUESTDETAILS.rd_address and hospital.hdln=#{hdln}
+	</select>
+	
+	<resultMap id="selectHospitalWithLocation" type="hospital">
+		<result column="rnum" property="hno" />
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="haddress" property="haddress" />
+	</resultMap>
+	
+	<!-- 전체 지역별 출력 -->
+	<select id="selectByLocation" parameterType="pager" resultMap="selectHospitalWithLocation">
+		
+		
+		select rnum, hname, haddress, hpn, hdln
           from (
               select ROWNUM as rnum, hname, haddress, hpn, hdln
               from (
@@ -107,216 +107,216 @@
                  
                   <!-- 주소가 들어가야한다.  -->
                    )
-                where rownum &lt;= #{endRowNo}
-          )
-      where rnum &gt;= #{startRowNo}
-   
-   </select>
-   
-   <!-- 선택 지역별 출력 -->
-   
-   <select id="selectByLocation2" parameterType="pager" resultMap="selectHospitalWithLocation">      
-   
-   SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
-   FROM (
-      SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
-      FROM (
-         SELECT hname, haddress, hpn, hdln
-         FROM hospital
-         WHERE SUBSTR(haddress, 1, 2) = #{locationHaddress}
-         )
-      WHERE rownum &lt;= #{endRowNo}
-      )
-   WHERE rnum &gt;= #{startRowNo}
-      
-   </select>
-   
-   <!-- 지역 선택 병원 페이저 처리를 위한 개수 count - jbc -->
-   <select id="selectByLocationcount" parameterType="String" resultType="int">
+         	    where rownum &lt;= #{endRowNo}
+		    )
+		where rnum &gt;= #{startRowNo}
+	
+	</select>
+	
+	<!-- 선택 지역별 출력 -->
+	
+	<select id="selectByLocation2" parameterType="pager" resultMap="selectHospitalWithLocation">		
+	
+	SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
+	FROM (
+		SELECT ROWNUM as rnum, hname, haddress, hpn, hdln
+		FROM (
+			SELECT hname, haddress, hpn, hdln
+			FROM hospital
+			WHERE SUBSTR(haddress, 1, 2) = #{locationHaddress}
+			)
+		WHERE rownum &lt;= #{endRowNo}
+		)
+	WHERE rnum &gt;= #{startRowNo}
+		
+	</select>
+	
+	<!-- 지역 선택 병원 페이저 처리를 위한 개수 count - jbc -->
+	<select id="selectByLocationcount" parameterType="String" resultType="int">
 
-   
-      SELECT count(*)
-      FROM hospital
-      WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
+	
+		SELECT count(*)
+		FROM hospital
+		WHERE SUBSTR(haddress,1,2)=#{locationHaddress}
 
-   </select>
-   
-   <resultMap id="selectHospitalContractDateWithContractMap" type="hospital">
-      <result column="hname" property="hname" />
-      <result column="hpn" property="hpn" />
-      <result column="hdln" property="hdln" />
-      <result column="hdirector" property="hdirector" />
-      <result column="hod" property="hod" />
-      <result column="hemail" property="hemail" />
-      <result column="haddress" property="haddress" />
-      <association property="contract" javaType="contract">
-         <result column="cont_identification_number" property="contIdentificationNumber" />
-         <result column="cont" property="cont" />
-         <result column="cont_design_identification" property="contDesignIdentification" />
-         <result column="cont_down_payment" property="contDownPayment" />
-         <result column="cont_date" property="contDate" />
-         <result column="cont_details" property="contDetails" />
-         <result column="cont_area" property="contArea" />
-         <result column="cont_dln" property="contDln" />
-         <result column="cont_address" property="contAddress" />
-         <result column="cont_period" property="contPeriod" />
-         <result column="cont_completion_status" property="contCompletionStatus" />
-         <result column="cont_status" property="contStatus" />
-         <result column="cont_additional_amount" property="contAdditionalAmount" />
-      </association>
-   </resultMap>
-   
-   <select id="selectHospitalContDateByHdln" parameterType="string" resultMap="selectHospitalContractDateWithContractMap">
-      select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date, cont
-      from hospital, contract
-      where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and rownum = 1
-   </select>
-   
-   <!-- 추가요청 list -->
-   <resultMap id="selectHospitaArContentWithContractsAndAdditionalRequestResultMap" type="hospital">
-      <result column="hname" property="hname" />
-      <result column="hpn" property="hpn" />
-      <result column="hdln" property="hdln" />
-      <result column="hdirector" property="hdirector" />
-      <result column="hod" property="hod" />
-      <result column="hemail" property="hemail" />
-      <result column="haddress" property="haddress" />
-      <association property="contract" javaType="contract">
-         <result column="cont_identification_number" property="contIdentificationNumber" />
-         <result column="cont" property="cont" />
-         <result column="cont_design_identification" property="contDesignIdentification" />
-         <result column="cont_down_payment" property="contDownPayment" />
-         <result column="cont_date" property="contDate" />
-         <result column="cont_details" property="contDetails" />
-         <result column="cont_area" property="contArea" />
-         <result column="cont_dln" property="contDln" />
-         <result column="cont_address" property="contAddress" />
-         <result column="cont_period" property="contPeriod" /> 
-         <result column="cont_completion_status" property="contCompletionStatus" />
-         <result column="cont_status" property="contStatus" />
-         <result column="cont_additional_amount" property="contAdditionalAmount" />
-      </association>
-      <association property="additionalRequest" javaType="additionalRequest">
-         <result column="ar_id" property="arId" />
-         <result column="ar_date" property="arDate" />
-         <result column="ar_cont_id" property="arContId" />
-         <result column="ar_content" property="arContent" />
-         <result column="ar_ad_amount" property="arAdAmount" />
-      </association>
-   </resultMap>
-   
-   <select id="selectHospitalArContentByHdln" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
-      select ar_content, cont_identification_number, ar_id
-      from hospital, contract, additionalrequest
-      where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and contract.cont_identification_number = additionalrequest.ar_cont_id
-      order by ar_date
-   </select>
-   
-   <select id="selectHospitalArContentByContId" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
-      select ar_id, ar_content, ar_cont_id, ar_date
-      from hospital, contract, additionalrequest
-      where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and contract.cont_identification_number = additionalrequest.ar_cont_id and additionalrequest.ar_cont_id = #{contId}
-      order by ar_date
-   </select>
-   
-   <!-- 추가요청 insert -->
-   <insert id="insert" parameterType="additionalRequest">
-      <selectKey keyProperty="arId" resultType="int" order="BEFORE">
-         select seq_ar.nextval from dual
-      </selectKey>
-      
-      INSERT INTO additionalRequest (ar_id, ar_date, ar_cont_id, ar_content, ar_ad_amount)
-      VALUES(#{arId}, SYSDATE, #{arContId}, #{arContent}, 1000000)
-   </insert>
-   
-   <!-- 추가요청 delete -->
-   <delete id="deleteByArId" parameterType="int">
-      DELETE FROM additionalRequest WHERE ar_id=#{arId}
-   </delete>
-   
-   <!-- 추가요청 update -->
-   <update id="updateByArId" parameterType="additionalRequest">
-      UPDATE additionalRequest SET ar_content=#{arContent} WHERE ar_id=#{arId}
-   </update>
-   
-   <!-- 진행상황 -->
-   <select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
-      select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg, penddate, category
-      from progress, hospital
-      where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
-      order by progress.pdate asc
-   </select>
-   
-   <!-- 현재상태 가져오기 (상담/시공) -->
-   <select id="selectProgressByHdlnForState" parameterType="string" resultType="progress">
-      select *
-      from progress
-      where pdln=#{hdln} and rownum = 1
-      order by pdate desc
-   </select>
-   
-   <!-- 현재상태 추가 (시공완료) -->
-   <insert id="insertCategory" parameterType="progress">
-      INSERT INTO progress (pdate, pdln, paddress, pcategory, pcontent, category, pimg, penddate)
-      VALUES(SYSDATE, #{pdln}, #{paddress}, #{pcategory}, null, #{category}, null, SYSDATE)
-   </insert>
+	</select>
+	
+	<resultMap id="selectHospitalContractDateWithContractMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="contract" javaType="contract">
+			<result column="cont_identification_number" property="contIdentificationNumber" />
+			<result column="cont" property="cont" />
+			<result column="cont_design_identification" property="contDesignIdentification" />
+			<result column="cont_down_payment" property="contDownPayment" />
+			<result column="cont_date" property="contDate" />
+			<result column="cont_details" property="contDetails" />
+			<result column="cont_area" property="contArea" />
+			<result column="cont_dln" property="contDln" />
+			<result column="cont_address" property="contAddress" />
+			<result column="cont_period" property="contPeriod" />
+			<result column="cont_completion_status" property="contCompletionStatus" />
+			<result column="cont_status" property="contStatus" />
+			<result column="cont_additional_amount" property="contAdditionalAmount" />
+		</association>
+	</resultMap>
+	
+	<select id="selectHospitalContDateByHdln" parameterType="string" resultMap="selectHospitalContractDateWithContractMap">
+		select hdln, cont_dln, haddress, cont_address, cont_identification_number, cont_date, cont
+		from hospital, contract
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and rownum = 1
+	</select>
+	
+	<!-- 추가요청 list -->
+	<resultMap id="selectHospitaArContentWithContractsAndAdditionalRequestResultMap" type="hospital">
+		<result column="hname" property="hname" />
+		<result column="hpn" property="hpn" />
+		<result column="hdln" property="hdln" />
+		<result column="hdirector" property="hdirector" />
+		<result column="hod" property="hod" />
+		<result column="hemail" property="hemail" />
+		<result column="haddress" property="haddress" />
+		<association property="contract" javaType="contract">
+			<result column="cont_identification_number" property="contIdentificationNumber" />
+			<result column="cont" property="cont" />
+			<result column="cont_design_identification" property="contDesignIdentification" />
+			<result column="cont_down_payment" property="contDownPayment" />
+			<result column="cont_date" property="contDate" />
+			<result column="cont_details" property="contDetails" />
+			<result column="cont_area" property="contArea" />
+			<result column="cont_dln" property="contDln" />
+			<result column="cont_address" property="contAddress" />
+			<result column="cont_period" property="contPeriod" /> 
+			<result column="cont_completion_status" property="contCompletionStatus" />
+			<result column="cont_status" property="contStatus" />
+			<result column="cont_additional_amount" property="contAdditionalAmount" />
+		</association>
+		<association property="additionalRequest" javaType="additionalRequest">
+			<result column="ar_id" property="arId" />
+			<result column="ar_date" property="arDate" />
+			<result column="ar_cont_id" property="arContId" />
+			<result column="ar_content" property="arContent" />
+			<result column="ar_ad_amount" property="arAdAmount" />
+		</association>
+	</resultMap>
+	
+	<select id="selectHospitalArContentByHdln" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
+		select ar_content, cont_identification_number, ar_id
+		from hospital, contract, additionalrequest
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and hospital.hdln=#{hdln} and contract.cont_identification_number = additionalrequest.ar_cont_id
+		order by ar_date
+	</select>
+	
+	<select id="selectHospitalArContentByContId" parameterType="string" resultMap="selectHospitaArContentWithContractsAndAdditionalRequestResultMap">
+		select ar_id, ar_content, ar_cont_id, ar_date
+		from hospital, contract, additionalrequest
+		where hospital.hdln = contract.cont_dln and hospital.haddress = contract.cont_address and contract.cont_identification_number = additionalrequest.ar_cont_id and additionalrequest.ar_cont_id = #{contId}
+		order by ar_date
+	</select>
+	
+	<!-- 추가요청 insert -->
+	<insert id="insert" parameterType="additionalRequest">
+		<selectKey keyProperty="arId" resultType="int" order="BEFORE">
+			select seq_ar.nextval from dual
+		</selectKey>
+		
+		INSERT INTO additionalRequest (ar_id, ar_date, ar_cont_id, ar_content, ar_ad_amount)
+		VALUES(#{arId}, SYSDATE, #{arContId}, #{arContent}, 1000000)
+	</insert>
+	
+	<!-- 추가요청 delete -->
+	<delete id="deleteByArId" parameterType="int">
+		DELETE FROM additionalRequest WHERE ar_id=#{arId}
+	</delete>
+	
+	<!-- 추가요청 update -->
+	<update id="updateByArId" parameterType="additionalRequest">
+		UPDATE additionalRequest SET ar_content=#{arContent} WHERE ar_id=#{arId}
+	</update>
+	
+	<!-- 진행상황 -->
+	<select id="selectProgressByHdln" parameterType="string" resultMap="selectHospitalWithProgressResultMap">
+		select ROWNUM as rnum, hdln, pcategory, pdate, pcontent, pimg, penddate, category
+		from progress, hospital
+		where hospital.hdln = progress.pdln and hospital.haddress = progress.paddress and hospital.hdln=#{hdln}
+		order by progress.pdate asc
+	</select>
+	
+	<!-- 현재상태 가져오기 (상담/시공) -->
+	<select id="selectProgressByHdlnForState" parameterType="string" resultType="progress">
+		select *
+		from progress
+		where pdln=#{hdln} and rownum = 1
+		order by pdate desc
+	</select>
+	
+	<!-- 현재상태 추가 (시공완료) -->
+	<insert id="insertCategory" parameterType="progress">
+		INSERT INTO progress (pdate, pdln, paddress, pcategory, pcontent, category, pimg, penddate)
+		VALUES(SYSDATE, #{pdln}, #{paddress}, #{pcategory}, null, #{category}, null, SYSDATE)
+	</insert>
 
-   <!-- 진행상황 이미지 가져오기 -->   
-   <resultMap id="selectProgressImgWithProgressResultMap" type="progress">
-      <result column="pdate" property="pdate" />
-      <result column="pcontent" property="pcontent" />
-      <result column="pcategory" property="pcategory" />
-      <result column="pdln" property="pdln" />
-      <result column="paddress" property="paddress" />
-      <result column="pimg" property="pimg" />
-      <result column="penddate" property="penddate" />
-      <result column="category" property="category" />
-      <association property="progressImg" javaType="progressImg">
-         <result column="pimg_id" property="pimgId" />
-         <result column="pimg_dln" property="pimgDln" />
-         <result column="pimg_oname" property="pimgOname" />
-         <result column="pimg_sname" property="pimgSname" />
-         <result column="pimg_type" property="pimgType" />
-         <result column="pimg_content" property="pimgContent" />
-         <result column="pimg_category" property="pimgCategory" />
-         <result column="pimg_address" property="pimgAddress" />
-         <result column="pimg_date" property="pimgDate" />
-         <result column="pimg_registration_date" property="pimgRegistrationDate" />
-      </association>
-   </resultMap>
-   
-   <select id="selectProgressImgByHdln" parameterType="progressImg" resultMap="selectProgressImgWithProgressResultMap">
-      select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date
-        from progress
-       inner join progressimg
-          on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
-       where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress} <!-- and progressimg.pimg_date='2022-05-09' -->
-       order by pimg_registration_date, pimg_id
-   </select>
-   
-   <!-- 이미지 추가 -->
-   <insert id="insertImg" parameterType="progressImg">
-      <selectKey keyProperty="pimgId" resultType="int" order="BEFORE">
-         select seq_pimgid.nextval from dual
-      </selectKey>
-      
-      INSERT INTO progressimg (pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_category, pimg_content, pimg_address, pimg_date, pimg_registration_date)
-      VALUES(#{pimgId}, #{pimgDln}, #{pimgOname}, #{pimgSname}, #{pimgType}, #{pimgCategory}, #{pimgContent}, #{pimgAddress}, #{pimgDate}, SYSDATE)
-   </insert>   
-   
-   <!-- pimgId로 progressImg 컬럼 가져오기 -->
-   <select id="selectProgressImgByPimgId" parameterType="int" resultMap="selectProgressImgWithProgressResultMap">
-      select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date
-        from progress
-       inner join progressimg
-          on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
-       where progressimg.pimg_id=#{pimgId}
-       order by pimg_registration_date, pimg_id
-   </select>
-   
-   <delete id="deleteByPimgId" parameterType="int">
-      DELETE FROM progressimg WHERE pimg_id=#{pimgId}
-   </delete>
+	<!-- 진행상황 이미지 가져오기 -->	
+	<resultMap id="selectProgressImgWithProgressResultMap" type="progress">
+		<result column="pdate" property="pdate" />
+		<result column="pcontent" property="pcontent" />
+		<result column="pcategory" property="pcategory" />
+		<result column="pdln" property="pdln" />
+		<result column="paddress" property="paddress" />
+		<result column="pimg" property="pimg" />
+		<result column="penddate" property="penddate" />
+		<result column="category" property="category" />
+		<association property="progressImg" javaType="progressImg">
+			<result column="pimg_id" property="pimgId" />
+			<result column="pimg_dln" property="pimgDln" />
+			<result column="pimg_oname" property="pimgOname" />
+			<result column="pimg_sname" property="pimgSname" />
+			<result column="pimg_type" property="pimgType" />
+			<result column="pimg_content" property="pimgContent" />
+			<result column="pimg_category" property="pimgCategory" />
+			<result column="pimg_address" property="pimgAddress" />
+			<result column="pimg_date" property="pimgDate" />
+			<result column="pimg_registration_date" property="pimgRegistrationDate" />
+		</association>
+	</resultMap>
+	
+	<select id="selectProgressImgByHdln" parameterType="progressImg" resultMap="selectProgressImgWithProgressResultMap">
+		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date
+		  from progress
+		 inner join progressimg
+		    on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
+		 where progressimg.pimg_dln=#{pimgDln} and progressimg.pimg_address=#{pimgAddress} <!-- and progressimg.pimg_date='2022-05-09' -->
+		 order by pimg_registration_date, pimg_id
+	</select>
+	
+	<!-- 이미지 추가 -->
+	<insert id="insertImg" parameterType="progressImg">
+		<selectKey keyProperty="pimgId" resultType="int" order="BEFORE">
+			select seq_pimgid.nextval from dual
+		</selectKey>
+		
+		INSERT INTO progressimg (pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_category, pimg_content, pimg_address, pimg_date, pimg_registration_date)
+		VALUES(#{pimgId}, #{pimgDln}, #{pimgOname}, #{pimgSname}, #{pimgType}, #{pimgCategory}, #{pimgContent}, #{pimgAddress}, #{pimgDate}, SYSDATE)
+	</insert>	
+	
+	<!-- pimgId로 progressImg 컬럼 가져오기 -->
+	<select id="selectProgressImgByPimgId" parameterType="int" resultMap="selectProgressImgWithProgressResultMap">
+		select pimg_id, pimg_dln, pimg_oname, pimg_sname, pimg_type, pimg_content, pimg_category, pimg_address, pimg_date, pimg_registration_date
+		  from progress
+		 inner join progressimg
+		    on progress.pdln = progressimg.pimg_dln and progress.paddress = progressimg.pimg_address and progress.pdate = progressimg.pimg_date
+		 where progressimg.pimg_id=#{pimgId}
+		 order by pimg_registration_date, pimg_id
+	</select>
+	
+	<delete id="deleteByPimgId" parameterType="int">
+		DELETE FROM progressimg WHERE pimg_id=#{pimgId}
+	</delete>
 
-   
+	
 </mapper>

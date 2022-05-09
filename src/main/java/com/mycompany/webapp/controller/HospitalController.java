@@ -40,7 +40,7 @@ import com.mycompany.webapp.service.HospitalService;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/hospital")
+/*@RequestMapping("/schedule")*/
 @Log4j2
 public class HospitalController {
 	@Resource
@@ -49,28 +49,23 @@ public class HospitalController {
 	@Resource
 	private ContractService contractService;
 
-	@GetMapping("/processing")
-	public String progressList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
-		int totalProgressNum = hospitalService.getTotalHospitalNum();
-		Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
-		model.addAttribute("pager", pager);
-		List<Hospital> hospitals = hospitalService.getHospitals(pager);
-		model.addAttribute("hospitals", hospitals);
-		log.info(model.getAttribute("hospitals"));
-		return "hospital/processing";
-	}
+	/*	@GetMapping("/processing")
+		public String progressList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+			int totalProgressNum = hospitalService.getTotalHospitalNum();
+			Pager pager = new Pager(5, 5, totalProgressNum, pageNo);
+			model.addAttribute("pager", pager);
+			List<Hospital> hospitals = hospitalService.getHospitals(pager);
+			model.addAttribute("hospitals", hospitals);
+			log.info(model.getAttribute("hospitals"));
+			return "hospital/processing";
+		}*/
 
-	@GetMapping("/processing/detail")
+	@GetMapping("/schedule/processing/detail")
 	public String processingDetail(String hdln, String arContent, Model model) {
 		/*병원정보*/
 		Hospital hospital = hospitalService.getHospital(hdln);
 		model.addAttribute("hospital", hospital);
 		log.info(hospital);
-
-		/*병원 진행 상태*/
-		Hospital hospitalState = hospitalService.getHospitalState(hdln);
-		model.addAttribute("hospitalState", hospitalState);
-		log.info(hospitalState);
 
 		/*현재상태 가져오기 (상담/시공)*/
 		Progress progressCategory = hospitalService.getProgressCategory(hdln);
@@ -123,7 +118,7 @@ public class HospitalController {
 	}
 	
 	/*현재상태 추가 (시공완료)*/
-	@PostMapping(value = "processing/updateCategory", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/updateCategory", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String updateState(String hdln, String haddress, String pcategory, String category, Model model) {
 		log.info("실행");
@@ -150,7 +145,7 @@ public class HospitalController {
 
 	/*추가요청*/
 	//모든 추가요청을 ajax로 불러오기
-	@PostMapping(value = "processing/arContentList", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/arContentList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getContents(String contId, Model model) {
 		log.info("실행");
@@ -183,7 +178,7 @@ public class HospitalController {
 	}
 
 	//insert
-	@PostMapping(value = "processing/arContentInsert", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/arContentInsert", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String arContentInsert(String arContent, String arContId) {
 		log.info("실행");
@@ -207,7 +202,7 @@ public class HospitalController {
 	}
 
 	//delete
-	@PostMapping(value = "processing/arContentDelete", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/arContentDelete", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String deleteContent(int arId, Model model) {
 		hospitalService.removeArContent(arId);
@@ -222,7 +217,7 @@ public class HospitalController {
 	}
 
 	//update
-	@PostMapping(value = "processing/arContentUpdate", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/arContentUpdate", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String updateContent(int arId, String newArContent, Model model) {
 		log.info("실행");
@@ -248,7 +243,7 @@ public class HospitalController {
 
 	/*진행상황 img 가져오기*/
 	//url을 hdln과 haddress(pk가 아님)가 아닌 imgId로 지정하여 파일을 찾기 위해서 ajax로 pimgId를 찾아서 json으로 return 
-	@RequestMapping(value = "processing/progressImgList", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/schedule/processing/progressImgList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String progressImgList(String hdln, String haddress, Model model) throws Exception {
 		ProgressImg progressImg = new ProgressImg();
@@ -284,7 +279,7 @@ public class HospitalController {
 	}
 
 	//pimgId로 이미지를 찾아서 response로 return 한다 
-	@RequestMapping(value = "/processing/fileList", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/schedule/processing/fileList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public void fileList(int pimgId, Model model, HttpServletResponse response, @RequestHeader("User-Agent") String userAgent) throws Exception {
 		log.info("progressImg 테이블의 pimgId로 찾아내기: ");
@@ -314,7 +309,7 @@ public class HospitalController {
 	}
 	
 	//파일 업로드 ajax
-	@PostMapping(value = "processing/fileupload", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/fileupload", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String fileupload(ProgressImg progressImg) throws Exception {
 		log.info("실행");
@@ -380,7 +375,7 @@ public class HospitalController {
 	}
 	
 	//파일 delete
-	@PostMapping(value = "processing/progressImgDeleteBtn", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/schedule/processing/progressImgDeleteBtn", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String progressImgDelet(int pimgId, Model model) {
 		hospitalService.removePimgId(pimgId);
@@ -393,9 +388,9 @@ public class HospitalController {
 		return json;
 
 	}
-
+	
 	//지도 별, 위치 별 병원 목록 컨트롤 호출 
-	@GetMapping("/location")
+	@GetMapping("/hospital/location")
 	public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
 		log.info("Location 실행");
 
@@ -411,9 +406,9 @@ public class HospitalController {
 		
       return "hospital/location";
    }
-   
+    
    //로케이션 이미지 변경 ajax -jbc
-	@PostMapping(value = "mapimage", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/hospital/mapimage", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String changemap(String location, String locationKR, Model model,  HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNo) {
 		log.info(location);
@@ -448,7 +443,7 @@ public class HospitalController {
    	}
 
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 초기에 보여질 전체 병원의 계약 기록 리스트
-	@RequestMapping("/contractHistory")
+	@RequestMapping("/hospital/contractHistory")
 	public String contractHistory(Model model, HttpSession session) {
 		List<Contract> topContractList = contractService.getTopThreeContract();
 		model.addAttribute("topContractList", topContractList);
@@ -457,7 +452,7 @@ public class HospitalController {
 	}
 
 	//hospital/contractHistory : 계약기록 리스트 페이징 -> 검색한 병원만 나오게(searchBar)
-	@PostMapping(value = "/search", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/hospital/search", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String search(String searchBar, @RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		log.info(searchBar);
@@ -485,9 +480,9 @@ public class HospitalController {
 		log.info(json);
 		return json;
 	}
-
+	
 	//계약서 보기 버튼 클릭하면 계약서 보여줌
-	@GetMapping("/contractFormPdfAdmin")
+	@GetMapping("/hospital/contractFormPdfAdmin")
 	public String contractFormPdfAdmin(String fileNum, HttpSession session, HttpServletRequest request, Model model) {
 		Contract contract = contractService.getContract(fileNum);
 		byte[] pdf = contract.getCont();
@@ -497,4 +492,5 @@ public class HospitalController {
 		request.setAttribute("pdfString", pdfString);
 		return "/element/contractFormPdf";
 	}
+
 }

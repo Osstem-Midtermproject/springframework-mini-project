@@ -4,10 +4,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <main id="main" class="main">
 
-	<div class="pagetitle">
+	<div class="pagetitle d-flex align-items-end">
 		<h1>대시보드</h1>
 		<nav>
-			<ol class="breadcrumb pb-0">
+			<ol class="breadcrumb" style="margin-bottom: 0; padding: 0 0.5rem">
 				<li class="breadcrumb-item">홈</li>
 				<li class="breadcrumb-item active">대시보드</li>
 			</ol>
@@ -73,7 +73,7 @@
 					
 					<!-- 부서별 매출액 -->
 					<div class="col-4">
-						<div class="card" style="height: 95%;">
+						<div class="card"">
 							<div class="card-body">
 								<h5 class="card-title">
 									부서 <span>| Quarterly</span>
@@ -86,7 +86,7 @@
 					</div>
 					<!-- 분기별 디자인 매출액 -->					
 					<div class="col-4">
-						<div class="card" style="height: 95%;">
+						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">
 									디자인 <span>| Quarterly</span>
@@ -135,7 +135,7 @@
 							</div>
 							<a class="text-center icon position-relative " href="#" data-bs-toggle="dropdown">
 								<i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> 
-								<span class="position-absolute top-50 start-100 translate-middle badge bg-danger badge-number" id="notificationNo"></span>
+								<span class="position-absolute start-100 translate-middle badge bg-danger badge-number" id="notificationNo" style="top: 30%"></span>
 							</a>
 							<!-- End Notification Icon -->
 
@@ -509,10 +509,11 @@
 				var str ="";
 
 		        $.each(result.counselingScheduleList,function(index,list){
-		        	var date = list.counScheStartdate.substr(0,10);
+		        	var date_month = list.counScheStartdate.substr(5,2);
+		        	var date_day = list.counScheStartdate.substr(8,2);
 		        	var time = list.counScheStartdate.substr(10,12);
 		        	var time2 = time.substr(0,3) + "시";
-					str += "<tr><td class='fw-bold'>" + list.hospital.hname + "</td><td>" + date + "</td><td>" + time2 + "</td></tr>";
+					str += "<tr><td class='fw-bold'>" + list.hospital.hname + "</td><td>" + date_month + "/"+ date_day + "</td><td>" + time2 + "</td></tr>";
 
 				})
 				
@@ -532,9 +533,12 @@
 				var str ="";
 
 		        $.each(result.constructionScheduleList,function(index,list){
-		        	var date1 = list.consScheStartdate.substr(0,10);
-		        	var date2 = list.consScheEnddate.substr(0,10);
-					str += "<tr><td class='fw-bold'>" + list.consScheHospitalName + "</td><td>" + date1 + "</td><td>" + date2 + "</td><td>" + list.team.tcategory + "</td></tr>";
+		        	var date1_month = list.consScheStartdate.substr(5,2);
+		        	var date1_day = list.consScheStartdate.substr(8,2);
+		        	var date2_month = list.consScheStartdate.substr(5,2);
+		        	var date2_day = list.consScheStartdate.substr(8,2);
+		        	
+					str += "<tr><td class='fw-bold'>" + list.consScheHospitalName + "</td><td>" + date1_month + "/" + date1_day + "</td><td>" + date2_month + "/" + date2_day + "</td><td>" + list.team.tcategory + "</td></tr>";
 
 				})
 				

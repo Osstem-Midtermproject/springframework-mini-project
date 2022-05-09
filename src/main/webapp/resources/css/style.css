@@ -595,11 +595,11 @@ h1, h2, h3, h4, h5, h6 {
   flex-grow: 0;
 }
 .dashboard .sales-card .card-icon {
-  color: black;
+  color: #444444;
   background: rgb(236, 234, 234);
 }
-.dashboard .revenue-card .card-icon {
-  color: black;
+.dashboard .contract-card .card-icon {
+  color: #444444;
   background: rgb(236, 234, 234);
 }
 .dashboard .customers-card .card-icon {
@@ -813,5 +813,11 @@ img.ui-datepicker-trigger {
         color: white;
       }
 
-
+/*--------------------------------------------------------------
+# Breadcrumb
+--------------------------------------------------------------*/
+.breadcrumb {
+	margin-bottom: 0; 
+	padding: 0 0.5rem
+}
      

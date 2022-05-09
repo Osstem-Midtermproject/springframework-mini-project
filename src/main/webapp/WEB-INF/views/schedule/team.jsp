@@ -6,18 +6,19 @@
 <main id="main" class="main">
 	<div class="dentist_processing">
 
-		<div class="pagetitle">
-			<h1>Processing</h1>
-
+ 	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>부서</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item">Home</li>
-					<li class="breadcrumb-item">Schedule</li>
-					<li class="breadcrumb-item active">Team</li>
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">스케줄</li>
+					<li class="breadcrumb-item">리스트</li>
+					<li class="breadcrumb-item active">부서</li>
 				</ol>
 			</nav>
-
 		</div>
+	</div>
 		<!-- End Page Title -->
 
 		<section class="section">

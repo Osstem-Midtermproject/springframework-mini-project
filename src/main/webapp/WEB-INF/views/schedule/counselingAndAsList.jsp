@@ -5,16 +5,19 @@
 <main id="main" class="main">
     <div class="dentist_processing">
 
-      <div class="pagetitle">
-        <h1>Counseling & AS Schedule List</h1>
- 
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">Schedule</li>
-            <li class="breadcrumb-item">List</li>
-            <li class="breadcrumb-item active">Counseling & AS</li>
-          </ol>
-        </nav>
+ 	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>상담/AS</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">스케줄</li>
+					<li class="breadcrumb-item">리스트</li>
+					<li class="breadcrumb-item active">상담/AS</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
 
       </div><!-- End Page Title -->
 
@@ -23,7 +26,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Notification List</h5>
+                <h5 class="card-title">새소식</h5>
                 
                 <div class="d-flex justify-content-between">                
                                    
@@ -78,10 +81,10 @@
          <!------------------------------------------------------------------------------------>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Counseling & AS Schedule List</h5>
+                <h5 class="card-title">상담 & AS 스케줄 리스트</h5>
                 
                 <div class="d-flex justify-content-between">                  
-                    <div class="col-sm-2 d-flex align-items-center">
+                    <div class="col-sm-3 d-flex align-items-center">
 					  <input type="date" class="form-control" id="startdate1">
 					  <span style="margin: 0.2rem;">~</span>
 					  <input type="date" class="form-control" id="enddate1">

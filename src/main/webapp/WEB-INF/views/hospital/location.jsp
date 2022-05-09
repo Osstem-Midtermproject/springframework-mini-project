@@ -259,38 +259,23 @@ button:focus {
   </script>
 
 <main id="main" class="main">
-
-	<div class="card">
-		<div class="card-body">
-
-			<h5 class="card-title">병원 목록</h5>
-			<!-- Table with hoverable rows -->
-			<!-- 검색 및 검색 종류 -->
-			<div class="d-flex align-items-center ">
-				<div class="col d-flex justify-content-start">
-					<select class="form-select border-1"
-						style="font-weight: bold; width: 10rem; margin-bottom: 1rem;">
-						<option selected>전체</option>
-						<option value="1">병원</option>
-						<option value="2">전화</option>
-					</select>
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>병원</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">병원</li>
+					<li class="breadcrumb-item active">위치정보</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
 
 
-					<div class="search-bar">
-						<form class="search-form d-flex align-items-center" method="POST"
-							action="#">
-							<input type="text" name="query" placeholder="Search"
-								title="Enter search keyword">
-							<button type="button" class="btn btn-outline-warning ">
-								<i class="bi bi-search"></i>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
 
 			<!-- 이미지별 위치 값 별도 지정 할 것 -->
-			<div class="center-find hide md-inline-block">
+			<div class="center-find hide md-inline-block" style="padding: 3rem 0 2rem 0; margin-bottom: 0.5rem;">
 				<div class="map-wrap">
 					<div class="hover-warp"
 						style="display: flex; justify-content: center;">
@@ -365,7 +350,7 @@ button:focus {
 			</div>
 
 			<div class="card" style="margin-top: 30px;">
-				<div class="card-body">
+				<div class="card-body" style="padding: 2rem;">
 					<!-- Bordered Table -->
 					<table class="table table-bordered">
 						<!-- 키보드 초점을 받을 수 없는 div, span과 같은 요소도 초점을 받을 수 있도록 만들어 줍니다 -->

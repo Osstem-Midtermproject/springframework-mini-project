@@ -3,7 +3,18 @@
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
 
 <main id="main" class="main">
-
+	<div class="d-flex">
+		<div class="pagetitle d-flex align-items-end">
+			<h1>병원</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">홈</li>
+					<li class="breadcrumb-item">병원</li>
+					<li class="breadcrumb-item active">계약</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">계약 기록</h5>
