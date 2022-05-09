@@ -1,8 +1,5 @@
 package com.mycompany.webapp.controller;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -571,7 +568,7 @@ public class ScheduleController {
 			requestDetailsService.updateRequestDetails(dln);
 
 			RequestDetails rd = requestDetailsService.getRD(dln);
-			log.info(rd.getRdCounDate());
+			log.info(rd);
 
 			CounselingSchedule cs = new CounselingSchedule();
 			cs.setCounScheDln(rd.getRdDln());
@@ -580,6 +577,18 @@ public class ScheduleController {
 			cs.setCounScheContent(rd.getRdContent());
 			
 			counselingScheduleService.setSchedule(cs);
+			
+			Progress p = new Progress();
+			p.setPdln(rd.getRdDln());
+			p.setPaddress(rd.getRdAddress());
+			p.setPcategory("5");
+			p.setPcontent("상담 신청");
+			p.setCategory("상담");
+			p.setPimg(null);
+			p.setPdate(rd.getRdCounDate());
+			p.setPenddate(rd.getRdCounDate());
+			
+			progressService.setProgressConsult(p);
 			
 
 		}
