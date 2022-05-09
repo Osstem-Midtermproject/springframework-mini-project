@@ -53,6 +53,9 @@
 .fc-col-header{
 	color:black !important;
 }
+.fc-h-event {
+	 border: 0px !important;
+}
 </style>
 
 <%@ include file="/WEB-INF/views/common/src.jsp"%>

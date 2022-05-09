@@ -785,20 +785,20 @@ img.ui-datepicker-trigger {
         text-align: start;
  }
 #select1 {
-        border-color: #dacdcd;
-        background-color: #9ec9f1;
+        border-color: rgb(161 235 236 / 96%);
+        background-color: rgb(161 235 236 / 96%);
       }
 #select2 {
-        border-color: #dacdcd;
-        background-color: #eca1e9;
+        border-color: rgb(244 203 237);
+        background-color:rgb(244 203 237);
  }
 #select3 {
-        border-color: #dacdcd;
+        border-color: #e4ec73;
         background-color: #e4ec73;
 }
 #select4 {
-        border-color: #dacdcd;
-        background-color: #9ec9f1;
+        border-color: rgb(251 163 69 / 96%);
+        background-color: rgb(251 163 69 / 96%);
   }
       input[id="btncheck1"]:checked + label {
         color: white;

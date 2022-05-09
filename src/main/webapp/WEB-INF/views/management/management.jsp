@@ -60,8 +60,8 @@
 							<td>${board.uphonenumber}</td>
 							<td>${board.uname}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.umembershipdate}"/></td>
-							<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modify_management'">수정</button>
-              					<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/deletemanagement?hdln=${board.hospital.hdln}'">삭제</button></td>
+<%-- 							<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modify_management'">수정</button>
+ --%>              					<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/deletemanagement?hdln=${board.hospital.hdln}'">삭제</button></td>
               					
 						</tr>
 					</c:forEach>

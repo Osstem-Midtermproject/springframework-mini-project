@@ -152,7 +152,7 @@
             slotMaxTime: "20:00", // Day 캘린더에서 종료 시간
             // 해더에 표시할 툴바
             headerToolbar: {
-              left: "prev,next today",
+              left: "prev,next",
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
             },
@@ -524,19 +524,19 @@
      function setcolor(info){
     	  if (info.event.extendedProps.category === "전기") {
               
-              $(info.el).css("background-color", "#eca1e9");
+              $(info.el).css("background-color", "rgb(161 235 236 / 96%)");
             }
-            else if (info.event.extendedProps.category === "벽지") {
+            else if (info.event.extendedProps.category === "설비") {
                 
-                $(info.el).css("background-color", "#9ec9f1");
+                $(info.el).css("background-color", "rgb(244 203 237)");
+              }
+            else if (info.event.extendedProps.category === "도배") {
+                
+                $(info.el).css("background-color", "#e4ec73");
               }
             else if (info.event.extendedProps.category === "가구") {
                 
-                $(info.el).css("background-color", "#e4ec73");
-              }
-            else if (info.event.extendedProps.category === "설비") {
-                
-                $(info.el).css("background-color", "#e4ec73");
+                $(info.el).css("background-color", "rgb(251 163 69 / 96%)");
               }
      }
     

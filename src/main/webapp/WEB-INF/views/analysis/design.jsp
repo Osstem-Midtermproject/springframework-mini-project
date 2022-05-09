@@ -883,7 +883,7 @@ $(function(){
           
           datasets: [
             {
-              label: "월별 매출 추이",
+              label: "디자인 순위",
 
               backgroundColor: [
                 //색상

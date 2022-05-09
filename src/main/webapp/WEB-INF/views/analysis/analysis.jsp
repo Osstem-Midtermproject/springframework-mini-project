@@ -19,7 +19,7 @@
 		<div class="d-flex flex-row">
 			<div class="card col-3">
 				<div class="card-body">
-					<h5 class="card-title">Search sales by Team</h5>
+					<h5 class="card-title">Search sales by Year</h5>
 					<div class="chart-container">
 						<div class="row">
 							<div class="col-md-12">
@@ -64,27 +64,15 @@
 				<table class="table table-dashboard mb-0 table-borderless fs--1 border-200" style="margin-top: 1rem;">
 					<thead class="bg-light">
 						<tr class="text-900">
-							<th>월</th>
-							<th>계약건수</th>
-							<th>매출(천원)</th>
-							<th>순이익(천원)</th>
-							<th>영업이익(천원)</th>
-							<th>순이익률(천원)</th>
-							<th>영업이익률(천원)</th>
+							<th>날짜</th>
+							<th>총 매출(원)</th>
+							<th>추가 매출(원)</th>
+							<th>순이익(원)</th>
+							<th>영업이익(원)</th>					
 						</tr>
 					</thead>
 					<tbody id="contbody">
-						<c:forEach var="contract" items="${contract}">
-							<tr class="border-bottom border-200">
-								<td class="fw-semi-bold">${contract.contDate}</td>
-								<td class="fw-semi-bold">${contract.contDownPayment}</td>
-								<td class="fw-semi-bold">${contract.contAdditionalAmount }</td>
-								<td class="fw-semi-bold">19,000,000</td>
-								<td class="fw-semi-bold">13,100,000</td>
-								<td class="fw-semi-bold">5%</td>
-								<td class="fw-semi-bold">2%</td>
-							</tr>
-						</c:forEach>
+						
 					</tbody>
 				</table>
 				
@@ -192,7 +180,7 @@ $(function ()
 		    });
 		});
 	
-	  const yearLabels = [ "January", "February", "March", "April", "May", "June","July","August","October","September","November","December"];
+	  const yearLabels =["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
 	
       const yearData = {
         labels: yearLabels,
@@ -275,11 +263,11 @@ $(function ()
         	console.log(result);
         	
 	       	var str="";
-	
+	        
 	        $.each(result.salesList,function(index,list){
 	        	
 	        	str += "<tr class='border-bottom border-200'><td class='fw-semi-bold'>" + list.contDate + "</td>"
-				str = str + "<td>"+list.contAdditionalAmount+"</td><td>" + list.contDownPayment + "</td><tr>";
+				str = str + "<td>"+ list.contDownPayment +"</td><td>" + list.contAdditionalAmount + "</td><td>" +  (Number(list.contDownPayment)+Number(list.contAdditionalAmount))/10*7 + "</td><td>" +   (Number(list.contDownPayment)+Number(list.contAdditionalAmount))/10*5+ "</td><tr>"
 	
 			})   
 	
