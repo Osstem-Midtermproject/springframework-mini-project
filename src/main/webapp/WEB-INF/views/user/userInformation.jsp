@@ -77,7 +77,7 @@
 
 			<div class="d-flex flex-column">
 				<div class="col-12">
-					<table class="table">
+					<table class="table m-0">
 						<thead class="thead-light">
 							<th colspan="3" style="font-size: medium;">병원 정보</th>
 						</thead>
@@ -85,7 +85,7 @@
 				</div>
 				<div class="d-flex align-items-center">
 					<div class="col-4 mr-0">
-						<img src="https://cdn-icons-png.flaticon.com/512/1907/1907396.png" width="70%" >
+						<img src="https://cdn-icons-png.flaticon.com/512/1907/1907396.png" width="60%" >
 					</div>
 					<div class="col-8">
 						<table class="table table-hover">
