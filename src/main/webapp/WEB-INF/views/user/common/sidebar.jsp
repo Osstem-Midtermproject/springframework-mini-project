@@ -73,12 +73,6 @@
         <ul class="sidebar-nav mt-3" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse">
-            <i class="bi bi-grid"></i><span>마이페이지</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
             <a class="nav-link collapsed"  data-bs-toggle="collapse" href="${pageContext.request.contextPath}/user/userInformation">
             <i class="bi bi-person-check-fill"></i><span>회원정보</span>
             </a>

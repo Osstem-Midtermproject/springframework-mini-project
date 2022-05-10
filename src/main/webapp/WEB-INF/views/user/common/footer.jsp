@@ -3,7 +3,7 @@
         <div class="container-fluid " style="width: 100%; background-color: white">
             <div class="d-flex justify-content-center align-items-center" style="color: rgba(32, 54, 68, 0.8);">
 	            <div class="d-flex justify-content-center align-items-center mr-4">
-	                <img src="${pageContext.request.contextPath}/resources/images/logo.png" width="150rem">
+	                <img src="${pageContext.request.contextPath}/resources/images/insstemLogo.png" width="150rem">
 	            </div>
 	            <div class="d-flex flex-column justify-content-start align-items-start text-align-start ">
 	            	<div>

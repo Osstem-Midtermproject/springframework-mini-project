@@ -82,6 +82,6 @@
 		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 		where TO_CHAR(coun_sche_startdate,'yyyymmdd') = TO_CHAR(SYSDATE,'yyyymmdd') 
 		and TO_CHAR(coun_sche_startdate,'HH24:MI:SS') > TO_CHAR(SYSDATE,'HH24:MI:SS') and rownum &lt; 5
-		ORDER BY TO_CHAR(coun_sche_startdate,'yyyymmdd HH24:MI:SS') desc 
+		ORDER BY TO_CHAR(coun_sche_startdate,'HH24:MI:SS') 
    </select>
 </mapper>

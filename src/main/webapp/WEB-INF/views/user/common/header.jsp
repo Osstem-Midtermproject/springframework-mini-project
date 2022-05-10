@@ -21,7 +21,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userInfromation.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 <style>
+	* {
+	   font-family: 'Noto Sans KR', sans-serif !important;
+	}
+
 	input[type="checkbox"] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -56,7 +64,8 @@
 	.bg-custom .nav-item:focus .nav-link,
 	.bg-custom .nav-item:hover .nav-link {
     	color: rgb(198, 171, 124);
-}
+	}
+	
 	
 </style>
 </head>
@@ -77,7 +86,7 @@
 	<header id="header" class="fixed-top shadow d-flex align-items-center bg-white" style="background-color: rgb(32, 54, 68);">
 		<div class="container-fluid d-flex align-items-center mx-5">
 			<div class="logo me-auto my-2">
-				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/logo.png" width="110rem"></a>
+				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/insstemLogo.png" width="110rem"></a>
 			</div>
 			<nav id="navbar" class="navbar navbar-expand-sm navbar-white row flex-grow-1 bg-custom">
 				<div class="collapse navbar-collapse vw-80 justify-content-end" id="collapsibleNavbar">
