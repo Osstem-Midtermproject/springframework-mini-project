@@ -28,13 +28,13 @@
 							<c:if test="${themaRank[0].count > 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[0].dtt}</span>
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[0].count}</span>							
+									<span class="badge rounded-pill bg-danger">+${themaRank[0].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[0].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[0].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[0].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[0].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -51,7 +51,7 @@
 							<c:if test="${themaRank[1].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[1].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[1].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[1].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -62,13 +62,13 @@
 							<c:if test="${themaRank[2].count > 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[2].dtt}</span>
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[2].count}</span>							
+									<span class="badge rounded-pill bg-danger">+${themaRank[2].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[2].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[2].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[2].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[2].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -79,13 +79,13 @@
 							<c:if test="${themaRank[3].count > 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[3].dtt}</span>
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[3].count}</span>							
+									<span class="badge rounded-pill bg-danger">+${themaRank[3].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[3].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[3].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[3].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[3].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -96,13 +96,13 @@
 							<c:if test="${themaRank[4].count > 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[4].dtt}</span>
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[4].count}</span>							
+									<span class="badge rounded-pill bg-danger">+${themaRank[4].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[4].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[4].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[4].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[4].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -113,13 +113,13 @@
 							<c:if test="${themaRank[5].count > 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[5].dtt}</span>
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[5].count}</span>							
+									<span class="badge rounded-pill bg-danger">+${themaRank[5].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[5].count < 0}">
 								<div class="text-center">
 									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[5].dtt}</span>
-									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[5].count}</span>							
+									<span class="badge rounded-pill bg-primary">${themaRank[5].count}</span>							
 								</div>
 							</c:if>
 						</div>
@@ -128,17 +128,15 @@
 		</div>
 		
 		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Design Ranking by Thema</h5>
+				<div class="card-body" style="padding: 50px 20px 20px 20px;">
 					<nav style="margin-bottom: 2rem">
 						<div class="nav nav-tabs nav-tabs-bordered justify-content-center" id="nav-tab" role="tablist">
 							<c:forTokens var="dtt" items="Black,Blue,Gray,Pastel,White,Wood" delims=",">
 								<c:if test="${dtt == 'Black'}">
-									<button class="nav-link active" onclick="black()" data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="true" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
+									<button class="nav-link active" onclick="black()" data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="true" style="font-weight: 400; font-size: 1.7rem;">${dtt}</button>
 								</c:if>
 								<c:if test="${dtt != 'Black'}">
-									<button class="nav-link" onclick='${dtt}()'data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="false" style="font-weight: 500; font-size: 2rem;">${dtt}</button>
+									<button class="nav-link" onclick='${dtt}()'data-bs-toggle="tab" data-bs-target="#nav-${dtt}" type="button" role="tab" aria-controls="nav-${dtt}" aria-selected="false" style="font-weight: 400; font-size: 1.7rem;">${dtt}</button>
 								</c:if>
 							</c:forTokens>
 						</div>
@@ -147,12 +145,12 @@
 						<c:forTokens var="dtt" items="Black,Blue,Gray,Pastel,White,Wood" delims=",">
 							<c:if test="${dtt == 'Black'}">
 								<div class="tab-pane fade show active" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsBlack" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsBlack" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -197,12 +195,12 @@
 												</div>
 										    </div>
 										  </div>
-										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="prev">
-										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="prev" style="display: none;">
+										    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: rgba(32, 54, 68);"></span>
 										    <span class="visually-hidden">Previous</span>
 										  </button>
-										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="next">
-										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+										  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptionsBlack" data-bs-slide="next" style="display: none;">
+										    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: rgba(32, 54, 68);"></span>
 										    <span class="visually-hidden">Next</span>
 										  </button>
 										</div>
@@ -213,12 +211,12 @@
 							
 							<c:if test="${dtt == 'Blue'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsBlue" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsBlue" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsBlue" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -280,12 +278,12 @@
 							
 							<c:if test="${dtt == 'Gray'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsGray" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsGray" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsGray" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -347,12 +345,12 @@
 							
 							<c:if test="${dtt == 'Pastel'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsPastel" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsPastel" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsPastel" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -414,12 +412,12 @@
 							
 							<c:if test="${dtt == 'White'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsWhite" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsWhite" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWhite" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -481,12 +479,12 @@
 							
 							<c:if test="${dtt == 'Wood'}">
 								<div class="tab-pane fade" id="nav-${dtt}" role="tabpanel" aria-labelledby="nav-${dtt}-tab">
-									<section class="pt-5 pb-5">
+									<section class="pt-4 d-flex justify-content-center">
 									  <div class="container">
-									  	<div id="carouselExampleCaptionsWood" class="carousel slide" data-bs-ride="carousel">
+									  	<div id="carouselExampleCaptionsWood" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
 										  <div class="carousel-indicators">
-										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: rgba(32, 54, 68);"></button>
+										    <button type="button" data-bs-target="#carouselExampleCaptionsWood" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: rgba(32, 54, 68);"></button>
 										  </div>
 										  <div class="carousel-inner">
 										    <div class="carousel-item active">	   
@@ -563,14 +561,11 @@
 						<hr />
 					</c:forEach> --%>
 
-				</div>
 			</div>
-
 		</div>
 	</div>
 	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Osstem Hospital</h5>
+		<div class="card-body" style="padding: 20px;">
 			<div class="chart-container">
 				<canvas id="myChart3" style="height: 25vh; width: 60vw"></canvas>
 			</div>
