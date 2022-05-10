@@ -225,7 +225,7 @@ button:focus {
 						listTag += "<td>" + List[i].hpn + "</td>";
 						
 						listTag += "<td><button type='button' class='btn btn-outline-primary'";
-						listTag += "onclick=\"location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
+						listTag += "onclick=\"location.href='${pageContext.request.contextPath}/schedule/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
 						
 						listTag += "<td><button type='button' class='btn btn-outline-primary'";
 						listTag += "onclick=\"kakaoMap('"+  List[i].haddress  + "','"  + List[i].hname + "')\">지도</button></td>";
