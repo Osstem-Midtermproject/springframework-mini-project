@@ -28,7 +28,7 @@
 							<!-- 매출액 -->
 							<!-- Sales Card -->
 							<div>
-								<div class="card info-card sales-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
+								<div class="card info-card sales-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/sales'" style="cursor: pointer;">
 									<div class="card-body">
 										<h5 class="card-title">
 											매출 <span>| Today</span>
@@ -50,7 +50,7 @@
 							<!-- 계약건수 -->
 							<!-- Revenue Card -->
 							<div>
-								<div class="card info-card contract-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
+								<div class="card info-card contract-card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/sales'" style="cursor: pointer;">
 									<div class="card-body">
 										<h5 class="card-title">
 											계약건수 <span>| Today</span>
@@ -102,7 +102,7 @@
 				<div class="row">
 					<!-- Reports -->
 					<div class="col-12">
-						<div class="card" OnClick="location.href ='${pageContext.request.contextPath}/analysis/analysis'" style="cursor: pointer;">
+						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">매출&계약건수</h5>
 

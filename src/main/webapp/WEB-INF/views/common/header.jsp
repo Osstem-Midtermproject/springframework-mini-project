@@ -66,7 +66,7 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<i class="bi bi-list toggle-sidebar-btn"></i> <a href="${pageContext.request.contextPath}/user/" class="logo d-flex align-items-center p-2"> <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png">
+			<i class="bi bi-list toggle-sidebar-btn"></i> <a href="${pageContext.request.contextPath}/user/" class="logo d-flex align-items-center p-2"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png">
 			</a>
 
 		</div>
@@ -74,11 +74,11 @@
 
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
-				<li class="nav-item dropdown pe-3">
-				<span  style="color:white; ">${user.uname}님</span>
+				<li class="nav-item dropdown pe-3 d-flex align-items-center" style="width: 10%;">
+				<span style="color:white;">${user.uname}김혜현님</span>
 				<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
 								
-								<i class="bi bi-bell-fill bi-person-circle" style="font-size: 3rem;"></i> 
+								<i class="bi bi-bell-fill bi-person-circle"></i> 
 								
 								<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
 							</a>

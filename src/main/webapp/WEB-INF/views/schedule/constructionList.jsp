@@ -31,25 +31,25 @@
 					<div class="d-flex " style="margin-bottom: 1rem;">
 						<span class="" style="padding-right: 3rem; font-weight: 600;">시공 카테고리</span>
 			
-						<div class="" style="padding-right: 2rem;">
+						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox1" name="checkBox"
 								value="전기" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox1">전기</label>
+								class="" for="categoryCheckbox1" style="margin-left: 0.2rem;">전기</label>
 						</div>
-						<div class="" style="padding-right: 2rem;">
+						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox2" name="checkBox"
 								value="설비" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox2">설비</label>
+								class="" for="categoryCheckbox2" style="margin-left: 0.2rem;">설비</label>
 						</div>
-						<div class="" style="padding-right: 2rem;">
+						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox3" name="checkBox"
 								value="도배" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox3">도배</label>
+								class="" for="categoryCheckbox3" style="margin-left: 0.2rem;">도배</label>
 						</div>
-						<div class="" style="padding-right: 2rem;">
+						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox4" name="checkBox"
 								value="가구" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox4">가구</label>
+								class="" for="categoryCheckbox4" style="margin-left: 0.2rem;">가구</label>
 						</div>
 					</div>
                  
@@ -157,11 +157,11 @@
 	        	var edate = list.consScheEnddate.substr(0, 10);
 	        	
 	        	if(dateString>edate){
-	        		str = str + "<tr class='text-muted' onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
+	        		str = str + "<tr style='cursor:pointer;' class='text-muted' onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
 		        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
 		        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
 	        	}else{
-					str = str + "<tr onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
+					str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.consScheDln +"'><td>"+list.consNo+
 		        	"</td><td>"+list.consScheHospitalName+"</td><td>"+list.consScheAddress+"</td><td>"+sdate+
 		        	"</td><td>"+edate+"</td><td>"+list.constructionCategory.consCateType+"</td><td>"+list.team.tcategory+"</td><tr>";
 	        	}
@@ -171,27 +171,27 @@
 	        $("#constructionListTable").html(str);
 	                    	  
 	        var str2 ="<ul class='pagination justify-content-center'>";
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(1)'><span>&laquo;</span></a></li>";
+	        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectList(1)'><span>&laquo;</span></a></li>";
 	        
 		  	if(result.groupNo > 1){
 		  		var no = result.startPageNo-1;
-		  		str2 += "<li class='page-item'><a class='page-link' onclick='selectList("+ no +")'><span>&lsaquo;</span></a></li>";
+		  		str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectList("+ no +")'><span>&lsaquo;</span></a></li>";
 		  	}
 	        
 	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
 	            if(i != result.pageNo){
-	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectList(" +i + ")'>" +i +"</a></li>";
 	            }else{
-	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link text-primary' onclick='selectList(" +i + ")'>" +i +"</a></li>";
 	            }
 	        }
 	        
 	    	if(result.groupNo < result.totalGroupNo){
 	      	  var num = result.endPageNo +1;
-	      	  str2 += "<li class='page-item'><a class='page-link' onclick='selectList(" + num + ")'><span>&rsaquo;</span></a></li>";
+	      	  str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectList(" + num + ")'><span>&rsaquo;</span></a></li>";
 	        }
 	        
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
 	        str2 = str2 + "</ul>";
 	        
 			$("#constructionListTablePager").html(str2);

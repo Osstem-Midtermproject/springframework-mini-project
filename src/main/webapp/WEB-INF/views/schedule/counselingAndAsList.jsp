@@ -233,7 +233,7 @@
 	        		content="<td>"+ list.rdContent + "</td>";
 	        	}
 	        	
-				str = str + "<tr onClick = location.href='processing/detail?hdln="+list.rdDln +"'><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+				str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
 	        	list.rdCounDate.substr(0,10) + time1 +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
 	
 			})   
@@ -241,27 +241,27 @@
 	        $("#notificationListTable").html(str);
 	                    	  
 	        var str2 ="<ul class='pagination justify-content-center'>";
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList(1)'><span>&laquo;</span></a></li>"; 
+	        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='notificationList(1)'><span>&laquo;</span></a></li>"; 
 	         
     	  	if(result.groupNo > 1){
     	  		var no = result.startPageNo-1;
-    	  		str2 += "<li class='page-item'><a class='page-link' onclick='notificationList("+ no +")'><span>&lsaquo;</span></a></li>";
+    	  		str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='notificationList("+ no +")'><span>&lsaquo;</span></a></li>";
     	  	}
 	        
 	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
 	            if(i != result.pageNo){
-	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
 	            }else{
-	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link text-primary' onclick='notificationList(" +i + ")'>" +i +"</a></li>";
 	            }
 	        }
 
 	    	if(result.groupNo < result.totalGroupNo){
 	        	var num = result.endPageNo +1;
-	        	str2 += "<li class='page-item'><a class='page-link' onclick='notificationList(" + num + ")'><span>&rsaquo;</span></a></li>";
+	        	str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='notificationList(" + num + ")'><span>&rsaquo;</span></a></li>";
 			}
 	        
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='notificationList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='notificationList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
 	        str2 = str2 + "</ul>";
 	        
 			$("#notificationListPager").html(str2);
@@ -323,7 +323,7 @@
         		content1="<td>"+ list.counScheContent + "</td>";
         	}
 			
-			str = str + "<tr onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
+			str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
         	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
         	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
 
@@ -332,23 +332,23 @@
         $("#scheduleListTable").html(str);
                     	  
         var str2 ="<ul class='pagination justify-content-center'>";
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
+        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectScheduleList(1)'><span>&laquo;</span></a></li>";
 	  	if(result.groupNo > 1){
 	  		var no = result.startPageNo-1;
-	  		str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
+	  		str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectScheduleList("+ no +")'><span>&lsaquo;</span></a></li>";
 	  	} 
         for(var i=result.startPageNo; i<=result.endPageNo; i++){
             if(i != result.pageNo){
-                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
+                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }else{
-                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
+                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link text-primary' onclick='selectScheduleList(" +i + ")'>" +i +"</a></li>";
             }
         }
     	if(result.groupNo < result.totalGroupNo){
       	  var num = result.endPageNo +1;
-      	  str2 += "<li class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
+      	  str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectScheduleList(" + num + ")'><span>&rsaquo;</span></a></li>";
         }
-        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='selectScheduleList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
         str2 = str2 + "</ul>";
         
 		$("#scheduleListPager").html(str2);
