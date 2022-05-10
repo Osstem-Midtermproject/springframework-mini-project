@@ -75,7 +75,6 @@
 			<result column="rd_coun_date" property="rdCounDate" />
 			<result column="rd_space" property="rdSpace" />
 			<result column="rd_refe_img" property="rdRefeImg" />
-			<result column="rd_request_cons_period" property="rdRequestConsPeriod" />
 			<result column="rd_content" property="rdContent" />
 		</association>
 	</resultMap>
