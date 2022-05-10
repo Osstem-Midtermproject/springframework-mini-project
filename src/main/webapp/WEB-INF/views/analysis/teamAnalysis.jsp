@@ -16,96 +16,89 @@
 			</nav>
 		</div>
 	</div>
-      <div class="d-flex flex-row">
-         <div class="card col-3">
-            <div class="card-body">
-               <h5 class="card-title">Search sales by Team</h5>
-               <div class="chart-container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <p style="font-weight: 600; font-size: large; text-align: center; margin-bottom: 0.3rem;">Year</p>
-                        <select class="form-select border-1" style="font-weight: 500; margin-bottom: 1.5rem;">
-                           <option value="1" selected>2022</option>
-                           <option value="2">2021</option>
-                           <option value="3">2020</option>
-                           <option value="4">2019</option>
-                        </select>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <p style="font-weight: 600; font-size: large; border-bottom: 1px solid lightgray; text-align: center; margin-bottom: 0.3rem;">Quarter</p>
-                        <button id="btnall" class="btn btn-sm btn-outline-secondary" onclick="show1()">전체</button>
-                        <button id="btn1" class="btn btn-sm btn-outline-secondary" onclick="show1()">1분기</button>
-                        <button id="btn2" class="btn btn-sm btn-outline-secondary" onclick="show2()">2분기</button>
-                        <button id="btn3" class="btn btn-sm btn-outline-secondary" onclick="show3()">3분기</button>
-                        <button id="btn4" class="btn btn-sm btn-outline-secondary" onclick="show4()">4분기</button>
-                     </div>
+	<div class="d-flex">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body" style="padding-top: 20px;">
+					<div class="chart-container d-flex align-items-center" style="padding: 20px 0 15px 0;">
+						<div class="col-3">
+							<div class="d-flex align-items-center">
+								<p style="font-weight: 600; font-size: large; text-align: center; margin-bottom: 0;">Year</p>
+								<select class="form-select border-1 mx-2" style="font-weight: 500;">									
+									<option value="1" selected>2022</option>
+									<option value="2">2021</option>
+									<option value="3">2020</option>
+									<option value="4">2019</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-3">
+							<div class="d-flex align-items-center justify-content-around ">
+								<p style="font-weight: 600; font-size: large; text-align: center; margin-bottom: 0rem;">Quarter</p>
+								<button id="btnall" class="btn btn-sm btn-outline-secondary">전체</button>
+								<button id="btn1" class="btn btn-sm btn-outline-secondary">1분기</button>
+								<button id="btn2" class="btn btn-sm btn-outline-secondary">2분기</button>
+								<button id="btn3" class="btn btn-sm btn-outline-secondary">3분기</button>
+								<button id="btn4" class="btn btn-sm btn-outline-secondary">4분기</button>
+							</div>
+                		</div>
+               		</div>
+               		
+               		<div class="chart-container" style="padding: 20px 0 15px 0; margin-bottom: 0.5rem;">
+							<canvas id="myChart3" style="height: 25vh; width: 45vw"></canvas>
+					</div>
+	            </div>
+          	</div>
+       	</div>
+   	</div>
 
-                  </div>
-               </div>
-            </div>
-         </div>
+    <section class="section">
+       <div class="row">
+          <div class="col-lg-3">
+             <div class="card">
+                <div class="card-body">
+                   <h5 class="card-title">전기</h5>
+                   <div class="chart-container">
+                      <canvas id="electricityDoughnutChart1" style="height: 25vh; width: 50vw"></canvas>
+                   </div>
+                </div>
+             </div>
+          </div>
 
-         <div class="card">
-            <div class="card-body">
-               <h5 class="card-title">Osstem Hospital</h5>
-               <div class="chart-container">
-                  <canvas id="myChart3" style="height: 25vh; width: 45vw"></canvas>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- End Page Title -->
+          <div class="col-lg-3">
+             <div class="card">
+                <div class="card-body">
+                   <h5 class="card-title">설비</h5>
+                   <div class="chart-container">
+                      <canvas id="electricityDoughnutChart2" style="height: 25vh; width: 50vw"></canvas>
+                   </div>
+                </div>
+             </div>
+          </div>
 
-      <section class="section">
-         <div class="row">
-            <div class="col-lg-3">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Electricity Team</h5>
-                     <div class="chart-container">
-                        <canvas id="electricityDoughnutChart1" style="height: 25vh; width: 50vw"></canvas>
-                     </div>
-                  </div>
-               </div>
-            </div>
+          <div class="col-lg-3">
+             <div class="card">
+                <div class="card-body">
+                   <h5 class="card-title">도배</h5>
+                   <div class="chart-container">
+                      <canvas id="electricityDoughnutChart3" style="height: 25vh; width: 50vw"></canvas>
+                   </div>
+                </div>
+             </div>
+          </div>
 
-            <div class="col-lg-3">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Equipment Team</h5>
-                     <div class="chart-container">
-                        <canvas id="electricityDoughnutChart2" style="height: 25vh; width: 50vw"></canvas>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-lg-3">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Papering Team</h5>
-                     <div class="chart-container">
-                        <canvas id="electricityDoughnutChart3" style="height: 25vh; width: 50vw"></canvas>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-lg-3">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Furniture Team</h5>
-                     <div class="chart-container">
-                        <canvas id="electricityDoughnutChart4" style="height: 25vh; width: 50vw"></canvas>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-   </div>
+          <div class="col-lg-3">
+             <div class="card">
+                <div class="card-body">
+                   <h5 class="card-title">가구</h5>
+                   <div class="chart-container">
+                      <canvas id="electricityDoughnutChart4" style="height: 25vh; width: 50vw"></canvas>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
 </main>
 <!-- End #main -->
 <script>

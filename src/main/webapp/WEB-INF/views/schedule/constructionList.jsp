@@ -23,33 +23,31 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">시공 스케줄</h5>
-                
+              <div class="card-body" style="padding-top: 40px;">
                 <div class="d-flex justify-content-between">                  
 					<!-- 카테고리 선택하는 체크박스 -->
-					<div class="d-flex " style="margin-bottom: 1rem;">
-						<span class="" style="padding-right: 3rem; font-weight: 600;">시공 카테고리</span>
+					<div class="d-flex align-items-center" style="margin-bottom: 1rem;">
+						<div class="d-flex"><h5 class="" style="padding-right: 3rem; font-weight: 500; margin-bottom: 0;">시공 카테고리</h5></div>
 			
 						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox1" name="checkBox"
-								value="전기" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox1" style="margin-left: 0.2rem;">전기</label>
+								value="전기" onclick="selectList()" checked="checked"> <h6
+								class="" for="categoryCheckbox1" style="margin-left: 0.2rem; margin-bottom: 0;">전기</h6>
 						</div>
 						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox2" name="checkBox"
-								value="설비" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox2" style="margin-left: 0.2rem;">설비</label>
+								value="설비" onclick="selectList()" checked="checked"> <h6
+								class="" for="categoryCheckbox2" style="margin-left: 0.2rem; margin-bottom: 0;">설비</h6>
 						</div>
-						<div class="d-flex align-items-center" style="padding-right: 2rem;">
+						<div class="d-flex align-items-center" style="padding-right: 2rem; margin-bottom: 0;">
 							<input type="checkbox" id="categoryCheckbox3" name="checkBox"
-								value="도배" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox3" style="margin-left: 0.2rem;">도배</label>
+								value="도배" onclick="selectList()" checked="checked"> <h6
+								class="" for="categoryCheckbox3" style="margin-left: 0.2rem; margin-bottom: 0;">도배</h6>
 						</div>
 						<div class="d-flex align-items-center" style="padding-right: 2rem;">
 							<input type="checkbox" id="categoryCheckbox4" name="checkBox"
-								value="가구" onclick="selectList()" checked="checked"> <label
-								class="" for="categoryCheckbox4" style="margin-left: 0.2rem;">가구</label>
+								value="가구" onclick="selectList()" checked="checked"> <h6
+								class="" for="categoryCheckbox4" style="margin-left: 0.2rem; margin-bottom: 0;">가구</h6>
 						</div>
 					</div>
                  
@@ -95,6 +93,7 @@
                 
               </div>
             </div>
+           </div>
         </div>
       </section>
     </div>
