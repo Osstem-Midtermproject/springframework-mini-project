@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.CounselingScheduleDao">
+	
+	<insert id="insertCounselingSchedule" parameterType="counselingSchedule" >
+		 	<selectKey keyProperty="counScheId" resultType="int" order="BEFORE">
+	            select seq_counselingschedule.nextval from dual
+	   		</selectKey>
+			 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI:SS'),#{counScheDln},#{counScheAddress},#{counScheContent})
+	</insert>
 
-<insert id="insertCounselingSchedule" parameterType="counselingSchedule" >
-	 	<selectKey keyProperty="counScheId" resultType="int" order="BEFORE">
-            select seq_counselingschedule.nextval from dual
-   		</selectKey>
-		 insert into counselingschedule values(#{counScheId},to_date(#{counScheStartdate},'yyyy-mm-dd HH24:MI:SS'),#{counScheDln},#{counScheAddress},#{counScheContent})
-</insert>
-
-<resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
+	<!-- schedule/counselingAndAsList : 상담 스케줄 리스트 페이저 -->
+	<resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
 			<result column="rnum" property="counNo"/>
 			<result column="coun_sche_startdate" property="counScheStartdate"/>
 			<result column="coun_sche_address"  property="counScheAddress"/>
@@ -18,7 +19,39 @@
 					<result column="hname" property="hname"/>
 					<result column="hdln" property="hdln"/>	
 			</association>
-
+	</resultMap>
+	<select id="selectCounselingScheduleList" parameterType="pager"  resultMap="selectCounselingScheduleResultMap">
+      select rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln
+          from (
+              select ROWNUM as rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln 
+              from (
+			      select hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln  
+				  from counselingschedule INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
+				  where hname like '%'|| #{searchBar} ||'%'
+				  and TO_CHAR(coun_sche_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
+				  order by to_char(coun_sche_startdate,'yyyymmdd HH24:MI:SS') desc
+          		)
+          where rownum &lt;= #{endRowNo}
+          )
+      where rnum &gt;= #{startRowNo}   
+   </select>  
+   <select id="selectCounselingScheduleCount" resultType="int" parameterType="pager">
+		select count(*) from counselingschedule 
+		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
+		where hname like '%'|| #{searchBar} ||'%' 
+		and TO_CHAR(coun_sche_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
+   </select>    
+	
+<!-- 	
+	<resultMap id="selectCounselingScheduleResultMap"  type="counselingSchedule">
+			<result column="rnum" property="counNo"/>
+			<result column="coun_sche_startdate" property="counScheStartdate"/>
+			<result column="coun_sche_address"  property="counScheAddress"/>
+			<result column="coun_sche_content"  property="counScheContent"/>
+			<association property="hospital" javaType="hospital">	
+					<result column="hname" property="hname"/>
+					<result column="hdln" property="hdln"/>	
+			</association>
 	</resultMap>
 	<select id="selectCounselingScheduleList" parameterType="pager"  resultMap="selectCounselingScheduleResultMap">
       select rnum, hname, coun_sche_address, coun_sche_content, coun_sche_startdate, hdln
@@ -35,15 +68,17 @@
           where rownum &lt;= #{endRowNo}
           )
       where rnum &gt;= #{startRowNo}   
-   </select>
-   
+   </select>  
    <select id="selectCounselingScheduleCount" resultType="int" parameterType="pager">
 		select count(*) from counselingschedule 
 		INNER JOIN hospital on coun_sche_dln = hdln and coun_sche_address = haddress
 		where hname like '%'|| #{searchBar} ||'%' 
 		and TO_CHAR(coun_sche_startdate,'yyyy-mm-dd') between #{sdate} and #{edate}
 		and TO_CHAR(coun_sche_startdate,'yyyy-mm-dd HH24:MI:SS') > TO_CHAR(SYSDATE,'yyyy-mm-dd HH24:MI:SS')
-   </select>
+   </select>    
+-->
+   
+   
    <resultMap id="selectcounAll"  type="counselingSchedule">
    			<result column="coun_sche_id" property="counScheId"/>
 			<result column="coun_sche_startdate" property="counScheStartdate"/>

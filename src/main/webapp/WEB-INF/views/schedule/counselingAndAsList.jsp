@@ -220,9 +220,9 @@
 	
 	        $.each(result.notificationList,function(index,list){
 	        	
-	        	console.log(list);
-				var t = list.rdCounDate.substr(10,13);
-				var time1 = t.substr(0,3) + "시"
+	        	var d = moment(new Date()).format("YYYY-MM-DD HH:mm");
+	        	var sdate = moment(list.rdCounDate).format("YYYY-MM-DD HH:mm");
+	        	
 	        	var content = list.rdContent;
 	        	
 	        	if(list.rdContent.length > 60){
@@ -233,8 +233,14 @@
 	        		content="<td>"+ list.rdContent + "</td>";
 	        	}
 	        	
-				str = str + "<tr><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
-	        	list.rdCounDate.substr(0,10) + time1 +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
+	        	if(sdate>d){
+					str = str + "<tr><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+					sdate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
+	        	}else{
+					str = str + "<tr class='text-muted'><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+					sdate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
+	        	}
+
 			})   
 	
 	        $("#notificationListTable").html(str);
@@ -307,10 +313,12 @@
        	var str="";
 
         $.each(result.counselingScheduleList,function(index,list){
-
-			var date1 = list.counScheStartdate.substr(0, 10);
-			var t = list.counScheStartdate.substr(10,13);
-			var time1 = t.substr(0,3) + "시"
+        	
+        	var d = moment(new Date()).format("YYYY-MM-DD HH:mm");
+        	var sdate = moment(list.counScheStartdate).format("YYYY-MM-DD HH:mm");
+        	
+			var date1 = moment(list.counScheStartdate).format("YYYY-MM-DD");
+			var time1 = moment(list.counScheStartdate).format("HH:mm");
 			
         	var content1 = list.counScheContent;
 
@@ -321,11 +329,18 @@
         	}else{
         		content1="<td>"+ list.counScheContent + "</td>";
         	}
-			
-			str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
-        	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
-        	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
-
+        	
+        	if(sdate>d){
+            	console.log(startdate + " " + d);
+    			str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
+            	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
+            	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
+        	}else{
+    			str = str + "<tr class='text-muted' style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
+            	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
+            	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
+        	}
+        	
 		})   
 
         $("#scheduleListTable").html(str);
@@ -379,13 +394,22 @@
 
         $.each(result.asScheduleList,function(index,list){
         	
-			var date = list.asStartDate.substr(0, 10);	
-			var t = list.asStartDate.substr(10,13);
-			var time = t.substr(0,3) + "시"
+        	var d = moment(new Date()).format("YYYY-MM-DD HH:mm");
+        	var sdate = moment(list.asStartDate).format("YYYY-MM-DD HH:mm");
+        	
+			var date = moment(list.counScheStartdate).format("YYYY-MM-DD");
+			var time = moment(list.counScheStartdate).format("HH:mm");
 			
-			str = str + "<tr><td>"+list.asNo+"</td><td>"+"AS"+
-        	"</td><td>"+list.hospital.hname+"</td><td>"+ list.asAddress +
-        	"</td><td>"+list.asContent+"</td><td>"+date+"</td><td>"+time+"</td><tr>";
+			//AS 시작일이 지났다면 글씨를 연하게 보여줌 
+			if(sdate>d){
+				str = str + "<tr><td>"+list.asNo+"</td><td>"+"AS"+
+	        	"</td><td>"+list.hospital.hname+"</td><td>"+ list.asAddress +
+	        	"</td><td>"+list.asContent+"</td><td>"+date+"</td><td>"+time+"</td><tr>";
+			}else{
+				str = str + "<tr class='text-muted'><td>"+list.asNo+"</td><td>"+"AS"+
+	        	"</td><td>"+list.hospital.hname+"</td><td>"+ list.asAddress +
+	        	"</td><td>"+list.asContent+"</td><td>"+date+"</td><td>"+time+"</td><tr>";
+			}
 
 		})   
 
