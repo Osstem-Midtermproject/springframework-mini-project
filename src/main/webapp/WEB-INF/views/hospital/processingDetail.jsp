@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
 
-<main id="main" class="main">
+<main id="main" class="main processingdetail">
 	<div class="pagetitle">
 		<h1>시공</h1>
 
@@ -147,34 +147,37 @@
 											</td>
 										</tr>
 									</tbody>
-									
-									<div id="dialog">
-										<div id="form-div">
-											<form>
-												<div class="form-group mt-2 mb-4">
-													<label for="content">추가요청</label> <input type="text"
-														class="form-control" id="additionalContent" style="height: 140px" />
-												</div>
-											</form>
-										</div>
-									</div>
-									
-									<div id="dialogUpdateForm">
-										<div id="form-div">
-											<form>
-												<div class="form-group mt-2 mb-4">
-													<label for="content">추가요청</label> <input type="text"
-														class="form-control" id="additionalContentUpdate" style="height: 140px" />
-												</div>
-											</form>
-										</div>
-									</div>
-									
 								</table>
-								<button id="insertButton">추가</button>
+								
+								<div id="dialog">
+									<div id="form-div">
+										<form>
+											<div class="form-group mt-2 mb-4">
+												<label for="content" style="font-weight: 500;">추가요청</label>
+												<textarea class="form-control" id="additionalContent" style="height: 140px"></textarea>
+											</div>
+										</form>
+									</div>
+								</div>
+								
+								<div id="dialogUpdateForm">
+									<div id="form-div">
+										<form>
+											<div class="form-group mt-2 mb-4">
+												<label for="content">추가요청</label> <input type="text"
+													class="form-control" id="additionalContentUpdate" style="height: 140px" />
+											</div>
+										</form>
+									</div>
+								</div>
+								
+								<button id="insertButton" class="arContentInsertBtn">추가</button>
 							</div>
 							<div class="tab-pane fade" id="bordered-past">
+								<!-- 버전1 -->
 								<div class="progressList col-8" style="margin: 0 auto">
+								<!-- 버전2 -->
+								<!-- <div class="progressList col-12"> -->
 									<div id="progressImgWrapper">
 	               					</div>
 									<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
@@ -189,7 +192,7 @@
 										<form>
 											<div class="form-group mt-2 mb-4">
 												<div>
-													<select class="form-select border-1" id="pimgCategory" style="font-weight: 100; margin-bottom: 1.5rem;">
+													<select class="form-select border-1" id="pimgCategory" style="font-weight: 400; margin-bottom: 1.5rem;">
 														<option selected>시공종류</option>
 														<option value="1">전기</option>
 														<option value="2">설비</option>
@@ -199,9 +202,9 @@
 												</div>
 											
 												<label for="content">내용</label>
-												<input type="text" class="form-control" id="pimgContent" style="height: 140px" />
+												<textarea class="form-control" id="pimgContent" style="height: 140px"></textarea>
 												<div class="form-group">
-												    <label for="pimgattach">Example file input</label>
+												    <div><label for="pimgattach">Example file input</label></div>
 												    <input type="file" class="form-control-file" id="pimgAttach" name="pimgattach" multiple>
 											  	</div>
 											</div>
@@ -269,7 +272,39 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
+<style>
+.arContentUpdateBtn, .arContentDeleteBtn {
+	font-size: 0.9rem;
+	padding: 0;
+	margin-right: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.arContentUpdateBtn:hover, .arContentDeleteBtn:hover {
+	color: #fff;
+	background-color: rgb(43 71 90 / 86%);
+}
+.arContentUpdateBtn:focus, .arContentDeleteBtn:foucs{
+	color: black;
+	background-color: none;
+	outline: none;
+	box-shadow: none;
+}
+.arContentUpdateBtn:active, .arContentDeleteBtn:active {
+	color: #fff;
+	box-shadow: none;
+}
+.arContentInsertBtn, #imgInsertButton {
+	float: right;
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: 500;
+	background-color: #9ec9f1;
+	/* background-color: rgb(43 71 90 / 86%); */;
+	border: none;
+	border-radius: 0.25rem;
+}
 
+</style>
 
 <script>
 	  //입력 form
@@ -278,6 +313,7 @@
 			  autoOpen:false,
 			  modal:true,
 			  resizable: false,
+			  width: "500",
 			  
 			  buttons: {
 				  "확인": function() {
@@ -300,6 +336,7 @@
 			  autoOpen:false,
 			  modal:true,
 			  resizable: false,
+			  width: "500",
 			  
 			  buttons: {
 				  "수정": function() {
@@ -339,15 +376,15 @@
 	    	    	html += ">";
 	    	    	html += data[i].arContent;
 	    	    	html += "</div>";
-	    	    	html += "<span class='px-2' style='color: #7a7b7c; font-size: 0.9rem';>";
+	    	    	html += "<span class='mx-1' style='color: #7a7b7c; font-size: 0.9rem';>";
 	    	    	html += data[i].arDate;
 	    	    	html += "</span>";
-	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn' data-del=";
-	    	    	html += data[i].arId;
-	    	    	html += "> 삭제 </a>";
-	    	    	html += "<a href='javascript:;' class='arContentUpdateBtn' data-code=";
+	    	    	html += "<a href='javascript:;' class='arContentUpdateBtn btn' data-code=";
  	    	    	html += data[i].arId;
  	    	    	html += ">수정</a>";
+	    	    	html += "<a href='javascript:;' class='arContentDeleteBtn btn' data-del=";
+	    	    	html += data[i].arId;
+	    	    	html += ">삭제</a>";
  	    	    	html += "<br>";
 	    		} 
 	    	} else {
@@ -486,6 +523,7 @@
 			  autoOpen:false,
 			  modal:true,
 			  resizable: false,
+			  width: "500",
 			  
 			  buttons: {
 				  "확인": function() {
@@ -620,27 +658,56 @@
 				}
 			}
 			
-			var imgTag = "<div id='imgLayout' class='d-flex flex-column'>";
+			var imgTag = "<div id='imgLayout' class='d-flex flex-column' style='margin-bottom: 2rem;'>";
+			imgTag += "<div style='color: #7a7b7c; font-size: 0.9rem; float:right;'>등록일: " + pimgRegistrationDate + " ";
+			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' style='color: #7a7b7c;' data-del=";
+			imgTag += pimgId;
+			imgTag += "></a>";
+			imgTag += "<span style='float:right'><a href='fileList?pimgId=";
+			imgTag += pimgId; 
+			imgTag += "' class='download bi bi-download'> 다운로드</a></span>";
+			imgTag += "</div>";
 			imgTag += "<div id='progressImg' style='height: 400px; margin-bottom: 1rem;' class='d-flex align-items-end'>";
 			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
 			imgTag += pimgId;
 			imgTag += "'/>";
-			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' data-del=";
-			imgTag += pimgId;
-			imgTag += "></a></div>";
-			imgTag += "<div>시공 : " + pimgCategory + "</div>";
+			imgTag += "</div>";
+			imgTag += "<div>시공일: " + pimgDate + "</div>";
+			imgTag += "<div>사진명: " + pimgOname + "</div>";
+			imgTag += "<div>시공종류: " + pimgCategory + "</div>";
 			
 			if (pimgContent != null) {
 				imgTag += "<div>내용 : " + pimgContent + "</div>";
 			}
-			
-			imgTag += "<div>카테고리 : " + pimgDate + "</div>";
-			imgTag += "<div>사진명 : " + pimgOname + "</div>";
-			imgTag += "<div>등록일 :" + pimgRegistrationDate + "</div>";
 			imgTag += "</div>";
+			
+			
+			
+			/* var imgTag = "<div id='imgLayout' class='d-flex align-items-center my-3'>";
+			imgTag += "<div id='progressImg' style='height: 200px; margin-bottom: 1rem;' class='col-4 d-flex flex-column align-items-start'>";
+			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
+			imgTag += pimgId;
+			imgTag += "'/>";
 			imgTag += "<span><a href='fileList?pimgId=";
 			imgTag += pimgId; 
-			imgTag += "' class='download btn btn-info btn-sm ml-2'>다운로드</a></span>";
+			imgTag += "' class='download bi bi-download'> 다운로드</a></span>";
+			imgTag += "</div>";
+			imgTag += "<div class='col-8' style='padding-left: 1rem;'>";
+			imgTag += "<div>시공일: " + pimgDate + "</div>";
+			imgTag += "<div>사진명: " + pimgOname + "</div>";
+			imgTag += "<div>시공종류: " + pimgCategory + "</div>";
+			
+			if (pimgContent != null) {
+				imgTag += "<div>내용: " + pimgContent + "</div>";
+			}
+			
+			imgTag += "<div style='color: #7a7b7c; font-size: 0.9rem; float:right;'>등록일: " + pimgRegistrationDate + " ";
+			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' style='color: #7a7b7c;' data-del=";
+			imgTag += pimgId;
+			imgTag += "></a>";
+			imgTag += "</div>";
+			imgTag += "</div>";
+			imgTag += "</div>"; */
 		
 			$("#progressImgWrapper").append(imgTag);
 		});

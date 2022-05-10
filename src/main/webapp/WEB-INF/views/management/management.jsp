@@ -19,8 +19,8 @@
 
 	<div class="card" style="padding: 20px 0 15px 0; margin-bottom: 0.5rem;">
 		<div class="card-body" style="padding-top: 20px;">
-			<table class="table table-hover">
-				<thead>
+			<table class="table datatable table-borderless">
+				<thead  class="bg-light">
 					<tr>
 						<th scope="col">아이디</th>
 						<th scope="col">병원 이름</th>
@@ -74,100 +74,102 @@
 
 
 	<script>
-              let totalData=66;      //총 데이터 수
-              let dataPerPage=10;   //한 페이지에 나타낼 수
-              let pageCount=5;     //페이징에 나타낼 페이지 수
-              let globalCurrentPage=1;    //현재 페이지       
-               
-              $(document).ready(function () {
-                console.log("ready");
-                /*
-                $.ajax({
-                  method: "GET",
-                  url: "http://url/data?" + data,
-                  dataType: "json",
-                  success : function(d){
-                    totalData=d.data.length;
-                  }
-                });
-                */
+     let totalData=66;      //총 데이터 수
+     let dataPerPage=10;   //한 페이지에 나타낼 수
+     let pageCount=5;     //페이징에 나타낼 페이지 수
+     let globalCurrentPage=1;    //현재 페이지       
+      
+     $(document).ready(function () {
+       console.log("ready");
+       /*
+       $.ajax({
+         method: "GET",
+         url: "http://url/data?" + data,
+         dataType: "json",
+         success : function(d){
+           totalData=d.data.length;
+         }
+       });
+       */
 
-                //글 목록 표시 호출 (테이블 생성)
-                //displayData(1, dataPerPage);
+       //글 목록 표시 호출 (테이블 생성)
+       //displayData(1, dataPerPage);
 
-                //페이징 표시 호출
-                paging(totalData, dataPerPage, pageCount, 1);
-              });
+       //페이징 표시 호출
+       paging(totalData, dataPerPage, pageCount, 1);
+     });
 
-              function paging(totalData, dataPerPage, pageCount, currentPage){
-                console.log("페이징");
-                totalPage = Math.ceil(totalData/dataPerPage); //총 페이지 수
-                console.log(totalPage);
+     function paging(totalData, dataPerPage, pageCount, currentPage){
+       console.log("페이징");
+       totalPage = Math.ceil(totalData/dataPerPage); //총 페이지 수
+       console.log(totalPage);
 
-                if(totalPage<pageCount){
-                  pageCount=totalPage;
-                }
+       if(totalPage<pageCount){
+         pageCount=totalPage;
+       }
 
-                let pageGroup = Math.ceil(currentPage/pageCount);  //페이지 그룹
-                let last = pageGroup*pageCount;  //화면에 보여질 마지막 페이지 번호
-                
-                if(last>totalPage) {
-                  last=totalPage;
-                }
-                
-                let first = last - (pageCount -1);  //화면에 보여질 첫번째 페이지 번호
-                let next = last + 1;
-                let prev = first - 1;
-                
-                let pageHtml = "";
-                
-                if(prev > 0){
-                  pageHtml += '<li><a href="#" id="prev">이전</a></li>';
-                }else{
-                  pageHtml += '<li><a href="#" id="prev" class="disabled">이전</a></li>';
-                }
-                
-                //페이징 번호 표시
-                for(var i = first; i<=last; i++){
-                  if(currentPage ==i ){
-                    pageHtml += "<li class='on'><a href='#' id='" + i +"'>" + i + "</a></li>";
-                  }else{
-                    pageHtml += "<li><a href='#' id='" + i +"'>" + i + "</a></li>";
-                  }
-                }
+       let pageGroup = Math.ceil(currentPage/pageCount);  //페이지 그룹
+       let last = pageGroup*pageCount;  //화면에 보여질 마지막 페이지 번호
+       
+       if(last>totalPage) {
+         last=totalPage;
+       }
+       
+       let first = last - (pageCount -1);  //화면에 보여질 첫번째 페이지 번호
+       let next = last + 1;
+       let prev = first - 1;
+       
+       let pageHtml = "";
+       
+       if(prev > 0){
+         pageHtml += '<li><a href="#" id="prev">이전</a></li>';
+       }else{
+         pageHtml += '<li><a href="#" id="prev" class="disabled">이전</a></li>';
+       }
+       
+       //페이징 번호 표시
+       for(var i = first; i<=last; i++){
+         if(currentPage ==i ){
+           pageHtml += "<li class='on'><a href='#' id='" + i +"'>" + i + "</a></li>";
+         }else{
+           pageHtml += "<li><a href='#' id='" + i +"'>" + i + "</a></li>";
+         }
+       }
 
-                if(last<totalPage) {
-                  pageHtml += "<li><a href='#' id='next'>다음</a></li>";
-                }else{
-                  pageHtml += "<li><a href='#' id='next' class='disabled'>다음</a></li>";
-                }
+       if(last<totalPage) {
+         pageHtml += "<li><a href='#' id='next'>다음</a></li>";
+       }else{
+         pageHtml += "<li><a href='#' id='next' class='disabled'>다음</a></li>";
+       }
 
-                //$("#pagingul").html(pageHtml);
-                document.getElementById("pagingul").innerHTML = pageHtml;
+       //$("#pagingul").html(pageHtml);
+       document.getElementById("pagingul").innerHTML = pageHtml;
 
-                //페이징 번호 클릭 이벤트
-                $("#pagingul li a").click(function () {
-                  console.log("a");
-                  let $id = $(this).attr("id");
-                  selectedPage = $(this).text();
+       //페이징 번호 클릭 이벤트
+       $("#pagingul li a").click(function () {
+         console.log("a");
+         let $id = $(this).attr("id");
+         selectedPage = $(this).text();
 
-                  if($id == "next") selectedPage = next;
-                  if($id == "prev") selectedPage = prev;
+         if($id == "next") selectedPage = next;
+         if($id == "prev") selectedPage = prev;
 
-                  //전역변수에 선택한 페이지 번호를 담는다
-                  globalCurrentPage = selectedPage;
+         //전역변수에 선택한 페이지 번호를 담는다
+         globalCurrentPage = selectedPage;
 
-                  //페이징 표시 재호출
-                  paging(totalData, dataPerPage, pageCount, selectedPage);
+         //페이징 표시 재호출
+         paging(totalData, dataPerPage, pageCount, selectedPage);
 
-                  //글 목록 표시 재호출
-                  //displayData(selectedPage, dataPerPage);
-                });
-              }
+         //글 목록 표시 재호출
+         //displayData(selectedPage, dataPerPage);
+       });
+     }
 
-            </script>
+   </script>
+</main>
+<!-- End #main -->
 
-	<style>
+<style>
 #pagingul {
 	text-align: center;
 	list-style: none;
@@ -216,12 +218,12 @@
 
 .btn-outline-primary:hover {
 	color: #fff;
-	background-color: orange;
-	border-color: orange;
+	background-color: rgb(43 71 90 / 86%);
+	border-color: rgb(43 71 90 / 86%);
 }
 
 button:focus {
-	background-color: orange;
+	background-color: rgb(43 71 90 / 86%);
 	color: white;
 	border: white;
 	box-shadow: 0 0 0 0.25rem rgba(216, 13, 13, 0.5);
@@ -231,11 +233,5 @@ button:focus {
 	
 }
 </style>
-
-
-
-</main>
-<!-- End #main -->
-
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

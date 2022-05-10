@@ -23,10 +23,10 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-body" style="padding-top: 40px;">
+              <div class="card-body" style="padding: 20px;">
                 <div class="d-flex justify-content-between">                  
 					<!-- 카테고리 선택하는 체크박스 -->
-					<div class="d-flex align-items-center" style="margin-bottom: 1rem;">
+					<div class="d-flex align-items-center">
 						<div class="d-flex"><h5 class="" style="padding-right: 3rem; font-weight: 500; margin-bottom: 0;">시공 카테고리</h5></div>
 			
 						<div class="d-flex align-items-center" style="padding-right: 2rem;">

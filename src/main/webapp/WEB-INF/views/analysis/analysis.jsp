@@ -55,7 +55,7 @@
 		
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Details</h5>
+				<h5 class="card-title">세부항목</h5>
 
 				<%@ include file="/WEB-INF/views/common/calendar.jsp"%>
 
@@ -272,27 +272,27 @@ $(function ()
 	        $("#contbody").html(str);
 	                    	  
 	        var str2 ="<ul class='pagination justify-content-center'>";
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList(1)'><span>&laquo;</span></a></li>"; 
+	        str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='salesList(1)'><span>&laquo;</span></a></li>"; 
 	         
     	  	if(result.groupNo > 1){
     	  		var no = result.startPageNo-1;
-    	  		str2 += "<li class='page-item'><a class='page-link' onclick='salesList("+ no +")'><span>&lsaquo;</span></a></li>";
+    	  		str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='salesList("+ no +")'><span>&lsaquo;</span></a></li>";
     	  	}
 	        
 	        for(var i=result.startPageNo; i<=result.endPageNo; i++){
 	            if(i != result.pageNo){
-	                str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='salesList(" +i + ")'>" +i +"</a></li>";
 	            }else{
-	                str2 = str2 + "<li class='page-item'><a class='page-link text-primary' onclick='salesList(" +i + ")'>" +i +"</a></li>";
+	                str2 = str2 + "<li style='cursor:pointer;' class='page-item'><a class='page-link text-primary' onclick='salesList(" +i + ")'>" +i +"</a></li>";
 	            }
 	        }
 
 	    	if(result.groupNo < result.totalGroupNo){
 	        	var num = result.endPageNo +1;
-	        	str2 += "<li class='page-item'><a class='page-link' onclick='salesList(" + num + ")'><span>&rsaquo;</span></a></li>";
+	        	str2 += "<li style='cursor:pointer;' class='page-item'><a class='page-link' onclick='salesList(" + num + ")'><span>&rsaquo;</span></a></li>";
 			}
 	        
-	        str2 = str2 + "<li class='page-item'><a class='page-link' onclick='salesList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
+	        str2 = str2 + "<li style='cursor:pointer;' 	class='page-item'><a class='page-link' onclick='salesList("+result.totalPageNo+")'><span>&raquo;</span></a></li>";
 	        str2 = str2 + "</ul>";
 	        
 			$("#salesListPager").html(str2);
