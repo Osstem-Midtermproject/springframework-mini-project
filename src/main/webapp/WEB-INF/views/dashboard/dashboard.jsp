@@ -135,7 +135,7 @@
 							</div>
 							<a class="text-center icon position-relative " href="#" data-bs-toggle="dropdown">
 								<i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> 
-								<span class="position-absolute start-100 translate-middle badge bg-danger badge-number" id="notificationNo" style="top: 30%"></span>
+								<span class="position-absolute start-100 translate-middle badge bg-danger badge-number" id="notificationNo" style="top: 30%; left: 90%;"></span>
 							</a>
 							<!-- End Notification Icon -->
 

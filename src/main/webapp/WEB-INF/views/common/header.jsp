@@ -73,9 +73,9 @@
 		<!-- End Logo -->
 
 		<nav class="header-nav ms-auto">
-			<ul class="d-flex align-items-center">
-				<li class="nav-item dropdown pe-3 d-flex align-items-center" style="width: 10%;">
-				<span style="color:white;">${user.uname}김혜현님</span>
+			<ul class="d-flex" style="width: 100%;">
+				<li class="nav-item dropdown pe-3 d-flex align-items-center">
+				<span style="color:white; margin-right: 0.75rem;">${user.uname}님</span>
 				<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
 								
 								<i class="bi bi-bell-fill bi-person-circle"></i> 
