@@ -49,13 +49,13 @@
 	}
 	
 	.bg-custom .nav-link {
-    	color: black !important;
+    	color: black;
 	}
 	
 	.bg-custom .nav-item.active .nav-link,
 	.bg-custom .nav-item:focus .nav-link,
 	.bg-custom .nav-item:hover .nav-link {
-    color: rgb(32, 54, 68);
+    	color: rgb(198, 171, 124);
 }
 	
 </style>
