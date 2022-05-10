@@ -73,25 +73,17 @@
 		<!-- End Logo -->
 
 		<nav class="header-nav ms-auto">
-<<<<<<< HEAD
 			<ul class="d-flex" style="width: 100%;">
 				<li class="nav-item dropdown pe-3 d-flex align-items-center">
-				<span style="color:white; margin-right: 0.75rem;">${user.uname}님</span>
-=======
-			<ul class="d-flex align-items-center">
-<<<<<<< HEAD
-				<li class="nav-item dropdown pe-3 d-flex align-items-center" style="width: 10%;">
-				<span style="color:white;">${user.uname}김혜현님</span>
->>>>>>> branch 'master' of https://github.com/Osstem-Midtermproject/springframework-mini-project.git
-				<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
-								
-								<i class="bi bi-bell-fill bi-person-circle"></i> 
-								
-								<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
-							</a>
+					<span style="color:white; margin-right: 0.75rem;">${user.uname}님</span>
+					<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
+						<i class="bi bi-bell-fill bi-person-circle"></i> 
+							<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
+					</a>
 					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
 						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
 							<label><b>채팅방</b></label>
+
 						</div>
 						<div>
 							<div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
@@ -99,29 +91,13 @@
 							<div class="input-group">
 								<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" />
 								<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-=======
-				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown"> 
-					<span class="">${user.uname}님</span> 
-					<i class="bi-person-circle p-3"></i>
-					</a>
-						<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
-							<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
-								<label><b>채팅방</b></label>
->>>>>>> refs/remotes/origin/JY
 							</div>
-							<div>
-								<div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
-								<div class="col-6"></div>
-								<div class="input-group">
-									<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" />
-									<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-								</div>
-	
-								<div class="col-6"></div>
-							</div>
-							<!-- End Profile Iamge Icon -->
+
+							<div class="col-6"></div>
 						</div>
-					</li>
+						<!-- End Profile Iamge Icon -->
+					</div>
+				</li>
 				<!-- End Profile Nav -->
 			</ul>
 		</nav>
