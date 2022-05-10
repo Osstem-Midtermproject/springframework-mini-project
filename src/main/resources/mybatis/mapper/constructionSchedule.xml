@@ -111,13 +111,13 @@
 		select cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, tcategory from constructionschedule
 		INNER JOIN team on cons_sche_teamid = tid
 		where TO_CHAR(SYSDATE,'yyyymmdd') BETWEEN TO_CHAR(cons_sche_startdate,'yyyymmdd') and TO_CHAR(cons_sche_enddate,'yyyymmdd')and rownum &lt; 5
-		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd') desc
+		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd'), TO_CHAR(cons_sche_enddate,'yyyymmdd')
 	</select>
    	<select id="selectTodayConstructionScheduleAll" resultMap="selectTodayConstructionScheduleResultMap">
 		select cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, tcategory from constructionschedule
 		INNER JOIN team on cons_sche_teamid = tid
 		where TO_CHAR(SYSDATE,'yyyymmdd') BETWEEN TO_CHAR(cons_sche_startdate,'yyyymmdd') and TO_CHAR(cons_sche_enddate,'yyyymmdd')
-		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd'), TO_CHAR(cons_sche_enddate,'yyyymmdd')
+		ORDER BY TO_CHAR(cons_sche_startdate,'yyyymmdd') desc, TO_CHAR(cons_sche_enddate,'yyyymmdd')
 	</select>
   
 </mapper>
