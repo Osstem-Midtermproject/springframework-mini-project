@@ -19,8 +19,8 @@
 
 .btn-outline-primary:hover {
 	color: #fff;
-	background-color: orange;
-	border-color: orange;
+	background-color: rgb(43 71 90 / 86%);
+	border-color: rgb(43 71 90 / 86%);
 }
 
 th a {
@@ -29,8 +29,8 @@ th a {
 
 .table-bordered th:hover {
 	color: #fff;
-	background-color: orange;
-	border-color: orange;
+	background-color: rgb(43 71 90 / 86%);
+	border-color: rgb(43 71 90 / 86%);
 }
 
 .location th a:hover {
@@ -38,24 +38,24 @@ th a {
 }
 
 th:focus {
-	background-color: #f59342;
+	background-color: rgb(43 71 90 / 86%);
 }
 
 button:focus {
-	background-color: orange;
+	background-color: rgb(43 71 90 / 86%);
 	color: white;
 	border: white;
-	box-shadow: 0 0 0 0.1rem rgba(216, 13, 13, 0.5);
+	box-shadow: 0 0 0 0.1rem rgb(43 71 90 / 86%);
 }
 
 .btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
-	box-shadow: 0 0 0 0.1rem rgba(240, 114, 11, 0.87);
+	box-shadow: 0 0 0 0.1rem rgbargb(43 71 90 / 86%);
 }
 
 .page-link:focus {
 	z-index: 3;
 	color: #ffffff;
-	background-color: rgba(240, 114, 11, 0.87);
+	background-color:rgb(43 71 90 / 86%);
 	outline: 0;
 	box-shadow: 0 0 0 0.25rem rgba(87, 81, 81, 0.25);
 }
@@ -225,7 +225,7 @@ button:focus {
 						listTag += "<td>" + List[i].hpn + "</td>";
 						
 						listTag += "<td><button type='button' class='btn btn-outline-primary'";
-						listTag += "onclick=\"location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
+						listTag += "onclick=\"location.href='${pageContext.request.contextPath}/schedule/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
 						
 						listTag += "<td><button type='button' class='btn btn-outline-primary'";
 						listTag += "onclick=\"kakaoMap('"+  List[i].haddress  + "','"  + List[i].hname + "')\">지도</button></td>";
