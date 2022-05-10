@@ -17,11 +17,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card">
-				<div id="designcontent" class="card-body">
-					<h5 class="card-title">Thema Ranking</h5>
+	<div class="row justify-content-center">
+		<div class="col-11">
+				<div id="designcontent" class="card-body" style="padding: 20px 0 20px 0">
 					<div class="d-flex justify-content-between" style="margin: 0 auto;">
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">1</span> 
@@ -29,13 +27,13 @@
 							
 							<c:if test="${themaRank[0].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[0].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[0].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[0].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[0].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[0].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[0].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[0].count}</span>							
 								</div>
 							</c:if>
@@ -46,13 +44,13 @@
 							<img id="${themaRank[1].dtt}"  src="${themaRank[1].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<c:if test="${themaRank[1].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>	
-									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[1].count}</span>							
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[1].dtt}</span>	
+									<span class="badge rounded-pill bg-danger">+${themaRank[1].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[1].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[1].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[1].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[1].count}</span>							
 								</div>
 							</c:if>
@@ -63,13 +61,13 @@
 							<img id="${themaRank[2].dtt}" src="${themaRank[2].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<c:if test="${themaRank[2].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[2].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[2].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[2].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[2].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[2].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[2].count}</span>							
 								</div>
 							</c:if>
@@ -80,13 +78,13 @@
 							<img id="${themaRank[3].dtt}"  src="${themaRank[3].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<c:if test="${themaRank[3].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[3].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[3].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[3].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[3].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[3].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[3].count}</span>							
 								</div>
 							</c:if>
@@ -97,13 +95,13 @@
 							<img id="${themaRank[4].dtt}"  src="${themaRank[4].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<c:if test="${themaRank[4].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[4].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[4].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[4].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[4].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[4].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[4].count}</span>							
 								</div>
 							</c:if>
@@ -114,20 +112,19 @@
 							<img id="${themaRank[5].dtt}"  src="${themaRank[5].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 
 							<c:if test="${themaRank[5].count > 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[5].dtt}</span>
 									<span class="badge rounded-pill bg-danger" style="font-size: 1rem;" >+${themaRank[5].count}</span>							
 								</div>
 							</c:if>
 							<c:if test="${themaRank[5].count < 0}">
 								<div class="text-center">
-									<span style="font-size: 2rem; font-weight: 500;">#${themaRank[5].dtt}</span>
+									<span style="font-size: 1.7rem; font-weight: 400;">#${themaRank[5].dtt}</span>
 									<span class="badge rounded-pill bg-primary" style="font-size: 1rem;" >${themaRank[5].count}</span>							
 								</div>
 							</c:if>
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 		
 		<div class="col-lg-12">

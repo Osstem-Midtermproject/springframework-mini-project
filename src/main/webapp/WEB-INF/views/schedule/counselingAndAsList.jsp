@@ -233,13 +233,8 @@
 	        		content="<td>"+ list.rdContent + "</td>";
 	        	}
 	        	
-<<<<<<< HEAD
-				str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'><td>"+list.rdNo+"</td><td>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
-=======
-				str = str + "<tr><td>"+list.rdNo+"</td><td onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
->>>>>>> refs/remotes/origin/JY
+				str = str + "<tr><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
 	        	list.rdCounDate.substr(0,10) + time1 +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
-	
 			})   
 	
 	        $("#notificationListTable").html(str);

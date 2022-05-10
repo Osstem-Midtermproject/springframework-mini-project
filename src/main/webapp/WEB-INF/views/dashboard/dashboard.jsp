@@ -135,7 +135,7 @@
 							</div>
 							<a class="text-center icon position-relative " href="#" data-bs-toggle="dropdown">
 								<i class="bi bi-bell-fill notification-icon" style="font-size: 3rem;"></i> 
-								<span class="position-absolute start-100 translate-middle badge bg-danger badge-number" id="notificationNo" style="top: 30%; left: 90%;"></span>
+								<span class="position-absolute start-100 translate-middle badge bg-danger badge-number" id="notificationNo" style="top: 30%; left: 90% !important;"></span>
 							</a>
 							<!-- End Notification Icon -->
 
@@ -535,8 +535,8 @@
 		        $.each(result.constructionScheduleList,function(index,list){
 		        	var date1_month = list.consScheStartdate.substr(5,2);
 		        	var date1_day = list.consScheStartdate.substr(8,2);
-		        	var date2_month = list.consScheStartdate.substr(5,2);
-		        	var date2_day = list.consScheStartdate.substr(8,2);
+		        	var date2_month = list.consScheEnddate.substr(5,2);
+		        	var date2_day = list.consScheEnddate.substr(8,2);
 		        	
 					str += "<tr><td class='fw-bold'>" + list.consScheHospitalName + "</td><td>" + date1_month + "/" + date1_day + "</td><td>" + date2_month + "/" + date2_day + "</td><td>" + list.team.tcategory + "</td></tr>";
 
