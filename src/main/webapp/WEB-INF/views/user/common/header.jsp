@@ -77,7 +77,7 @@
 	<header id="header" class="fixed-top shadow d-flex align-items-center bg-white" style="background-color: rgb(32, 54, 68);">
 		<div class="container-fluid d-flex align-items-center mx-5">
 			<div class="logo me-auto my-2">
-				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/logo.png" width="110rem"></a>
+				<a href="${pageContext.request.contextPath}/user/userHome"><img src="${pageContext.request.contextPath}/resources/images/insstemLogo.png" width="110rem"></a>
 			</div>
 			<nav id="navbar" class="navbar navbar-expand-sm navbar-white row flex-grow-1 bg-custom">
 				<div class="collapse navbar-collapse vw-80 justify-content-end" id="collapsibleNavbar">

@@ -22,7 +22,7 @@
 
         a:link { color: gray; text-decoration: none;}
         a:visited { color: black; text-decoration: none;}
-        a:hover { color: rgba(242, 101, 34); text-decoration: underline;}
+        a:hover { color: rgb(32, 54, 68); text-decoration: underline;}
 
         .find {
             margin: 20px;
@@ -36,7 +36,7 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
        <div>
-           <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/logo.png" style="height: 100%; width: 100%;"></a></div>
+           <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/insstemLogo.png" style="height: 100%; width: 100%;"></a></div>
             <form style="margin-bottom: 1rem;" method="post" action="login">
                     <input type="id" class="form-control" name="userid" placeholder="아이디">
                     <input type="password" class="form-control" name="upassword" placeholder="비밀번호는 6자~20자">

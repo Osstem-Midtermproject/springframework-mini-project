@@ -159,7 +159,7 @@
         <div class="container-fluid " style="width: 100%; background-color: rgb(32, 54, 68);">
             <div class="d-flex justify-content-center align-items-center" style="color: white;">
 	            <div class="d-flex justify-content-center align-items-center mr-4">
-	                <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png" width="150rem">
+	                <img src="${pageContext.request.contextPath}/resources/images/logo1.png" width="150rem">
 	            </div>
 	            <div class="d-flex flex-column justify-content-start align-items-start text-align-start ">
 	            	<div>
