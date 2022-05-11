@@ -162,6 +162,7 @@
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
             },
+            eventTextColor: 'black',
 
             initialView: "dayGridMonth", // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
            
@@ -530,19 +531,19 @@
      function setcolor(info){
     	  if (info.event.extendedProps.category === "전기") {
               
-              $(info.el).css("background-color", "rgb(161 235 236 / 96%)");
+              $(info.el).css("background-color", "rgba(255, 99, 132, 0.2)");
             }
             else if (info.event.extendedProps.category === "설비") {
                 
-                $(info.el).css("background-color", "rgb(244 203 237)");
+                $(info.el).css("background-color", "rgba(120, 100, 200, 0.2)");
               }
             else if (info.event.extendedProps.category === "도배") {
                 
-                $(info.el).css("background-color", "#e4ec73");
+                $(info.el).css("background-color", "rgba(2000, 200, 132, 0.2)");
               }
             else if (info.event.extendedProps.category === "가구") {
                 
-                $(info.el).css("background-color", "rgb(251 163 69 / 96%)");
+                $(info.el).css("background-color", "rgba(54, 162, 235, 0.2)");
               }
      }
     
