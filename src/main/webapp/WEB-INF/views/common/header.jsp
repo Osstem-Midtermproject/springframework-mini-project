@@ -66,7 +66,9 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<i class="bi bi-list toggle-sidebar-btn"></i> <a href="${pageContext.request.contextPath}/user/" class="logo d-flex align-items-center p-2"> <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png">
+			<!-- </li> -->
+			<i class="bi bi-list toggle-sidebar-btn"></i> 
+			<a href="${pageContext.request.contextPath}/user/" class="logo d-flex align-items-center p-2"> <img src="${pageContext.request.contextPath}/resources/images/osstem_ci.png">
 			</a>
 
 		</div>
@@ -74,6 +76,7 @@
 
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
+			<a class="nav-link" style = " color:rgba(255, 255, 255)" href="${pageContext.request.contextPath}/logout">로그아웃</a>
 				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown"> <span class="">${user.uname}님</span> <i class="bi-person-circle p-3"></i>
 				</a>
 					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
