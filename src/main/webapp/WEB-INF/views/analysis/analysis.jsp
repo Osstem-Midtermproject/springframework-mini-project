@@ -10,7 +10,7 @@
 				<nav>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">홈</li>
-						<li class="breadcrumb-item">분석통계</li>
+						<li class="breadcrumb-item">분석/통계</li>
 						<li class="breadcrumb-item active">매출</li>
 					</ol>
 				</nav>
