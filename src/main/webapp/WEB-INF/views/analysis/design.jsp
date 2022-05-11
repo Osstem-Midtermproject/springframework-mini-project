@@ -20,7 +20,7 @@
 	<div class="row justify-content-center">
 		<div class="col-11">
 				<div id="designcontent" class="card-body" style="padding: 20px 0 20px 0">
-					<div class="d-flex justify-content-between" style="margin: 0 auto;">
+					<div class="d-flex justify-content-between">
 						<div class="col-2 d-flex flex-column" style="text-align: center; width: 220px;">
 							<span class="badge" style="width: 30px; margin-bottom: -10px; margin-left: -10px; z-index: 1; background-color: threedshadow; font-size: 1rem">1</span> 
 							<img id="${themaRank[0].dtt}"  src="${themaRank[0].dimg}" alt="" style="width: 220px; height: 160px; border-radius: 1rem;"> 

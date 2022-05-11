@@ -4,22 +4,20 @@
 
 <main id="main" class="main">
     <div class="dentist_processing">
-
- 	<div class="d-flex">
-		<div class="pagetitle d-flex align-items-end">
-			<h1>상담/AS</h1>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">홈</li>
-					<li class="breadcrumb-item">스케줄</li>
-					<li class="breadcrumb-item">리스트</li>
-					<li class="breadcrumb-item active">상담/AS</li>
-				</ol>
-			</nav>
+	 	<div class="d-flex">
+			<div class="pagetitle d-flex align-items-end">
+				<h1>상담/AS</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">홈</li>
+						<li class="breadcrumb-item">스케줄</li>
+						<li class="breadcrumb-item">리스트</li>
+						<li class="breadcrumb-item active">상담/AS</li>
+					</ol>
+				</nav>
+			</div>
 		</div>
-	</div>
-
-      </div><!-- End Page Title -->
+   	</div><!-- End Page Title -->
 
       <section class="section">
         <div class="row">
@@ -53,7 +51,7 @@
                 </div>
 
                 <!-- Table with stripped rows -->
-                <table class="table datatable table-borderless">
+                <table class="table datatable table-borderless" style="margin-top: 1rem;">
                   <thead class="bg-light">
                     <tr>
                       <th scope="col">번호</th>
@@ -108,7 +106,7 @@
                 </div>
 
                 <!-- Table with stripped rows -->
-                <table class="table datatable table-borderless">
+                <table class="table datatable table-borderless" style="margin-top: 1rem;">
                   <thead class="bg-light">
                     <tr>
                       <th scope="col">순서</th>
