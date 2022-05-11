@@ -394,7 +394,7 @@ public class HospitalController {
 
 	}
 
-	//지도 별, 위치 별 병원 목록 컨트롤 호출 
+	//지도 별, 위치 별 병원 목록 컨트롤 호출  - jbc
 	@GetMapping("/location")
 	public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
 		log.info("Location 실행");
@@ -432,7 +432,6 @@ public class HospitalController {
 		
 		List<Hospital> detailLocationList = hospitalService.getLocationHospital2(pager);
 		model.addAttribute("detailLocationList", detailLocationList);
-		log.info(detailLocationList);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("detailLocationList", detailLocationList);        
