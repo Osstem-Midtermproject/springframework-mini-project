@@ -791,8 +791,8 @@ img.ui-datepicker-trigger {
         text-align: start;
  }
 #select1 {
-        border-color: rgb(161 235 236 / 96%);
-        background-color: rgb(161 235 236 / 96%);
+        border-color: rgba(255, 99, 132, 0.2);)
+        background-color: rgba(255, 99, 132, 0.2);)
       }
 #select2 {
         border-color: rgb(244 203 237);
