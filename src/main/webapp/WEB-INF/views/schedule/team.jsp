@@ -41,7 +41,7 @@
 												<div>한달: ${detailTeamInformationPage[0].tmonthWork}</div>
 												<div>한주: ${detailTeamInformationPage[0].tweekWork}</div>
 												<div>현재: ${detailTeamInformationPage[0].tnowWork}</div>
-												<div>예정시공: ${detailTeamInformationPage[0].sccount}</div>
+												<div>누적시공: ${detailTeamInformationPage[0].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -59,7 +59,7 @@
 												<div>한달: ${detailTeamInformationPage[1].tmonthWork}</div>
 												<div>한주: ${detailTeamInformationPage[1].tweekWork}</div>
 												<div>현재: ${detailTeamInformationPage[1].tnowWork}</div>
-												<div>예정시공: ${detailTeamInformationPage[1].sccount}</div>
+												<div>누적시공: ${detailTeamInformationPage[1].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -76,7 +76,7 @@
 												<div>한달: ${detailTeamInformationPage[2].tmonthWork}</div>
 												<div>한주: ${detailTeamInformationPage[2].tweekWork}</div>
 												<div>현재: ${detailTeamInformationPage[2].tnowWork}</div>
-												<div>예정시공: ${detailTeamInformationPage[2].sccount}</div>
+												<div>누적시공: ${detailTeamInformationPage[2].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -94,7 +94,7 @@
 												<div>한달: ${detailTeamInformationPage[3].tmonthWork}</div>
 												<div>한주: ${detailTeamInformationPage[3].tweekWork}</div>
 												<div>현재: ${detailTeamInformationPage[3].tnowWork}</div>
-												<div>예정시공: ${detailTeamInformationPage[3].sccount}</div>
+												<div>누적시공: ${detailTeamInformationPage[3].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -112,7 +112,7 @@
 												<div>한달: ${detailTeamInformationPage[4].tmonthWork}</div>
 												<div>한주: ${detailTeamInformationPage[4].tweekWork}</div>
 												<div>현재: ${detailTeamInformationPage[4].tnowWork}</div>
-												<div>예정시공: ${detailTeamInformationPage[4].sccount}</div>
+												<div>누적시공: ${detailTeamInformationPage[4].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -147,7 +147,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -174,7 +174,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -203,7 +203,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -234,7 +234,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -261,7 +261,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 
 
@@ -291,7 +291,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -320,7 +320,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -347,7 +347,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -374,7 +374,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -405,7 +405,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -432,7 +432,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -459,7 +459,7 @@
 														<div>한달: ${information.tmonthWork}</div>
 														<div>한주: ${information.tweekWork}</div>
 														<div>현재: ${information.tnowWork}</div>
-														<div>예정시공: ${information.sccount}</div>
+														<div>누적시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
