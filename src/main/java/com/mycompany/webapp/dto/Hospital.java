@@ -26,8 +26,6 @@ public class Hospital {
 	private RequestDetails requestDetails;
 	//진행상황
 	private Progress progress;
-	//진행상태
-	private State state;
 	//계약서
 	private Contract contract;
 	//추가요청
