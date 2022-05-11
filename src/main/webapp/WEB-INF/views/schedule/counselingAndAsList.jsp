@@ -107,9 +107,9 @@
 
                 <!-- Table with stripped rows -->
                 <table class="table datatable table-borderless" style="margin-top: 1rem;">
-                  <thead class="bg-light">
-                    <tr>
-                      <th scope="col">순서</th>
+                  <thead class="bg-light" style="vertical-align: middle;">
+                    <tr >
+                      <th scope="col">번호</th>
                       <th scope="col">
                       	<select class="form-select border-0 bg-light" id="selectAsOrCounseling" style="font-weight: bold;">
                           <option selected value="1">상담</option>
@@ -232,10 +232,10 @@
 	        	}
 	        	
 	        	if(sdate>d){
-					str = str + "<tr><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+					str = str + "<tr><td class='text-center'>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
 					sdate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
 	        	}else{
-					str = str + "<tr class='text-muted'><td>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
+					str = str + "<tr class='text-muted'><td class='text-center'>"+list.rdNo+"</td><td style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.rdDln +"'>"+list.hospital.hname+"</td>" + content + "<td>"+list.rdTitle+"</td><td>"+list.rdApplicationdate.substr(0,10)+"</td><td>"+
 					sdate +"</td><td><button id='confirmation' type='button' class='btn btn-sm btn-dark' onclick='confirmation(" + list.rdDln +")'>확정</button></td><tr>";
 	        	}
 
@@ -330,11 +330,11 @@
         	
         	if(sdate>d){
             	console.log(startdate + " " + d);
-    			str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
+    			str = str + "<tr style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td class='text-center'>"+list.counNo+"</td><td>"+"상담"+
             	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
             	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
         	}else{
-    			str = str + "<tr class='text-muted' style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td>"+list.counNo+"</td><td>"+"상담"+
+    			str = str + "<tr class='text-muted' style='cursor:pointer;' onClick = location.href='processing/detail?hdln="+list.hospital.hdln +"'><td class='text-center'>"+list.counNo+"</td><td>"+"상담"+
             	"</td><td>"+list.hospital.hname+"</td><td>"+list.counScheAddress+
             	"</td>" + content1 + "<td>"+date1+"</td><td>"+time1+"</td><tr>";
         	}

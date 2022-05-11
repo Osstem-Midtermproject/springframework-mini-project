@@ -175,9 +175,9 @@
 							</div>
 							<div class="tab-pane fade" id="bordered-past">
 								<!-- 버전1 -->
-								<div class="progressList col-8" style="margin: 0 auto">
+								<!-- <div class="progressList col-8" style="margin: 0 auto"> -->
 								<!-- 버전2 -->
-								<!-- <div class="progressList col-12"> -->
+								<div class="progressList col-12">
 									<div id="progressImgWrapper">
 	               					</div>
 									<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
@@ -658,7 +658,7 @@
 				}
 			}
 			
-			var imgTag = "<div id='imgLayout' class='d-flex flex-column' style='margin-bottom: 2rem;'>";
+			/* var imgTag = "<div id='imgLayout' class='d-flex flex-column' style='margin-bottom: 2rem;'>";
 			imgTag += "<div style='color: #7a7b7c; font-size: 0.9rem; float:right;'>등록일: " + pimgRegistrationDate + " ";
 			imgTag += "<a href='javascript:;' class='progressImgDeleteBtn bi bi-x-lg' style='color: #7a7b7c;' data-del=";
 			imgTag += pimgId;
@@ -679,11 +679,11 @@
 			if (pimgContent != null) {
 				imgTag += "<div>내용 : " + pimgContent + "</div>";
 			}
-			imgTag += "</div>";
+			imgTag += "</div>"; */
 			
 			
 			
-			/* var imgTag = "<div id='imgLayout' class='d-flex align-items-center my-3'>";
+			var imgTag = "<div id='imgLayout' class='d-flex align-items-center my-3'>";
 			imgTag += "<div id='progressImg' style='height: 200px; margin-bottom: 1rem;' class='col-4 d-flex flex-column align-items-start'>";
 			imgTag += "<img style='height: 100%; width: 100%;' src='fileList?pimgId=";
 			imgTag += pimgId;
@@ -707,7 +707,7 @@
 			imgTag += "></a>";
 			imgTag += "</div>";
 			imgTag += "</div>";
-			imgTag += "</div>"; */
+			imgTag += "</div>";
 		
 			$("#progressImgWrapper").append(imgTag);
 		});

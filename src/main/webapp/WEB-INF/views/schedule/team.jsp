@@ -5,7 +5,6 @@
 
 <main id="main" class="main">
 	<div class="dentist_processing">
-
 		<div class="d-flex">
 			<div class="pagetitle d-flex align-items-end">
 				<h1>부서</h1>
