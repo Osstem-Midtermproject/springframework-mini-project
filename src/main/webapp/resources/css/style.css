@@ -791,20 +791,20 @@ img.ui-datepicker-trigger {
         text-align: start;
  }
 #select1 {
-        border-color: rgba(255, 99, 132, 0.2);)
-        background-color: rgba(255, 99, 132, 0.2);)
+        border-color: rgba(255, 99, 132, 0.2);
+        background-color: rgba(255, 99, 132, 0.2);
       }
 #select2 {
-        border-color: rgb(244 203 237);
-        background-color:rgb(244 203 237);
+        border-color: rgba(120, 100, 200, 0.2);
+        background-color:rgba(120, 100, 200, 0.2);
  }
 #select3 {
-        border-color: #e4ec73;
-        background-color: #e4ec73;
+        border-color: rgba(2000, 200, 132, 0.2);
+        background-color: rgba(2000, 200, 132, 0.2);
 }
 #select4 {
-        border-color: rgb(251 163 69 / 96%);
-        background-color: rgb(251 163 69 / 96%);
+        border-color: rgba(54, 162, 235, 0.2);
+        background-color: rgba(54, 162, 235, 0.2);
   }
       input[id="btncheck1"]:checked + label {
         color: white;

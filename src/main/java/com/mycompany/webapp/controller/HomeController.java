@@ -16,11 +16,11 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class HomeController {
 	@RequestMapping("/")
-	public String dashboard() {
+	public String user() {
 		log.info("실행");
 		
 		///WEB-INF/views/home.jsp
-		return "home";
+		return "/user/userHome";
 	}
 	
 	
