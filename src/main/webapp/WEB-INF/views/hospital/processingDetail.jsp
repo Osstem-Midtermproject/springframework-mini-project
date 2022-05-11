@@ -222,7 +222,7 @@
 			<div class="col-lg-4">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Recent Activity</h5>
+						<h5 class="card-title">진행 스케줄</h5>
 						<div class="dashboard">
 							<div class="activity">
 								<c:forEach var="hospitalProgress" items="${hospitalProgresses}">
