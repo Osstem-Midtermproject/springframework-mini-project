@@ -95,8 +95,8 @@
 	
 	SELECT 
     count(case when COUN_SCHE_STARTDATE BETWEEN TO_CHAR(SYSDATE, 'YY/MM/DD') AND NEXT_DAY(SYSDATE, 1) then 1 END ) as cweekWork,
-    count(case when COUN_SCHE_STARTDATE = TO_CHAR(SYSDATE, 'YY/MM/DD') then 1 END ) as ctodayWork,
-    count(case when COUN_SCHE_STARTDATE BETWEEN TO_CHAR(SYSDATE, 'YY/MM/DD') AND LAST_DAY(SYSDATE) then 1 END ) as cmonthWork
+    count(case when TO_CHAR(COUN_SCHE_STARTDATE, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD') then 1 END ) as ctodayWork,
+    count(case when COUN_SCHE_STARTDATE BETWEEN trunc(SYSDATE,'month') AND LAST_DAY(SYSDATE) then 1 END ) as cmonthWork
 	FROM counselingschedule
     
     </select> 
