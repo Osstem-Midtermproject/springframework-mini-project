@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.WebSocketSession;
 
-import com.mycompany.webapp.dto.ConstructionSchedule;
-import com.mycompany.webapp.dto.Contract;
-import com.mycompany.webapp.dto.CounselingSchedule;
-import com.mycompany.webapp.dto.RequestDetails;
-import com.mycompany.webapp.dto.TeamHistory;
+import com.mycompany.webapp.dto.*;
+import com.mycompany.webapp.security.Ch17UserDetails;
 import com.mycompany.webapp.service.ConstructionScheduleService;
 import com.mycompany.webapp.service.ContractService;
 import com.mycompany.webapp.service.CounselingScheduleService;
@@ -53,7 +51,15 @@ public class DashboardController {
 
 	
 	@RequestMapping("/dashboard")
-	public String dashboard(Model model,HttpSession session,HttpServletRequest request) {
+	public String dashboard(Model model,HttpSession session,HttpServletRequest request, Users users, Authentication authentication) {
+		
+		//session에 security 유저 정보 저장 - jbc
+		Ch17UserDetails ch17UserDetails = (Ch17UserDetails) authentication.getPrincipal();
+      	Users user2 = new Users();
+      	user2 = ch17UserDetails.getUsers();
+      	user2.setHospital(ch17UserDetails.getUsers().getHospital());
+        session.setAttribute("user", user2);
+	
 		String userid=(String)session.getAttribute("sessionUserId");	
 	
 		

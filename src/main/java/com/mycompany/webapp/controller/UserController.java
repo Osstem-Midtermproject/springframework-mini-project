@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.webapp.security.Ch17UserDetails;
 import com.mycompany.webapp.dto.Contract;
 import com.mycompany.webapp.dto.Hospital;
 import com.mycompany.webapp.dto.HosptialAndCategory;
@@ -67,7 +73,7 @@ public class UserController {
 	}
 
 	//로그인 버튼 눌렀을 때 : user이면 userHome으로, admin이면 dashborad로 페이지 넘어감
-	@PostMapping("/login")
+	/*@PostMapping("/login")
 	public String login(Users user, HttpSession session, Model model) {
 		
 		log.info(user.getUserid());
@@ -91,7 +97,7 @@ public class UserController {
 			model.addAttribute("error", "패스워드를 확인하세요");
 			return "/user/login";
 		}
-	}
+	}*/
 	
 	//로그아웃 : 성공하면 홈으로 
 	@GetMapping("/logout")
@@ -100,11 +106,31 @@ public class UserController {
 		return "redirect:/user/userHome";
 	}
 	
+	//세션에 기본적인 정보들을 가져와서 저장하여 시큐리티에서도 동작하게 한다.  - jbc
 	//회원 정보 
 	@RequestMapping("/userInformation")
-	public String userInformation() {
+	public String userInformation(Authentication authentication,HttpSession session, Model model,Users user) {
 		log.info("실행");
-		return "/user/userInformation";
+		  //사용자 아이디
+	      String mid = authentication.getName();
+	      user.setUserid(mid); //dto에 id 삽입
+	      
+	      //기본 정보 외 정보얻기 //이걸 언제 다 설정해주
+	      Ch17UserDetails ch17UserDetails = (Ch17UserDetails) authentication.getPrincipal();
+	      
+	      Users user2 = new Users();
+	      user2 = ch17UserDetails.getUsers();
+	      user2.setHospital(ch17UserDetails.getUsers().getHospital());
+	 
+	      session.setAttribute("user", user2);
+	     
+	      //사용자 권한 얻기(ROLE_xxx)
+	      List<String> authorityList = new ArrayList<>();
+	      for (GrantedAuthority authority : authentication.getAuthorities()) {
+	         authorityList.add(authority.getAuthority());
+	      }
+
+	      return "/user/userInformation";
 	}
 
 	//진행 내역-------------------------------------------------------------------------

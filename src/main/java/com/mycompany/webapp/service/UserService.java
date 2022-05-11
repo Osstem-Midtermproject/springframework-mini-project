@@ -21,34 +21,48 @@ public class UserService {
 	@Resource
 	private UserDao userDao;
 
-	public Users login(Users user) {
-		Users dbUser = userDao.selectByUserId(user.getUserid());
-		
-		if(dbUser==null) {
-			Users u = new Users();
-			u.setResult(LoginResult.FAIL_MID);
-			return u;
-		}else {
-			if(user.getUpassword().equals(dbUser.getUpassword())) {
-				dbUser.setResult(LoginResult.SUCCESS);
-			}else {
-				dbUser.setResult(LoginResult.FAIL_MPASSWORD);
+//	public Users login(Users user) {
+//		Users dbUser = userDao.selectByUserId(user.getUserid());
+//		
+//		if(dbUser==null) {
+//			Users u = new Users();
+//			u.setResult(LoginResult.FAIL_MID);
+//			return u;
+//		}else {
+//			if(user.getUpassword().equals(dbUser.getUpassword())) {
+//				dbUser.setResult(LoginResult.SUCCESS);
+//			}else {
+//				dbUser.setResult(LoginResult.FAIL_MPASSWORD);
+//			}
+//			//비밀번호 암호화
+//			/*			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//						String str = passwordEncoder.encode(user.getUpassword());
+//						
+//						log.info(str);
+//			
+//						if(passwordEncoder.matches(user.getUpassword(), dbUser.getUpassword())) {
+//							dbUser.setResult(LoginResult.SUCCESS);
+//						}else {
+//							dbUser.setResult(LoginResult.FAIL_MPASSWORD);
+//						}*/
+//		}
+//		
+//		log.info(dbUser);
+//		return dbUser;
+//	}
+	
+	public LoginResult login(Users member) {
+		Users dbMember = userDao.selectByUserId(member.getUserid());
+		if(dbMember == null) {
+			return LoginResult.FAIL_MPASSWORD;
+		} else {
+			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+			if(passwordEncoder.matches(member.getUpassword(), dbMember.getUpassword())) {
+				return LoginResult.SUCCESS;
+			} else {
+				return LoginResult.FAIL_MPASSWORD;
 			}
-			//비밀번호 암호화
-			/*			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-						String str = passwordEncoder.encode(user.getUpassword());
-						
-						log.info(str);
-			
-						if(passwordEncoder.matches(user.getUpassword(), dbUser.getUpassword())) {
-							dbUser.setResult(LoginResult.SUCCESS);
-						}else {
-							dbUser.setResult(LoginResult.FAIL_MPASSWORD);
-						}*/
 		}
-		
-		log.info(dbUser);
-		return dbUser;
 	}
 	
 	public Users getMember(String userId) {

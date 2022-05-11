@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- form 인증 방식 설정 -->
+	<!-- d여기서 login-processing-url의 /login은 spring에서 제공하는 것이다. -->
+	<!-- alayst-use-default-target에서 true를 하면 원하는 페이지로 이동 할 수 있다. -->
+	<!-- 인증이 필요 없는 요청 경로 설정 -->
+	<security:http pattern="/resources/**" security="none" />
+
+	<!-- 보안 필터 체인 설정 -->
+	<security:http auto-config="true" use-expressions="true">
+			
+		<!-- 원하는 코드 실행을 위한 방 -->
+		<security:form-login 
+			login-page="/user/login"
+			username-parameter="userid" 
+			password-parameter="upassword"
+			login-processing-url="/login" 
+			authentication-success-handler-ref="authenticationSuccessHandler"
+         	authentication-failure-handler-ref="authenticationFailureHandler"/>
+
+		<!-- 로그 아웃 설정 -->
+		<!-- 여기서 logour-url의 logout은 spring기본 제공 및 설정이다. -->
+		<security:logout logout-url="/logout" success-handler-ref="logoutSuccessHandler" />
+
+		<!--사이트간 요청 위조 방지 비활성화 -->
+		<security:csrf disabled="true" />
+
+		<!-- 요청 url 권한 설정 -->
+		<security:intercept-url pattern="/dashboard" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/hospital/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/schedule/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/management/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/analysis/**" access="hasRole('ROLE_ADMIN')" />
+		
+		<!-- 로그인에 성공했다면 누구나 접속을 요청 할 수 있다. -->
+		<security:intercept-url pattern="/user/userinformation" access="isAuthenticated()" />
+
+		<!-- /**는 보안 필터는 적용하지만, 로그인은 안해도 된다. -->
+		<security:intercept-url pattern="/user/Home" access="permitAll" />
+
+		<!-- 권한 없을 경우 보여줄 페이지 설정 -->
+		<security:access-denied-handler error-page="/user/userinformation" />
+			
+		<!-- 로그인 중복 방지를 위한 설정 -->
+	      	<security:session-management>
+	         
+		         <!-- 최종 로그인을 유효하게 만들기 -->
+		        <security:concurrency-control max-sessions="1"  error-if-maximum-exceeded="false" expired-url="/user/login"/>
+      		</security:session-management>
+      </security:http>
+      
+
+		<!-- 인증 관리자 설정(아이디와 패스워드를 DB와 비교해서 로그인 처리 관리) -->
+		<!-- 사용자가 입력한 아이디, 패스워드와 디비값 비교 -->
+		<security:authentication-manager>
+			<security:authentication-provider ref="daoAuthenticationProvider" />
+		</security:authentication-manager>
+		
+
+		<!-- 인증 제공자 설정 및 사용자 정보 가져오기 -->
+	 	<!-- <bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+			<property name="userDetailsService" ref="jdbcUserService" />
+			<property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper" />
+			<property name="passwordEncoder" ref = "bcryptPasswordEncoder"/>
+		</bean> -->
+		<!-- 알고리즘을 포함한  -->
+		<bean id="bcryptPasswordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+		<!-- <security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
+			users-by-username-query="SELECT userid, upassword, urole FROM users WHERE userid=?"
+			authorities-by-username-query="SELECT userid, urole FROM users WHERE userid=?" /> -->
+
+		<!-- 권한 계층 설정 -->
+		<bean id="roleHierarchyAuthoritiesMapper" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
+			<constructor-arg ref="roleHierarchyImpl" />
+		</bean>
+		
+		<bean id="roleHierarchyImpl" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+			<property name="hierarchy">
+				<value>
+					ROLE_ADMIN >  ROLE_USER
+				</value>
+			</property>
+		</bean>
+		
+		<bean id="ch17UserDetailsService" class="com.mycompany.webapp.security.Ch17UserDetailsService"/>
+		
+		
+		<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		      <property name="userDetailsService" ref="ch17UserDetailsService"/>
+		      <property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper"/>
+   		</bean>
+		
+		<bean id="authenticationSuccessHandler" class="com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler">
+			<property name = "alwaysUseDefaultTargetUrl" value = "true"></property>
+			<!-- <property name = "defaultTargetUrl" value = "/dashboard"></property> -->
+			<property name = "defaultTargetUrl" value = "/user/userHome"></property>
+		</bean>
+		
+		<bean id="authenticationFailureHandler" class="com.mycompany.webapp.security.Ch17AuthenticationFailureHandler">
+			<property name = "defaultFailureUrl" value = "/user/login"></property>
+		</bean>
+		
+		<bean id="logoutSuccessHandler" class="com.mycompany.webapp.security.Ch17LogoutSuccessHandler">
+			<property name = "defaultTargetUrl" value = "/user/userHome"></property>
+		</bean>
+	
+		
+</beans>
+

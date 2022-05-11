@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,14 +101,17 @@
 								<a class="dropdown-item" href="#">테마</a> <a class="dropdown-item" href="#">예산</a> <a class="dropdown-item" href="#">평수</a>
 							</div></li>
 						<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="#">상담요청</a></li>
-						<c:if test="${sessionUserId == null}">
-							<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-						</c:if>
-						<c:if test="${sessionUserId != null}">
-							<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-						</c:if>
-						<li class="nav-item font-weight-bolder pr-2 pt-4"><a href="${pageContext.request.contextPath}/user/userInformation"><i class="bi bi-person-circle"></i></a></li>
 
+						<!-- security에서 사용자 권한에 따라 보여주는 것을 달리한다.  -->
+						<sec:authorize access="isAnonymous()">
+							<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+							<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<li class="nav-item font-weight-bolder pr-2 pt-4"><a href="${pageContext.request.contextPath}/user/userInformation"><i class="bi bi-person-circle"></i></a></li>
+						</sec:authorize>
 					</ul>
 				</div>
 			</nav>

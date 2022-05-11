@@ -19,8 +19,13 @@
 
 .btn-outline-primary:hover {
 	color: #fff;
+<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
 	border-color: rgb(43 71 90 / 86%);
+=======
+	background-color: rgba(32, 54,68);
+	border-color: rgba(32, 54,68);
+>>>>>>> refs/remotes/origin/jbc_0427
 }
 
 th a {
@@ -29,8 +34,13 @@ th a {
 
 .table-bordered th:hover {
 	color: #fff;
+<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
 	border-color: rgb(43 71 90 / 86%);
+=======
+	background-color: rgba(32, 54,68);
+	border-color: rgba(32, 54,68);
+>>>>>>> refs/remotes/origin/jbc_0427
 }
 
 .location th a:hover {
@@ -38,12 +48,21 @@ th a {
 }
 
 th:focus {
+<<<<<<< HEAD
 	color: #fff;
 	background-color: rgb(43 71 90 / 86%);
+=======
+	background-color: rgba(32, 54,68);
+	color:white;
+>>>>>>> refs/remotes/origin/jbc_0427
 }
 
 button:focus {
+<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
+=======
+	background-color: rgba(32, 54,68);
+>>>>>>> refs/remotes/origin/jbc_0427
 	color: white;
 	border: white;
 	box-shadow: 0 0 0 0.1rem rgb(43 71 90 / 86%);
@@ -108,7 +127,6 @@ button:focus {
       };
 		   
    	function kakaoMap(address, name){
-		console.log("fdhskfsjnfn");
 		//카카오 지도 APi를 사용하여 주소를 검색하여 해당 주소의 위도와 경로르 받아온다. 
    		$.ajax({
  	  		url:'https://dapi.kakao.com/v2/local/search/address.json?query=' + address,
@@ -155,6 +173,52 @@ button:focus {
  		});
     };
     
+    //지도 정보 기본 default- jbc
+    $(function(){
+    	let location = 1;
+		let locationKR = '강원';
+    	$.ajax({
+			url:"mapimage",
+			type:'post',
+		    data:{"location":location, "locationKR":locationKR}
+		}).done(data => {
+				console.log(location);
+				var imgTag = "<img";
+				imgTag += " src = '${pageContext.request.contextPath}/resources/images/map_images/local-map-on" + location + ".png' usemap='#Map' class='map-img' id='go'>";
+				
+				console.log(imgTag);
+				//$("#go").html(data.totalFileNum);
+				$(".locationmap."+location).focus();
+				$("#dl").html(imgTag);
+				
+				// 가져온 리스트를 출력하는데 이상하게 each가 안 먹히므로 for로 대체한다.
+					 
+				var List = data.detailLocationList;
+				console.log(List);
+				
+				var listTag = "";
+				for(var i = 0; i < List.length; i++){
+					listTag += "<tr>";
+					listTag += "<td>" + List[i].hno + "</td>";
+					listTag += "<td>" + List[i].hname + "</td>";
+					listTag += "<td>" + List[i].haddress + "</td>";
+					listTag += "<td>" + List[i].hpn + "</td>";
+					
+					listTag += "<td><button type='button' class='btn btn-outline-primary'";
+					listTag += "onclick=\"location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=" + List[i].hdln + "'\">내역보기</button></td>";
+					
+					listTag += "<td><button type='button' class='btn btn-outline-primary'";
+					listTag += "onclick=\"kakaoMap('"+  List[i].haddress  + "','"  + List[i].hname + "')\">지도</button></td>";
+					listTag += "</tr>";
+					
+					
+				}
+				$(".detailList").html(listTag);
+				
+		})
+    	
+    });
+    
   	//이미지 클릭시 ajax로 이미지 변경
 	$(function(){
 		$('.locationmap').on("click",function(){
@@ -195,9 +259,6 @@ button:focus {
 				locationKR = '제주';
 			} 
 			
-			console.log(location);
-			console.log(locationKR);
-			
 			$.ajax({
 				url:"mapimage",
 				type:'post',
@@ -232,27 +293,10 @@ button:focus {
 						listTag += "onclick=\"kakaoMap('"+  List[i].haddress  + "','"  + List[i].hname + "')\">지도</button></td>";
 						listTag += "</tr>";
 						
-					/* 	<button type="button" class="btn btn-outline-primary"
-							onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button> */
 						
 					}
 					$(".detailList").html(listTag);
 					
-					
-				/* 	<tr class="detailList">
-
-					<td>${location.hno}</td>
-					<td>${location.hname}</td>
-					<td>${location.haddress}</td>
-					<td>${location.hpn}</td>
-					<td><button type="button" class="btn btn-outline-primary"
-							onclick="location.href='${pageContext.request.contextPath}/hospital/processing/detail?hdln=${location.hdln}'">내역보기</button></td>
-					<td><button type="button" class="btn btn-outline-primary"
-							onclick="kakaoMap('${location.haddress}', '${location.hname}')">지도</button></td>
-
-				</tr> */
-					
-				
 			})
 		})
 	});
@@ -424,12 +468,23 @@ button:focus {
 				</tr>
 			</thead>
 
+<<<<<<< HEAD
 			<tbody class="detailList">
 			
 			</tbody>
 		</table>
 		<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
 	</div>
+=======
+						<tbody class="detailList">
+						
+						</tbody>
+					</table>
+
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+
+				</div>
+>>>>>>> refs/remotes/origin/jbc_0427
 </main>
 <!-- End #main -->
 

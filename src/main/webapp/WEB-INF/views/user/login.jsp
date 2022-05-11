@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +35,6 @@
             margin: 20px;
         }
         
-        
-        
     </style>
 
 </head> 
@@ -37,16 +42,30 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
        <div>
            <div class="img-wrapper"style="height:170px; width: 300px;"><a href="${pageContext.request.contextPath}/user/userHome" ><img src="${pageContext.request.contextPath}/resources/images/insstemLogo.png" style="height: 100%; width: 100%;"></a></div>
-            <form style="margin-bottom: 1rem;" method="post" action="login">
+            <form style="margin-bottom: 1rem;" method="post" action="${pageContext.request.contextPath}/login"> <!-- security 처리를 위해 경로지 -->
                     <input type="id" class="form-control" name="userid" placeholder="아이디">
                     <input type="password" class="form-control" name="upassword" placeholder="비밀번호는 6자~20자">
                     <div class="my-auto" style="height: 3rem; display: flex; align-items: center; justify-content: center;">
                     	<small style="color: red; text-align: center;" id="idPasswordError">${error}</small>
                     </div>
                     
+                    <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+						<div class="alert alert-danger mb-2" role="alert">
+							<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+								아이디 또는 비밀번호가 틀립니다.
+							</c:if>
+						  	<c:if test="${fn:contains(SPRING_SECURITY_LAST_EXCEPTION.message, 'principal exceeded')}">
+								인증 횟수가 초과되었습니다.
+							</c:if>
+						</div>
+					</c:if>
+                    
+            		<div style = "display:flex; flex-direction:row;">
+	            		<button type="submit" class="btn" style="background-color: rgb(32, 54, 68); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
+            		</div>
             		
-            		<button type="submit" class="btn" style="background-color: rgb(32, 54, 68); color: white; width: 100%; height: 50px; font-size: 1.5rem;">로그인</button>
             </form>
+            
             <div class="find justify-content-center align-items-center" style="text-align: center";>
                 <a href="#">아이디찾기</a>
                 <span style="color: gray;">|</span>

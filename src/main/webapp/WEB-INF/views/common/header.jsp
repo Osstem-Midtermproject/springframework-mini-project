@@ -75,11 +75,15 @@
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex" style="width: 100%;">
 				<li class="nav-item dropdown pe-3 d-flex align-items-center">
+					<a class="nav-link" style = " color:rgba(255, 255, 255)" href="${pageContext.request.contextPath}/logout">로그아웃</a>
 					<span style="color:white; margin-right: 0.75rem;">${user.uname}님</span>
 					<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
 						<i class="bi bi-bell-fill bi-person-circle"></i> 
 							<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
 					</a>
+			<ul class="d-flex align-items-center">
+			
+				
 					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
 						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
 							<label><b>채팅방</b></label>
