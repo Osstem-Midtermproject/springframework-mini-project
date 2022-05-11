@@ -5,6 +5,7 @@
 
 <main id="main" class="main">
 	<div class="dentist_processing">
+
 		<div class="d-flex">
 			<div class="pagetitle d-flex align-items-end">
 				<h1>부서</h1>
@@ -29,89 +30,89 @@
 							<h5 class="card-title">고평가 팀</h5>
 
 							<div style="display: flex; flex-direction: row;" class="justify-content-between">
-								<div class="card border col-2" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[0].tid}'">
+								<div class="border col-2" style="border-radius: 5px;" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[0].tid}'">
 									<div class="card-body">
 										<div class="d-flex align-items-center justify-content-between">
 											<h5 class="card-title">${detailTeamInformationPage[0].tcategory}</h5>
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>SCORE: ${detailTeamInformationPage[0].tscore}</div>
-												<div>THIS MONTH: ${detailTeamInformationPage[0].tmonthWork}</div>
-												<div>THIS WEEK: ${detailTeamInformationPage[0].tweekWork}</div>
-												<div>NOW: ${detailTeamInformationPage[0].tnowWork}</div>
-												<div>COUNT: ${detailTeamInformationPage[0].sccount}</div>
+												<div>점수: ${detailTeamInformationPage[0].tscore}</div>
+												<div>한달: ${detailTeamInformationPage[0].tmonthWork}</div>
+												<div>한주: ${detailTeamInformationPage[0].tweekWork}</div>
+												<div>현재: ${detailTeamInformationPage[0].tnowWork}</div>
+												<div>예정시공: ${detailTeamInformationPage[0].sccount}</div>
 											</div>
 										</div>
 									</div>
 									<!-- End Tem Card -->
 								</div>
 
-								<div class="card border col-2" style="" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[1].tid}'">
+								<div class="border col-2" style="border-radius: 5px;" style="" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[1].tid}'">
 									<div class="card-body">
 										<div class="d-flex align-items-center justify-content-between">
 											<h5 class="card-title">${detailTeamInformationPage[1].tcategory}</h5>
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>SCORE: ${detailTeamInformationPage[1].tscore}</div>
-												<div>THIS MONTH: ${detailTeamInformationPage[1].tmonthWork}</div>
-												<div>THIS WEEK: ${detailTeamInformationPage[1].tweekWork}</div>
-												<div>NOW: ${detailTeamInformationPage[1].tnowWork}</div>
-												<div>COUNT: ${detailTeamInformationPage[1].sccount}</div>
+												<div>점수: ${detailTeamInformationPage[1].tscore}</div>
+												<div>한달: ${detailTeamInformationPage[1].tmonthWork}</div>
+												<div>한주: ${detailTeamInformationPage[1].tweekWork}</div>
+												<div>현재: ${detailTeamInformationPage[1].tnowWork}</div>
+												<div>예정시공: ${detailTeamInformationPage[1].sccount}</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="card border col-2" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[2].tid}'">
+								<div class="border col-2" style="border-radius: 5px;" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[2].tid}'">
 									<div class="card-body d-flex flex-column">
 										<div class="d-flex align-items-center justify-content-between">
 											<h5 class="card-title">${detailTeamInformationPage[2].tcategory}</h5>
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>SCORE: ${detailTeamInformationPage[2].tscore}</div>
-												<div>THIS MONTH: ${detailTeamInformationPage[2].tmonthWork}</div>
-												<div>THIS WEEK: ${detailTeamInformationPage[2].tweekWork}</div>
-												<div>NOW: ${detailTeamInformationPage[2].tnowWork}</div>
-												<div>COUNT: ${detailTeamInformationPage[2].sccount}</div>
+												<div>점수: ${detailTeamInformationPage[2].tscore}</div>
+												<div>한달: ${detailTeamInformationPage[2].tmonthWork}</div>
+												<div>한주: ${detailTeamInformationPage[2].tweekWork}</div>
+												<div>현재: ${detailTeamInformationPage[2].tnowWork}</div>
+												<div>예정시공: ${detailTeamInformationPage[2].sccount}</div>
 											</div>
 										</div>
 									</div>
 									<!-- End Tem Card -->
 								</div>
 
-								<div class="card border col-2" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[3].tid}'">
+								<div class="border col-2" style="border-radius: 5px;" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[3].tid}'">
 									<div class="card-body d-flex flex-column">
 										<div class="d-flex align-items-center justify-content-between">
 											<h5 class="card-title">${detailTeamInformationPage[3].tcategory}</h5>
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>SCORE: ${detailTeamInformationPage[3].tscore}</div>
-												<div>THIS MONTH: ${detailTeamInformationPage[3].tmonthWork}</div>
-												<div>THIS WEEK: ${detailTeamInformationPage[3].tweekWork}</div>
-												<div>NOW: ${detailTeamInformationPage[3].tnowWork}</div>
-												<div>COUNT: ${detailTeamInformationPage[3].sccount}</div>
+												<div>점수: ${detailTeamInformationPage[3].tscore}</div>
+												<div>한달: ${detailTeamInformationPage[3].tmonthWork}</div>
+												<div>한주: ${detailTeamInformationPage[3].tweekWork}</div>
+												<div>현재: ${detailTeamInformationPage[3].tnowWork}</div>
+												<div>예정시공: ${detailTeamInformationPage[3].sccount}</div>
 											</div>
 										</div>
 									</div>
 									<!-- End Tem Card -->
 								</div>
 
-								<div class="card border col-2" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[4].tid}'">
+								<div class="border col-2" style="border-radius: 5px;" onclick="location.href='${pageContext.request.contextPath}/schedule/team/detail?tid=${detailTeamInformationPage[4].tid}'">
 									<div class="card-body d-flex flex-column">
 										<div class="d-flex align-items-center justify-content-between">
 											<h5 class="card-title">${detailTeamInformationPage[4].tcategory}</h5>
 										</div>
 										<div>
 											<div class="display:flex; flex-direction:column;">
-												<div>SCORE: ${detailTeamInformationPage[4].tscore}</div>
-												<div>THIS MONTH: ${detailTeamInformationPage[4].tmonthWork}</div>
-												<div>THIS WEEK: ${detailTeamInformationPage[4].tweekWork}</div>
-												<div>NOW: ${detailTeamInformationPage[4].tnowWork}</div>
-												<div>COUNT: ${detailTeamInformationPage[4].sccount}</div>
+												<div>점수: ${detailTeamInformationPage[4].tscore}</div>
+												<div>한달: ${detailTeamInformationPage[4].tmonthWork}</div>
+												<div>한주: ${detailTeamInformationPage[4].tweekWork}</div>
+												<div>현재: ${detailTeamInformationPage[4].tnowWork}</div>
+												<div>예정시공: ${detailTeamInformationPage[4].sccount}</div>
 											</div>
 										</div>
 									</div>
@@ -124,6 +125,8 @@
 
 
 				<!-- 팀 전체 목록 - jbc -->
+				<div class="row">
+				<div class="col">
 				<div class="card">
 					<div class="card-body justify-content-between row">
 						<h5 class="card-title">팀 목록</h5>
@@ -135,16 +138,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">전기 A팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '1'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>THIS MONTH: ${information.tmonthWork}</div>
-														<div>THIS WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -162,16 +165,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">전기 B팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '2'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -191,16 +194,16 @@
 												<h5 class="card-title">전기 C팀</h5>
 											</div>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '3'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -222,16 +225,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">도배 A팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '7'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -249,16 +252,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">도배 B팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '8'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 
 
@@ -279,16 +282,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">도배 C팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '9'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -308,16 +311,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">가구 A팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '10'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -335,16 +338,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">가구 B팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '11'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -362,16 +365,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">가구 C팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '12'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -393,16 +396,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">설비 A팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '4'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -420,16 +423,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">설비 B팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '5'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -447,16 +450,16 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title">설비 C팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
 												<c:forEach var="information" items="${detailTeamInformationPage}">
-													<!-- 팀 SCORE -->
+													<!-- 팀 점수 -->
 													<c:if test="${information.tid eq '6'}">
-														<div>SCORE: ${information.tscore}</div>
-														<div>MONTH: ${information.tmonthWork}</div>
-														<div>WEEK: ${information.tweekWork}</div>
-														<div>NOW: ${information.tnowWork}</div>
-														<div>COUNT: ${information.sccount}</div>
+														<div>점수: ${information.tscore}</div>
+														<div>한달: ${information.tmonthWork}</div>
+														<div>한주: ${information.tweekWork}</div>
+														<div>현재: ${information.tnowWork}</div>
+														<div>예정시공: ${information.sccount}</div>
 													</c:if>
 												</c:forEach>
 											</div>
@@ -473,11 +476,11 @@
 										<div class="d-flex align-items-center">
 											<h5 class="card-title pr-1">상담팀</h5>
 										</div>
-										<div class="d-flex align-items-end">
+										<div class="d-flex align-items-end justify-content-between">
 											<div style="display:flex; flex-direction:column;">
-												<div>-today: ${selectCounselingTeamInformation[0].counselingSchedule.ctodaywork}</div>
-												<div>-week: ${selectCounselingTeamInformation[0].counselingSchedule.cweekwork}</div>
-												<div>-month: ${selectCounselingTeamInformation[0].counselingSchedule.cmonthwork}</div>
+												<div>오늘: ${selectCounselingTeamInformation[0].counselingSchedule.ctodaywork}</div>
+												<div>한주: ${selectCounselingTeamInformation[0].counselingSchedule.cweekwork}</div>
+												<div>한달: ${selectCounselingTeamInformation[0].counselingSchedule.cmonthwork}</div>
 												<div class="img-wrapper d-flex align-items-center"></div>
 											</div>
 											<div>
@@ -490,6 +493,8 @@
 
 						</div>
 					</div>
+				</div>
+				</div>
 				</div>
 			</div>
 		</section>
