@@ -83,6 +83,7 @@
     			$("#progressListPager").html(onePage);
             }
             
+            console.log(checkboxValues);
             var allData = { "checkArray": checkboxValues };      
             $.ajax({
         		url: 'checkBox',
@@ -116,9 +117,6 @@
 				    }else if(list.pcategory=="5"){
 				    	c1="상담 시작";
 				    	c2="상담 완료";
-				    }else if(list.pcategory=="계약"){
-				    	c1="계약 시작";
-				    	c2="계약 완료";
 				    }else if(list.pcategory=="AS"){
 				    	c1="AS 시작";
 				    	c2="AS 완료";

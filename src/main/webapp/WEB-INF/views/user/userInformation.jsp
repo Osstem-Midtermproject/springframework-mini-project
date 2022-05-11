@@ -65,8 +65,8 @@
 
 				let str = "";
 
-				for (let i = 0; i < password.length; i++) {
-					if (i < 3) {
+				for (let i = 6; i < password.length; i++) {
+					if (i < 9) {
 						str += password.charAt(i);
 					} else {
 						str += "*";
