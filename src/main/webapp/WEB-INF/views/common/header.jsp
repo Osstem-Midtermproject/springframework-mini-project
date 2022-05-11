@@ -5,13 +5,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Osstem Interior Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+<title>Insstem</title>
 <style>
 #chatcon {
 	width: 18rem;
@@ -23,19 +27,19 @@
 }
 
 .ui-dialog {
-	padding: 0px!important;
+	padding: 0px !important;
 }
 
 .ui-widget.ui-widget-content {
-	border: none!important;
-	border-radius: 10px!important;
+	border: none !important;
+	border-radius: 10px !important;
 }
 
 .ui-dialog-buttonset button {
 	border: none !important;
-	border-radius: 5px!important;
-	background-color: #9ec9f1!important;
-	color:white;
+	border-radius: 5px !important;
+	background-color: #9ec9f1 !important;
+	color: white;
 }
 
 .ui-dialog-titlebar-close {
@@ -43,18 +47,20 @@
 }
 
 .ui-corner-all {
-	border-radius: 3px!important;
+	border-radius: 3px !important;
 }
 
 .ui-dialog-titlebar {
-	background-color: #9ec9f1!important;
+	background-color: #9ec9f1 !important;
 	color: white !important;
 }
-.fc-col-header{
-	color:black !important;
+
+.fc-col-header {
+	color: black !important;
 }
+
 .fc-h-event {
-	 border: 0px !important;
+	border: 0px !important;
 }
 </style>
 
@@ -74,37 +80,32 @@
 
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex" style="width: 100%;">
-				<li class="nav-item dropdown pe-3 d-flex align-items-center">
-					<a class="nav-link" style = " color:rgba(255, 255, 255)" href="${pageContext.request.contextPath}/logout">로그아웃</a>
-					<span style="color:white; margin-right: 0.75rem;">${user.uname}님</span>
-					<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
-						<i class="bi bi-bell-fill bi-person-circle"></i> 
-							<span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
-					</a>
-			<ul class="d-flex align-items-center">
-			
-				
-					<div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
-						<div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
-							<label><b>채팅방</b></label>
+				<li class="nav-item dropdown pe-3 d-flex align-items-center"><a class="nav-link" style="color: rgba(255, 255, 255)" href="${pageContext.request.contextPath}/logout">로그아웃</a> <span style="color: white; margin-right: 0.75rem;">${user.uname}님</span> 
+				<a class="text-center icon position-relative " href="#"data-bs-toggle="dropdown" onclick="messageClick()">
+                  <i class="bi bi-bell-fill bi-person-circle"></i> 
+                     <span class="position-absolute top-0 start-100 translate-middle badge bg-danger badge-number" id="messageNo" ></span>
+               </a>
+               <div id="chatcon" class="dropdown-menu dropdown-menu-arrow-custom pb-0 pt-0">
+                  <div class="d-flex align-items-center justify-content-center" style="background-color: rgb(106, 178, 236); height: 4rem;">
+                     <label><b>채팅방</b></label>
 
-						</div>
-						<div>
-							<div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
-							<div class="col-6"></div>
-							<div class="input-group">
-								<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" />
-								<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-							</div>
+                  </div>
+                  <div>
+                     <div id="msgArea" class="col p-2" style="background-color: rgb(129, 189, 238);"></div>
+                     <div class="col-6"></div>
+                     <div class="input-group">
+                        <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                        <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                     </div>
 
-							<div class="col-6"></div>
-						</div>
-						<!-- End Profile Iamge Icon -->
-					</div>
-				</li>
-				<!-- End Profile Nav -->
-			</ul>
-		</nav>
+                     <div class="col-6"></div>
+                  </div>
+                  <!-- End Profile Iamge Icon -->
+               </div>
+            </li>
+            <!-- End Profile Nav -->
+         </ul>
+      </nav>
 		<!-- End Icons Navigation -->
 	</header>
 	<!-- End Header -->
