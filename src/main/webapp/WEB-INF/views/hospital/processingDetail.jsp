@@ -28,7 +28,11 @@
 			</div>
 			<div>
 				<h3 id="badge">
-					<c:if test="${progressCategory.category != '완료'}">
+					<c:if test="${progressCategory.category == null}">
+						<span id="state" class="badge bg-success" style="cursor: pointer">내역없음</span>
+					</c:if>
+					
+					<c:if test="${progressCategory.category != '완료' && progressCategory.category != null}">
 						<span id="state" class="badge bg-success" style="cursor: pointer">${progressCategory.category}중</span>
 					</c:if>
 					
