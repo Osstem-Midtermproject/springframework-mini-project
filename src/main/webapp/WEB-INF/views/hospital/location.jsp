@@ -19,13 +19,9 @@
 
 .btn-outline-primary:hover {
 	color: #fff;
-<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
 	border-color: rgb(43 71 90 / 86%);
-=======
-	background-color: rgba(32, 54,68);
-	border-color: rgba(32, 54,68);
->>>>>>> refs/remotes/origin/jbc_0427
+
 }
 
 th a {
@@ -34,13 +30,9 @@ th a {
 
 .table-bordered th:hover {
 	color: #fff;
-<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
 	border-color: rgb(43 71 90 / 86%);
-=======
-	background-color: rgba(32, 54,68);
-	border-color: rgba(32, 54,68);
->>>>>>> refs/remotes/origin/jbc_0427
+
 }
 
 .location th a:hover {
@@ -48,21 +40,12 @@ th a {
 }
 
 th:focus {
-<<<<<<< HEAD
 	color: #fff;
 	background-color: rgb(43 71 90 / 86%);
-=======
-	background-color: rgba(32, 54,68);
-	color:white;
->>>>>>> refs/remotes/origin/jbc_0427
 }
 
 button:focus {
-<<<<<<< HEAD
 	background-color: rgb(43 71 90 / 86%);
-=======
-	background-color: rgba(32, 54,68);
->>>>>>> refs/remotes/origin/jbc_0427
 	color: white;
 	border: white;
 	box-shadow: 0 0 0 0.1rem rgb(43 71 90 / 86%);
@@ -468,23 +451,53 @@ button:focus {
 				</tr>
 			</thead>
 
-<<<<<<< HEAD
 			<tbody class="detailList">
 			
 			</tbody>
 		</table>
-		<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+		<%-- <%@ include file="/WEB-INF/views/common/pagination.jsp"%> --%>
+		<nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="?pageNo=1">
+        <span>&laquo;</span>
+      </a>
+    </li>
+    
+    <c:if test="${pager.groupNo>1}">
+	  <li class="page-item">
+	    <a class="page-link" href="?pageNo=${pager.startPageNo-1}">
+	      <span>&lsaquo;</span>
+	    </a>
+	  </li>
+	</c:if>
+	
+	<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+		<c:if test="${pager.pageNo != i}">
+			<li class="page-item"><a class="page-link" href="?pageNo=${i}">1</a></li>
+		</c:if>
+		<c:if test="${pager.pageNo == i}">
+			<li class="page-item"><a class="page-link text-primary" href="?pageNo=${i}">${i}</a></li>
+		</c:if>
+	</c:forEach>
+    
+    <c:if test="${pager.groupNo<pager.totalGroupNo}">
+      <li class="page-item">
+        <a class="page-link" href="?pageNo=${pager.endPageNo+1}">
+          <span>&rsaquo;</span>
+        </a>
+      </li>
+    </c:if>
+    
+    <li class="page-item">
+      <a class="page-link" href="?pageNo=${pager.totalPageNo}">
+        <span>&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+		
 	</div>
-=======
-						<tbody class="detailList">
-						
-						</tbody>
-					</table>
-
-					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
-
-				</div>
->>>>>>> refs/remotes/origin/jbc_0427
 </main>
 <!-- End #main -->
 

@@ -391,13 +391,13 @@ public class HospitalController {
 	
 	//지도 별, 위치 별 병원 목록 컨트롤 호출  - jbc
 	@GetMapping("/hospital/location")
-	public String location(@RequestParam(defaultValue = "1") int locationPageNo, Model model) {
+	public String location(@RequestParam(defaultValue = "1") int PageNo, Model model) {
 		log.info("Location 실행");
 
 		int getTotalLocationNum = hospitalService.getTotalHospitalNum();
-		Pager locationPager = new Pager(5, 5, getTotalLocationNum, locationPageNo);
+		Pager locationPager = new Pager(5, 5, getTotalLocationNum, PageNo);
 		model.addAttribute("locationPager", locationPager);
-		log.info("page");
+		log.info(locationPager);
 
 		List<Hospital> locationHospital = hospitalService.getLocationHospital(locationPager);
 		model.addAttribute("locationHospital", locationHospital);
