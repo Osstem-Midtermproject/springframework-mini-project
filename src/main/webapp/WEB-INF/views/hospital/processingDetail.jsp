@@ -168,8 +168,8 @@
 									<div id="form-div">
 										<form>
 											<div class="form-group mt-2 mb-4">
-												<label for="content">추가요청</label> <input type="text"
-													class="form-control" id="additionalContentUpdate" style="height: 140px" />
+												<label for="content">추가요청</label> <textarea type="text"
+													class="form-control" id="additionalContentUpdate" style="height: 140px"></textarea>
 											</div>
 										</form>
 									</div>
