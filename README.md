@@ -5,19 +5,20 @@
 <span></span>
 
 <h1>개발기간/인원</h1>
-<span>개발 일정 4월 4일 ~ 5월 13일</span>
-<span>4인 프로젝트</span>
+<ul>
+ <li>개발 일정 4월 4일 ~ 5월 13일</li>
+  <li>4인 프로젝트</li>
+</ul>
 
 <h1>개발환경</h1>
-
 <ul>
-<li>Java</li>
-<li>Jsp</li>
-<li>Spring</li>
-<li>Mybatis</li>
-<li>Java</li>
-<li>Oracle</li>
-  </ul>
+  <li>Java</li>
+  <li>Jsp</li>
+  <li>Spring</li>
+  <li>Mybatis</li>
+  <li>Java</li>
+  <li>Oracle</li>
+</ul>
 <h1>담당역할</h1>
 
 <h1>설명</h1>
