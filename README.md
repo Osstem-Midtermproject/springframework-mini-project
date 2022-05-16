@@ -9,12 +9,14 @@
 <span>4인 프로젝트</span>
 
 <h1>개발환경</h1>
-<span>Java</span>
-<span>Jsp</span>
+<ul>
+<li>Java</li>
+<li>Jsp</li>
 <span>Spring</span>
 <span>Mybatis</span>
 <span>Java</span>
 <span>Oracle</span>
+  </ul>
 <h1>담당역할</h1>
 
 <h1>설명</h1>
