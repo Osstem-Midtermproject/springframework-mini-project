@@ -26,10 +26,32 @@
   <li>전체 차트</li>
   <li>캘린더/스케줄 관리</li>
   <li>대시보드</li>
-  <li>채팅</li>
- 
+ <li>채팅</li>
 </ul>
-
+<h4>김혜현</h4>
+<span>역할소개<span>
+<ul>
+  <li>전체 UI</li>
+  <li>파일첨부</li>
+  <li>병원 디테일 페이지</li>
+  <li>요청사항 Ajax처리</li>
+</ul>
+ <h4>이주영</h4>
+<span>역할소개<span>
+<ul>
+  <li>사용자 페이지</li>
+  <li>알림/오늘 스케줄</li>
+  <li>리스트</li>
+  <li>계약서 보기</li>
+</ul>
+ <h4>전병천</h4>
+<span>역할소개<span>
+<ul>
+  <li>시큐리티</li>
+  <li>유저 관리 페이지</li>
+  <li>팀별 스케줄 조회</li>
+  <li>병원 위치 정보 조회</li>
+</ul>
 <h1>설명</h1>
 <span>
   <img src="https://user-images.githubusercontent.com/55389539/168534330-353ad8b2-df93-463f-a14d-10d5026143e1.png"/>
