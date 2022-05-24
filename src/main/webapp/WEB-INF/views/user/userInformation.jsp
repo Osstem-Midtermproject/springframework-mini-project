@@ -34,10 +34,10 @@
 									<td>아이디</td>
 									<td>${user.userid}</td>
 								</tr>
-								<tr>
+							<%-- 	<tr>
 									<td>비밀번호</td>
 									<td id="userpassword">${user.upassword}</td>
-								</tr>
+								</tr> --%>
 								<tr>
 									<td>이름</td>
 									<td>${user.uname}</td>

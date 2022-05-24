@@ -42,7 +42,7 @@ public class ManagementController {
 	 @PostMapping("/management/modifymanagementForm")
 	  public String boardUpdate(Users user) {
 		 ManagementService.updateUser(user);
-		  return "/management/modifymanagement";
+			return "management/management";
 		  
 	  }
 	

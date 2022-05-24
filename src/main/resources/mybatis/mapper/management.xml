@@ -27,7 +27,7 @@
               from (
                   SELECT hdln, userid, uaddress, hname, uphonenumber, umembershipdate, uname
                   FROM users, hospital 
-                  WHERE uaddress = haddress AND udln = hdln
+                  WHERE uaddress = haddress AND udln = hdln AND urole = 'ROLE_USER'
                    )
           where rownum &lt;= 5
           )
@@ -48,6 +48,23 @@
    
    <!-- 종속 제약에 의한 업데이트 제한 해결해야한다. -->
 	 <update id="updateByHdln" parameterType="user">
-		UPDATE users set  uname=#{uname}, uphonenumber=#{uphonenumber} WHERE udln = 12345
+		UPDATE users 
+		SET  uname = #{uname}, uphonenumber=#{uphonenumber}, uaddress = #{uaddress}
+		WHERE udln = #{udln}
 	</update>
+		
+			<!-- CREATE OR REPLACE TRIGGER trg_update_information
+		AFTER UPDATE OF uname ON users 
+		FOR EACH ROW
+		BEGIN
+		    UPDATE hospital 
+		    SET   haddress = :NEW.uaddress 
+		    WHERE haddress = :OLD.uaddress
+		END
+		/ -->
+		
+		
+		
+		<!-- DROP TRIGGER trg_update_information -->
+	
 </mapper>

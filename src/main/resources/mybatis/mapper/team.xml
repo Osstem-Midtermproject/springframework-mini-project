@@ -179,10 +179,11 @@
 	</resultMap>
 	
 	<select id="selectdetailTeamInformationWithMonth" parameterType="team" resultMap="selectTeamInformationDetailTeamMonth">
-		SELECT cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, cons_sche_dln, CONS_SCHE_CONTENT, CONS_SCHE_ADDRESS
+		SELECT cons_cate_type, cons_sche_startdate, cons_sche_enddate, cons_sche_hospitalname, 
+			cons_sche_dln, CONS_SCHE_CONTENT, CONS_SCHE_ADDRESS
 		FROM constructioncategory, constructionschedule
-		WHERE cons_sche_teamid = #{tid} AND cons_cate_id = cons_sche_categoryid AND 
-		    TO_CHAR(CONS_SCHE_STARTDATE, 'YY/MM') = concat(TO_CHAR(SYSDATE,'YY/'), #{month})
+		WHERE cons_sche_teamid = #{tid} AND cons_cate_id = cons_sche_categoryid 
+			AND TO_CHAR(CONS_SCHE_STARTDATE, 'YY/MM') = concat(TO_CHAR(SYSDATE,'YY/'), #{month})
 		ORDER BY CONS_SCHE_STARTDATE
     </select> 
     

@@ -103,6 +103,7 @@
 						<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="#">상담요청</a></li>
 
 						<!-- security에서 사용자 권한에 따라 보여주는 것을 달리한다.  -->
+						
 						<sec:authorize access="isAnonymous()">
 							<li class="nav-item font-weight-bolder pr-4 pt-4"><a class="nav-link" href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 						</sec:authorize>

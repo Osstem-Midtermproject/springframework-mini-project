@@ -29,8 +29,8 @@
 						<th scope="col">병원장</th>
 						<th scope="col">가입일</th>
 						<!-- 수정 버튼과 탈퇴 버튼 -->
-
-						<th scope="col">관리</th>
+						<th scope="col">수정</th>
+						<th scope="col">삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,8 +43,8 @@
 							<td>${board.uphonenumber}</td>
 							<td>${board.uname}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.umembershipdate}"/></td>
-<%-- 							<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modify_management'">수정</button>
- --%>              					<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/deletemanagement?hdln=${board.hospital.hdln}'">삭제</button></td>
+ 							<td> <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/modify_management'">수정</button></td>
+               					<td><button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/management/deletemanagement?hdln=${board.hospital.hdln}'">삭제</button></td>
               					
 						</tr>
 					</c:forEach>

@@ -30,13 +30,8 @@ function getParameters (paramName) {
 //기간 버튼을 클릭 할 시 해당 기간에 되는 일정만 출력
 $(function(){
 	$('.btn').on("click",function(){
-		//chkParam();	
-	    
 	    var tid = getParameters('tid');
-
 		let duration = $(this).attr('id');
-		
-		
 		$.ajax({
 			url:"detailteam",
 			type:'post',
@@ -115,13 +110,8 @@ $(function(){
 /* 선택한 달로 이동하여 보여준다. */
 $(function(){
 	$('.form-select').change(function(){
-		//chkParam();	
-		console.log("dfk");
-	    
 	    var tid = getParameters('tid');
 		var month = $('.form-select option:selected').val();
-		console.log(month);
-		
 		$.ajax({
 			url:"detailteammonth",
 			type:'post',
